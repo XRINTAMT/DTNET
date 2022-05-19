@@ -15,6 +15,8 @@ Basic VR app for our Blood sample use-case.
 
 - [URP](https://medium.com/nerd-for-tech/how-to-upgrade-to-unitys-universal-render-pipeline-f1145b29040d) (Should already be setup)
 - [Hospital Props - VOL.1 - 6 - MEGA PACK](https://assetstore.unity.com/packages/3d/props/hospital-props-vol-1-6-mega-pack-178128)
+- TextMesh Pro
+- XR Interaction Toolkit
 
 ## Back matter
 
