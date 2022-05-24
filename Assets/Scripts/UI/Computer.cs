@@ -3,29 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using TMPro;
 
-using DTNET.Models;
+using DTNET.Models.Patient;
 
 namespace DTNET.UI
 {
     public class Computer : MonoBehaviour
     {
+
+        //public Patient patient;
+        public PatientObject patientObject;
         public GameObject computerCanvas;
         public GameObject mainPanel;
         public GameObject referralPanel;
         public bool isDisplayScreen;
 
-        public PatientStorage patientStorage;
+        //public PatientStorage patientStorage;
 
-        private Patient patient;
+        public TextMeshProUGUI idRowTMP;
+        public TextMeshProUGUI namerowTMP;
+        public TextMeshProUGUI tubesRowTMP;
+
 
         // Start is called before the first frame update
         void Start()
         {
             HideScreen();
             DisplayMainPanel();
-            patient = patientStorage.getPatientByIndex(1);
-            Debug.Log("patient : " + patient.fullName);
+            //patient = patientStorage.GetRandomPatient();
         }
 
         private void DisplayScreen()
@@ -49,12 +55,15 @@ namespace DTNET.UI
         {
             mainPanel.SetActive(false);
             referralPanel.SetActive(true);
+
+            idRowTMP.text = "ID: " + patientObject.getPatientId();//patient.id;
+            namerowTMP.text = "Patient : " + patientObject.getPatientFullnamne();//patient.fullName;
+            tubesRowTMP.text = patientObject.getTubesToTake();
         }
 
 
         public void ClickedOn()
         {
-            Debug.Log("PressedComputer!!!");
             isDisplayScreen = !isDisplayScreen;
             if(isDisplayScreen)
             {
@@ -65,6 +74,5 @@ namespace DTNET.UI
                 HideScreen();
             }
         }
-
     }
 }
