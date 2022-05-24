@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DTNET.Models
+namespace DTNET.Models.Patient
 {
     [System.Serializable]
     public class Referral
