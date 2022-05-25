@@ -7,10 +7,7 @@ using TMPro;
 namespace DTNET.Models.Patient {
     public class PatientObject : MonoBehaviour
     {
-        //public GameObject patientIdCanvas;
         private bool textBoxIsActive;
-        public TextMeshProUGUI idInfoTMP;
-        public GameObject patientIdCanvas;
         public PatientStorage patientStorage;
         private Patient patient; 
 
