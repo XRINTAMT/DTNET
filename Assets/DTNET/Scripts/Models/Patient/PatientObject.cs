@@ -4,11 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+using DTNET.Models;
+
 namespace DTNET.Models.Patient {
     public class PatientObject : MonoBehaviour
     {
         private bool textBoxIsActive;
         public PatientStorage patientStorage;
+
+        public TaskSystem taskSystem; 
         private Patient patient; 
 
 
@@ -23,6 +27,13 @@ namespace DTNET.Models.Patient {
             SetTextBoxActive(textBoxIsActive);
             fetchRandomPatientFromStorage();
             setPatientIdentityInformationsInTextBox();
+        }
+
+        
+        public void askPatientAboutIdentity() {
+            textBoxIsActive = !textBoxIsActive;
+            SetTextBoxActive(textBoxIsActive);
+            taskSystem.askedForIDDone();
         }
 
         private void fetchRandomPatientFromStorage() {
@@ -58,10 +69,6 @@ namespace DTNET.Models.Patient {
             textBox.SetActive(true);
         }
 
-        public void askPatientAboutIdentity() {
-            textBoxIsActive = !textBoxIsActive;
-            SetTextBoxActive(textBoxIsActive);
-        }
 
         private void SetTextBoxActive(bool isActive) {
             GameObject textBox = getPatientTextBox();

@@ -15,7 +15,9 @@ namespace DTNET.Models.Patient
             LIGH_GREEN,
             PURPULE
         }
+
         public List<SampleTubes> tubesToTake;
+        public bool shouldBeFasting;
     }
 }
 

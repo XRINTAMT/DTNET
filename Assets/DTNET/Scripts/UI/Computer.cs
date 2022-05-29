@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
 
+using DTNET.Models;
 using DTNET.Models.Patient;
 
 namespace DTNET.UI
@@ -18,6 +19,8 @@ namespace DTNET.UI
         public GameObject mainPanel;
         public GameObject referralPanel;
         public bool isDisplayScreen;
+
+        public TaskSystem taskSystem;
 
 
         // Start is called before the first frame update
@@ -46,13 +49,14 @@ namespace DTNET.UI
 
         public void DisplayReferralPanel()
         {
-            // Check off that task is done!
             mainPanel.SetActive(false);
             referralPanel.SetActive(true);
 
             setPatientIDRowText("ID: " + patientObject.getPatientId());
             setPatientNameRowText("Name : " + patientObject.getPatientFullnamne());
             setTubesToTakeRowText(patientObject.getTubesToTake());
+            // Check off that task is done!
+            taskSystem.checkedReferralDone();
         }
 
         private GameObject getReferralPanel() {
