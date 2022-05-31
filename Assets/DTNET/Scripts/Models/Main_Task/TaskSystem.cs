@@ -53,6 +53,7 @@ namespace DTNET.Models {
             } catch (System.Exception e)  
             {  
                 Debug.Log("Task already done: "+key);
+                //Debug.Log(e.Message);
             }  
         }
 
@@ -78,13 +79,18 @@ namespace DTNET.Models {
         }
 
         public string GetResults() {
-            string results = "Tasks Results:\n";
-            results += (hyginKey + "Task Order: " + _tasksDone[hyginKey] + ", Should be: "+correctOrder[hyginKey]) + "\n";
-            results += (materialsKey + "Task Order: " + _tasksDone[materialsKey] + ", Should be: "+correctOrder[materialsKey])+ "\n";
-            results += (askIdKey + "Task Order: " + _tasksDone[askIdKey] + ", Should be: "+correctOrder[askIdKey])+ "\n";
-            results += (referralMatchKey + "Task Order: " + _tasksDone[referralMatchKey] + ", Should be: "+correctOrder[referralMatchKey])+ "\n";
-            results += (glovesKey + "Task Order: " + _tasksDone[glovesKey] + ", Should be: "+correctOrder[glovesKey])+ "\n";
+            string results = "You completed all tasks for a Venous Blood Sampling Preperation.\n";
+            results += "Results:\n";
+            results += TaskResultStringFromat(hyginKey);
+            results += TaskResultStringFromat(materialsKey);
+            results += TaskResultStringFromat(askIdKey);
+            results += TaskResultStringFromat(referralMatchKey);
+            results += TaskResultStringFromat(glovesKey);
             return results;
+        }
+
+        private string TaskResultStringFromat(string key) {
+            return (key + " Your order:  " + _tasksDone[key] + ", Should be: "+correctOrder[key] + "\n");
         }
 
         public bool allTasksIsCompleted() {
