@@ -47,7 +47,14 @@ namespace DTNET.Models.Patient {
         
         private string getPatientIdentityInformation() {
             string patientInfo = "Hi name name is: " + this.getPatientFullnamne() + "\n";
-            patientInfo += "and my identifier is: " + this.getPatientId();
+            patientInfo += "My identifier is: " + this.getPatientId() + "\n";
+            if(this.PatientHasBeenFasting()) 
+            {
+                patientInfo += "I have been fasting.";
+            } 
+            else {
+                patientInfo += "I ate just before I got here.";
+            }
             return patientInfo;
         }
 
@@ -87,13 +94,27 @@ namespace DTNET.Models.Patient {
             return patient.fullName;
         }
 
+        public bool PatientHasBeenFasting() 
+        {
+            return patient.referral.shouldBeFasting;
+        }
+
         
-        public string getTubesToTake() {
+        public string getTubesToTakeStr() {
             string tubes = "";
-            foreach (int tube in patient.referral.tubesToTake) {
-                tubes += (tube + "\n");
+            List<SampleTube> tubesToTake = GetTubesToTakeList();
+            foreach (SampleTube tube in tubesToTake) {
+                tubes += (tube.analysis + "\n");
             }
             return tubes;
+        }
+
+        public List<SampleTube> GetTubesToTakeList() {
+            return patient.referral.tubesToTake;
+        }
+
+        public int GetNumberOfTubesToTake() {
+            return patient.referral.tubesToTake.Count;
         }
 
     }
