@@ -54,7 +54,8 @@ namespace DTNET.UI
 
             setPatientIDRowText("ID: " + patientObject.getPatientId());
             setPatientNameRowText("Name : " + patientObject.getPatientFullnamne());
-            setTubesToTakeRowText(patientObject.getTubesToTake());
+            setFastingRowText("Fasting: "+patientObject.PatientHasBeenFasting());
+            setTubesToTakeRowText(patientObject.getTubesToTakeStr());
             // Check off that task is done!
             taskSystem.checkedReferralDone();
         }
@@ -63,11 +64,18 @@ namespace DTNET.UI
             return this.gameObject.transform.GetChild(0).GetChild(2).GetChild(1).gameObject;
         }
 
-        private void setPatientIDRowText(string text) {
-            int rowIndex = 0;
+        private void SetTextOnRow(int rowIndex, string text) 
+        {
             GameObject refPanel = getReferralPanel();
             TextMeshProUGUI idrow = refPanel.transform.GetChild(rowIndex).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
             idrow.text = text;
+        }
+
+        private void setPatientIDRowText(string text) {
+            //GameObject refPanel = getReferralPanel();
+            //TextMeshProUGUI idrow = refPanel.transform.GetChild(rowIndex).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+            //idrow.text = text;
+            SetTextOnRow(0, text);
         }
 
         private void setPatientNameRowText(string text) {
@@ -77,12 +85,19 @@ namespace DTNET.UI
             idrow.text = text;
         }
 
-        private void setTubesToTakeRowText(string text) {
+        private void setFastingRowText(string text) {
             int rowIndex = 2;
             GameObject refPanel = getReferralPanel();
             TextMeshProUGUI idrow = refPanel.transform.GetChild(rowIndex).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
             idrow.text = text;
         }
+        private void setTubesToTakeRowText(string text) {
+            int rowIndex = 3;
+            GameObject refPanel = getReferralPanel();
+            TextMeshProUGUI idrow = refPanel.transform.GetChild(rowIndex).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+            idrow.text = text;
+        }
+
 
         public void ClickedOn()
         {
