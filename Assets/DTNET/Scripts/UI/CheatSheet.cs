@@ -10,11 +10,11 @@ namespace DTNET.UI
         void Start()
         {
             string gameMode = CSystem.GameMode.SelectedMode;
-            if(gameMode == "Beginner") {
-                gameObject.SetActive(true);
+            if(gameMode == "Experience") {
+                gameObject.SetActive(false);
             }
             else {
-                gameObject.SetActive(false);
+                gameObject.SetActive(true);
             }
         }
     }
