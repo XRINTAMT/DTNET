@@ -9,13 +9,6 @@ namespace DTNET.Models {
 
         [SerializeField] private GameObject _tubePrefab;
 
-        // Update is called once per frame
-        void Update()
-        {
-            
-        }
-
-
         public void spawnTubeAtPosition() 
         {
             float y_offset = 0.45f;

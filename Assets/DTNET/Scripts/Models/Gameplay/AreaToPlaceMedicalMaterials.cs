@@ -11,11 +11,12 @@ namespace DTNET.Models {
         public TaskSystem TaskSystem;
         private HashSet<MedicalMaterialType> m_currentMaterialsInArea = new HashSet<MedicalMaterialType>();
         private int materialCount = 1;
-
         public PatientObject patientObject;
+        public CameraUI cameraUI;
 
         void Start() {
             materialCount += patientObject.GetNumberOfTubesToTake();
+            List<SampleTube> tubesToTake = patientObject.GetTubesToTakeList();
             Debug.Log("Number Of Materials To Collect:: "+materialCount);
             StartCoroutine(CollectMaterials());
         }
@@ -27,6 +28,7 @@ namespace DTNET.Models {
                 {
                     Debug.Log("All Materials in place? :)");
                     TaskSystem.hasCollectedAllMedicalMaterials();
+                    cameraUI.DisplayMessage("Put On Gloves");
                     yield break; // End Coroutine
                 }
                 yield return new WaitForSeconds(0.1f);
@@ -37,14 +39,12 @@ namespace DTNET.Models {
 
         void OnTriggerEnter(Collider other) 
         {
-            //CauldronIngredient ingredient = other.attachedRigidbody.GetComponentInChildren<CauldronIngredient>();
             MedicalMaterialToCollect CollectedMedicalMaterial = other.attachedRigidbody.GetComponentInChildren<MedicalMaterialToCollect>();
             Debug.Log("m_currentMaterialsInArea.Count :: " + m_currentMaterialsInArea.Count);
             if (CollectedMedicalMaterial != null && CollectedMedicalMaterial.IsNotInArea())
             {
                 Debug.Log("Added Medical Material!");
                 CollectedMedicalMaterial.HasEnterTheArea();
-                //m_currentMaterialsInArea.Add(medicalMaterial.materialName);
                 AddMaterial(CollectedMedicalMaterial.materialType);
             } 
             else 
@@ -56,9 +56,13 @@ namespace DTNET.Models {
         void OnTriggerExit(Collider other) {
             Debug.Log("Material Left the Area!");
             MedicalMaterialToCollect medicalMaterial = other.attachedRigidbody.GetComponentInChildren<MedicalMaterialToCollect>();
-            //bool didRemove = m_currentMaterialsInArea.Remove(medicalMaterial.materialName);
-            RemoveMaterial(medicalMaterial.materialType);
-            medicalMaterial.HasLeftTheArea();
+            try {
+                RemoveMaterial(medicalMaterial.materialType);
+                medicalMaterial.HasLeftTheArea();
+            } catch(System.Exception e) {
+                Debug.Log("AeraToPlace: "+e.Message);
+            }
+
         }
 
 

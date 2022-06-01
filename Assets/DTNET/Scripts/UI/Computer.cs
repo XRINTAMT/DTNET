@@ -19,6 +19,7 @@ namespace DTNET.UI
         public GameObject mainPanel;
         public GameObject referralPanel;
         public bool isDisplayScreen;
+        public CameraUI cameraUI;
 
         public TaskSystem taskSystem;
 
@@ -58,6 +59,7 @@ namespace DTNET.UI
             setTubesToTakeRowText(patientObject.getTubesToTakeStr());
             // Check off that task is done!
             taskSystem.checkedReferralDone();
+            cameraUI.DisplayMessage("Collect the missing tubes!");
         }
 
         private GameObject getReferralPanel() {

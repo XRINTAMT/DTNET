@@ -33,8 +33,7 @@ namespace DTNET.Models.Patient {
             {
                 textBoxIsActive = !textBoxIsActive;
                 SetTextBoxActive(textBoxIsActive);
-
-                cameraUI.DisplayMessage("Verify ID!");
+                cameraUI.DisplayMessage("Verify ID in Referral");
             }
         }    
         

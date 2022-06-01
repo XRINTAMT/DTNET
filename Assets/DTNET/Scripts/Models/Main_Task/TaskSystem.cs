@@ -10,9 +10,10 @@ namespace DTNET.Models {
     {
 
         public AllTasksCompleted allTasksCompletedCanvas;
+
+        public CameraUI cameraUI;
         private int NumberOfTasks = 5;
         private int currentTaskOrder = 1;
-
         private string hyginKey = "Basic Hygin";
         private string materialsKey = "Collect All Materials";
         private string askIdKey = "Ask For ID";
@@ -41,6 +42,7 @@ namespace DTNET.Models {
                 {
                     allTasksCompletedCanvas.Show(GetResults());
                     hasNotCompleted = false;
+                    cameraUI.DisplayMessage("Congratulations\nYou have completed all tasks");
                 }
             }
         }
@@ -54,7 +56,7 @@ namespace DTNET.Models {
             {  
                 Debug.Log("Task already done: "+key);
                 //Debug.Log(e.Message);
-            }  
+            }
         }
 
         public void SinkUsed() {

@@ -24,7 +24,7 @@ namespace DTNET.Models {
             audioData.Play(0);
 
             if(hasNotBeenSelected) {
-                cameraUI.DisplayMessage("Now Ask for ID");
+                cameraUI.DisplayMessage("Ask Patient for ID");
                 hasNotBeenSelected = false;
             }
         }

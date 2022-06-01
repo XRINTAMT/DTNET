@@ -23,6 +23,9 @@ public class CameraUI : MonoBehaviour
         if(isBeginnerMode()) 
         {
             DisplayMessage("Welcome!\nStart with hygin");
+        } else 
+        {
+            this.gameObject.SetActive(false);
         }
 
     }
@@ -38,9 +41,11 @@ public class CameraUI : MonoBehaviour
     }
 
     public void DisplayMessage(string msg) {
-        displayText.text = msg;
-        this.gameObject.SetActive(true);
-        resetTextAliveTime();
+        if(isBeginnerMode()) {
+            displayText.text = msg;
+            this.gameObject.SetActive(true);
+            resetTextAliveTime();
+        }
     }
 
     private void resetTextAliveTime() {
@@ -53,7 +58,7 @@ public class CameraUI : MonoBehaviour
     }
 
     private bool isBeginnerMode() {
-        return (selectedMode=="Beginner");
+        return (selectedMode !=" Experience");
     }
 
     private TextMeshProUGUI GetTextTMP() {

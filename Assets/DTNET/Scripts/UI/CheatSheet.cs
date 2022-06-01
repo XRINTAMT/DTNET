@@ -9,6 +9,12 @@ namespace DTNET.UI
         // Start is called before the first frame update
         void Start()
         {
+            //DisplayIfMode();
+            gameObject.SetActive(false); // Remove if you want to display this!
+        }
+
+
+        private void DisplayIfMode() {
             string gameMode = CSystem.GameMode.SelectedMode;
             if(gameMode == "Experience") {
                 gameObject.SetActive(false);
