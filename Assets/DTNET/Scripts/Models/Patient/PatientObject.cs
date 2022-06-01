@@ -5,22 +5,39 @@ using UnityEngine.UI;
 using TMPro;
 
 using DTNET.Models;
+using DTNET.UI;
 
 namespace DTNET.Models.Patient {
     public class PatientObject : MonoBehaviour
     {
         private bool textBoxIsActive;
         public PatientStorage patientStorage;
-
+        public CameraUI cameraUI;
         public TaskSystem taskSystem; 
         private Patient patient; 
-
+        private float textAliveTime = 0.0f;
 
         // Start is called before the first frame update
         void Start()
         {
             initPatient();
         }
+
+        void Update() 
+        {
+            if(!textBoxIsActive) return;
+
+            Debug.Log("textAliveTime : "+textAliveTime);
+            textAliveTime -= Time.deltaTime;
+            if (textAliveTime <= 0.0f)
+            {
+                textBoxIsActive = !textBoxIsActive;
+                SetTextBoxActive(textBoxIsActive);
+
+                cameraUI.DisplayMessage("Verify ID!");
+            }
+        }    
+        
 
         private void initPatient() {
             textBoxIsActive = false;
@@ -34,6 +51,7 @@ namespace DTNET.Models.Patient {
             textBoxIsActive = !textBoxIsActive;
             SetTextBoxActive(textBoxIsActive);
             taskSystem.askedForIDDone();
+            textAliveTime = 7.0f;
         }
 
         private void fetchRandomPatientFromStorage() {
@@ -69,9 +87,11 @@ namespace DTNET.Models.Patient {
         private void hideTextBox() {
             GameObject textBox = getPatientTextBox();
             textBox.SetActive(false);
+            textAliveTime = 0;
         }
 
         private void displayTextBox() {
+            textAliveTime = 6.0f;
             GameObject textBox = getPatientTextBox();
             textBox.SetActive(true);
         }
