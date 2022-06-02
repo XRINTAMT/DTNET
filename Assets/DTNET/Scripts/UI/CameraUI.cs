@@ -22,7 +22,7 @@ public class CameraUI : MonoBehaviour
         selectedMode = GameMode.SelectedMode;
         if(isBeginnerMode()) 
         {
-            DisplayMessage("Welcome!\nStart with hygin");
+            DisplayMessage("Welcome!\nStart with hygien");
         } else 
         {
             this.gameObject.SetActive(false);
@@ -58,7 +58,7 @@ public class CameraUI : MonoBehaviour
     }
 
     private bool isBeginnerMode() {
-        return (selectedMode !=" Experience");
+        return (selectedMode !="Experience");
     }
 
     private TextMeshProUGUI GetTextTMP() {
