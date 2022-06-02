@@ -9,13 +9,13 @@ namespace DTNET.UI
     {
         public void SetBeginnerInfoText() {
             TextMeshProUGUI infoTMP = GetGameModeInfoTextTMP();
-            infoTMP.text = "You can see a list of the necessary tasks you have to complete for finishing the scenario.";
+            infoTMP.text = "You get hints that guides you through the tasks.";
 
         }
 
         public void SetExperienceInfoText() {
             TextMeshProUGUI infoTMP = GetGameModeInfoTextTMP();
-            infoTMP.text = "You do NOT see a list of the tasks. You will have to remeber them.";
+            infoTMP.text = "No hints.";
         }
 
 
