@@ -14,7 +14,7 @@ namespace DTNET.Models {
         public CameraUI cameraUI;
         private int NumberOfTasks = 5;
         private int currentTaskOrder = 1;
-        private string hyginKey = "Basic Hygin";
+        private string hyginKey = "Basic hygien";
         private string materialsKey = "Collect All Materials";
         private string askIdKey = "Ask For ID";
         private string referralMatchKey = "Match With Referral";
@@ -29,9 +29,9 @@ namespace DTNET.Models {
         void Start() {
             correctOrder = new Dictionary<string, int>(NumberOfTasks);
             correctOrder.Add(hyginKey, 1);
-            correctOrder.Add(materialsKey, 2);
-            correctOrder.Add(askIdKey, 3);
-            correctOrder.Add(referralMatchKey, 4);
+            correctOrder.Add(askIdKey, 2);
+            correctOrder.Add(referralMatchKey, 3);
+            correctOrder.Add(materialsKey, 4);
             correctOrder.Add(glovesKey, 5);
         }
 
@@ -84,9 +84,9 @@ namespace DTNET.Models {
             string results = "You completed all tasks for a Venous Blood Sampling Preperation.\n";
             results += "Results:\n";
             results += TaskResultStringFromat(hyginKey);
-            results += TaskResultStringFromat(materialsKey);
             results += TaskResultStringFromat(askIdKey);
             results += TaskResultStringFromat(referralMatchKey);
+            results += TaskResultStringFromat(materialsKey);
             results += TaskResultStringFromat(glovesKey);
             return results;
         }
