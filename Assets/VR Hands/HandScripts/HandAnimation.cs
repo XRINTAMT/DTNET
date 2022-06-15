@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class HandAnimation : MonoBehaviour
 {
     [SerializeField] private InputActionReference gripAction;
-    [SerializeField] private InputActionReference pinchAction;
+    //[SerializeField] private InputActionReference pinchAction;
     private Animator animator;
 
     private void OnEnable()
@@ -15,8 +15,8 @@ public class HandAnimation : MonoBehaviour
         gripAction.action.canceled += GripRelease;
 
         //pinch
-        pinchAction.action.performed += Pinching;
-        pinchAction.action.canceled += PinchRelease;
+        //pinchAction.action.performed += Pinching;
+        //pinchAction.action.canceled += PinchRelease;
     }
 
     private void OnDisable() {
@@ -25,8 +25,8 @@ public class HandAnimation : MonoBehaviour
         gripAction.action.canceled -= GripRelease;
 
         //pinch
-        pinchAction.action.performed -= Pinching;
-        pinchAction.action.canceled -= PinchRelease;
+        //pinchAction.action.performed -= Pinching;
+        //pinchAction.action.canceled -= PinchRelease;
     }
 
     private void Awake() => animator = GetComponent<Animator>();
