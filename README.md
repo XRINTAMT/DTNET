@@ -8,13 +8,13 @@ Basic VR app for our Blood sample use-case.
 
 #### Prerequisites
 
-- Unity 2021.3.2f1 URP (Performance).
+- Unity 2020.3.26f1
 - Member of INTAMT organization on Unity.
 
 #### Dependencies
-
-- [URP](https://medium.com/nerd-for-tech/how-to-upgrade-to-unitys-universal-render-pipeline-f1145b29040d) (Should already be setup)
 - [Hospital Props - VOL.1 - 6 - MEGA PACK](https://assetstore.unity.com/packages/3d/props/hospital-props-vol-1-6-mega-pack-178128)
+- [Adventurer Blake](https://assetstore.unity.com/packages/3d/characters/humanoids/adventurer-blake-158728#description) (Patient Avatar)
+- [URP](https://medium.com/nerd-for-tech/how-to-upgrade-to-unitys-universal-render-pipeline-f1145b29040d) (Should already be setup)
 - TextMesh Pro
 - XR Interaction Toolkit
 
