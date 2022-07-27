@@ -1,11 +1,10 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-
 [CustomEditor(typeof(SpawnRoom))]
-
 public class SpawnEditor : Editor
 {
     public override void OnInspectorGUI()
@@ -16,3 +15,4 @@ public class SpawnEditor : Editor
         if (GUILayout.Button("Create room")) spawnRoom.Spawn();
     }
 }
+#endif
