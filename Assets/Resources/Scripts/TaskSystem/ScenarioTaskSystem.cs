@@ -43,7 +43,9 @@ namespace ScenarioTaskSystem
             }
             if (completedTaskSettings.Order == null)
             {
-                completedTaskSettings.OnCompleted.Execute();
+                completedTaskSettings.Completed = true;
+                if (completedTaskSettings.OnCompleted != null)
+                    completedTaskSettings.OnCompleted.Execute();
             }
             else
             {
@@ -62,11 +64,14 @@ namespace ScenarioTaskSystem
                 }
                 if (ordered)
                 {
-                    completedTaskSettings.OnCompleted.Execute();
+                    completedTaskSettings.Completed = true;
+                    if (completedTaskSettings.OnCompleted != null)
+                        completedTaskSettings.OnCompleted.Execute();
                 }
                 else
                 {
-                    completedTaskSettings.OnWrongOrder.Execute();   
+                    if (completedTaskSettings.OnWrongOrder != null)
+                        completedTaskSettings.OnWrongOrder.Execute();
                 }
             }
         }
@@ -77,7 +82,7 @@ namespace ScenarioTaskSystem
     {
         public Task Task;
         public Task Order;
-        [System.NonSerialized]
+        //[System.NonSerialized]
         public bool Completed;
         public Operation OnCompleted;
         public Operation OnWrongOrder;
