@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteAlways]
+
+#if UNITY_EDITOR
 public class SpawnRoom : MonoBehaviour
 { 
     [SerializeField] private GameObject roomPref; 
@@ -39,6 +41,7 @@ public class SpawnRoom : MonoBehaviour
         instRoom.transform.GetChild(5).transform.localScale = new Vector3(instRoom.transform.GetChild(5).localScale.x, 0.1f, instRoom.transform.GetChild(5).localScale.z);
         instRoom.transform.GetChild(5).transform.position = new Vector3(instRoom.transform.GetChild(5).transform.position.x, height, instRoom.transform.GetChild(5).transform.position.z);
         mat = instRoom.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().sharedMaterial;
-        mat.mainTextureScale = new Vector3(1 * (widh / 2), 1 * (lenght / 2));
+        mat.mainTextureScale = new Vector3(1 * (widh), 1 * (lenght));
     }
 }
+#endif
