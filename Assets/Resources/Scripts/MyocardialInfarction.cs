@@ -30,6 +30,7 @@ public class MyocardialInfarction : MonoBehaviour
             {
                 public TaskSettings WetHands;
                 public TaskSettings GetSoap;
+                public UniversalOperation UseSoapMarker;
                 public TaskSettings WashSoapAway;
             }
             public WashHandsTasksGroup WashHandsTasks;
@@ -50,6 +51,7 @@ public class MyocardialInfarction : MonoBehaviour
         washHandsTasks[0] = MyocardialInfarctionScenario.HygeneSubscenarios.WashHandsTasks.WetHands;
         washHandsTasks[1] = MyocardialInfarctionScenario.HygeneSubscenarios.WashHandsTasks.GetSoap;
         washHandsTasks[2] = MyocardialInfarctionScenario.HygeneSubscenarios.WashHandsTasks.WashSoapAway;
+        MyocardialInfarctionScenario.HygeneSubscenarios.WashHandsTasks.GetSoap.OnCompleted = MyocardialInfarctionScenario.HygeneSubscenarios.WashHandsTasks.UseSoapMarker;
         MyocardialInfarctionScenario.HygeneSubscenarios.WashHandsSubscenarioCompleter = 
             new TaskCompleter(MyocardialInfarctionScenario.HygeneSubscenarios.CompleteWashHandsSubscenario.Task, MyocardialInfarctionScenario.HygeneSubscenarios.WashHandsSubscenarioMarker);
         MyocardialInfarctionScenario.HygeneSubscenarios.WashHandsSubscenario = new Scenario(washHandsTasks, MyocardialInfarctionScenario.HygeneSubscenarios.WashHandsSubscenarioCompleter);

@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 namespace ScenarioTaskSystem
 {
+    [System.Serializable]
     public class TaskCompleter : Operation
     {
         private Task task;
