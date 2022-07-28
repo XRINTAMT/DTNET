@@ -42,6 +42,9 @@ public class MyocardialInfarction : MonoBehaviour
 
     void Awake()
     {
+        MyocardialInfarctionScenario.HygeneSubscenarios.CompleteWashHandsSubscenario.Task = gameObject.AddComponent<Task>();
+        MyocardialInfarctionScenario.CompleteHygeneSubscenario.Task = gameObject.AddComponent<Task>();
+
         //Wash hands subscenario initialization
         TaskSettings[] washHandsTasks = new TaskSettings[3];
         washHandsTasks[0] = MyocardialInfarctionScenario.HygeneSubscenarios.WashHandsTasks.WetHands;
@@ -54,14 +57,12 @@ public class MyocardialInfarction : MonoBehaviour
         //Hygene subscenario initialization
         TaskSettings[] hygeneTasks = new TaskSettings[1];
         hygeneTasks[0] = MyocardialInfarctionScenario.HygeneSubscenarios.CompleteWashHandsSubscenario;
-        MyocardialInfarctionScenario.HygeneSubscenarios.CompleteWashHandsSubscenario.Task = gameObject.AddComponent<Task>();
         MyocardialInfarctionScenario.HygeneSubscenarioCompleter = new TaskCompleter(MyocardialInfarctionScenario.CompleteHygeneSubscenario.Task);
         MyocardialInfarctionScenario.HygeneSubscenario = new Scenario(hygeneTasks, MyocardialInfarctionScenario.HygeneSubscenarioCompleter);
 
         //Main scenario initialization
         TaskSettings[] MITasks = new TaskSettings[1];
         MITasks[0] = MyocardialInfarctionScenario.CompleteHygeneSubscenario;
-        MyocardialInfarctionScenario.CompleteHygeneSubscenario.Task = gameObject.AddComponent<Task>();
         MIScenario = new Scenario(MITasks, GoToADifferentRoomOnCompletion);
     }
 }

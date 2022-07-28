@@ -12,12 +12,20 @@ namespace ScenarioTaskSystem
 
         public TaskCompleter(Task t, Operation n = null) : base(n)
         {
+            if (t == null)
+            {
+                Debug.LogError("You are creating a task completer with null task in it!");
+            }
             task = t;
         }
 
         override public void Execute()
         {
-            task.ParentScenario.OnTaskCompleted(task);
+            if (task == null)
+            {
+                Debug.LogError("Cannot use a task completer with a null task");
+            }
+            task.Complete();
             base.Execute();
         }
     }
@@ -31,7 +39,7 @@ namespace ScenarioTaskSystem
         {
             if (RoomID == -1)
             {
-                Debug.LogError("RoomID not set for task completion action");
+                Debug.LogWarning("RoomID not set for task completion action!");
             }
             else
             {

@@ -25,7 +25,7 @@ public struct BulletListItemLink
         Content = null;
         Description = desc;
     }
-    Text Text;
+    public Text Text;
     Image Tick;
     public BulletListItemLink[] Content;
     public BulletListItemLink RecursiveSearch(int id)
@@ -50,13 +50,13 @@ public struct BulletListItemLink
 
     public void Cross()
     {
-        if(Text == null)
+        if(ID == -1)
         {
             Debug.LogError("Element not found! You are trying to cross a non-existent element!");
         }
         else
         {
-            Text.color = Color.green;
+            Text.color = new Color(0.8f,0.2f,0.7f);
         }
     }
 }

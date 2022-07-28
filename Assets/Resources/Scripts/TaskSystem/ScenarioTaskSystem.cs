@@ -28,7 +28,8 @@ namespace ScenarioTaskSystem
                if(currentTask.Task == taskCompleted)
                 {
                     completedTaskSettings = currentTask;
-                    break;
+                    if(!currentTask.Completed)
+                        break;
                 }
             }
             if(completedTaskSettings == null)
@@ -46,6 +47,7 @@ namespace ScenarioTaskSystem
                 completedTaskSettings.Completed = true;
                 if (completedTaskSettings.OnCompleted != null)
                     completedTaskSettings.OnCompleted.Execute();
+                allCompleted();
             }
             else
             {
@@ -67,6 +69,7 @@ namespace ScenarioTaskSystem
                     completedTaskSettings.Completed = true;
                     if (completedTaskSettings.OnCompleted != null)
                         completedTaskSettings.OnCompleted.Execute();
+                    allCompleted();
                 }
                 else
                 {
@@ -74,6 +77,19 @@ namespace ScenarioTaskSystem
                         completedTaskSettings.OnWrongOrder.Execute();
                 }
             }
+        }
+
+        private void allCompleted()
+        {
+            foreach (TaskSettings currentTask in tasks)
+            {
+                if (!currentTask.Completed)
+                {
+                    return;
+                }
+            }
+            if (OnAllCompleted != null)
+                OnAllCompleted.Execute();
         }
     }
 
