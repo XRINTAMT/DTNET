@@ -12,23 +12,39 @@ public class TriggerTaskCompleter : MonoBehaviour
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
-        for (int i = 0; i < TriggerObjects.Length; i++)
+        if (TriggerObjects.Length != 0)
         {
-            if(other.gameObject == TriggerObjects[i])
+            for (int i = 0; i < TriggerObjects.Length; i++)
             {
-                TriggerEnter.Invoke();
+                if (other.gameObject == TriggerObjects[i])
+                {
+                    TriggerEnter.Invoke();
+                }
             }
+            
+        }
+        else
+        {
+            TriggerEnter.Invoke();
         }
     }
 
     private void OnTriggerLeave(Collider other)
     {
-        for (int i = 0; i < TriggerObjects.Length; i++)
+        if (TriggerObjects.Length != 0)
         {
-            if (other.gameObject == TriggerObjects[i])
+            for (int i = 0; i < TriggerObjects.Length; i++)
             {
-                TriggerLeave.Invoke();
+                if (other.gameObject == TriggerObjects[i])
+                {
+                    TriggerLeave.Invoke();
+                }
             }
+
+        }
+        else
+        {
+            TriggerEnter.Invoke();
         }
     }
 }
