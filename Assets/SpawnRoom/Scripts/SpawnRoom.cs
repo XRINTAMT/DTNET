@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+#if UNITY_EDITOR
+
 [ExecuteAlways]
 
-#if UNITY_EDITOR
 public class SpawnRoom : MonoBehaviour
 { 
     [SerializeField] private GameObject roomPref; 
