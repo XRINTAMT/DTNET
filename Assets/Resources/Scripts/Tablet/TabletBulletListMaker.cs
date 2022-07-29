@@ -12,15 +12,22 @@ public class TabletBulletListMaker : MonoBehaviour
     [Serializable]
     public struct TextSettingsStorage
     {
-        public int FontSize;
-        public float LineSpacing;
-        public Font Font;
         public Color FontColor;
         public float OffsetX;
         public float OffsetY;
-        public float PointIndentation;
     }
-    public TextSettingsStorage TextSettings;
+
+    [Serializable]
+    public struct HeaderLevel
+    {
+        public Font Font;
+        public int FontSize;
+        public float Spacing;
+        public float Tabulation;
+    }
+
+    [SerializeField] TextSettingsStorage TextSettings;
+    [SerializeField] HeaderLevel[] h;
     [SerializeField] Sprite TickImage; 
     [Serializable]
     public struct BulletListItem
@@ -63,35 +70,39 @@ public class TabletBulletListMaker : MonoBehaviour
         BulletListItemLink[] Links = new BulletListItemLink[ListItems.Length];
         for(int i = 0; i < ListItems.Length; i++)
         {
-            Links[i] = RecursiveBulletListFormation(ListItems[i], x, ref y, ref id);
+            Links[i] = RecursiveBulletListFormation(ListItems[i], x, ref y, ref id, 0);
         }
         TabletList.GetComponent<TabletBulletList>().Init(Links);
     }
 
-    public BulletListItemLink RecursiveBulletListFormation(BulletListItem Item, float x, ref float y, ref int id)
+    public BulletListItemLink RecursiveBulletListFormation(BulletListItem Item, float x, ref float y, ref int id, int level)
     {
         BulletListItemLink[] contents = new BulletListItemLink[Item.ContainsItems.Length];
-        Text text = addUIText(x, y, Item.Text);
-        y -= TextSettings.LineSpacing + TextSettings.FontSize;
+        Text text = addUIText(x, y, Item.Text, level);
+        y -= h[level].Spacing + h[level].FontSize;
         int ID = id;
         id++;
+        if (level < h.Length)
+        {
+            level++;
+        }
         for (int i = 0; i < Item.ContainsItems.Length; i++)
         {
-            contents[i] = RecursiveBulletListFormation(Item.ContainsItems[i], x + TextSettings.PointIndentation, ref y, ref id);
+            contents[i] = RecursiveBulletListFormation(Item.ContainsItems[i], x + h[level].Tabulation, ref y, ref id, level);
         }
         return new BulletListItemLink(ID, text, null, contents);
     }
 
-    private Text addUIText(float x, float y, string text)
+    private Text addUIText(float x, float y, string text, int level)
     {
         GameObject textObj = new GameObject(text,typeof(RectTransform));
         textObj.transform.SetParent(TabletList.transform, false);
         Text caption = textObj.AddComponent<Text>();
         caption.text = text;
         caption.color = TextSettings.FontColor;
-        caption.font = TextSettings.Font;
-        caption.fontSize = TextSettings.FontSize;
-        textObj.GetComponent<RectTransform>().offsetMin = new Vector2(x, y - TextSettings.LineSpacing - TextSettings.FontSize);
+        caption.font = h[level].Font;
+        caption.fontSize = h[level].FontSize;
+        textObj.GetComponent<RectTransform>().offsetMin = new Vector2(x, y - h[level].Spacing - h[level].FontSize);
         textObj.GetComponent<RectTransform>().offsetMax = new Vector2(TabletCanvas.GetComponent<RectTransform>().offsetMax.x*2 - TextSettings.OffsetX, y);
         return caption;
     }
