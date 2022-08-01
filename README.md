@@ -7,8 +7,16 @@ DTNET VR app branch.
 
 Install git LFS (https://git-lfs.github.com/). IMPORTANT: Also do the first step of ”Getting Started” run the command ”git lfs install” after installation to make sure it’s activated.
 
-## Rules
+### Basics
+
+Keep folder names in english
+
+### Features and branches
 
 For a new task start a new feature branch named "feature-*feature_name*" forked from the *main* branch. If finishing the feature takes multiple days I recommend merging from the *main* branch into your feature branch each day to make the eventual merging into main simpler.
 
-Once a feature is complete move task to the Review column om Monday.
+Once a feature is complete move task to the Review column om Monday and submit a merge request on github.
+
+## External assets
+
+If adding libraries or packages from the Unity asset store add them here.
