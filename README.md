@@ -21,4 +21,6 @@ Once a feature is complete move task to the Review column om Monday and submit a
 
 ## External assets
 
+Spline mesh: https://assetstore.unity.com/packages/tools/modeling/splinemesh-104989
+
 If adding libraries or packages from the Unity asset store add them here.
