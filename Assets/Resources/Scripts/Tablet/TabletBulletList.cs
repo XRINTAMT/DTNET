@@ -50,13 +50,13 @@ public struct BulletListItemLink
 
     public void Cross()
     {
-        if(ID == -1)
+        if (ID == -1)
         {
             Debug.LogError("Element not found! You are trying to cross a non-existent element!");
         }
         else
         {
-            Text.color = new Color(0.8f,0.2f,0.7f);
+            Text.color = new Color(0.15f,1f,0.74f);
         }
     }
 }
