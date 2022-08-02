@@ -84,9 +84,7 @@ namespace SplineMesh {
             for (int i = 0; i < segmentCount; i++) {
                 var seg = UOUtility.Instantiate(segmentPrefab, Generated.transform);
                 seg.transform.Translate(0, 0, localSpacing);
-
                 var segRB = seg.GetComponent<Rigidbody>();
-
                 if (i == 0 || i == (segmentCount - 1)) {
                     if(i == 0)
                         firstSegment = seg;
