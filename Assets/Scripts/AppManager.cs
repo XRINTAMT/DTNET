@@ -19,7 +19,7 @@ public class AppManager : MonoBehaviour
     [SerializeField] private List<Text> textsLanguage3;
     [SerializeField] private List<Text> textSubtitleDialogues;
 
-    AppSettings appSettings;
+    public AppSettings appSettings;
     // Start is called before the first frame update
     void Start()
     {

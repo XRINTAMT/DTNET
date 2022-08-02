@@ -39,17 +39,20 @@ public class UIController : MonoBehaviour
     public void SetDialogueVolume() 
     {
         dialogueVolume = setDialogueVolumeStatus.value;
+/*        appSettings.UpdateSettings()*/;
     }
 
     public void SetSoundVolume()
     {
         soundVolume = setSoundVolumeStatus.value;
+        //appSettings.UpdateSettings();
     }
 
     public void SetLanguage(int languageIndex)
     {
         //language = setLanguageStatus.value;
         language = languageIndex;
+        //appSettings.UpdateSettings();
         return;
     }
 
@@ -57,6 +60,7 @@ public class UIController : MonoBehaviour
     {
         //teleportLeftHand = setTeleportHandStatus.value;
         teleportLeftHand = handIndex;
+        //appSettings.UpdateSettings();
         return;
     }
 
@@ -64,6 +68,7 @@ public class UIController : MonoBehaviour
     {
         //moveLeftHand = setMovetHandStatus.value;
         teleportLeftHand = handIndex;
+        //appSettings.UpdateSettings();
         return;
     }
 
@@ -71,10 +76,11 @@ public class UIController : MonoBehaviour
     {
         if (setSubstitlesStatus.isOn) subtitles=0;
         if (!setSubstitlesStatus.isOn) subtitles = 1;
+        //appSettings.UpdateSettings();
     }
-    public void LoadScene()
+    public void LoadScene(string name)
     {
-        SceneManager.LoadScene("TutorialScene");
+        SceneManager.LoadScene(name);
     }
 
     public void Exit() 

@@ -31,7 +31,7 @@ public class AppSettings : MonoBehaviour
 }
 
 
-public enum Language { Language1, Language2, Language3 }
+public enum Language { English, German, Lithuanian }
 public enum TeleportHand { RightHand, LeftHand }
 public enum MoveHand { leftHand, RightHand }
 public enum Subtitles { Enable, Disable }
