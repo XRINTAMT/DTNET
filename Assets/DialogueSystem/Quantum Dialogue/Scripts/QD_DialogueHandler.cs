@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace QuantumTek.QuantumDialogue
 {
@@ -31,6 +32,7 @@ namespace QuantumTek.QuantumDialogue
         [HideInInspector] public int currentConversationIndex = -1;
         [HideInInspector] public QD_Conversation currentConversation;
         [HideInInspector] public QD_MessageInfo currentMessageInfo;
+        [SerializeField] UnityEvent OnDialogueComplete;
 
         /// <summary>
         /// Returns the current message, if it is a message node.
@@ -116,6 +118,7 @@ namespace QuantumTek.QuantumDialogue
             if (currentMessageInfo.NextID < 0 && choice == -1)
             {
                 currentMessageInfo = new QD_MessageInfo(-1, -1, QD_NodeType.Base);
+                OnDialogueComplete.Invoke();
                 return currentMessageInfo;
             }
 
