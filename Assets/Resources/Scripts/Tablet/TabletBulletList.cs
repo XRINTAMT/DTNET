@@ -63,11 +63,16 @@ public struct BulletListItemLink
 
 public class TabletBulletList : MonoBehaviour
 {
-    public BulletListItemLink[] ListItems;
+    [SerializeField] BulletListItemLink[] ListItems;
+    [SerializeField] float totalHeight;
+    [SerializeField] float maskedHeight;
+    [SerializeField] Scrollbar scrollbar;
 
-    public void Init(BulletListItemLink[] listItems)
+    public void Init(BulletListItemLink[] listItems, float theight, float mheight)
     {
-        ListItems = listItems;     
+        ListItems = listItems;
+        totalHeight = theight;
+        maskedHeight = mheight;
     }
 
     public void CrossOut(int ID)
@@ -87,5 +92,12 @@ public class TabletBulletList : MonoBehaviour
             }
         }
         return new BulletListItemLink();
+    }
+
+    public void Scroll()
+    {
+        float val = scrollbar.value;
+        Debug.Log(val * (totalHeight - maskedHeight));
+        transform.GetChild(0).transform.GetComponent<RectTransform>().offsetMin = new Vector2(0, val * (totalHeight - maskedHeight));
     }
 }
