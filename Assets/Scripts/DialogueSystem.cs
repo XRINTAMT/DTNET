@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DialogueSystem : MonoBehaviour
 {
-    [SerializeField] private GameObject dialogeDisable;
+    //[SerializeField] private GameObject dialogeDisable;
     [SerializeField] private List<GameObject> Dialogs;
     public List<bool> DialogueComplete;
   
@@ -17,6 +17,10 @@ public class DialogueSystem : MonoBehaviour
         for (int i = 0; i < DialogueComplete.Count; i++) DialogueComplete[i]=false;
     }
 
+    public void ActivateDialogue (int Number) 
+    {
+        Dialogs[Number].SetActive(true);
+    }
 
     //public void StartDialoguePatient() 
     //{
