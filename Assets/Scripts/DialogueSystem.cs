@@ -5,11 +5,7 @@ using UnityEngine;
 public class DialogueSystem : MonoBehaviour
 {
     //[SerializeField] private GameObject dialogeDisable;
-<<<<<<< Updated upstream
-    [SerializeField] private List<GameObject> Dialogs;
-=======
     public List<GameObject> Dialogs;
->>>>>>> Stashed changes
     public List<bool> DialogueComplete;
   
     public bool areaDialoguePatient;
