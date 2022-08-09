@@ -16,6 +16,10 @@ public class CheckOnTrigger : MonoBehaviour
         {
             animationsController.AnimationStopNurse();
         }
+<<<<<<< Updated upstream
+=======
+     
+>>>>>>> Stashed changes
 
     }
 

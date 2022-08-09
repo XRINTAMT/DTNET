@@ -17,8 +17,12 @@ public class StartMove : MonoBehaviour
     }
     public void applyRootMotion()
     {
+<<<<<<< Updated upstream
         Debug.Log(4);
         nurseAnimator.applyRootMotion=true;
+=======
+        //nurseAnimator.applyRootMotion=true;
+>>>>>>> Stashed changes
     }
     // Update is called once per frame
     void Update()
