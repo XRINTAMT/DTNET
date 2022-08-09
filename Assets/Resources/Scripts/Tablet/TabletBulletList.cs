@@ -97,7 +97,6 @@ public class TabletBulletList : MonoBehaviour
     public void Scroll()
     {
         float val = scrollbar.value;
-        Debug.Log(val * (totalHeight - maskedHeight));
-        transform.GetChild(0).transform.GetComponent<RectTransform>().offsetMin = new Vector2(0, val * (totalHeight - maskedHeight));
+        transform.GetChild(0).transform.GetComponent<RectTransform>().offsetMax = new Vector2(0, val * (totalHeight - maskedHeight));
     }
 }

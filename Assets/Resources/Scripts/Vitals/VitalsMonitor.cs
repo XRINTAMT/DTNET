@@ -109,6 +109,11 @@ public class VitalsMonitor : MonoBehaviour
         }
     }
 
+    public float GetValue(int ID)
+    {
+        return VitalValues[ID].Value;
+    }
+
     // Update is called once per frame
     void Update()
     {
