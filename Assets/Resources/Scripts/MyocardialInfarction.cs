@@ -91,10 +91,39 @@ public class MyocardialInfarction : MonoBehaviour
             public UniversalOperation FillObservationSheetMarker;
             public TaskSettings DialogueTwo;
             public UniversalOperation DialogueTwoMarker;
-            public TaskSettings AlarmButton;
-            public UniversalOperation AlarmButtonMarker;
         }
         public KeepMonitoringSubscenarioGroup KeepMonitoringSubscenarios;
+
+        //Cardiac arrest handling tasks here
+        
+        public Scenario CardiacArrestSubscenario;
+        [NonSerialized] public TaskSettings CompleteCardiacArrestSubscenario;
+        public Operation CardiacArrestSubscenarioCompleter;
+        public UniversalOperation CardiacArrestSubscenarioMarker;
+
+        [Serializable]
+        public struct CardiacArrestSubscenarioGroup
+        {
+            public TaskSettings AlarmButton;
+            public UniversalOperation AlarmButtonMarker;
+            public TaskSettings CallDoctor;
+            public UniversalOperation CallDoctorMarker;
+            public TaskSettings ApplyStimPads;
+            public UniversalOperation ApplyStimPadsMarker;
+            public TaskSettings ReportToDoc;
+            public UniversalOperation ReportToDocMarker;
+            public TaskSettings PositionThePatient;
+            public UniversalOperation PositionThePatientMarker;
+            public TaskSettings ReportSpO2;
+            public UniversalOperation ReportSpO2Marker;
+            public TaskSettings MakeAnInjection;
+            public UniversalOperation MakeAnInjectionMarker;
+            public TaskSettings KeepRegulating;
+            public UniversalOperation KeepRegulatingMarker;
+            public TaskSettings DialogueThree;
+            public UniversalOperation DialogueThreeMarker;
+        }
+        public CardiacArrestSubscenarioGroup CardiacArrestSubscenarios;
     }
 
     [SerializeField] RoomChanger GoToADifferentRoomOnCompletion;
@@ -112,6 +141,8 @@ public class MyocardialInfarction : MonoBehaviour
         MyocardialInfarctionScenario.CompleteInjectionSubscenario.Task = gameObject.AddComponent<Task>();
         MyocardialInfarctionScenario.CompleteKeepMonitoringSubscenario = new TaskSettings();
         MyocardialInfarctionScenario.CompleteKeepMonitoringSubscenario.Task = gameObject.AddComponent<Task>();
+        MyocardialInfarctionScenario.CompleteCardiacArrestSubscenario = new TaskSettings();
+        MyocardialInfarctionScenario.CompleteCardiacArrestSubscenario.Task = gameObject.AddComponent<Task>();
 
         //Wash hands subscenario initialization
         TaskSettings[] washHandsTasks = new TaskSettings[3];
@@ -157,23 +188,47 @@ public class MyocardialInfarction : MonoBehaviour
         MyocardialInfarctionScenario.InjectionSubscenario = new Scenario(injectionTasks, MyocardialInfarctionScenario.InjectionSubscenarioCompleter);
 
         //Check patient subcsenario initialization
-        TaskSettings[] keepMonitoringTasks = new TaskSettings[3];
+        TaskSettings[] keepMonitoringTasks = new TaskSettings[2];
         keepMonitoringTasks[0] = MyocardialInfarctionScenario.KeepMonitoringSubscenarios.FillObservationSheet;
         keepMonitoringTasks[0].OnCompleted = MyocardialInfarctionScenario.KeepMonitoringSubscenarios.FillObservationSheetMarker;
         keepMonitoringTasks[1] = MyocardialInfarctionScenario.KeepMonitoringSubscenarios.DialogueTwo;
         keepMonitoringTasks[1].OnCompleted = MyocardialInfarctionScenario.KeepMonitoringSubscenarios.DialogueTwoMarker;
-        keepMonitoringTasks[2] = MyocardialInfarctionScenario.KeepMonitoringSubscenarios.AlarmButton;
-        keepMonitoringTasks[2].OnCompleted = MyocardialInfarctionScenario.KeepMonitoringSubscenarios.AlarmButtonMarker;
         MyocardialInfarctionScenario.KeepMonitoringSubscenarioCompleter = 
             new TaskCompleter(MyocardialInfarctionScenario.CompleteKeepMonitoringSubscenario.Task, MyocardialInfarctionScenario.KeepMonitoringSubscenarioMarker);
         MyocardialInfarctionScenario.KeepMonitoringSubscenario = new Scenario(keepMonitoringTasks, MyocardialInfarctionScenario.KeepMonitoringSubscenarioCompleter);
 
+        //Check patient subcsenario initialization
+        TaskSettings[] cardiacArrestTasks = new TaskSettings[9];
+        cardiacArrestTasks[0] = MyocardialInfarctionScenario.CardiacArrestSubscenarios.AlarmButton;
+        cardiacArrestTasks[0].OnCompleted = MyocardialInfarctionScenario.CardiacArrestSubscenarios.AlarmButtonMarker;
+        cardiacArrestTasks[1] = MyocardialInfarctionScenario.CardiacArrestSubscenarios.CallDoctor;
+        cardiacArrestTasks[1].OnCompleted = MyocardialInfarctionScenario.CardiacArrestSubscenarios.CallDoctorMarker;
+        cardiacArrestTasks[2] = MyocardialInfarctionScenario.CardiacArrestSubscenarios.ApplyStimPads;
+        cardiacArrestTasks[2].OnCompleted = MyocardialInfarctionScenario.CardiacArrestSubscenarios.ApplyStimPadsMarker;
+        cardiacArrestTasks[3] = MyocardialInfarctionScenario.CardiacArrestSubscenarios.ReportToDoc;
+        cardiacArrestTasks[3].OnCompleted = MyocardialInfarctionScenario.CardiacArrestSubscenarios.ReportToDocMarker;
+        cardiacArrestTasks[4] = MyocardialInfarctionScenario.CardiacArrestSubscenarios.PositionThePatient;
+        cardiacArrestTasks[4].OnCompleted = MyocardialInfarctionScenario.CardiacArrestSubscenarios.PositionThePatientMarker;
+        cardiacArrestTasks[5] = MyocardialInfarctionScenario.CardiacArrestSubscenarios.ReportSpO2;
+        cardiacArrestTasks[5].OnCompleted = MyocardialInfarctionScenario.CardiacArrestSubscenarios.ReportSpO2Marker;
+        cardiacArrestTasks[6] = MyocardialInfarctionScenario.CardiacArrestSubscenarios.MakeAnInjection;
+        cardiacArrestTasks[6].OnCompleted = MyocardialInfarctionScenario.CardiacArrestSubscenarios.MakeAnInjectionMarker;
+        cardiacArrestTasks[7] = MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulating;
+        cardiacArrestTasks[7].OnCompleted = MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker;
+        cardiacArrestTasks[8] = MyocardialInfarctionScenario.CardiacArrestSubscenarios.DialogueThree;
+        cardiacArrestTasks[8].OnCompleted = MyocardialInfarctionScenario.CardiacArrestSubscenarios.DialogueThreeMarker;
+
+        MyocardialInfarctionScenario.CardiacArrestSubscenarioCompleter =
+            new TaskCompleter(MyocardialInfarctionScenario.CompleteCardiacArrestSubscenario.Task, MyocardialInfarctionScenario.CardiacArrestSubscenarioMarker);
+        MyocardialInfarctionScenario.CardiacArrestSubscenario = new Scenario(cardiacArrestTasks, MyocardialInfarctionScenario.CardiacArrestSubscenarioCompleter);
+
         //Main scenario initialization
-        TaskSettings[] MITasks = new TaskSettings[4];
+        TaskSettings[] MITasks = new TaskSettings[5];
         MITasks[0] = MyocardialInfarctionScenario.CompleteHygeneSubscenario;
         MITasks[1] = MyocardialInfarctionScenario.CompleteCheckPatientSubscenario; 
         MITasks[2] = MyocardialInfarctionScenario.CompleteInjectionSubscenario;
         MITasks[3] = MyocardialInfarctionScenario.CompleteKeepMonitoringSubscenario;
+        MITasks[4] = MyocardialInfarctionScenario.CompleteCardiacArrestSubscenario;
         MIScenario = new Scenario(MITasks, GoToADifferentRoomOnCompletion);
     }
 }

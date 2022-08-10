@@ -34,18 +34,19 @@ public struct BulletListItemLink
         {
             return this;
         }
-        else
+        for (int i = 0; i < Content.Length; i++)
         {
-            for (int i = 0; i < Content.Length; i++)
+            BulletListItemLink finding = Content[i].RecursiveSearch(id);
+            if (finding.ID != -1)
             {
-                BulletListItemLink finding = Content[i].RecursiveSearch(id);
-                if (finding.ID != -1)
-                {
-                    return finding;
-                }
+                return finding;
             }
         }
-        return new BulletListItemLink();
+
+        BulletListItemLink empty = new BulletListItemLink();
+        empty.ID = -1;
+        empty.Description = "Error! Element not found!";
+        return empty;
     }
 
     public void Cross()
@@ -56,6 +57,10 @@ public struct BulletListItemLink
         }
         else
         {
+            if (Text == null)
+            {
+                Debug.Log("text is NULL at " + Description);
+            }
             Text.color = new Color(0.15f,1f,0.74f);
         }
     }

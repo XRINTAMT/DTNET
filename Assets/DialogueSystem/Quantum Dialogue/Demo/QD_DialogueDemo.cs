@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using ScenarioTaskSystem;
 
 namespace QuantumTek.QuantumDialogue.Demo
 {
@@ -132,7 +133,15 @@ namespace QuantumTek.QuantumDialogue.Demo
         public void Next(int choice = -1)
         {
             if (ended)
+            {
+                Task t;
+                if(TryGetComponent<Task>(out t))
+                {
+                    t.Complete();
+                }
                 return;
+            }
+                
             
             // Go to the next message
             handler.NextMessage(choice);
@@ -146,6 +155,12 @@ namespace QuantumTek.QuantumDialogue.Demo
                     dialogueSystem.DialogueComplete[Convert.ToInt32(nameDialog)-1] = true;
                 }
                 ended = true;
+                Task t;
+                if (TryGetComponent<Task>(out t))
+                {
+                    Debug.Log("Task complete: " + gameObject.name);
+                    t.Complete();
+                }
             }
                 
         }
@@ -158,7 +173,14 @@ namespace QuantumTek.QuantumDialogue.Demo
         public void Choose(int choice)
         {
             if (ended)
+            {
+                Task t;
+                if (TryGetComponent<Task>(out t))
+                {
+                    t.Complete();
+                }
                 return;
+            }
             Debug.Log("makeChoose");
             Next(choice);
         }
