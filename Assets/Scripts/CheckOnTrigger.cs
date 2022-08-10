@@ -16,6 +16,7 @@ public class CheckOnTrigger : MonoBehaviour
         {
             animationsController.AnimationStopNurse();
         }
+     
 
     }
 
