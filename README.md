@@ -21,6 +21,9 @@ Once a feature is complete move task to the Review column om Monday and submit a
 
 ## External assets
 
+
+PathCreator: https://assetstore.unity.com/packages/tools/utilities/b-zier-path-creator-136082
 Spline mesh: https://assetstore.unity.com/packages/tools/modeling/splinemesh-104989
+
 
 If adding libraries or packages from the Unity asset store add them here.
