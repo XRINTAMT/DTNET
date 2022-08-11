@@ -90,6 +90,7 @@ public class VitalsMonitor : MonoBehaviour
             AlarmImage.gameObject.SetActive(true);
         }
     }
+    //
 
     public void SwitchAlarm(bool alarm)
     {

@@ -15,7 +15,7 @@ namespace ScenarioTaskSystem
             for(int i = 0; i < ts.Length; i++)
             {
                 tasks.Add(ts[i]);
-                ts[i].Task.ParentScenario = this;
+                ts[i].Task.AddParentScenario(this);
             }
             OnAllCompleted = operation;
         }
@@ -39,12 +39,13 @@ namespace ScenarioTaskSystem
             }
             if (completedTaskSettings.Completed)
             {
-                //Debug.LogWarning("This task is getting completed multiple times");
+                Debug.LogWarning("This task is getting completed multiple times");
                 return;
             }
             if (completedTaskSettings.Order == null)
             {
                 completedTaskSettings.Completed = true;
+                Debug.Log("Task completion confirmed!");
                 if (completedTaskSettings.OnCompleted != null)
                     completedTaskSettings.OnCompleted.Execute();
                 allCompleted();
@@ -67,12 +68,14 @@ namespace ScenarioTaskSystem
                 if (ordered)
                 {
                     completedTaskSettings.Completed = true;
+                    Debug.Log("Task completion confirmed!");
                     if (completedTaskSettings.OnCompleted != null)
                         completedTaskSettings.OnCompleted.Execute();
                     allCompleted();
                 }
                 else
                 {
+                    Debug.Log("Task completion aborted! Out of order!");
                     if (completedTaskSettings.OnWrongOrder != null)
                         completedTaskSettings.OnWrongOrder.Execute();
                 }

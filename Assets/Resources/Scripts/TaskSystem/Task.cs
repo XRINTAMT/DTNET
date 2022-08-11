@@ -6,10 +6,25 @@ namespace ScenarioTaskSystem
 {
     public class Task : MonoBehaviour
     {
-        public Scenario ParentScenario;
+        public List<Scenario> ParentScenario;
+
+        public Task()
+        {
+            ParentScenario = new List<Scenario>();
+        }
+
         public void Complete()
         {
-            ParentScenario.OnTaskCompleted(this);
+            Debug.Log("Task completed on "+gameObject.name);
+            foreach(Scenario s in ParentScenario)
+            {
+                s.OnTaskCompleted(this);
+            }
+        }
+
+        public void AddParentScenario(Scenario s)
+        {
+            ParentScenario.Add(s);
         }
     }
 }

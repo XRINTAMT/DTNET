@@ -189,10 +189,10 @@ public class MyocardialInfarction : MonoBehaviour
 
         //Check patient subcsenario initialization
         TaskSettings[] keepMonitoringTasks = new TaskSettings[2];
-        keepMonitoringTasks[0] = MyocardialInfarctionScenario.KeepMonitoringSubscenarios.FillObservationSheet;
-        keepMonitoringTasks[0].OnCompleted = MyocardialInfarctionScenario.KeepMonitoringSubscenarios.FillObservationSheetMarker;
-        keepMonitoringTasks[1] = MyocardialInfarctionScenario.KeepMonitoringSubscenarios.DialogueTwo;
-        keepMonitoringTasks[1].OnCompleted = MyocardialInfarctionScenario.KeepMonitoringSubscenarios.DialogueTwoMarker;
+        keepMonitoringTasks[0] = MyocardialInfarctionScenario.KeepMonitoringSubscenarios.DialogueTwo;
+        keepMonitoringTasks[0].OnCompleted = MyocardialInfarctionScenario.KeepMonitoringSubscenarios.DialogueTwoMarker;
+        keepMonitoringTasks[1] = MyocardialInfarctionScenario.KeepMonitoringSubscenarios.FillObservationSheet;
+        keepMonitoringTasks[1].OnCompleted = MyocardialInfarctionScenario.KeepMonitoringSubscenarios.FillObservationSheetMarker;
         MyocardialInfarctionScenario.KeepMonitoringSubscenarioCompleter = 
             new TaskCompleter(MyocardialInfarctionScenario.CompleteKeepMonitoringSubscenario.Task, MyocardialInfarctionScenario.KeepMonitoringSubscenarioMarker);
         MyocardialInfarctionScenario.KeepMonitoringSubscenario = new Scenario(keepMonitoringTasks, MyocardialInfarctionScenario.KeepMonitoringSubscenarioCompleter);
