@@ -19,6 +19,12 @@ Keep the feature branch up to date. Push changes even if they are not complete. 
 
 Once a feature is complete move task to the Review column om Monday and submit a merge request on github.
 
+### How to add highlights to objects
+
+1. Add a OutlineNormalsCalculator component to an object.
+2. Set GameObject layer to "Outlined".
+3. Find this object's mesh and set "Read/write enabled" to True.
+
 ## External assets
 
 
