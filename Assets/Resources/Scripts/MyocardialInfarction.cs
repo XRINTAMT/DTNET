@@ -37,6 +37,9 @@ public class MyocardialInfarction : MonoBehaviour
                 public TaskSettings WashSoapAway;
             }
             public WashHandsTasksGroup WashHandsTasks;
+
+            public TaskSettings PutGlovesOn;
+            public UniversalOperation PutGlovesOnSubscenarioMarker;
         }
         public HygeneSubscenarioGroup HygeneSubscenarios;
 
@@ -155,10 +158,12 @@ public class MyocardialInfarction : MonoBehaviour
         MyocardialInfarctionScenario.HygeneSubscenarios.WashHandsSubscenario = new Scenario(washHandsTasks, MyocardialInfarctionScenario.HygeneSubscenarios.WashHandsSubscenarioCompleter);
 
         //Hygene subscenario initialization
-        TaskSettings[] hygeneTasks = new TaskSettings[1];
+        TaskSettings[] hygeneTasks = new TaskSettings[2];
         hygeneTasks[0] = MyocardialInfarctionScenario.HygeneSubscenarios.CompleteWashHandsSubscenario;
         MyocardialInfarctionScenario.HygeneSubscenarioCompleter = 
             new TaskCompleter(MyocardialInfarctionScenario.CompleteHygeneSubscenario.Task, MyocardialInfarctionScenario.HygeneSubscenarioMarker);
+        hygeneTasks[1] = MyocardialInfarctionScenario.HygeneSubscenarios.PutGlovesOn;
+        hygeneTasks[1].Order = hygeneTasks[0].Task;
         MyocardialInfarctionScenario.HygeneSubscenario = new Scenario(hygeneTasks, MyocardialInfarctionScenario.HygeneSubscenarioCompleter);
 
         //Check patient subcsenario initialization
