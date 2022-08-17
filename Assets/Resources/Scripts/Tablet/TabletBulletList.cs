@@ -50,29 +50,24 @@ public struct BulletListItemLink
 
     public void Cross()
     {
-        if (ID == -1)
+        if(ID == -1)
         {
             Debug.LogError("Element not found! You are trying to cross a non-existent element!");
         }
         else
         {
-            Text.color = new Color(0.15f,1f,0.74f);
+            Text.color = new Color(0.8f,0.2f,0.7f);
         }
     }
 }
 
 public class TabletBulletList : MonoBehaviour
 {
-    [SerializeField] BulletListItemLink[] ListItems;
-    [SerializeField] float totalHeight;
-    [SerializeField] float maskedHeight;
-    [SerializeField] Scrollbar scrollbar;
+    public BulletListItemLink[] ListItems;
 
-    public void Init(BulletListItemLink[] listItems, float theight, float mheight)
+    public void Init(BulletListItemLink[] listItems)
     {
-        ListItems = listItems;
-        totalHeight = theight;
-        maskedHeight = mheight;
+        ListItems = listItems;     
     }
 
     public void CrossOut(int ID)
@@ -92,12 +87,5 @@ public class TabletBulletList : MonoBehaviour
             }
         }
         return new BulletListItemLink();
-    }
-
-    public void Scroll()
-    {
-        float val = scrollbar.value;
-        Debug.Log(val * (totalHeight - maskedHeight));
-        transform.GetChild(0).transform.GetComponent<RectTransform>().offsetMin = new Vector2(0, val * (totalHeight - maskedHeight));
     }
 }

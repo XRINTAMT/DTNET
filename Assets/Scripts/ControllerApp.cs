@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ControllerApp : MonoBehaviour
 {
+    [SerializeField] private Animation animateBed;
     [SerializeField] private AnimationsController animationsController;
     [SerializeField] private DialogueSystem dialogueSystem;
     [SerializeField]
@@ -12,6 +13,7 @@ public class ControllerApp : MonoBehaviour
     public void PatientSittingDownAnimation1() 
     {
         animationsController.AnimationSeatDownPatient1();
+       
     }
     public void PatientLayingAnimation1()
     {
@@ -20,10 +22,12 @@ public class ControllerApp : MonoBehaviour
     public void PatientSittingDownAnimation2()
     {
         animationsController.AnimationSeatDownPatient2();
+        animateBed.Play("Bed Animation Up");
     }
     public void PatientLayingAnimation2()
     {
         animationsController.AnimationLayingPatient2();
+        animateBed.Play("Bed Animation Down");
     }
     public void CallDoctorAdamsAnimation()
     {

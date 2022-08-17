@@ -16,10 +16,6 @@ public class AnimationsController : MonoBehaviour
     [SerializeField] private Animator nurseAnimator;
     [SerializeField] private DialogueSystem dialogueSystem;
     [SerializeField] private GameObject ButtonStandUp;
-<<<<<<< Updated upstream
-
-
-=======
     [SerializeField] private GameObject MeshWithShirt;
     [SerializeField] private GameObject MeshWithoutShirt;
 
@@ -35,7 +31,6 @@ public class AnimationsController : MonoBehaviour
         MeshWithoutShirt.SetActive(true);
     }
 
->>>>>>> Stashed changes
     public void AnimationSeatDownPatient1()
     {
         animationPattientSeatDown.Play("SeatDown1");
@@ -52,74 +47,6 @@ public class AnimationsController : MonoBehaviour
    
     }
     public void AnimationLayingPatient1()
-<<<<<<< Updated upstream
-    {
-        animationPattientSeatDown.Play("SeatDown2");
-        patientAnimator1.SetTrigger("Laying2");
-        patientAnimator2.SetTrigger("Laying2");
-
-    }
-    public void AnimationLayingPatient2()
-    {
-
-        patientAnimator1.SetTrigger("Laying");
-        patientAnimator2.SetTrigger("Laying");
-
-    }
-    void activateButtonStandUp()
-    {
-        if (ButtonStandUp != null) ButtonStandUp.GetComponent<Button>().interactable = true;
-    }
-
-    public void Dialogue1Enabel()
-    {
-
-
-    }
-    void activateButtonPatientDialogiue2()
-    {
-        ButtonStandUp.GetComponent<Button>().interactable = true;
-    }
-    public void AnimationStandUpPatient()
-    {
-        animationPattientSeatDown.Play("StandUp");
-        patientAnimator1.SetTrigger("StandUp");
-        patientAnimator2.SetTrigger("StandUp");
-    }
-
-    public void AnimationArriveDoctor()
-    {
-        animationOpenDoor.Play("OpenDoor");
-        doctorAnimator.SetTrigger("OpenDoor");
-
-        StartCoroutine(startDialogue(2));
-
-    }
-    IEnumerator startDialogue(int number)
-    {
-        yield return new WaitForSeconds(8.0f);
-        dialogueSystem.ActivateDialogue(number);
-    }
-
-   
-    public void CallMrAdams() 
-    {
-        StartCoroutine(DoctorCome());
-    }
-    IEnumerator DoctorCome()
-    {
-        yield return new WaitForSeconds(5.0f);
-        AnimationArriveDoctor();
-    }
-    
-    public void AnimationWalkDoctor()
-    {
-        doctorAnimator.applyRootMotion = false;
-        animationDoctorWalk.Play("DoctorWalk");
-        doctorAnimator.SetTrigger("Walk");
-    }
-
-=======
     {
         animationPattientSeatDown.Play("SeatDown2");
         patientAnimator1.SetTrigger("Laying2");
@@ -186,36 +113,11 @@ public class AnimationsController : MonoBehaviour
         doctorAnimator.SetTrigger("Walk");
     }
 
->>>>>>> Stashed changes
     public void AnimationWalkNurse()
     {
         doctorAnimator.applyRootMotion = false;
         animationDoctorWalk.Play("GoToPump");
         doctorAnimator.SetTrigger("Walk");
-<<<<<<< Updated upstream
-    }
-
-    public void AnimationStopNurse()
-    {
-        nurseAnimator.applyRootMotion=false;
-        nurseAnimator.SetTrigger("Put Inject");
-        animationDoctorNurse.Stop();
-    }
-    public void AnimationDoctorInspect()
-    {
-        //StartCoroutine(RootMotionTrue());
-        //doctorAnimator.applyRootMotion = true;
-        //animationDoctorWalk.Stop();
-        doctorAnimator.SetTrigger("Inspect");
-    }
-    //IEnumerator RootMotionTrue()
-    //{
-    //    yield return new WaitForSeconds(5.0f);
-    //    doctorAnimator.applyRootMotion = true;
-       
-
-    //}
-=======
     }
 
     public void AnimationNurseTakeInject()
@@ -234,5 +136,4 @@ public class AnimationsController : MonoBehaviour
         doctorAnimator.SetTrigger("Inspect");
     }
    
->>>>>>> Stashed changes
 }

@@ -39,7 +39,7 @@ namespace ScenarioTaskSystem
             }
             if (completedTaskSettings.Completed)
             {
-                //Debug.LogWarning("This task is getting completed multiple times");
+                Debug.LogWarning("This task is getting completed multiple times");
                 return;
             }
             if (completedTaskSettings.Order == null)
