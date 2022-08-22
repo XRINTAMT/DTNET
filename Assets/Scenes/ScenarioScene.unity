@@ -2665,6 +2665,206 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.00003246963, y: 0.111246124, z: 0.12746476}
     m_Extent: {x: 0.057655383, y: 0.009059794, z: 0.0120717585}
   m_DirtyAABB: 0
+--- !u!1 &56655326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 56655327}
+  - component: {fileID: 56655333}
+  - component: {fileID: 56655332}
+  - component: {fileID: 56655331}
+  - component: {fileID: 56655330}
+  - component: {fileID: 56655329}
+  - component: {fileID: 56655328}
+  m_Layer: 0
+  m_Name: DoctorsAppointments
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &56655327
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56655326}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.668, y: 0.441, z: 4.202}
+  m_LocalScale: {x: 0.24, y: 0.01, z: 0.35}
+  m_Children:
+  - {fileID: 2020333620}
+  m_Father: {fileID: 4701245739898989623}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &56655328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56655326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cab4954ad8c5464880f4125605bb334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &56655329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56655326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 822bc9090447b9c40833509c4a32e597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ignoreMe: 0
+  body: {fileID: 56655330}
+  hightlightMaterial: {fileID: 0}
+  isGrabbable: 1
+  CopySettings: {fileID: 0}
+  grabType: 0
+  handType: 0
+  singleHandOnly: 0
+  allowHeldSwapping: 1
+  instantGrab: 0
+  useGentleGrab: 0
+  maintainGrabOffset: 0
+  ignoreWeight: 0
+  parentOnGrab: 1
+  throwPower: 1
+  jointBreakForce: 3500
+  showAdvancedSettings: 1
+  makeChildrenGrabbable: 1
+  grabPriorityWeight: 1
+  ignoreReleaseTime: 0.5
+  heldPositionOffset: {x: 0, y: 0, z: 0}
+  heldRotationOffset: {x: 0, y: 0, z: 0}
+  customGrabJoint: {fileID: 0}
+  jointedBodies: []
+  heldIgnoreColliders: []
+  pullApartBreakOnly: 1
+  showEvents: 1
+  onGrab:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 56655328}
+        m_TargetAssemblyTypeName: ScenarioTaskSystem.Task, Assembly-CSharp
+        m_MethodName: Complete
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onRelease:
+    m_PersistentCalls:
+      m_Calls: []
+  onSqueeze:
+    m_PersistentCalls:
+      m_Calls: []
+  onUnsqueeze:
+    m_PersistentCalls:
+      m_Calls: []
+  onHighlight:
+    m_PersistentCalls:
+      m_Calls: []
+  onUnhighlight:
+    m_PersistentCalls:
+      m_Calls: []
+  OnJointBreak:
+    m_PersistentCalls:
+      m_Calls: []
+  lockHandOnGrab: 0
+--- !u!54 &56655330
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56655326}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &56655331
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56655326}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &56655332
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56655326}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 3b8e297ed8671b3469190ee1bee961c4, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &56655333
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56655326}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &57132696
 GameObject:
   m_ObjectHideFlags: 0
@@ -6449,7 +6649,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 179098911}
   m_LocalRotation: {x: 0.47830555, y: -0.52079153, z: 0.52079153, w: 0.47830555}
-  m_LocalPosition: {x: 0.33, y: 1.84, z: 0.76}
+  m_LocalPosition: {x: 0.33, y: 3.468, z: 0.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7242,7 +7442,7 @@ Transform:
   m_LocalScale: {x: 3.825899, y: 2.9934986, z: 0.13661}
   m_Children: []
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &203752266
 GameObject:
@@ -8454,7 +8654,7 @@ Transform:
   - {fileID: 4963928790585894249}
   - {fileID: 800536112}
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 36
+  m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 1.8266994, y: 126.19614, z: 1.4206741}
 --- !u!111 &237894712
 Animation:
@@ -13590,6 +13790,85 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.04, y: 0.02, z: 0.02}
   m_Center: {x: -0.02, y: 0, z: 0.0015}
+--- !u!1 &414620060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 414620061}
+  - component: {fileID: 414620063}
+  - component: {fileID: 414620062}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &414620061
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414620060}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2020333620}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 667.8, y: 129.2}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &414620062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414620060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 8deeb02c79825384d9a112b5cd9fd7a3, type: 3}
+    m_FontSize: 51
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 4
+    m_MaxSize: 61
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Doctor's appointments
+--- !u!222 &414620063
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414620060}
+  m_CullTransparentMesh: 1
 --- !u!1 &415345373
 GameObject:
   m_ObjectHideFlags: 0
@@ -16602,7 +16881,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 26
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: -8.83, z: 0}
 --- !u!23 &492009770
 MeshRenderer:
@@ -24415,7 +24694,7 @@ Transform:
   m_Children:
   - {fileID: 3229679753577146955}
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 28
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: -90, y: -108.4, z: 0}
 --- !u!82 &709658889
 AudioSource:
@@ -26386,7 +26665,7 @@ Transform:
   m_LocalScale: {x: 1.2082738, y: 2.9934986, z: 0.13661}
   m_Children: []
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &766444193
 CapsuleCollider:
@@ -30720,7 +30999,7 @@ Transform:
   m_LocalScale: {x: 1.2082738, y: 0.74208826, z: 0.13661}
   m_Children: []
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &880802985
 GameObject:
@@ -36139,7 +36418,7 @@ Transform:
   m_Children:
   - {fileID: 1423820069}
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 29
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: -59.812}
 --- !u!114 &1057907834
 MonoBehaviour:
@@ -42354,7 +42633,7 @@ Transform:
   m_Children:
   - {fileID: 67070882}
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 35
+  m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: -90, y: -108.4, z: 0}
 --- !u!114 &1232136291
 MonoBehaviour:
@@ -43604,7 +43883,7 @@ Transform:
   - {fileID: 2090949160}
   - {fileID: 4007846091418342759}
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1262282161
 GameObject:
@@ -50029,7 +50308,7 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CheckPatientSubscenarios.ReadDoctorsAppointments.Task
       value: 
-      objectReference: {fileID: 1122947048}
+      objectReference: {fileID: 56655328}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.KeepMonitoringSubscenarios.FillObservationSheet.Order
@@ -50253,7 +50532,7 @@ PrefabInstance:
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.size
-      value: 6
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
@@ -50613,22 +50892,22 @@ PrefabInstance:
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[6].m_Mode
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[7].m_Mode
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[8].m_Mode
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[9].m_Mode
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
@@ -50675,6 +50954,11 @@ PrefabInstance:
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.DialogueThreeMarker.Function.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1773122183}
+    - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
+        type: 3}
+      propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[10].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.MakeAnInjectionMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -50905,6 +51189,11 @@ PrefabInstance:
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.AlarmButtonMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CrossOut
       objectReference: {fileID: 0}
+    - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
+        type: 3}
+      propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[10].m_Target
+      value: 
+      objectReference: {fileID: 9161248444887703367}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.MakeAnInjectionMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -51172,6 +51461,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
+      propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[10].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
+        type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: CrossOut
       objectReference: {fileID: 0}
@@ -51198,22 +51492,22 @@ PrefabInstance:
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[6].m_MethodName
-      value: SwitchAlarm
+      value: ChangeValueInspector
       objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[7].m_MethodName
-      value: SwitchAlarm
+      value: ChangeValueInspector
       objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[8].m_MethodName
-      value: SwitchAlarm
+      value: ChangeValueInspector
       objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[9].m_MethodName
-      value: SwitchAlarm
+      value: ChangeValueInspector
       objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
@@ -51245,6 +51539,11 @@ PrefabInstance:
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.PositionThePatientMarker.Function.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1773122183}
+    - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
+        type: 3}
+      propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[10].m_MethodName
+      value: ChangeValueInspector
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.MakeAnInjectionMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -51857,6 +52156,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
+      propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[10].m_TargetAssemblyTypeName
+      value: VitalsMonitor, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
+        type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
       value: 25
       objectReference: {fileID: 0}
@@ -52053,17 +52357,22 @@ PrefabInstance:
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[6].m_Arguments.m_StringArgument
-      value: 
+      value: 1,37.1,10
       objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[7].m_Arguments.m_StringArgument
-      value: 
+      value: 2,110,10
       objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[8].m_Arguments.m_StringArgument
-      value: 
+      value: 3,65,10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
+        type: 3}
+      propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[9].m_Arguments.m_StringArgument
+      value: 4,99,10
       objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
@@ -52074,6 +52383,11 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.PositionThePatientMarker.Function.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: TabletBulletList, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
+        type: 3}
+      propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[10].m_Arguments.m_StringArgument
+      value: 5,22,10
       objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
@@ -52403,6 +52717,11 @@ PrefabInstance:
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[9].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
+        type: 3}
+      propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[10].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
@@ -53835,7 +54154,7 @@ Transform:
   m_LocalScale: {x: 2.1988006, y: 2.9934986, z: 0.13661}
   m_Children: []
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1455432051
 GameObject:
@@ -57183,7 +57502,7 @@ Transform:
   m_LocalScale: {x: 9.963556, y: 2.9934986, z: 0.13661}
   m_Children: []
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1582649133
 GameObject:
@@ -64376,7 +64695,7 @@ Transform:
   m_LocalScale: {x: 9.963556, y: 2.9934986, z: 0.13661}
   m_Children: []
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &1834262598
 Transform:
@@ -64720,7 +65039,7 @@ Transform:
   m_LocalScale: {x: 5.138668, y: 2.9934986, z: 0.13661}
   m_Children: []
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1845263771
 GameObject:
@@ -66458,7 +66777,7 @@ Transform:
   m_LocalScale: {x: 2.9321709, y: 1.1471087, z: 0.13661}
   m_Children: []
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1887705340
 GameObject:
@@ -69808,6 +70127,88 @@ MonoBehaviour:
   - {fileID: 2019684087}
   - {fileID: 1095973923}
   - {fileID: 788904886}
+--- !u!1 &2020333619
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2020333620}
+  - component: {fileID: 2020333622}
+  - component: {fileID: 2020333621}
+  m_Layer: 5
+  m_Name: Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2020333620
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020333619}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.00125, y: 0.001, z: 0.00125}
+  m_Children:
+  - {fileID: 414620061}
+  m_Father: {fileID: 56655327}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.62}
+  m_SizeDelta: {x: 790, y: 990}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2020333621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020333619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 1
+--- !u!223 &2020333622
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020333619}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &2020482422
 GameObject:
   m_ObjectHideFlags: 0
@@ -69901,7 +70302,7 @@ Transform:
   m_LocalScale: {x: 2.9321709, y: 0.7717717, z: 0.13661}
   m_Children: []
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2020796917
 GameObject:
@@ -74134,7 +74535,7 @@ Transform:
   - {fileID: 3678451325713950063}
   - {fileID: 312407469}
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 34
+  m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &51494063361880010
 GameObject:
@@ -77366,7 +77767,7 @@ Transform:
   - {fileID: 690860053463581016}
   - {fileID: 3876220043919217272}
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 32
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0.006, y: 0, z: 90}
 --- !u!33 &690860053463580996
 MeshFilter:
@@ -78622,7 +79023,7 @@ Transform:
   - {fileID: 315693830}
   - {fileID: 174567535467063193}
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 23
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &913328713527977308
 Transform:
@@ -78752,6 +79153,7 @@ GameObject:
   - component: {fileID: 543450653498992415}
   - component: {fileID: 3469287837416679610}
   - component: {fileID: 1711813855838805104}
+  - component: {fileID: 919132149229206950}
   m_Layer: 0
   m_Name: table_basse_contemporaine
   m_TagString: Untagged
@@ -78759,6 +79161,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &919132149229206950
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149229206949}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.79999995, y: 0.80000013, z: 0.40011662}
+  m_Center: {x: 0, y: 0, z: 0.20005831}
 --- !u!1 &923888280138491136
 GameObject:
   m_ObjectHideFlags: 0
@@ -83238,7 +83653,7 @@ Transform:
   m_Children:
   - {fileID: 6853460349712683809}
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 24
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1681444074123218258
 Transform:
@@ -84853,7 +85268,7 @@ PrefabInstance:
     - target: {fileID: 2138005028090557304, guid: 6c4c20afc80f4d14fb7f69a74706150c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2138005028090557304, guid: 6c4c20afc80f4d14fb7f69a74706150c,
         type: 3}
@@ -84914,11 +85329,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2984717361206847023, guid: 6c4c20afc80f4d14fb7f69a74706150c,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -791
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c4c20afc80f4d14fb7f69a74706150c, type: 3}
@@ -87325,7 +87735,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 31
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &2574941576954272251
 GameObject:
@@ -88518,7 +88928,7 @@ Transform:
   m_Children:
   - {fileID: 784301839}
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 27
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: -96.94, z: 0}
 --- !u!4 &2744717414137372822
 Transform:
@@ -94659,6 +95069,7 @@ Transform:
   - {fileID: 1158550103692764901}
   - {fileID: 3909088133598588092}
   - {fileID: 5319542915491320232}
+  - {fileID: 56655327}
   - {fileID: 1356181202}
   - {fileID: 764399012}
   - {fileID: 1843796722}
@@ -100952,7 +101363,7 @@ Transform:
   - {fileID: 4798205434329845589}
   - {fileID: 539178769}
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 33
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6188203148340151589
 GameObject:
@@ -104389,7 +104800,7 @@ Transform:
   - {fileID: 3979714907252935547}
   - {fileID: 543450651835151638}
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &7187162723960415064
 Transform:
@@ -104554,7 +104965,7 @@ Transform:
   m_LocalScale: {x: 3.52258, y: 2.8687396, z: 4.761193}
   m_Children: []
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &7238709765598472902
 BoxCollider:
@@ -113790,7 +114201,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4701245739898989623}
-  m_RootOrder: 30
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9083227723419956647
 GameObject:
