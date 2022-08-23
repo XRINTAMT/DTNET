@@ -90,6 +90,7 @@ public class VitalsMonitor : MonoBehaviour
             AlarmImage.gameObject.SetActive(true);
         }
     }
+    //
 
     public void SwitchAlarm(bool alarm)
     {
@@ -107,6 +108,11 @@ public class VitalsMonitor : MonoBehaviour
                 AlarmImage.gameObject.SetActive(false);
             }
         }
+    }
+
+    public float GetValue(int ID)
+    {
+        return VitalValues[ID].Value;
     }
 
     // Update is called once per frame

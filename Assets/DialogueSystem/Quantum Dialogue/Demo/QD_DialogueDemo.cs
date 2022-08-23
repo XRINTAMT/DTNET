@@ -2,6 +2,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
+using ScenarioTaskSystem;
 
 namespace QuantumTek.QuantumDialogue.Demo
 {
@@ -20,6 +22,7 @@ namespace QuantumTek.QuantumDialogue.Demo
 
         private bool ended;
         AudioSource audioSource;
+        [SerializeField] DialogueSystem dialogueSystem;
         private void Awake()
         {
             audioSource = GetComponent<AudioSource>();
@@ -130,21 +133,54 @@ namespace QuantumTek.QuantumDialogue.Demo
         public void Next(int choice = -1)
         {
             if (ended)
+            {
+                Task t;
+                if(TryGetComponent<Task>(out t))
+                {
+                    t.Complete();
+                }
                 return;
+            }
+                
             
             // Go to the next message
             handler.NextMessage(choice);
             // Set the new text
             SetText();
             // End if there is no next message
-            if (handler.currentMessageInfo.ID < 0)
+            if (handler.currentMessageInfo.ID < 0) 
+            {
+                if (dialogueSystem != null)
+                {
+                    dialogueSystem.DialogueComplete[Convert.ToInt32(nameDialog)-1] = true;
+                }
                 ended = true;
+                Task t;
+                if (TryGetComponent<Task>(out t))
+                {
+                    Debug.Log("Task complete: " + gameObject.name);
+                    t.Complete();
+                }
+            }
+                
         }
 
+        public void EndDialogue(int countDialogue) 
+        { 
+
+        
+        }
         public void Choose(int choice)
         {
             if (ended)
+            {
+                Task t;
+                if (TryGetComponent<Task>(out t))
+                {
+                    t.Complete();
+                }
                 return;
+            }
             Debug.Log("makeChoose");
             Next(choice);
         }

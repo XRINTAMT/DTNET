@@ -34,18 +34,19 @@ public struct BulletListItemLink
         {
             return this;
         }
-        else
+        for (int i = 0; i < Content.Length; i++)
         {
-            for (int i = 0; i < Content.Length; i++)
+            BulletListItemLink finding = Content[i].RecursiveSearch(id);
+            if (finding.ID != -1)
             {
-                BulletListItemLink finding = Content[i].RecursiveSearch(id);
-                if (finding.ID != -1)
-                {
-                    return finding;
-                }
+                return finding;
             }
         }
-        return new BulletListItemLink();
+
+        BulletListItemLink empty = new BulletListItemLink();
+        empty.ID = -1;
+        empty.Description = "Error! Element not found!";
+        return empty;
     }
 
     public void Cross()
@@ -56,6 +57,10 @@ public struct BulletListItemLink
         }
         else
         {
+            if (Text == null)
+            {
+                Debug.Log("text is NULL at " + Description);
+            }
             Text.color = new Color(0.15f,1f,0.74f);
         }
     }
@@ -63,11 +68,16 @@ public struct BulletListItemLink
 
 public class TabletBulletList : MonoBehaviour
 {
-    public BulletListItemLink[] ListItems;
+    [SerializeField] BulletListItemLink[] ListItems;
+    [SerializeField] float totalHeight;
+    [SerializeField] float maskedHeight;
+    [SerializeField] Scrollbar scrollbar;
 
-    public void Init(BulletListItemLink[] listItems)
+    public void Init(BulletListItemLink[] listItems, float theight, float mheight)
     {
-        ListItems = listItems;     
+        ListItems = listItems;
+        totalHeight = theight;
+        maskedHeight = mheight;
     }
 
     public void CrossOut(int ID)
@@ -87,5 +97,11 @@ public class TabletBulletList : MonoBehaviour
             }
         }
         return new BulletListItemLink();
+    }
+
+    public void Scroll()
+    {
+        float val = scrollbar.value;
+        transform.GetChild(0).transform.GetComponent<RectTransform>().offsetMax = new Vector2(0, val * (totalHeight - maskedHeight));
     }
 }

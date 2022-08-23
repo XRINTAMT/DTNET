@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class HRMonitorScript : MonoBehaviour
 {
-    public ComputeShader CS;
+    [SerializeField] ComputeShader computeShader;
+    ComputeShader CS;
     RenderTexture RT;
     [SerializeField] Color graphColor;
     [SerializeField] int numberOfValues;
@@ -34,6 +35,7 @@ public class HRMonitorScript : MonoBehaviour
         RT = new RenderTexture(1850, 400, 0);
         RT.enableRandomWrite = true;
         RT.Create();
+        CS = Instantiate(computeShader);
         CS.SetTexture(0, "Result", RT);
         CS.SetFloats("Color", colorComponents);
         CS.SetFloats("Values",values);
@@ -49,9 +51,14 @@ public class HRMonitorScript : MonoBehaviour
             yield return 0;
         }
         values[iterator] = Mathf.Sin(x);
-        x += 0.02f;
-        iterator += 1;
-        iterator = iterator % (numberOfValues*4+1);
+        x += 0.06f;
+        iterator += 4;
+        //iterator = iterator % (numberOfValues*4+1);
+        if(iterator > numberOfValues * 4)
+        {
+            iterator = 0;
+        }
+        //iterator = iterator % (numberOfValues * 4 + 1);
         values[iterator] = -1;
         //CS.SetTexture(0, "Result", RT);
         CS.SetFloats("Values", values);
