@@ -25,6 +25,6 @@ Once a feature is complete move task to the Review column om Monday and submit a
 
 Bézier Path Creator: https://assetstore.unity.com/packages/tools/utilities/b-zier-path-creator-136082
 
-Photon: 
+Photon: https://assetstore.unity.com/packages/tools/network/pun-2-free-119922
 
 If adding libraries or packages from the Unity asset store add them here.
