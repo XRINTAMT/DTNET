@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class InteractiblesGoBack : MonoBehaviour
 {
-    [SerializeField] float TemporalOffset;
-    [SerializeField] float TimeToGoBack;
+    [SerializeField] float TemporalOffset = 2;
+    [SerializeField] float TimeToGoBack = 1;
     Vector3 initPos;
     Quaternion initAngle;
     Coroutine goingBack;
