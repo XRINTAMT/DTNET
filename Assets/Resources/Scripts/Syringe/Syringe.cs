@@ -7,6 +7,7 @@ using UnityEngine.Events;
 
 public class Syringe : MonoBehaviour
 {
+    [SerializeField] Camera Head;
     [SerializeField] GameObject InnerPart;
     [SerializeField] float MaxInnerPartDisplacement;
     [SerializeField] float SyringeSensitivity;
@@ -24,6 +25,7 @@ public class Syringe : MonoBehaviour
     [SerializeField] GameObject MeasurementCanvas;
     [SerializeField] Text AmountText;
     [SerializeField] Text SubstanceText;
+    [SerializeField] Vector3 Offset;
 
     Ampule med;
     bool inserted;
@@ -131,5 +133,8 @@ public class Syringe : MonoBehaviour
                 CheckCompletion();
             }
         }
+        Vector3 targetPosition = new Vector3(Head.transform.position.x, Head.transform.position.y, Head.transform.position.z);
+        MeasurementCanvas.transform.LookAt(targetPosition);
+        MeasurementCanvas.transform.position = transform.position + Offset;
     }
 }
