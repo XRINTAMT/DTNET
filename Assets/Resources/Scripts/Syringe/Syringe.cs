@@ -101,6 +101,29 @@ public class Syringe : MonoBehaviour
         OnRequirementsMet.Invoke();
     }
 
+    public void Empty()
+    {
+        if(totalSubstance != 0)
+        {
+            StartCoroutine(EmptyingAnimation());
+        }
+    }
+
+    IEnumerator EmptyingAnimation()
+    {
+        ingredients = new Dictionary<string, float>();
+        for (; totalSubstance > 0; totalSubstance -= Time.deltaTime * SyringeSensitivity)
+        {
+            InnerPart.transform.localPosition =
+                new Vector3(innerPartPositionInit.x,
+                Mathf.Lerp(innerPartPositionInit.y, innerPartPositionInit.y - MaxInnerPartDisplacement, totalSubstance / SyringeCapacity),
+                innerPartPositionInit.z);
+            yield return 0;
+        }
+        totalSubstance = 0;
+        InnerPart.transform.localPosition = innerPartPositionInit;
+    }
+
     // Update is called once per frame
     void Update()
     {
