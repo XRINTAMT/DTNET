@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3297766297091299521}
   - component: {fileID: 3639192317063074540}
   - component: {fileID: 3639192317063074543}
-  m_Layer: 0
+  - component: {fileID: 3954343924385499850}
+  m_Layer: 11
   m_Name: Needle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,6 +112,20 @@ CapsuleCollider:
   m_Height: 0.006
   m_Direction: 2
   m_Center: {x: 0.000000014850029, y: -0.000000022359018, z: 0.00008711619}
+--- !u!114 &3954343924385499850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3639192317063074542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdede635c6680904c94321c539aa4d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storeInTexcoordChannel: 1
+  cospatialVertexDistance: 0.01
 --- !u!1 &4860282050037492059
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +137,8 @@ GameObject:
   - component: {fileID: 6668741191729676901}
   - component: {fileID: 6745102685966166070}
   - component: {fileID: 6021106353769296835}
-  m_Layer: 0
+  - component: {fileID: 1781463278104425575}
+  m_Layer: 11
   m_Name: innen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,6 +208,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1781463278104425575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4860282050037492059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdede635c6680904c94321c539aa4d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storeInTexcoordChannel: 1
+  cospatialVertexDistance: 0.01
 --- !u!1 &5839741580292810273
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,7 +234,8 @@ GameObject:
   - component: {fileID: 3772312958659006575}
   - component: {fileID: 5456947127433589321}
   - component: {fileID: 5839741580292810278}
-  m_Layer: 0
+  - component: {fileID: 9005921756797473083}
+  m_Layer: 11
   m_Name: aussen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,6 +321,20 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3490774451810921041, guid: 302bfa9083bb7cd4bb7518cca4a571ef, type: 3}
+--- !u!114 &9005921756797473083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5839741580292810273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdede635c6680904c94321c539aa4d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storeInTexcoordChannel: 1
+  cospatialVertexDistance: 0.01
 --- !u!1 &8512265354180483939
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,7 +373,7 @@ Transform:
   m_GameObject: {fileID: 8512265354180483939}
   m_LocalRotation: {x: -0.7071068, y: -0.7071068, z: -0, w: 0}
   m_LocalPosition: {x: 3.1585, y: 0.863, z: 1.5401}
-  m_LocalScale: {x: 0.050000012, y: 0.05000001, z: 0.04999998}
+  m_LocalScale: {x: 0.06, y: 0.06, z: 0.06}
   m_Children:
   - {fileID: 9061535348185163195}
   - {fileID: 9061535349071516502}
@@ -380,7 +425,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ignoreMe: 0
   body: {fileID: 0}
-  hightlightMaterial: {fileID: 0}
+  hightlightMaterial: {fileID: 2100000, guid: 76574041503a7fc4a81bb9af87e39ddf, type: 2}
   isGrabbable: 1
   CopySettings: {fileID: 0}
   grabType: 0
@@ -973,7 +1018,7 @@ GameObject:
   - component: {fileID: 3010034523945939930}
   - component: {fileID: 6703853127395901587}
   - component: {fileID: 4730315281401921871}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1054,7 +1099,7 @@ GameObject:
   - component: {fileID: 9061535347864316695}
   - component: {fileID: 9061535347864316692}
   - component: {fileID: 9061535347864316693}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Amount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1134,7 +1179,7 @@ GameObject:
   - component: {fileID: 9061535348185163198}
   - component: {fileID: 9061535348185163193}
   - component: {fileID: 9061535348185163192}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1233,7 +1278,7 @@ GameObject:
   - component: {fileID: 9061535348214342772}
   - component: {fileID: 9061535348214342775}
   - component: {fileID: 9061535348214342774}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Substance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1312,7 +1357,7 @@ GameObject:
   - component: {fileID: 9061535348287926018}
   - component: {fileID: 9061535348287926016}
   - component: {fileID: 9061535348287926019}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1390,7 +1435,7 @@ GameObject:
   - component: {fileID: 9061535348796007890}
   - component: {fileID: 9061535348796007888}
   - component: {fileID: 9061535348796007891}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ml
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1469,7 +1514,7 @@ GameObject:
   - component: {fileID: 9061535349071516502}
   - component: {fileID: 9061535349071516497}
   - component: {fileID: 9061535349071516503}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
