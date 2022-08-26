@@ -35,10 +35,11 @@ public class Syringe : MonoBehaviour
     Vector3 innerPartPositionInit;
     Dictionary<string, float> ingredients;
 
-    void Start()
+    void Awake()
     {
         innerPartPositionInit = InnerPart.transform.localPosition;
         ingredients = new Dictionary<string, float>();
+        med = null;
     }
 
     public void Inserted(Ampule medicine)
@@ -57,10 +58,9 @@ public class Syringe : MonoBehaviour
 
     public void Ejected()
     {
-        MeasurementCanvas.SetActive(false);
+        MeasurementCanvas.SetActive(pushing);
         inserted = false;
         pulling = false;
-        pushing = false;
     }
 
     public void Pull()
@@ -78,15 +78,17 @@ public class Syringe : MonoBehaviour
 
     public void Push()
     {
-        if (inserted && !pulling)
+        if (!pulling)
         {
             pushing = true;
         }
+        MeasurementCanvas.SetActive(true);
     }
 
     public void StopPushing()
     {
         pushing = false;
+        MeasurementCanvas.SetActive(inserted);
     }
 
     private void CheckCompletion()
@@ -144,16 +146,19 @@ public class Syringe : MonoBehaviour
         {
             if (pushing)
             {
-                float pushAmount = Mathf.Min(ingredients[med.Substance], Time.deltaTime * SyringeSensitivity);
-                totalSubstance -= pushAmount;
-                InnerPart.transform.localPosition =
-                    new Vector3(innerPartPositionInit.x,
-                    Mathf.Lerp(innerPartPositionInit.y, innerPartPositionInit.y - MaxInnerPartDisplacement, totalSubstance / SyringeCapacity),
-                    innerPartPositionInit.z);
-                ingredients[med.Substance] -= pushAmount;
-                med.Amount += pushAmount;
-                AmountText.text = ingredients[med.Substance].ToString("0.0");
-                CheckCompletion();
+                if (med != null)
+                {
+                    float pushAmount = Mathf.Min(ingredients[med.Substance], Time.deltaTime * SyringeSensitivity);
+                    totalSubstance -= pushAmount;
+                    InnerPart.transform.localPosition =
+                        new Vector3(innerPartPositionInit.x,
+                        Mathf.Lerp(innerPartPositionInit.y, innerPartPositionInit.y - MaxInnerPartDisplacement, totalSubstance / SyringeCapacity),
+                        innerPartPositionInit.z);
+                    ingredients[med.Substance] -= pushAmount;
+                    med.Amount += pushAmount;
+                    AmountText.text = ingredients[med.Substance].ToString("0.0");
+                    CheckCompletion();
+                }
             }
         }
         Vector3 targetPosition = new Vector3(Head.transform.position.x, Head.transform.position.y, Head.transform.position.z);
