@@ -1459,10 +1459,10 @@ MonoBehaviour:
   CopySettings: {fileID: 0}
   grabType: 0
   handType: 0
-  singleHandOnly: 0
+  singleHandOnly: 1
   allowHeldSwapping: 1
   instantGrab: 0
-  useGentleGrab: 0
+  useGentleGrab: 1
   maintainGrabOffset: 0
   ignoreWeight: 0
   parentOnGrab: 1
@@ -5927,6 +5927,7 @@ Transform:
   m_Children:
   - {fileID: 1954742966}
   - {fileID: 1795211569}
+  - {fileID: 1046707225}
   m_Father: {fileID: 4701245739898989623}
   m_RootOrder: 43
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25107,6 +25108,18 @@ Transform:
   m_Father: {fileID: 203752267}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &793285578 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7625764009110959854, guid: 8ff158fc3eca2d74ea0eeddef2563c60,
+    type: 3}
+  m_PrefabInstance: {fileID: 7625764008935201305}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a4db7a114972834c8e4117be1d82ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &794772984
 GameObject:
   m_ObjectHideFlags: 0
@@ -29309,6 +29322,85 @@ Transform:
   m_Father: {fileID: 1345665522}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &942466601
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 942466604}
+  - component: {fileID: 942466603}
+  - component: {fileID: 942466602}
+  m_Layer: 0
+  m_Name: Disinfect your hands
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &942466602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942466601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Disinfect your hands
+--- !u!222 &942466603
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942466601}
+  m_CullTransparentMesh: 1
+--- !u!224 &942466604
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942466601}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &943215199
 GameObject:
   m_ObjectHideFlags: 0
@@ -31395,6 +31487,114 @@ Transform:
   m_Father: {fileID: 1230762459}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1046707224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1046707225}
+  - component: {fileID: 1046707229}
+  - component: {fileID: 1046707228}
+  - component: {fileID: 1046707227}
+  - component: {fileID: 1046707226}
+  m_Layer: 0
+  m_Name: BlacklistedWindow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1046707225
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046707224}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.803, y: 1.486, z: 6.188}
+  m_LocalScale: {x: 1.1698493, y: 1.03006, z: 0.3}
+  m_Children: []
+  m_Father: {fileID: 165569907}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1046707226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046707224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e955d80bc7e6e348a69dec01671246f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1046707227
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046707224}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1046707228
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046707224}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 5132d99bd6d5f1149879370eaf1b058c, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1046707229
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046707224}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1047516133
 GameObject:
   m_ObjectHideFlags: 0
@@ -42696,7 +42896,7 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.HygeneSubscenarioMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.HygeneSubscenarioMarker.Function.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -42731,7 +42931,7 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.InjectionSubscenarioMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CheckPatientSubscenarioMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -42761,7 +42961,7 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CheckPatientSubscenarioMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.InjectionSubscenarioMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -42816,7 +43016,7 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.KeepMonitoringSubscenarioMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CheckPatientSubscenarioMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -42936,7 +43136,7 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.InjectionSubscenarios.ConnectPumpsMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.InjectionSubscenarios.DiluteDopamineMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -43026,7 +43226,7 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.CallDoctorMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.CallDoctorMarker.Function.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -43036,12 +43236,12 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.ReportSpO2Marker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CheckPatientSubscenarios.DialogueOneMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CheckPatientSubscenarios.DialogueOneMarker.Function.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -43061,7 +43261,7 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.InjectionSubscenarios.DiluteDopamineMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.KeepMonitoringSubscenarios.AlarmButtonMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -43081,7 +43281,7 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.AlarmButtonMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.ApplyStimPadsMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -43106,12 +43306,12 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.ReportToDocMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.ReportToDocMarker.Function.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.ReportToDocMarker.Function.m_PersistentCalls.m_Calls.Array.data[2].m_Target
@@ -43146,7 +43346,7 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.InjectionSubscenarios.MakeAnInjectionMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.InjectionSubscenarios.MakeAnInjectionMarker.Function.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -43246,7 +43446,7 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.KeepMonitoringSubscenarios.AlarmButtonMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.KeepMonitoringSubscenarios.AlarmButtonMarker.Function.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -43256,12 +43456,12 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.KeepMonitoringSubscenarios.DialogueTwoMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.ApplyStimPadsMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.ApplyStimPadsMarker.Function.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -43281,12 +43481,12 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.DialogueThreeMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.DialogueThreeMarker.Function.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[10].m_Mode
@@ -43351,12 +43551,12 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[2].m_Target
@@ -43531,12 +43731,12 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.MakeAnInjectionMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.MakeAnInjectionMarker.Function.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.MakeAnInjectionMarker.Function.m_PersistentCalls.m_Calls.Array.data[2].m_Target
@@ -43661,7 +43861,7 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CheckPatientSubscenarios.ConnectTheMonitorMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CheckPatientSubscenarios.ConnectTheMonitorMarker.Function.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -43871,17 +44071,17 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.PositionThePatientMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.PositionThePatientMarker.Function.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.PositionThePatientMarker.Function.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.KeepRegulatingMarker.Function.m_PersistentCalls.m_Calls.Array.data[10].m_MethodName
@@ -43941,12 +44141,12 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CheckPatientSubscenarios.FillObservationSheetMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CheckPatientSubscenarios.FillObservationSheetMarker.Function.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.KeepMonitoringSubscenarios.FillObservationSheetMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -44041,7 +44241,7 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.KeepMonitoringSubscenarios.FillObservationSheetMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.KeepMonitoringSubscenarios.FillObservationSheetMarker.Function.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -44096,7 +44296,7 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CheckPatientSubscenarios.ReadDoctorsAppointmentsMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1773122183}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CheckPatientSubscenarios.FillObservationSheetMarker.Function.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -52860,18 +53060,6 @@ Transform:
   m_Father: {fileID: 1613251338}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1773122183 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7625764010388170910, guid: 8ff158fc3eca2d74ea0eeddef2563c60,
-    type: 3}
-  m_PrefabInstance: {fileID: 7625764008935201305}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff54f86dd6855b84091eae24326c86fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1775774066
 GameObject:
   m_ObjectHideFlags: 0
@@ -100439,6 +100627,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7625764010388170910, guid: 8ff158fc3eca2d74ea0eeddef2563c60,
+        type: 3}
+      propertyPath: scrollbar
+      value: 
+      objectReference: {fileID: 793285578}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ff158fc3eca2d74ea0eeddef2563c60, type: 3}
 --- !u!33 &7645156063675715935
