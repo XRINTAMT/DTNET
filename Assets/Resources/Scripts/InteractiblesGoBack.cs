@@ -7,6 +7,7 @@ public class InteractiblesGoBack : MonoBehaviour
     [SerializeField] float TemporalOffset = 2;
     [SerializeField] float TimeToGoBack = 1;
     Vector3 initPos;
+    bool kinematic;
     Quaternion initAngle;
     Coroutine goingBack;
 
@@ -15,6 +16,11 @@ public class InteractiblesGoBack : MonoBehaviour
         initPos = transform.position;
         initAngle = transform.rotation;
         goingBack = null;
+        if (TryGetComponent<Rigidbody>(out _))
+        {
+            kinematic = GetComponent<Rigidbody>().isKinematic;
+        }
+        
     }
 
     public void GoBack()
@@ -55,5 +61,9 @@ public class InteractiblesGoBack : MonoBehaviour
         transform.rotation = initAngle;
         transform.position = initPos;
         goingBack = null;
+        if (TryGetComponent<Rigidbody>(out _))
+        {
+            GetComponent<Rigidbody>().isKinematic = kinematic;
+        }
     }
 }
