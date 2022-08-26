@@ -32,7 +32,7 @@ public class HRMonitorScript : MonoBehaviour
         colorComponents[1] = graphColor.g;
         colorComponents[2] = graphColor.b;
         colorComponents[3] = graphColor.a;
-        RT = new RenderTexture(1850, 400, 0);
+        RT = new RenderTexture(185, 40, 0);
         RT.enableRandomWrite = true;
         RT.Create();
         CS = Instantiate(computeShader);
