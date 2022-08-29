@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using System.Linq;
 
 public class Syringe : MonoBehaviour
 {
@@ -42,30 +43,34 @@ public class Syringe : MonoBehaviour
         med = null;
     }
 
+    public void TurnTheHUD(bool OnOff)
+    {
+        MeasurementCanvas.SetActive(OnOff);
+    }
+
     public void Inserted(Ampule medicine)
     {
-        MeasurementCanvas.SetActive(true);
-        SubstanceText.text = medicine.Substance;
+        //SubstanceText.text = medicine.Substance;
         inserted = true;
+        StopPushing();
         med = medicine;
         if (!ingredients.ContainsKey(med.Substance))
         {
             ingredients.Add(med.Substance, 0);
         }
-        SubstanceText.text = med.Substance;
+        //SubstanceText.text = med.Substance;
         AmountText.text = ingredients[med.Substance].ToString("0.0");
     }
 
     public void Ejected()
     {
-        MeasurementCanvas.SetActive(pushing);
         inserted = false;
         pulling = false;
     }
 
     public void Pull()
     {
-        if (inserted && !pushing)
+        if (inserted)
         {
             pulling = true;
         }
@@ -78,17 +83,15 @@ public class Syringe : MonoBehaviour
 
     public void Push()
     {
-        if (!pulling)
+        if (!inserted)
         {
             pushing = true;
         }
-        MeasurementCanvas.SetActive(true);
     }
 
     public void StopPushing()
     {
         pushing = false;
-        MeasurementCanvas.SetActive(inserted);
     }
 
     private void CheckCompletion()
@@ -139,25 +142,37 @@ public class Syringe : MonoBehaviour
                 innerPartPositionInit.z);
             ingredients[med.Substance] += pullAmount;
             med.Amount -= pullAmount;
-            AmountText.text = ingredients[med.Substance].ToString("0.0");
+            //AmountText.text = ingredients[med.Substance].ToString("0.0");
+            AmountText.text = totalSubstance.ToString("0.0");
             CheckCompletion();
         }
         else
         {
             if (pushing)
             {
-                if (med != null)
+                float delta = Mathf.Min(Time.deltaTime * SyringeSensitivity, totalSubstance);
+                if(delta >= totalSubstance)
                 {
-                    float pushAmount = Mathf.Min(ingredients[med.Substance], Time.deltaTime * SyringeSensitivity);
-                    totalSubstance -= pushAmount;
+                    foreach (string ingred in ingredients.Keys.ToList())
+                    {
+                        ingredients[ingred] = 0;
+                    }
+                    totalSubstance = 0;
+                }
+                else
+                {
+                    foreach (string ingred in ingredients.Keys.ToList())
+                    {
+                        float deltaLocal = delta * (ingredients[ingred] / totalSubstance);
+                        ingredients[ingred] -= deltaLocal;
+                        Debug.Log(ingred + ": " + ingredients[ingred]);
+                    }
+                    totalSubstance -= delta;
+                    AmountText.text = totalSubstance.ToString("0.0");
                     InnerPart.transform.localPosition =
                         new Vector3(innerPartPositionInit.x,
                         Mathf.Lerp(innerPartPositionInit.y, innerPartPositionInit.y - MaxInnerPartDisplacement, totalSubstance / SyringeCapacity),
                         innerPartPositionInit.z);
-                    ingredients[med.Substance] -= pushAmount;
-                    med.Amount += pushAmount;
-                    AmountText.text = ingredients[med.Substance].ToString("0.0");
-                    CheckCompletion();
                 }
             }
         }
