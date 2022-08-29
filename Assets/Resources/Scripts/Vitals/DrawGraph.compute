@@ -1,5 +1,7 @@
 #pragma kernel CSMain
 #define arrSize 185
+#define texWidth 185
+#define texHeight 40
 RWTexture2D<float4> Result;
 float4 Color;
 float Values[arrSize+1];
@@ -15,8 +17,8 @@ float DistToLine(float2 p, float2 a, float2 b)
 [numthreads(8, 8, 1)]
 void CSMain(uint2 id : SV_DispatchThreadID)
 {
-	float2 uv = float2 ((float)id.x / 1850, (float)id.y / 400);
-	int fit = (int)(id.x / (1850 / arrSize));
+	float2 uv = float2 ((float)id.x / texWidth, (float)id.y / texHeight);
+	int fit = (int)(id.x / (texWidth / arrSize));
 	float k;
 	
 	if (Values[fit] != -1 && Values[fit+1] != -1 && Values[fit - 1] != -1) {

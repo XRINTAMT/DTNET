@@ -7,6 +7,7 @@ using UnityEngine.Events;
 
 public class Syringe : MonoBehaviour
 {
+    [SerializeField] Camera Head;
     [SerializeField] GameObject InnerPart;
     [SerializeField] float MaxInnerPartDisplacement;
     [SerializeField] float SyringeSensitivity;
@@ -24,6 +25,7 @@ public class Syringe : MonoBehaviour
     [SerializeField] GameObject MeasurementCanvas;
     [SerializeField] Text AmountText;
     [SerializeField] Text SubstanceText;
+    [SerializeField] Vector3 Offset;
 
     Ampule med;
     bool inserted;
@@ -33,10 +35,11 @@ public class Syringe : MonoBehaviour
     Vector3 innerPartPositionInit;
     Dictionary<string, float> ingredients;
 
-    void Start()
+    void Awake()
     {
         innerPartPositionInit = InnerPart.transform.localPosition;
         ingredients = new Dictionary<string, float>();
+        med = null;
     }
 
     public void Inserted(Ampule medicine)
@@ -55,10 +58,9 @@ public class Syringe : MonoBehaviour
 
     public void Ejected()
     {
-        MeasurementCanvas.SetActive(false);
+        MeasurementCanvas.SetActive(pushing);
         inserted = false;
         pulling = false;
-        pushing = false;
     }
 
     public void Pull()
@@ -76,15 +78,17 @@ public class Syringe : MonoBehaviour
 
     public void Push()
     {
-        if (inserted && !pulling)
+        if (!pulling)
         {
             pushing = true;
         }
+        MeasurementCanvas.SetActive(true);
     }
 
     public void StopPushing()
     {
         pushing = false;
+        MeasurementCanvas.SetActive(inserted);
     }
 
     private void CheckCompletion()
@@ -97,6 +101,29 @@ public class Syringe : MonoBehaviour
                 return;
         }
         OnRequirementsMet.Invoke();
+    }
+
+    public void Empty()
+    {
+        if(totalSubstance != 0)
+        {
+            StartCoroutine(EmptyingAnimation());
+        }
+    }
+
+    IEnumerator EmptyingAnimation()
+    {
+        ingredients = new Dictionary<string, float>();
+        for (; totalSubstance > 0; totalSubstance -= Time.deltaTime * SyringeSensitivity)
+        {
+            InnerPart.transform.localPosition =
+                new Vector3(innerPartPositionInit.x,
+                Mathf.Lerp(innerPartPositionInit.y, innerPartPositionInit.y - MaxInnerPartDisplacement, totalSubstance / SyringeCapacity),
+                innerPartPositionInit.z);
+            yield return 0;
+        }
+        totalSubstance = 0;
+        InnerPart.transform.localPosition = innerPartPositionInit;
     }
 
     // Update is called once per frame
@@ -119,17 +146,23 @@ public class Syringe : MonoBehaviour
         {
             if (pushing)
             {
-                float pushAmount = Mathf.Min(ingredients[med.Substance], Time.deltaTime * SyringeSensitivity);
-                totalSubstance -= pushAmount;
-                InnerPart.transform.localPosition =
-                    new Vector3(innerPartPositionInit.x,
-                    Mathf.Lerp(innerPartPositionInit.y, innerPartPositionInit.y - MaxInnerPartDisplacement, totalSubstance / SyringeCapacity),
-                    innerPartPositionInit.z);
-                ingredients[med.Substance] -= pushAmount;
-                med.Amount += pushAmount;
-                AmountText.text = ingredients[med.Substance].ToString("0.0");
-                CheckCompletion();
+                if (med != null)
+                {
+                    float pushAmount = Mathf.Min(ingredients[med.Substance], Time.deltaTime * SyringeSensitivity);
+                    totalSubstance -= pushAmount;
+                    InnerPart.transform.localPosition =
+                        new Vector3(innerPartPositionInit.x,
+                        Mathf.Lerp(innerPartPositionInit.y, innerPartPositionInit.y - MaxInnerPartDisplacement, totalSubstance / SyringeCapacity),
+                        innerPartPositionInit.z);
+                    ingredients[med.Substance] -= pushAmount;
+                    med.Amount += pushAmount;
+                    AmountText.text = ingredients[med.Substance].ToString("0.0");
+                    CheckCompletion();
+                }
             }
         }
+        Vector3 targetPosition = new Vector3(Head.transform.position.x, Head.transform.position.y, Head.transform.position.z);
+        MeasurementCanvas.transform.LookAt(targetPosition);
+        MeasurementCanvas.transform.position = transform.position + Offset;
     }
 }

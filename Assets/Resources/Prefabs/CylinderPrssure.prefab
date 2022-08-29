@@ -14,7 +14,9 @@ GameObject:
   - component: {fileID: 8710386801369965335}
   - component: {fileID: 8710386801369965334}
   - component: {fileID: 8710386801369965333}
-  m_Layer: 0
+  - component: {fileID: 2460280790592392429}
+  - component: {fileID: 3389585496506834361}
+  m_Layer: 11
   m_Name: CylinderPrssure
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,3 +189,31 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3735522331077424080, guid: 2b9c38d6d5ab7c543a3bb780ba444e15, type: 3}
+--- !u!114 &2460280790592392429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8710386801369965332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad72a440cda7d614bad465276db209f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TemporalOffset: 2
+  TimeToGoBack: 1
+--- !u!114 &3389585496506834361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8710386801369965332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdede635c6680904c94321c539aa4d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storeInTexcoordChannel: 1
+  cospatialVertexDistance: 0.01
