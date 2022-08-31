@@ -10,6 +10,8 @@ public class AppManager : MonoBehaviour
     [SerializeField] private GameObject playerVR;
     [SerializeField] private GameObject playerVRRightHand;
     [SerializeField] private GameObject playerVRLeftHand;
+    [SerializeField] private GameObject playerVRRightHandTeleport;
+    [SerializeField] private GameObject playerVRLeftHandTeleport;
 
     [SerializeField] private List<AudioSource> audioSourceDialogues;
     [SerializeField] private List<AudioSource> audioSourceSounds;
@@ -24,6 +26,7 @@ public class AppManager : MonoBehaviour
     void Start()
     {
         appSettings = FindObjectOfType<AppSettings>();
+        UpdateState();
     }
 
 
@@ -58,16 +61,17 @@ public class AppManager : MonoBehaviour
 
     public void SetTeleportHand(TeleportHand teleportHand)
     {
+
         if (appSettings != null && teleportHand == 0)
         {
-            playerVRRightHand.transform.Find("TeleporterPointer").gameObject.SetActive(true);
-            playerVRLeftHand.transform.Find("TeleporterPointer").gameObject.SetActive(false);
+            playerVRRightHandTeleport.SetActive(true);
+            playerVRLeftHandTeleport.SetActive(false);
             return;
         }
         if (appSettings != null && teleportHand == (TeleportHand)1)
         {
-            playerVRRightHand.transform.Find("TeleporterPointer").gameObject.SetActive(false);
-            playerVRLeftHand.transform.Find("TeleporterPointer").gameObject.SetActive(true);
+            playerVRRightHandTeleport.gameObject.SetActive(false);
+            playerVRLeftHandTeleport.gameObject.SetActive(true);
             return;
         }
     }
