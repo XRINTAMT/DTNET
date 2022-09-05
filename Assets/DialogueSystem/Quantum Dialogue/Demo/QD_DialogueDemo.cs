@@ -23,6 +23,7 @@ namespace QuantumTek.QuantumDialogue.Demo
         private bool ended;
         AudioSource audioSource;
         [SerializeField] DialogueSystem dialogueSystem;
+        [SerializeField] GameObject panelUi;
         private void Awake()
         {
             audioSource = GetComponent<AudioSource>();
@@ -102,6 +103,7 @@ namespace QuantumTek.QuantumDialogue.Demo
             // Clear everything
             speakerName.text = "";
             messageText.gameObject.SetActive(false);
+            panelUi.SetActive(false);
             messageText.text = "";
             ClearChoices();
 
@@ -119,7 +121,7 @@ namespace QuantumTek.QuantumDialogue.Demo
                 Debug.Log("speakMessage");
                 audioSource.clip = message.Clip;
                 audioSource.Play();
-
+                panelUi.SetActive(true);
                 messageText.gameObject.SetActive(true);
 
             }

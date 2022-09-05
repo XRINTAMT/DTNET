@@ -23,7 +23,7 @@ public class UIController : MonoBehaviour
     public static int moveLeftHand;
     public static int subtitles;
 
-    AppSettings appSettings;
+    [SerializeField] private AppSettings appSettings;
     void Start()
     {
         SetDialogueVolume();
@@ -59,8 +59,9 @@ public class UIController : MonoBehaviour
     public void SetTeleportHand(int handIndex) 
     {
         //teleportLeftHand = setTeleportHandStatus.value;
+        Debug.Log(handIndex);
         teleportLeftHand = handIndex;
-        //appSettings.UpdateSettings();
+        appSettings.UpdateSettings();
         return;
     }
 
