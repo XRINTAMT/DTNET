@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414736, b: 0.12107852, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1428,7 +1428,7 @@ PrefabInstance:
     - target: {fileID: 3814574634840186023, guid: a5d8204c191330646bc90516f2b8bf46,
         type: 3}
       propertyPath: onGrab.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Fill the syringe.Bring it to the vaccine and press the trigger button
+      value: Fill the syringe. Bring it to the vaccine and press the B button.
       objectReference: {fileID: 0}
     - target: {fileID: 3814574634840186023, guid: a5d8204c191330646bc90516f2b8bf46,
         type: 3}
@@ -1514,6 +1514,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246067405425792472, guid: a5d8204c191330646bc90516f2b8bf46,
+        type: 3}
+      propertyPath: Amount
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246067405425792472, guid: a5d8204c191330646bc90516f2b8bf46,
+        type: 3}
+      propertyPath: Substance
+      value: Vaccine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5d8204c191330646bc90516f2b8bf46, type: 3}
@@ -16386,12 +16396,7 @@ PrefabInstance:
     - target: {fileID: 8512265354180483940, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
       propertyPath: onGrab.m_PersistentCalls.m_Calls.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8512265354180483940, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
-        type: 3}
-      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8512265354180483940, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
@@ -16405,6 +16410,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8512265354180483940, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
+      propertyPath: onGrab.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8512265354180483940, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
+        type: 3}
       propertyPath: onGrab.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 162228898}
@@ -16415,14 +16425,9 @@ PrefabInstance:
       objectReference: {fileID: 342087300}
     - target: {fileID: 8512265354180483940, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
-      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8512265354180483940, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
-        type: 3}
-      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: onGrab.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 1848456832}
     - target: {fileID: 8512265354180483940, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
       propertyPath: onGrab.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
@@ -16435,14 +16440,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8512265354180483940, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
-      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 342087298}
-    - target: {fileID: 8512265354180483940, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
-        type: 3}
-      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 162228898}
+      propertyPath: onGrab.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8512265354180483940, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
       propertyPath: onGrab.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -16455,13 +16455,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8512265354180483940, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
-      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8512265354180483940, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
-        type: 3}
-      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
+      propertyPath: onGrab.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: TurnTheHUD
       objectReference: {fileID: 0}
     - target: {fileID: 8512265354180483940, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
@@ -16475,6 +16470,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8512265354180483940, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
+      propertyPath: onGrab.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: Syringe, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8512265354180483940, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
+        type: 3}
       propertyPath: onGrab.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
@@ -16485,8 +16485,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8512265354180483940, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
+      propertyPath: onGrab.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8512265354180483940, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
+        type: 3}
       propertyPath: onGrab.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_StringArgument
       value: Take the vaccine with your left hand
+      objectReference: {fileID: 0}
+    - target: {fileID: 8512265354180483940, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
+        type: 3}
+      propertyPath: onGrab.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_StringArgument
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8512265354180483940, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
@@ -16496,6 +16506,11 @@ PrefabInstance:
     - target: {fileID: 8512265354180483940, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
       propertyPath: onGrab.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8512265354180483940, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
+        type: 3}
+      propertyPath: onGrab.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8512265354180483943, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
@@ -16508,6 +16523,26 @@ PrefabInstance:
       propertyPath: link
       value: 
       objectReference: {fileID: 7942002211390072463}
+    - target: {fileID: 8512265354180483947, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
+        type: 3}
+      propertyPath: Head
+      value: 
+      objectReference: {fileID: 7942002211254752804}
+    - target: {fileID: 8512265354180483947, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
+        type: 3}
+      propertyPath: DesiredResults.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8512265354180483947, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
+        type: 3}
+      propertyPath: DesiredResults.Array.data[0].Amount
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8512265354180483947, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
+        type: 3}
+      propertyPath: DesiredResults.Array.data[0].Substance
+      value: Vaccine
+      objectReference: {fileID: 0}
     - target: {fileID: 8948215889411406389, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
       propertyPath: m_Layer
@@ -16573,16 +16608,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9061535348185163194, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9061535348185163194, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9061535348185163198, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
       propertyPath: m_Camera
@@ -16617,6 +16642,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1848456829}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1848456832 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8512265354180483947, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1848456829}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848456831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43bcfb289870dd74aa8dc82f518d58b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1853442061
 GameObject:
   m_ObjectHideFlags: 0
@@ -32568,12 +32605,10 @@ MonoBehaviour:
   climbingStrength: {x: 20, y: 20, z: 20}
   climbingAcceleration: 30
   climbingDrag: 5
-  climbUpStepHeightMultiplier: 1
   allowBodyPushing: 1
   pushingStrength: {x: 10, y: 20, z: 10}
   pushingAcceleration: 10
   pushingDrag: 1
-  pushUpStepHeightMultiplier: 1
   allowPlatforms: 1
   platformingLayerMask:
     serializedVersion: 2
