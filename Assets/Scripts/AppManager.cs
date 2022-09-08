@@ -12,6 +12,7 @@ public class AppManager : MonoBehaviour
     [SerializeField] private GameObject playerVRLeftHand;
     [SerializeField] private GameObject playerVRRightHandTeleport;
     [SerializeField] private GameObject playerVRLeftHandTeleport;
+    [SerializeField] private GameObject GuideCanvas;
 
     [SerializeField] private List<AudioSource> audioSourceDialogues;
     [SerializeField] private List<AudioSource> audioSourceSounds;
@@ -22,6 +23,7 @@ public class AppManager : MonoBehaviour
     [SerializeField] private List<Text> textSubtitleDialogues;
 
     public AppSettings appSettings;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -100,5 +102,11 @@ public class AppManager : MonoBehaviour
     {
         if (subtitles == 0) for (int i = 0; i < textSubtitleDialogues.Count; i++) textSubtitleDialogues[i].gameObject.SetActive(true);
         if (subtitles == (Subtitles)1) for (int i = 0; i < textSubtitleDialogues.Count; i++) textSubtitleDialogues[i].gameObject.SetActive(false);
+    }
+
+    public void SetGuide(Guide guide)
+    {
+        if (guide == 0) GuideCanvas.SetActive(false);
+        if (guide == (Guide)1) GuideCanvas.SetActive(true);
     }
 }

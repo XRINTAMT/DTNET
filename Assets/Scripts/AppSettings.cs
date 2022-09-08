@@ -12,6 +12,7 @@ public class AppSettings : MonoBehaviour
     public TeleportHand teleportHand;
     public MoveHand moveHand;
     public Subtitles subtitles;
+    public Guide guides;
 
     void Start()
     {
@@ -27,6 +28,7 @@ public class AppSettings : MonoBehaviour
         teleportHand = (TeleportHand)UIController.teleportLeftHand;
         moveHand = (MoveHand)UIController.moveLeftHand;
         subtitles = (Subtitles)UIController.subtitles;
+        guides = (Guide)UIController.guides;
     }
 }
 
@@ -35,4 +37,5 @@ public enum Language { English, German, Lithuanian }
 public enum TeleportHand { RightHand, LeftHand }
 public enum MoveHand { leftHand, RightHand }
 public enum Subtitles { Enable, Disable }
+public enum Guide { Enable, Disable }
 

@@ -15,6 +15,7 @@ public class UIController : MonoBehaviour
     //[SerializeField] private Dropdown setTeleportHandStatus;
     //[SerializeField] private Dropdown setMovetHandStatus;
     [SerializeField] private Toggle setSubstitlesStatus;
+    [SerializeField] private Toggle setGuidesStatus;
 
     public static float dialogueVolume;
     public static float soundVolume;
@@ -22,6 +23,7 @@ public class UIController : MonoBehaviour
     public static int teleportLeftHand;
     public static int moveLeftHand;
     public static int subtitles;
+    public static int guides;
 
     [SerializeField] private AppSettings appSettings;
     void Start()
@@ -59,7 +61,6 @@ public class UIController : MonoBehaviour
     public void SetTeleportHand(int handIndex) 
     {
         //teleportLeftHand = setTeleportHandStatus.value;
-        Debug.Log(handIndex);
         teleportLeftHand = handIndex;
         appSettings.UpdateSettings();
         return;
@@ -77,6 +78,13 @@ public class UIController : MonoBehaviour
     {
         if (setSubstitlesStatus.isOn) subtitles=0;
         if (!setSubstitlesStatus.isOn) subtitles = 1;
+        //appSettings.UpdateSettings();
+    }
+
+    public void SetGuides()
+    {
+        if (setGuidesStatus.isOn) guides = 0;
+        if (!setGuidesStatus.isOn) guides = 1;
         //appSettings.UpdateSettings();
     }
     public void LoadScene(string name)
