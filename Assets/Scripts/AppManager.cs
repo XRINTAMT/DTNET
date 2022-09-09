@@ -39,7 +39,7 @@ public class AppManager : MonoBehaviour
         SetLanguage(appSettings.language);
         SetTeleportHand(appSettings.teleportHand);
         SetMoveHand(appSettings.moveHand);
-
+        SetGuide(appSettings.guides);
     }
 
     public void SetVolumeDialogue(float volumeDialogue)
@@ -80,18 +80,21 @@ public class AppManager : MonoBehaviour
 
     public void SetMoveHand(MoveHand moveHand)
     {
+        Debug.Log(moveHand);
         if (appSettings != null && moveHand == 0)
         {
-            FindObjectOfType<XRHandPlayerControllerLink>().moveController = playerVRRightHand.GetComponent<XRHandControllerLink>();
-            FindObjectOfType<XRHandPlayerControllerLink>().turnController = playerVRLeftHand.GetComponent<XRHandControllerLink>();
+
+
+            FindObjectOfType<XRHandPlayerControllerLink>().moveController = playerVRLeftHand.GetComponent<XRHandControllerLink>();
+            FindObjectOfType<XRHandPlayerControllerLink>().turnController = playerVRRightHand.GetComponent<XRHandControllerLink>();
             //playerVR.GetComponent<XRHandPlayerControllerLink>().moveController = playerVRRightHand.GetComponent<XRHandControllerLink>();
             //playerVR.GetComponent<XRHandPlayerControllerLink>().turnController = playerVRLeftHand.GetComponent<XRHandControllerLink>();
             return;
         }
         if (appSettings != null && moveHand == (MoveHand)1)
         {
-            FindObjectOfType<XRHandPlayerControllerLink>().moveController = playerVRLeftHand.GetComponent<XRHandControllerLink>();
-            FindObjectOfType<XRHandPlayerControllerLink>().turnController = playerVRRightHand.GetComponent<XRHandControllerLink>();
+            FindObjectOfType<XRHandPlayerControllerLink>().moveController = playerVRRightHand.GetComponent<XRHandControllerLink>();
+            FindObjectOfType<XRHandPlayerControllerLink>().turnController = playerVRLeftHand.GetComponent<XRHandControllerLink>();
             //playerVR.GetComponent<XRHandPlayerControllerLink>().moveController = playerVRLeftHand.GetComponent<XRHandControllerLink>();
             //playerVR.GetComponent<XRHandPlayerControllerLink>().turnController = playerVRRightHand.GetComponent<XRHandControllerLink>();
             return;
@@ -106,7 +109,14 @@ public class AppManager : MonoBehaviour
 
     public void SetGuide(Guide guide)
     {
-        if (guide == 0) GuideCanvas.SetActive(false);
-        if (guide == (Guide)1) GuideCanvas.SetActive(true);
+        Debug.Log(guide);
+        if (guide == 0) 
+        {
+            GuideCanvas.SetActive(true);
+        }
+        if (guide == (Guide)1) 
+        {
+            GuideCanvas.SetActive(false);
+        } 
     }
 }

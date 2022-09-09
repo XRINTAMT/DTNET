@@ -13,6 +13,7 @@ public class GuideSystem : MonoBehaviour
 
     public void GuidePanelActivate(int numberTask) 
     {
+        Debug.Log(44);
         bool disactivateAll = false;
 
         for (int i = 0; i < guidePanel.Count; i++)
