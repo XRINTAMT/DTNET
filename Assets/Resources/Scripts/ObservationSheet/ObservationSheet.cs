@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ScenarioTaskSystem;
+using UnityEngine.UI;
 
 public class ObservationSheet : MonoBehaviour
 {
+    [SerializeField] GameObject NextRow;
     [SerializeField] string[] RightValues;
-    string[] values;
+    string[] values;    
 
     void Awake()
     {
@@ -45,6 +47,15 @@ public class ObservationSheet : MonoBehaviour
         }
         if(TryGetComponent<Task>(out _))
             GetComponent<Task>().Complete();
+    }
+
+    public void BakeAndContinue(){
+        Toggle[] tickboxes = GetComponentsInChildren<Toggle>();
+        for(int i = 0; i < tickboxes.Length; i++){
+            if(tickboxes[i].isOn){
+                //tickboxes[i].Graphic;
+            }
+        }
     }
 
     void Update()
