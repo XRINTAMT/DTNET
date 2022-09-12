@@ -41,21 +41,31 @@ public class ObservationSheet : MonoBehaviour
         {
             if(values[i] != RightValues[i])
             {
-                Debug.Log("Wrong value in your observation sheet! Item " + i + " should be " + RightValues[i] + "but it is currently " + values[i]);
                 return;
             }
         }
-        if(TryGetComponent<Task>(out _))
-            GetComponent<Task>().Complete();
+        if(TryGetComponent<Task>(out Task a))
+            a.Complete();
+        BakeAndContinue();
     }
 
     public void BakeAndContinue(){
         Toggle[] tickboxes = GetComponentsInChildren<Toggle>();
         for(int i = 0; i < tickboxes.Length; i++){
             if(tickboxes[i].isOn){
-                //tickboxes[i].Graphic;
+                tickboxes[i].graphic.transform.SetParent(transform.parent);
             }
         }
+        InputField[] fields = GetComponentsInChildren<InputField>();
+        for (int i = 0; i < fields.Length; i++)
+        {
+            fields[i].textComponent.transform.SetParent(transform.parent);
+        }
+        if (NextRow != null)
+        {
+            NextRow.SetActive(true);
+        }
+        Destroy(gameObject);
     }
 
     void Update()
