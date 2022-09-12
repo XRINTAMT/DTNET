@@ -15,10 +15,17 @@ namespace ScenarioTaskSystem
 
         public void Complete()
         {
-            Debug.Log("Task completed on "+gameObject.name);
             foreach(Scenario s in ParentScenario)
             {
                 s.OnTaskCompleted(this);
+            }
+        }
+        public void Fail()
+        {
+            Debug.Log("Task completed on " + gameObject.name);
+            foreach (Scenario s in ParentScenario)
+            {
+                s.OnTaskFailed(this);
             }
         }
 

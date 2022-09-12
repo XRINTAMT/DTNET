@@ -82,6 +82,27 @@ namespace ScenarioTaskSystem
             }
         }
 
+        public void OnTaskFailed(Task taskFailed)
+        {
+            TaskSettings completedTaskSettings = null;
+            foreach (TaskSettings currentTask in tasks)
+            {
+                if (currentTask.Task == taskFailed)
+                {
+                    completedTaskSettings = currentTask;
+                }
+            }
+            if (completedTaskSettings == null)
+            {
+                Debug.LogError("Error! Task not on this scenarios task list.");
+                return;
+            }
+            Debug.Log("Task completion confirmed!");
+            if (completedTaskSettings.OnFailed != null)
+                completedTaskSettings.OnFailed.Execute();
+            allCompleted();
+        }
+
         private void allCompleted()
         {
             foreach (TaskSettings currentTask in tasks)
@@ -105,6 +126,7 @@ namespace ScenarioTaskSystem
         public bool Completed;
         public Operation OnCompleted;
         public Operation OnWrongOrder;
+        public UniversalOperation OnFailed;
     }
 
     [System.Serializable]
