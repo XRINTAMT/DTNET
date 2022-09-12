@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using ScenarioTaskSystem;
+using static UnityEngine.Rendering.DebugUI;
 
 public class VitalsMonitor : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class VitalsMonitor : MonoBehaviour
         public float Value;
         public float FluctuationRadius;
         public string OutputFormat;
+        public bool Connected;
     }
 
     [SerializeField] VitalValue[] VitalValues;
@@ -90,24 +93,45 @@ public class VitalsMonitor : MonoBehaviour
             AlarmImage.gameObject.SetActive(true);
         }
     }
-    //
 
     public void SwitchAlarm(bool alarm)
     {
         if (alarm)
         {
+            if(TryGetComponent<AudioSource>(out AudioSource AS))
+                AS.Play();
             if (AlarmCoroutine == null)
                 AlarmCoroutine = StartCoroutine(AlarmFiring());
         }
         else
         {
-            if(AlarmCoroutine != null)
+            if (TryGetComponent<AudioSource>(out AudioSource AS))
+                AS.Stop();
+            if (AlarmCoroutine != null)
             {
                 StopCoroutine(AlarmCoroutine);
                 AlarmCoroutine = null;
                 AlarmImage.gameObject.SetActive(false);
             }
         }
+    }
+
+    public void Connect(int n)
+    {
+        VitalValues[n].Connected = true;
+        float temp = VitalValues[n].Value;
+        VitalValues[n].Value = 0;
+        VitalValues[n].Text.gameObject.SetActive(true);
+        for(int i = 0; i < VitalValues.Length; i++)
+        {
+            if (!VitalValues[i].Connected)
+                return;
+        }
+        if(TryGetComponent<Task>(out Task t))
+        {
+            t.Complete();
+        }
+        StartCoroutine(ChangeVitalValue(n, temp, 5));
     }
 
     public float GetValue(int ID)
@@ -122,8 +146,9 @@ public class VitalsMonitor : MonoBehaviour
         {
             for(int i = 0; i < VitalValues.Length; i++)
             {
+                float fluc = Mathf.Min(VitalValues[i].FluctuationRadius, VitalValues[i].Value);
                 VitalValues[i].Text.text = 
-                    (VitalValues[i].Value + UnityEngine.Random.Range(-VitalValues[i].FluctuationRadius, VitalValues[i].FluctuationRadius)).ToString(VitalValues[i].OutputFormat); 
+                    (VitalValues[i].Value + UnityEngine.Random.Range(-fluc, fluc)).ToString(VitalValues[i].OutputFormat); 
             }
         }
     }
