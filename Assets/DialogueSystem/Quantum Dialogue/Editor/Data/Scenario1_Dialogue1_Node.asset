@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Scenario1_Dialogue1_Node
   m_EditorClassIdentifier: 
   DataDB: {fileID: 11400000, guid: 784a5fe5f6cd30c4ba577a8671a64337, type: 2}
-  NextID: 11
+  NextID: 15
   Nodes:
   - ID: 0
     Type: 1
     Window:
       serializedVersion: 2
-      x: 449.58044
-      y: 234.42017
+      x: 123.580444
+      y: 246.42017
       width: 200
       height: 65
     Inputs: []
@@ -44,8 +44,8 @@ MonoBehaviour:
     Type: 3
     Window:
       serializedVersion: 2
-      x: 508.58044
-      y: 347.42017
+      x: 9.580444
+      y: 303.42017
       width: 200
       height: 175
     Inputs:
@@ -139,8 +139,8 @@ MonoBehaviour:
     Type: 2
     Window:
       serializedVersion: 2
-      x: 699.58044
-      y: 205.42015
+      x: 486.58044
+      y: 355.42017
       width: 200
       height: 110
     Inputs: []
@@ -165,8 +165,8 @@ MonoBehaviour:
     Type: 3
     Window:
       serializedVersion: 2
-      x: 954.58044
-      y: 161.42017
+      x: 552.58044
+      y: 137.42017
       width: 200
       height: 175
     Inputs:
@@ -260,8 +260,8 @@ MonoBehaviour:
     Type: 3
     Window:
       serializedVersion: 2
-      x: 819.0641
-      y: 345.42017
+      x: 801.0641
+      y: 339.42017
       width: 200
       height: 175
     Inputs:
@@ -356,8 +356,8 @@ MonoBehaviour:
     Type: 3
     Window:
       serializedVersion: 2
-      x: 1248.0641
-      y: 161.42017
+      x: 1243.0641
+      y: -6.579834
       width: 200
       height: 175
     Inputs:
@@ -452,8 +452,8 @@ MonoBehaviour:
     Type: 3
     Window:
       serializedVersion: 2
-      x: 1113.4175
-      y: 398.73322
+      x: 1142.4175
+      y: 220.73322
       width: 200
       height: 175
     Inputs:
@@ -548,8 +548,8 @@ MonoBehaviour:
     Type: 3
     Window:
       serializedVersion: 2
-      x: 1521.4175
-      y: 158.49493
+      x: 1470.4175
+      y: 46.494934
       width: 200
       height: 175
     Inputs:
@@ -578,8 +578,9 @@ MonoBehaviour:
       Y: 7.5
       AllowMultipleConnections: 1
       Connections:
-        keys: 09000000
+        keys: 090000000c000000
         values:
+        - Array: 00000000
         - Array: 00000000
     - ID: 1
       Name: Next
@@ -587,7 +588,7 @@ MonoBehaviour:
       Y: 35
       AllowMultipleConnections: 0
       Connections:
-        keys: 08000000
+        keys: 0c000000
         values:
         - Array: 01000000
     AllowedInputs:
@@ -644,8 +645,8 @@ MonoBehaviour:
     Type: 3
     Window:
       serializedVersion: 2
-      x: 1432.9861
-      y: 363.49493
+      x: 1689.9861
+      y: 238.49493
       width: 200
       height: 175
     Inputs:
@@ -664,7 +665,7 @@ MonoBehaviour:
       Y: 35
       AllowMultipleConnections: 0
       Connections:
-        keys: 07000000
+        keys: 0c000000
         values:
         - Array: 01000000
     Outputs:
@@ -674,15 +675,16 @@ MonoBehaviour:
       Y: 7.5
       AllowMultipleConnections: 1
       Connections:
-        keys: 
-        values: []
+        keys: 0d000000
+        values:
+        - Array: 00000000
     - ID: 1
       Name: Next
       Type: 1
       Y: 35
       AllowMultipleConnections: 0
       Connections:
-        keys: 09000000
+        keys: 0d000000
         values:
         - Array: 01000000
     AllowedInputs:
@@ -739,8 +741,8 @@ MonoBehaviour:
     Type: 3
     Window:
       serializedVersion: 2
-      x: 1781.9861
-      y: 165.49493
+      x: 2324.986
+      y: -11.505066
       width: 200
       height: 175
     Inputs:
@@ -759,7 +761,7 @@ MonoBehaviour:
       Y: 35
       AllowMultipleConnections: 0
       Connections:
-        keys: 08000000
+        keys: 0e000000
         values:
         - Array: 01000000
     Outputs:
@@ -855,6 +857,292 @@ MonoBehaviour:
       InputID: 0
       OutputType: 2
       OutputID: 0
+  - ID: 12
+    Type: 3
+    Window:
+      serializedVersion: 2
+      x: 1746.1511
+      y: -5
+      width: 200
+      height: 175
+    Inputs:
+    - ID: 0
+      Name: Speaker
+      Type: 0
+      Y: 7.5
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 07000000
+        values:
+        - Array: 00000000
+    - ID: 1
+      Name: Previous
+      Type: 0
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 07000000
+        values:
+        - Array: 01000000
+    Outputs:
+    - ID: 0
+      Name: Speaker
+      Type: 1
+      Y: 7.5
+      AllowMultipleConnections: 1
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Next
+      Type: 1
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 08000000
+        values:
+        - Array: 01000000
+    AllowedInputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 2
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 3
+      InputID: 1
+      OutputType: 1
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 0
+    AllowedOutputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 3
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 0
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 2
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 3
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 4
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 5
+      OutputType: 3
+      OutputID: 1
+  - ID: 13
+    Type: 3
+    Window:
+      serializedVersion: 2
+      x: 1980.5347
+      y: 235
+      width: 200
+      height: 175
+    Inputs:
+    - ID: 0
+      Name: Speaker
+      Type: 0
+      Y: 7.5
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 08000000
+        values:
+        - Array: 00000000
+    - ID: 1
+      Name: Previous
+      Type: 0
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 08000000
+        values:
+        - Array: 01000000
+    Outputs:
+    - ID: 0
+      Name: Speaker
+      Type: 1
+      Y: 7.5
+      AllowMultipleConnections: 1
+      Connections:
+        keys: 0e000000
+        values:
+        - Array: 00000000
+    - ID: 1
+      Name: Next
+      Type: 1
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 0e000000
+        values:
+        - Array: 01000000
+    AllowedInputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 2
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 3
+      InputID: 1
+      OutputType: 1
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 0
+    AllowedOutputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 3
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 0
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 2
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 3
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 4
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 5
+      OutputType: 3
+      OutputID: 1
+  - ID: 14
+    Type: 3
+    Window:
+      serializedVersion: 2
+      x: 2250.7266
+      y: 194
+      width: 200
+      height: 175
+    Inputs:
+    - ID: 0
+      Name: Speaker
+      Type: 0
+      Y: 7.5
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 0d000000
+        values:
+        - Array: 00000000
+    - ID: 1
+      Name: Previous
+      Type: 0
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 0d000000
+        values:
+        - Array: 01000000
+    Outputs:
+    - ID: 0
+      Name: Speaker
+      Type: 1
+      Y: 7.5
+      AllowMultipleConnections: 1
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Next
+      Type: 1
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 09000000
+        values:
+        - Array: 01000000
+    AllowedInputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 2
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 3
+      InputID: 1
+      OutputType: 1
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 0
+    AllowedOutputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 3
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 0
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 2
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 3
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 4
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 5
+      OutputType: 3
+      OutputID: 1
   SpeakerNodes:
   - ID: 2
     Type: 2
@@ -1510,9 +1798,10 @@ MonoBehaviour:
       Speaker: 2
       SpeakerName: 'Patient Edvin:'
       PreviousMessage: 6
-      NextMessage: 8
-      MessageText: "I.m not experiencing chest pain but I\u2019m feeling discomfort
-        like shortness of breaths, very dizzy"
+      NextMessage: 12
+      MessageText: 'I.m not experiencing chest pain
+
+'
       Clip: {fileID: 0}
   - ID: 8
     Type: 3
@@ -1610,11 +1899,9 @@ MonoBehaviour:
       ID: 8
       Speaker: 10
       SpeakerName: 'You:'
-      PreviousMessage: 7
-      NextMessage: 9
-      MessageText: I understand you, Mr. Edwin. These signs are characteristic of
-        heart rhythm disorders, but I want to assure you that your condition is under
-        control and constantly monitored
+      PreviousMessage: 12
+      NextMessage: 13
+      MessageText: 'I understand you, Mr. Edwin. '
       Clip: {fileID: 0}
   - ID: 9
     Type: 3
@@ -1712,9 +1999,311 @@ MonoBehaviour:
       ID: 9
       Speaker: 2
       SpeakerName: 'Patient Edvin:'
-      PreviousMessage: 8
+      PreviousMessage: 14
       NextMessage: -1
       MessageText: Thank you
+      Clip: {fileID: 0}
+  - ID: 12
+    Type: 3
+    Window:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 200
+      height: 175
+    Inputs:
+    - ID: 0
+      Name: Speaker
+      Type: 0
+      Y: 7.5
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Previous
+      Type: 0
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    Outputs:
+    - ID: 0
+      Name: Speaker
+      Type: 1
+      Y: 7.5
+      AllowMultipleConnections: 1
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Next
+      Type: 1
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    AllowedInputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 2
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 3
+      InputID: 1
+      OutputType: 1
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 0
+    AllowedOutputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 3
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 0
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 2
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 3
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 4
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 5
+      OutputType: 3
+      OutputID: 1
+    Data:
+      ID: 12
+      Speaker: 2
+      SpeakerName: 'Patient Edvin:'
+      PreviousMessage: 7
+      NextMessage: 8
+      MessageText: "But I\u2019m feeling discomfort like shortness of breaths, very
+        dizzy"
+      Clip: {fileID: 0}
+  - ID: 13
+    Type: 3
+    Window:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 200
+      height: 175
+    Inputs:
+    - ID: 0
+      Name: Speaker
+      Type: 0
+      Y: 7.5
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Previous
+      Type: 0
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    Outputs:
+    - ID: 0
+      Name: Speaker
+      Type: 1
+      Y: 7.5
+      AllowMultipleConnections: 1
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Next
+      Type: 1
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    AllowedInputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 2
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 3
+      InputID: 1
+      OutputType: 1
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 0
+    AllowedOutputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 3
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 0
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 2
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 3
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 4
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 5
+      OutputType: 3
+      OutputID: 1
+    Data:
+      ID: 13
+      Speaker: 10
+      SpeakerName: 'You:'
+      PreviousMessage: 8
+      NextMessage: 14
+      MessageText: These signs are characteristic of heart rhythm disorders
+      Clip: {fileID: 0}
+  - ID: 14
+    Type: 3
+    Window:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 200
+      height: 175
+    Inputs:
+    - ID: 0
+      Name: Speaker
+      Type: 0
+      Y: 7.5
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Previous
+      Type: 0
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    Outputs:
+    - ID: 0
+      Name: Speaker
+      Type: 1
+      Y: 7.5
+      AllowMultipleConnections: 1
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Next
+      Type: 1
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    AllowedInputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 2
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 3
+      InputID: 1
+      OutputType: 1
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 0
+    AllowedOutputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 3
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 0
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 2
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 3
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 4
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 5
+      OutputType: 3
+      OutputID: 1
+    Data:
+      ID: 14
+      Speaker: 10
+      SpeakerName: 'You:'
+      PreviousMessage: 13
+      NextMessage: 9
+      MessageText: But I want to assure you that your condition is under control
+        and constantly monitored
       Clip: {fileID: 0}
   ConversationNodes:
   - ID: 0

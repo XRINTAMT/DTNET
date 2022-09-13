@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Scenario1_Dialogue2_Node
   m_EditorClassIdentifier: 
   DataDB: {fileID: 11400000, guid: cc5bfdb0de70c554da05bd2b74e609f4, type: 2}
-  NextID: 5
+  NextID: 6
   Nodes:
   - ID: 0
     Type: 1
     Window:
       serializedVersion: 2
-      x: 782.5182
-      y: 235.49492
+      x: 650.5182
+      y: 331.49493
       width: 200
       height: 65
     Inputs: []
@@ -44,8 +44,8 @@ MonoBehaviour:
     Type: 3
     Window:
       serializedVersion: 2
-      x: 1032.5182
-      y: 307.49493
+      x: 996.5182
+      y: 219.49493
       width: 200
       height: 175
     Inputs:
@@ -139,8 +139,8 @@ MonoBehaviour:
     Type: 3
     Window:
       serializedVersion: 2
-      x: 1309.5182
-      y: 125.49492
+      x: 1515.5182
+      y: 22.494919
       width: 200
       height: 175
     Inputs:
@@ -233,8 +233,8 @@ MonoBehaviour:
     Type: 2
     Window:
       serializedVersion: 2
-      x: 1019.2213
-      y: 20.494919
+      x: 1242.2213
+      y: 9.494919
       width: 200
       height: 110
     Inputs: []
@@ -258,8 +258,8 @@ MonoBehaviour:
     Type: 2
     Window:
       serializedVersion: 2
-      x: 606.71924
-      y: 335
+      x: 561.71924
+      y: 120
       width: 200
       height: 110
     Inputs: []
@@ -279,6 +279,54 @@ MonoBehaviour:
       InputID: 0
       OutputType: 2
       OutputID: 0
+  - ID: 5
+    Type: 4
+    Window:
+      serializedVersion: 2
+      x: 901.3424
+      y: 36
+      width: 300
+      height: 125
+    Inputs:
+    - ID: 0
+      Name: Previous Messages
+      Type: 0
+      Y: 7.5
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    Outputs:
+    - ID: 0
+      Name: Choice 1
+      Type: 1
+      Y: 45
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Choice 2
+      Type: 1
+      Y: 75
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    AllowedInputs:
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 0
+    AllowedOutputs:
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 1
   SpeakerNodes:
   - ID: 3
     Type: 2
@@ -566,4 +614,42 @@ MonoBehaviour:
       ID: 0
       Name: 2
       FirstMessage: 1
-  ChoiceNodes: []
+  ChoiceNodes:
+  - ID: 5
+    Type: 2
+    Window:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 300
+      height: 65
+    Inputs:
+    - ID: 0
+      Name: Previous Messages
+      Type: 0
+      Y: 7.5
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    Outputs: []
+    AllowedInputs:
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 0
+    AllowedOutputs:
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 1
+    Data:
+      ID: 5
+      Choices:
+      - "I\u2019m very lightheaded and I\u2019m feeling  chest pain"
+      - Back
+      NextMessages: ffffffffffffffff

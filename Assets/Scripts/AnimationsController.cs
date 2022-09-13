@@ -10,6 +10,7 @@ public class AnimationsController : MonoBehaviour
     [SerializeField] private Animation animationDoctorWalk;
     [SerializeField] private Animation animationDoctorNurse;
     [SerializeField] private Animation animationOpenDoor;
+    [SerializeField] private Animation animationPump;
     [SerializeField] private Animator patientAnimator1;
     [SerializeField] private Animator patientAnimator2;
     [SerializeField] private Animator doctorAnimator;
@@ -20,6 +21,11 @@ public class AnimationsController : MonoBehaviour
     [SerializeField] private GameObject MeshWithoutShirt;
 
 
+
+    public void animatePump() 
+    {
+        animationPump.Play();
+    }
     public void PutOnShirt() 
     {
         MeshWithShirt.SetActive(true);
