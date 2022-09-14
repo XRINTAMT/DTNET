@@ -59,7 +59,7 @@ public class Syringe : MonoBehaviour
             ingredients.Add(med.Substance, 0);
         }
         //SubstanceText.text = med.Substance;
-        AmountText.text = ingredients[med.Substance].ToString("0.0");
+        //AmountText.text = ingredients[med.Substance].ToString("0.0");
     }
 
     public void Ejected()

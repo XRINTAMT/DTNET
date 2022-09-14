@@ -118,11 +118,14 @@ public class VitalsMonitor : MonoBehaviour
 
     public void Connect(int n)
     {
+        if (VitalValues[n].Connected)
+            return;
         VitalValues[n].Connected = true;
         float temp = VitalValues[n].Value;
         VitalValues[n].Value = 0;
         VitalValues[n].Text.gameObject.SetActive(true);
-        for(int i = 0; i < VitalValues.Length; i++)
+        StartCoroutine(ChangeVitalValue(n, temp, 5));
+        for (int i = 0; i < VitalValues.Length; i++)
         {
             if (!VitalValues[i].Connected)
                 return;
@@ -131,7 +134,6 @@ public class VitalsMonitor : MonoBehaviour
         {
             t.Complete();
         }
-        StartCoroutine(ChangeVitalValue(n, temp, 5));
     }
 
     public float GetValue(int ID)

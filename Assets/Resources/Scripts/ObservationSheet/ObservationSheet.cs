@@ -56,6 +56,19 @@ public class ObservationSheet : MonoBehaviour
                 tickboxes[i].graphic.transform.SetParent(transform.parent);
             }
         }
+        Text[] fields = GetComponentsInChildren<Text>();
+        for (int i = 0; i < fields.Length; i++)
+        {
+            if (fields[i].color.a >= 0.9f)
+            {
+                fields[i].transform.SetParent(transform.parent);
+            }
+        }
+        if (NextRow != null)
+        {
+            NextRow.SetActive(true);
+        }
+        /*
         InputField[] fields = GetComponentsInChildren<InputField>();
         for (int i = 0; i < fields.Length; i++)
         {
@@ -65,6 +78,7 @@ public class ObservationSheet : MonoBehaviour
         {
             NextRow.SetActive(true);
         }
+        */
         Destroy(gameObject);
     }
 
