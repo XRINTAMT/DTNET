@@ -14,16 +14,20 @@ namespace QuantumTek.QuantumDialogue.Demo
         public Text messageText;
         public Transform choices;
         public TextMeshProUGUI choiceTemplate;
+        public Text choiceTemplateText;
 
         public string nameDialog;
 
         private List<TextMeshProUGUI> activeChoices = new List<TextMeshProUGUI>();
+        public List<Text> activeChoicesText = new List<Text>();
         private List<TextMeshProUGUI> inactiveChoices = new List<TextMeshProUGUI>();
+        private List<Text> inactiveChoicesText = new List<Text>();
 
         private bool ended;
         AudioSource audioSource;
         [SerializeField] DialogueSystem dialogueSystem;
         [SerializeField] GameObject panelUi;
+        [SerializeField] GameObject panelChoice;
         private void Awake()
         {
             audioSource = GetComponent<AudioSource>();
@@ -50,15 +54,24 @@ namespace QuantumTek.QuantumDialogue.Demo
             if (handler.currentMessageInfo.Type == QD_NodeType.Message)
                 Next();
         }
+
+        //public void BackTextDialogue()
+        //{
+        //    if (handler.currentMessageInfo.Type == QD_NodeType.Message)
+        //        Back();
+        //}
         private void ClearChoices()
         {
-            for (int i = activeChoices.Count - 1; i >= 0; --i)
+            Debug.Log("ClearChoices");
+            panelChoice.SetActive(false);
+
+            for (int i = activeChoicesText.Count - 1; i >= 0; --i)
             {
                 // Use object pooling with the choices to prevent unecessary garbage collection
-                activeChoices[i].gameObject.SetActive(false);
-                activeChoices[i].text = "";
-                inactiveChoices.Add(activeChoices[i]);
-                activeChoices.RemoveAt(i);
+                activeChoicesText[i].gameObject.SetActive(false);
+                activeChoicesText[i].text = "";
+                inactiveChoicesText.Add(activeChoicesText[i]);
+                activeChoicesText.RemoveAt(i);
             }
         }
 
@@ -72,6 +85,8 @@ namespace QuantumTek.QuantumDialogue.Demo
             // Generate new choices
             QD_Choice choice = handler.GetChoice();
             int added = 0;
+
+            panelChoice.SetActive(true);
             // Use inactive choices instead of making new ones, if possible
             while (inactiveChoices.Count > 0 && added < choice.Choices.Count)
             {
@@ -88,12 +103,14 @@ namespace QuantumTek.QuantumDialogue.Demo
             // Make new choices if any left to make
             while (added < choice.Choices.Count)
             {
-                TextMeshProUGUI newChoice = Instantiate(choiceTemplate, choices);
+                //TextMeshProUGUI newChoice = Instantiate(choiceTemplate, choices);
+                Text newChoice = Instantiate(choiceTemplateText, choices);
                 newChoice.text = choice.Choices[added];
                 QD_ChoiceButton button = newChoice.GetComponent<QD_ChoiceButton>();
                 button.number = added;
                 newChoice.gameObject.SetActive(true);
-                activeChoices.Add(newChoice);
+                //activeChoices.Add(newChoice);
+                activeChoicesText.Add(newChoice);
                 added++;
             }
         }
@@ -116,6 +133,7 @@ namespace QuantumTek.QuantumDialogue.Demo
             {
                 QD_Message message = handler.GetMessage();
                 speakerName.text = message.SpeakerName;
+
                 messageText.text = message.MessageText;
 
                 Debug.Log("speakMessage");
@@ -166,6 +184,40 @@ namespace QuantumTek.QuantumDialogue.Demo
             }
                 
         }
+        //public void Back(int choice = -1)
+        //{
+        //    if (ended)
+        //    {
+        //        Task t;
+        //        if (TryGetComponent<Task>(out t))
+        //        {
+        //            t.Complete();
+        //        }
+        //        return;
+        //    }
+
+
+        //    // Go to the next message
+        //    handler.NextMessage(choice);
+        //    // Set the new text
+        //    SetText();
+        //    // End if there is no next message
+        //    if (handler.currentMessageInfo.ID < 0)
+        //    {
+        //        if (dialogueSystem != null)
+        //        {
+        //            dialogueSystem.DialogueComplete[Convert.ToInt32(nameDialog) - 1] = true;
+        //        }
+        //        ended = true;
+        //        Task t;
+        //        if (TryGetComponent<Task>(out t))
+        //        {
+        //            Debug.Log("Task complete: " + gameObject.name);
+        //            t.Complete();
+        //        }
+        //    }
+
+        //}
 
         public void EndDialogue(int countDialogue) 
         { 
