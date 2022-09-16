@@ -10,6 +10,9 @@ public class ControllerApp : MonoBehaviour
     [SerializeField]
     private bool patientSittingDownAnimation1, patientLayingAnimation1, patientSittingDownAnimation2, patientLayingAnimation2, putOnShirt, putOffShirt,
         callDoctorAdamsAnimation, doctorInspectDefebrillatorAnimation, nurseAnimation, dialoguWithPatient1, dialoguWithPatient2;
+
+    bool sitting;
+
     public void PatientSittingDownAnimation1() 
     {
         animationsController.AnimationSeatDownPatient1();
@@ -21,13 +24,23 @@ public class ControllerApp : MonoBehaviour
     }
     public void PatientSittingDownAnimation2()
     {
-        animationsController.AnimationSeatDownPatient2();
-        animateBed.Play("Bed Animation Up");
+        if (!sitting)
+        {
+            animationsController.AnimationSeatDownPatient2();
+            animateBed.Play("Bed Animation Up");
+            sitting = true;
+        }
+
     }
     public void PatientLayingAnimation2()
     {
-        animationsController.AnimationLayingPatient2();
-        animateBed.Play("Bed Animation Down");
+        if (sitting)
+        {
+            animationsController.AnimationLayingPatient2();
+            animateBed.Play("Bed Animation Down");
+            sitting = false;
+        }
+      
     }
     public void CallDoctorAdamsAnimation()
     {
