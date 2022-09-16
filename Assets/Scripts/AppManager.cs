@@ -28,7 +28,11 @@ public class AppManager : MonoBehaviour
     void Start()
     {
         appSettings = FindObjectOfType<AppSettings>();
-        UpdateState();
+        if (appSettings!=null)
+        {
+            UpdateState();
+        }
+        
     }
 
 
