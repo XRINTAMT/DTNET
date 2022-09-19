@@ -6,6 +6,7 @@ public class DialogueTriggerArea : MonoBehaviour
 {
     public bool inArea;
     [SerializeField] private GameObject dialogue;
+    [SerializeField] private GameObject dialogueIcon;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +26,7 @@ public class DialogueTriggerArea : MonoBehaviour
         if (inArea)
         {
             dialogue.SetActive(true);
+            dialogueIcon.SetActive(false);
         }
     }
    
