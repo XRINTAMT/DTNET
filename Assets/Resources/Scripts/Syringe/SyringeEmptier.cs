@@ -22,7 +22,6 @@ public class SyringeEmptier : MonoBehaviour
             {
                 srg.Empty();
             }
-            
         }
     }
 

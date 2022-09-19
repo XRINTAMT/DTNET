@@ -16,16 +16,17 @@ public class Injection : MonoBehaviour
     }
     [SerializeField] Pair[] DesiredResults;
 
-    public void CheckCompletion(Dictionary<string, float> ingredients)
+    public Injection CheckCompletion(Dictionary<string, float> ingredients)
     {
 
         foreach (Pair ingredient in DesiredResults)
         {
             if (!ingredients.ContainsKey(ingredient.Substance))
-                return;
+                return null;
             if (Mathf.Abs(ingredients[ingredient.Substance] - ingredient.Amount) > ingredient.Epsilon)
-                return;
+                return null;
         }
         GetComponent<Task>().Complete();
+        return this;
     }
 }

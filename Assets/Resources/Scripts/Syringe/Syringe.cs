@@ -27,6 +27,7 @@ public class Syringe : MonoBehaviour
     float totalSubstance;
     Vector3 innerPartPositionInit;
     Dictionary<string, float> ingredients;
+    public Injection Lable { get; private set; }
 
     void Awake()
     {
@@ -88,7 +89,7 @@ public class Syringe : MonoBehaviour
 
     private void CheckCompletion()
     {
-        Manager.CheckCompletion(ingredients);
+        Lable = Manager.CheckCompletion(ingredients);
     }
 
     public void Empty()

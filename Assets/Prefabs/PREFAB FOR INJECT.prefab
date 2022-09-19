@@ -968,6 +968,7 @@ GameObject:
   - component: {fileID: 1483478445716702839}
   - component: {fileID: 7454699115883326761}
   - component: {fileID: 574391954034017337}
+  - component: {fileID: 779970344266093810}
   m_Layer: 0
   m_Name: Button (1)
   m_TagString: Untagged
@@ -1127,9 +1128,9 @@ MonoBehaviour:
   OnTrue:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 574391954034017337}
-        m_TargetAssemblyTypeName: ScenarioTaskSystem.Task, Assembly-CSharp
-        m_MethodName: Complete
+      - m_Target: {fileID: 779970344266093810}
+        m_TargetAssemblyTypeName: PumpInjector, Assembly-CSharp
+        m_MethodName: Inject
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1154,6 +1155,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cab4954ad8c5464880f4125605bb334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &779970344266093810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483478445716702833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcc20c6192bca604c912aad47fadc729, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RequiredInjection: {fileID: 0}
+  SyringeHolder: {fileID: 1483478446160661194}
 --- !u!1 &1483478445745446528
 GameObject:
   m_ObjectHideFlags: 0
