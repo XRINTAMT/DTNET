@@ -20,7 +20,7 @@ namespace ScenarioTaskSystem
             OnAllCompleted = operation;
         }
 
-        public void OnTaskCompleted(Task taskCompleted)
+        public void OnTaskCompleted(Task taskCompleted, int score)
         {
             TaskSettings completedTaskSettings = null;
             foreach(TaskSettings currentTask in tasks)
@@ -48,6 +48,7 @@ namespace ScenarioTaskSystem
                 Debug.Log("Task completion confirmed!");
                 if (completedTaskSettings.OnCompleted != null)
                     completedTaskSettings.OnCompleted.Execute();
+                completedTaskSettings.Score = score;
                 allCompleted();
             }
             else
@@ -71,6 +72,7 @@ namespace ScenarioTaskSystem
                     Debug.Log("Task completion confirmed!");
                     if (completedTaskSettings.OnCompleted != null)
                         completedTaskSettings.OnCompleted.Execute();
+                    completedTaskSettings.Score = score;
                     allCompleted();
                 }
                 else
@@ -127,6 +129,7 @@ namespace ScenarioTaskSystem
         public Operation OnCompleted;
         public Operation OnWrongOrder;
         public UniversalOperation OnFailed;
+        public int Score;
     }
 
     [System.Serializable]
