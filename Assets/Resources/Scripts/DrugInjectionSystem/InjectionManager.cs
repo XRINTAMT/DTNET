@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class InjectionManager : MonoBehaviour
 {
-    public void CheckCompletion(Dictionary<string, float> ingredients)
+    public Injection CheckCompletion(Dictionary<string, float> ingredients)
     {
         foreach (Injection mixture in GetComponentsInChildren<Injection>())
         {
-            mixture.CheckCompletion(ingredients);
+            Injection inj = mixture.CheckCompletion(ingredients);
+            if(inj != null)
+            {
+                return inj;
+            }
         }
+        return null;
     }
 
 }
