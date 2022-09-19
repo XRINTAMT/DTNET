@@ -8,21 +8,13 @@ using System.Linq;
 
 public class Syringe : MonoBehaviour
 {
+    [SerializeField] InjectionManager Manager;
     [SerializeField] Camera Head;
     [SerializeField] GameObject InnerPart;
     [SerializeField] float MaxInnerPartDisplacement;
     [SerializeField] float SyringeSensitivity;
     [SerializeField] float SyringeCapacity;
-    [Serializable]
-    struct Pair
-    {
-        public string Substance;
-        public float Amount;
-        public float Epsilon;
-    }
-    [SerializeField] Pair[] DesiredResults;
     [SerializeField] UnityEvent OnRequirementsMet;
-
     [SerializeField] GameObject MeasurementCanvas;
     [SerializeField] Text AmountText;
     [SerializeField] Text SubstanceText;
@@ -96,14 +88,7 @@ public class Syringe : MonoBehaviour
 
     private void CheckCompletion()
     {
-        foreach(Pair ingredient in DesiredResults)
-        {
-            if (!ingredients.ContainsKey(ingredient.Substance))
-                return;
-            if (Mathf.Abs(ingredients[ingredient.Substance] - ingredient.Amount) > ingredient.Epsilon)
-                return;
-        }
-        OnRequirementsMet.Invoke();
+        Manager.CheckCompletion(ingredients);
     }
 
     public void Empty()
