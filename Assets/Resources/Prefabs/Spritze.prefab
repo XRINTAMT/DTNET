@@ -350,9 +350,9 @@ GameObject:
   - component: {fileID: 8512265354180483942}
   - component: {fileID: 8512265354180483941}
   - component: {fileID: 8512265354180483943}
+  - component: {fileID: 8512265354180483944}
   - component: {fileID: 8512265354180483946}
   - component: {fileID: 8512265354180483947}
-  - component: {fileID: 8512265354180483944}
   - component: {fileID: 3148744991086824738}
   - component: {fileID: 1694859928315181988}
   - component: {fileID: 2113299403181542047}
@@ -755,7 +755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   link: {fileID: 0}
-  button: 3
+  button: 2
   Pressed:
     m_PersistentCalls:
       m_Calls:
@@ -777,6 +777,50 @@ MonoBehaviour:
       - m_Target: {fileID: 8512265354180483947}
         m_TargetAssemblyTypeName: Syringe, Assembly-CSharp
         m_MethodName: StopPulling
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8512265354180483944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8512265354180483939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fbab967b03b78f4093d38ef2637575f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  link: {fileID: 0}
+  button: 3
+  Pressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8512265354180483947}
+        m_TargetAssemblyTypeName: Syringe, Assembly-CSharp
+        m_MethodName: Push
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Released:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8512265354180483947}
+        m_TargetAssemblyTypeName: Syringe, Assembly-CSharp
+        m_MethodName: StopPushing
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -842,18 +886,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43bcfb289870dd74aa8dc82f518d58b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Manager: {fileID: 0}
   Head: {fileID: 0}
   InnerPart: {fileID: 4860282050037492059}
   MaxInnerPartDisplacement: 1.5
   SyringeSensitivity: 7
   SyringeCapacity: 100
-  DesiredResults:
-  - Substance: Dopamine
-    Amount: 20
-    Epsilon: 0.5
-  - Substance: Solanine
-    Amount: 50
-    Epsilon: 1
   OnRequirementsMet:
     m_PersistentCalls:
       m_Calls:
@@ -873,50 +911,6 @@ MonoBehaviour:
   AmountText: {fileID: 9061535347864316693}
   SubstanceText: {fileID: 9061535348214342774}
   Offset: {x: -0.08, y: 0.08, z: 0}
---- !u!114 &8512265354180483944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8512265354180483939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fbab967b03b78f4093d38ef2637575f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  link: {fileID: 0}
-  button: 2
-  Pressed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8512265354180483947}
-        m_TargetAssemblyTypeName: Syringe, Assembly-CSharp
-        m_MethodName: Push
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  Released:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8512265354180483947}
-        m_TargetAssemblyTypeName: Syringe, Assembly-CSharp
-        m_MethodName: StopPushing
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &3148744991086824738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -942,7 +936,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   link: {fileID: 0}
-  button: 3
+  button: 2
   Pressed:
     m_PersistentCalls:
       m_Calls:
@@ -986,7 +980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   link: {fileID: 0}
-  button: 2
+  button: 3
   Pressed:
     m_PersistentCalls:
       m_Calls:
