@@ -13,9 +13,19 @@ namespace ScenarioTaskSystem
             ParentScenario = new List<Scenario>();
         }
 
-        public void Complete(int score = 0)
+        public void Complete(int score)
         {
             foreach(Scenario s in ParentScenario)
+            {
+                Debug.Log("Task completed on " + name + " with the score of " + score);
+                s.OnTaskCompleted(this, score);
+            }
+        }
+
+        public void Complete()
+        {
+            int score = 0;
+            foreach (Scenario s in ParentScenario)
             {
                 Debug.Log("Task completed on " + name + " with the score of " + score);
                 s.OnTaskCompleted(this, score);

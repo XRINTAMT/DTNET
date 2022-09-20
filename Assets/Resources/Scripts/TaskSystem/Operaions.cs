@@ -10,24 +10,26 @@ namespace ScenarioTaskSystem
     public class TaskCompleter : Operation
     {
         private Task task;
+        private Scenario scenario;
 
         public TaskCompleter(Task t, Operation n = null) : base(n)
         {
             if (t == null)
             {
-                Debug.LogError("You are creating a task completer with null task in it!");
+                Debug.LogError("You are creating a task completer with a null task in it!");
             }
             task = t;
         }
 
-        override public void Execute()
+        override public void Execute(int n = 0)
         {
             if (task == null)
             {
                 Debug.LogError("Cannot use a task completer with a null task");
             }
-            task.Complete();
-            base.Execute();
+            Debug.Log("Completed a subscenario!");
+            task.Complete(n);
+            base.Execute(n);
         }
     }
 
@@ -36,7 +38,7 @@ namespace ScenarioTaskSystem
     {
         [SerializeField] int RoomID = -1;
 
-        override public void Execute()
+        override public void Execute(int n = 0)
         {
             if (RoomID == -1)
             {
@@ -46,7 +48,7 @@ namespace ScenarioTaskSystem
             {
                 SceneManager.LoadScene(RoomID);
             }
-            base.Execute();
+            base.Execute(n);
         }
     }
 
@@ -55,7 +57,7 @@ namespace ScenarioTaskSystem
     {
         [SerializeField] UnityEvent Function = null;
 
-        override public void Execute()
+        override public void Execute(int n = 0)
         {
             if (Function == null)
             {
@@ -65,7 +67,7 @@ namespace ScenarioTaskSystem
             {
                 Function.Invoke();
             }
-            base.Execute();
+            base.Execute(n);
         }
     }
 }

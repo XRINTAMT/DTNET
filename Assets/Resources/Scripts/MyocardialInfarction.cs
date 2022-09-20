@@ -132,7 +132,7 @@ public class MyocardialInfarction : MonoBehaviour
     [SerializeField] RoomChanger GoToADifferentRoomOnCompletion;
     [SerializeField] MyocardialInfarctionSubscenariosGroup MyocardialInfarctionScenario;
 
-    void Awake()
+    void Start()
     {
         MyocardialInfarctionScenario.HygeneSubscenarios.CompleteWashHandsSubscenario = new TaskSettings();
         MyocardialInfarctionScenario.HygeneSubscenarios.CompleteWashHandsSubscenario.Task = gameObject.AddComponent<Task>();

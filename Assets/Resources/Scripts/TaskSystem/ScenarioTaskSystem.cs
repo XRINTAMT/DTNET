@@ -20,6 +20,16 @@ namespace ScenarioTaskSystem
             OnAllCompleted = operation;
         }
 
+        int RecalculateScore()
+        {
+            int score = 0;
+            foreach(TaskSettings task in tasks)
+            {
+                score += task.Score;
+            }
+            return score;
+        }
+
         public void OnTaskCompleted(Task taskCompleted, int score)
         {
             TaskSettings completedTaskSettings = null;
@@ -37,11 +47,13 @@ namespace ScenarioTaskSystem
                 Debug.LogError("Error! Task not on this scenarios task list.");
                 return;
             }
+            /*
             if (completedTaskSettings.Completed)
             {
                 Debug.LogWarning("This task is getting completed multiple times");
                 return;
             }
+            */
             if (completedTaskSettings.Order == null)
             {
                 completedTaskSettings.Completed = true;
@@ -115,7 +127,7 @@ namespace ScenarioTaskSystem
                 }
             }
             if (OnAllCompleted != null)
-                OnAllCompleted.Execute();
+                OnAllCompleted.Execute(RecalculateScore());
         }
     }
 
@@ -140,11 +152,11 @@ namespace ScenarioTaskSystem
             Next = n;
         }
         public Operation Next;
-        virtual public void Execute()
+        virtual public void Execute(int n = 0)
         {
             if(Next != null)
             {
-                Next.Execute();
+                Next.Execute(n);
             }
         }
     }
