@@ -18,15 +18,20 @@ public class XRMovementControls : MonoBehaviour
 
     public void SwitchLocomotion(int type)
     {
-        if (type == 0)
+        switch (type)
         {
-            Teleport.SetActive(true);
-            MovementControls.moveController = DummyHand;
-        }
-        else
-        {
-            Teleport.SetActive(false);
-            MovementControls.moveController = RealHand;
+            case (-1):
+                Teleport.SetActive(false);
+                MovementControls.moveController = DummyHand;
+                break;
+            case (0):
+                Teleport.SetActive(true);
+                MovementControls.moveController = DummyHand;
+                break;
+            case (1):
+                Teleport.SetActive(false);
+                MovementControls.moveController = RealHand;
+                break;
         }
     }
 
