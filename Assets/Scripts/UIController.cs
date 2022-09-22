@@ -75,7 +75,7 @@ public class UIController : MonoBehaviour
     {
         if (setGuidesStatus.isOn) guides = 0;
         if (!setGuidesStatus.isOn) guides = 1;
-        //appSettings.UpdateSettings();
+        appSettings.UpdateSettings();
     }
     public void LoadScene(string name)
     {
