@@ -41,8 +41,7 @@ public class AppManager : MonoBehaviour
         SetVolumeDialogue(appSettings.dialogueVolume);
         SetVolumeSound(appSettings.soundVolume);
         SetLanguage(appSettings.language);
-        SetTeleportHand(appSettings.teleportHand);
-        SetMoveHand(appSettings.moveHand);
+        SetLocomotionType(appSettings.locomotion);
         SetGuide(appSettings.guides);
     }
 
@@ -65,44 +64,11 @@ public class AppManager : MonoBehaviour
     }
 
 
-    public void SetTeleportHand(TeleportHand teleportHand)
+    public void SetLocomotionType(Locomotion locoType)
     {
-
-        if (appSettings != null && teleportHand == 0)
-        {
-            playerVRRightHandTeleport.SetActive(true);
-            playerVRLeftHandTeleport.SetActive(false);
-            return;
-        }
-        if (appSettings != null && teleportHand == (TeleportHand)1)
-        {
-            playerVRRightHandTeleport.gameObject.SetActive(false);
-            playerVRLeftHandTeleport.gameObject.SetActive(true);
-            return;
-        }
-    }
-
-    public void SetMoveHand(MoveHand moveHand)
-    {
-        Debug.Log(moveHand);
-        if (appSettings != null && moveHand == 0)
-        {
-
-
-            FindObjectOfType<XRHandPlayerControllerLink>().moveController = playerVRLeftHand.GetComponent<XRHandControllerLink>();
-            FindObjectOfType<XRHandPlayerControllerLink>().turnController = playerVRRightHand.GetComponent<XRHandControllerLink>();
-            //playerVR.GetComponent<XRHandPlayerControllerLink>().moveController = playerVRRightHand.GetComponent<XRHandControllerLink>();
-            //playerVR.GetComponent<XRHandPlayerControllerLink>().turnController = playerVRLeftHand.GetComponent<XRHandControllerLink>();
-            return;
-        }
-        if (appSettings != null && moveHand == (MoveHand)1)
-        {
-            FindObjectOfType<XRHandPlayerControllerLink>().moveController = playerVRRightHand.GetComponent<XRHandControllerLink>();
-            FindObjectOfType<XRHandPlayerControllerLink>().turnController = playerVRLeftHand.GetComponent<XRHandControllerLink>();
-            //playerVR.GetComponent<XRHandPlayerControllerLink>().moveController = playerVRLeftHand.GetComponent<XRHandControllerLink>();
-            //playerVR.GetComponent<XRHandPlayerControllerLink>().turnController = playerVRRightHand.GetComponent<XRHandControllerLink>();
-            return;
-        }
+        PlayerPrefs.SetInt("MovementType", (int)locoType);
+        Debug.Log("Saved movement type as " + (int)locoType);
+        FindObjectOfType<XRMovementControls>().SwitchLocomotion((int)locoType);
     }
 
     public void SetSubtitles(Subtitles subtitles)

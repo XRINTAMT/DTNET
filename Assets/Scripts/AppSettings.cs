@@ -9,8 +9,7 @@ public class AppSettings : MonoBehaviour
     [Range(0f, 1f)]
     public float soundVolume;
     public Language language;
-    public TeleportHand teleportHand;
-    public MoveHand moveHand;
+    public Locomotion locomotion;
     public Subtitles subtitles;
     public Guide guides;
 
@@ -25,8 +24,7 @@ public class AppSettings : MonoBehaviour
         dialogueVolume = UIController.dialogueVolume;
         soundVolume = UIController.soundVolume;
         language = (Language)UIController.language;
-        teleportHand = (TeleportHand)UIController.teleportLeftHand;
-        moveHand = (MoveHand)UIController.moveLeftHand;
+        locomotion = (Locomotion)UIController.teleport;
         subtitles = (Subtitles)UIController.subtitles;
         guides = (Guide)UIController.guides;
     }
@@ -34,8 +32,7 @@ public class AppSettings : MonoBehaviour
 
 
 public enum Language { English, German, Lithuanian }
-public enum TeleportHand { RightHand, LeftHand }
-public enum MoveHand { leftHand, RightHand }
+public enum Locomotion { Teleportation, Smooth }
 public enum Subtitles { Enable, Disable }
 public enum Guide { Enable, Disable }
 

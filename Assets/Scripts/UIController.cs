@@ -20,8 +20,7 @@ public class UIController : MonoBehaviour
     public static float dialogueVolume;
     public static float soundVolume;
     public static int language;
-    public static int teleportLeftHand;
-    public static int moveLeftHand;
+    public static int teleport;
     public static int subtitles;
     public static int guides;
 
@@ -31,8 +30,7 @@ public class UIController : MonoBehaviour
         SetDialogueVolume();
         SetSoundVolume();
         SetLanguage(0);
-        SetTeleportHand(0);
-        SetMoveHand(0);
+        SetLocomotionType(PlayerPrefs.GetInt("MovementType"));
         SetSubtitles();
 
         appSettings = FindObjectOfType<AppSettings>();
@@ -58,19 +56,11 @@ public class UIController : MonoBehaviour
         return;
     }
 
-    public void SetTeleportHand(int handIndex) 
+    public void SetLocomotionType(int LocomotionID) 
     {
         //teleportLeftHand = setTeleportHandStatus.value;
-        teleportLeftHand = handIndex;
+        teleport = LocomotionID;
         appSettings.UpdateSettings();
-        return;
-    }
-
-    public void SetMoveHand(int handIndex)
-    {
-        //moveLeftHand = setMovetHandStatus.value;
-        teleportLeftHand = handIndex;
-        //appSettings.UpdateSettings();
         return;
     }
 
