@@ -15126,7 +15126,7 @@ PrefabInstance:
     - target: {fileID: 6914811990594237178, guid: eab5d126675fc4044838a9954cd8288e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6914811991408812958, guid: eab5d126675fc4044838a9954cd8288e,
         type: 3}
@@ -19667,6 +19667,12 @@ Transform:
   m_Father: {fileID: 65352214}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &779845527 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4351774534812516155, guid: 3c2109583f0d25d49baaac5499d96e0a,
+    type: 3}
+  m_PrefabInstance: {fileID: 5932141274520908242}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &780690326
 GameObject:
   m_ObjectHideFlags: 0
@@ -25082,6 +25088,7 @@ GameObject:
   - component: {fileID: 1046444833}
   - component: {fileID: 1046444834}
   - component: {fileID: 1046444835}
+  - component: {fileID: 1046444836}
   m_Layer: 0
   m_Name: PauseManager
   m_TagString: Untagged
@@ -25147,9 +25154,37 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1046444836}
+        m_TargetAssemblyTypeName: UnscaleMove, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Released:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1046444836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046444832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64600ecdd5c101b4e991c3463505e5ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FollowLeft: {fileID: 779845527}
+  FollowRight: {fileID: 1523315941}
+  HandLeft: {fileID: 5823117660941250286}
+  HandRight: {fileID: 5823117662332716352}
 --- !u!1 &1047516133
 GameObject:
   m_ObjectHideFlags: 0
@@ -39281,6 +39316,12 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: '- Read doctor''s appointments'
+--- !u!4 &1523315941 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4351774533876419370, guid: 3c2109583f0d25d49baaac5499d96e0a,
+    type: 3}
+  m_PrefabInstance: {fileID: 5932141274520908242}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1524431885
 GameObject:
   m_ObjectHideFlags: 0
@@ -69683,9 +69724,21 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5932141274520908242}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &5823117660941250286 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 188286582215974716, guid: 3c2109583f0d25d49baaac5499d96e0a,
+    type: 3}
+  m_PrefabInstance: {fileID: 5932141274520908242}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5823117662332716346 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 188286583104173288, guid: 3c2109583f0d25d49baaac5499d96e0a,
+    type: 3}
+  m_PrefabInstance: {fileID: 5932141274520908242}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5823117662332716352 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 188286583104173290, guid: 3c2109583f0d25d49baaac5499d96e0a,
     type: 3}
   m_PrefabInstance: {fileID: 5932141274520908242}
   m_PrefabAsset: {fileID: 0}
@@ -82646,6 +82699,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1046444834}
         m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
         m_MethodName: AppUnpause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1046444836}
+        m_TargetAssemblyTypeName: UnscaleMove, Assembly-CSharp
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
