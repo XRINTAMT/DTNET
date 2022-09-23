@@ -57,7 +57,7 @@ public class Pacer : MonoBehaviour
             score *= 1 - (Mathf.Abs(AimOutput - outputValue) / maxOutputDiff);
             Monitor.ChangeValue(i, Mathf.Lerp(Vitals[i], AimVitals[i], score), 1);
             Debug.Log(score);
-            if(score > 0.99)
+            if(score == 1)
             {
                 if(TryGetComponent<Task>(out Task task))
                 {
