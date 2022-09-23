@@ -468,8 +468,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3710916387758444143}
-  m_LocalRotation: {x: 0.47656196, y: 0.49360052, z: 0.37870643, w: 0.62115115}
-  m_LocalPosition: {x: -0.13130063, y: 0.13390118, z: 0.121599905}
+  m_LocalRotation: {x: 0.595762, y: 0.16277671, z: 0.12489, w: 0.77651393}
+  m_LocalPosition: {x: -0.13130076, y: 0.13391715, z: 0.1215998}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 3710916388575629680}
@@ -1255,7 +1255,6 @@ GameObject:
   - component: {fileID: 3710916388717433847}
   - component: {fileID: 3710916388717433846}
   - component: {fileID: 3710916388717433845}
-  - component: {fileID: 3710916388717433844}
   - component: {fileID: 3710916388717433851}
   m_Layer: 0
   m_Name: PacerRateGrab
@@ -1321,7 +1320,7 @@ MonoBehaviour:
   onGrab:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3710916388717433844}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ScenarioTaskSystem.Task, Assembly-CSharp
         m_MethodName: Complete
         m_Mode: 1
@@ -1333,9 +1332,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3710916388717433841}
+        m_TargetAssemblyTypeName: UnityEngine.Rigidbody, UnityEngine
+        m_MethodName: set_isKinematic
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onRelease:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3710916388717433841}
+        m_TargetAssemblyTypeName: UnityEngine.Rigidbody, UnityEngine
+        m_MethodName: set_isKinematic
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   onSqueeze:
     m_PersistentCalls:
       m_Calls: []
@@ -1364,7 +1387,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 100
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1380,7 +1403,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000020903828, y: 0.029173478, z: -0.000018943989}
+  m_ConnectedAnchor: {x: 0.000021169724, y: 0.029174112, z: -0.000019171}
   m_UseSpring: 0
   m_Spring:
     spring: 10
@@ -1394,7 +1417,7 @@ HingeJoint:
   m_UseLimits: 1
   m_Limits:
     min: -0.26094723
-    max: 47.67162
+    max: 124.82532
     bounciness: 0
     bounceMinVelocity: 0.2
     contactDistance: 0
@@ -1419,10 +1442,11 @@ MonoBehaviour:
   SnapDegrees: 11
   RandomizePitch: 0.001
   monitor: {fileID: 3929352947321916130}
-  minValue: 40
-  maxValue: 70
-  NumberOfValues: 4
+  <minValue>k__BackingField: 60
+  <maxValue>k__BackingField: 120
+  NumberOfValues: 6
   ValueID: 1
+  Pacer: {fileID: 2261137366286903533}
 --- !u!114 &3710916388717433846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1588,18 +1612,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3710916388717433844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3710916388717433849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cab4954ad8c5464880f4125605bb334, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3710916388717433851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2162,8 +2174,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3817574162593408440}
-  m_LocalRotation: {x: 0.38630217, y: 0.61314785, z: 0.47042593, w: 0.5035075}
-  m_LocalPosition: {x: -0.0679, y: 0.1344, z: 0.1215}
+  m_LocalRotation: {x: 0.17153884, y: 0.7612352, z: 0.5840414, w: 0.22358699}
+  m_LocalPosition: {x: -0.06790118, y: 0.13439995, z: 0.12150011}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 4843945083736284915}
@@ -2187,7 +2199,6 @@ GameObject:
   - component: {fileID: 3817574162692879482}
   - component: {fileID: 3817574162692879481}
   - component: {fileID: 3817574162692879483}
-  - component: {fileID: 3817574162692879476}
   - component: {fileID: 3817574162692879480}
   m_Layer: 0
   m_Name: PacerOutputGrab
@@ -2203,14 +2214,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3817574162692879487}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.035, z: 0}
+  m_LocalRotation: {x: 0.000000022351742, y: 0.01328218, z: -0.000000014901161, w: 0.9999118}
+  m_LocalPosition: {x: 0.00000023814451, y: 0.03500036, z: 0.0000026402995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 391890677924183383}
   m_Father: {fileID: 3817574162593408443}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 1.522, z: 0}
 --- !u!114 &3817574162692879363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2253,7 +2264,7 @@ MonoBehaviour:
   onGrab:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3817574162692879476}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ScenarioTaskSystem.Task, Assembly-CSharp
         m_MethodName: Complete
         m_Mode: 1
@@ -2265,9 +2276,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3817574162692879360}
+        m_TargetAssemblyTypeName: UnityEngine.Rigidbody, UnityEngine
+        m_MethodName: set_isKinematic
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onRelease:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3817574162692879360}
+        m_TargetAssemblyTypeName: UnityEngine.Rigidbody, UnityEngine
+        m_MethodName: set_isKinematic
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   onSqueeze:
     m_PersistentCalls:
       m_Calls: []
@@ -2296,7 +2331,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 100
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2312,7 +2347,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000014597235, y: 0.02916641, z: -0.0000002687098}
+  m_ConnectedAnchor: {x: 0.00000029833242, y: 0.029167602, z: 0.0000033023298}
   m_UseSpring: 0
   m_Spring:
     spring: 10
@@ -2325,7 +2360,7 @@ HingeJoint:
     freeSpin: 0
   m_UseLimits: 1
   m_Limits:
-    min: -51.63949
+    min: -122.36732
     max: 3.403122
     bounciness: 0
     bounceMinVelocity: 0.2
@@ -2351,10 +2386,11 @@ MonoBehaviour:
   SnapDegrees: 11
   RandomizePitch: 0.001
   monitor: {fileID: 3929352947321916130}
-  minValue: 30
-  maxValue: 80
-  NumberOfValues: 4
+  <minValue>k__BackingField: 0
+  <maxValue>k__BackingField: 120
+  NumberOfValues: 12
   ValueID: 0
+  Pacer: {fileID: 2261137366286903533}
 --- !u!114 &3817574162692879482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2545,18 +2581,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3817574162692879476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3817574162692879487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cab4954ad8c5464880f4125605bb334, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3817574162692879480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2733,13 +2757,13 @@ MonoBehaviour:
   VitalValues:
   - Name: Amperage
     Text: {fileID: 4345053282450112469}
-    Value: 30
+    Value: 0
     FluctuationRadius: 0
     OutputFormat: 0
     Connected: 0
   - Name: PPM
     Text: {fileID: 3710916387612248708}
-    Value: 40
+    Value: 60
     FluctuationRadius: 1
     OutputFormat: 0
     Connected: 0
@@ -4181,6 +4205,8 @@ GameObject:
   - component: {fileID: 3464206181291769010}
   - component: {fileID: 2738723842424444261}
   - component: {fileID: 5010386062450616919}
+  - component: {fileID: 2261137366286903533}
+  - component: {fileID: 5384998577631479850}
   m_Layer: 0
   m_Name: Defibrilator
   m_TagString: Untagged
@@ -4259,6 +4285,43 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2261137366286903533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8950670668092840195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b6e7feb6fc95434aa208d45de838402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Patient: {fileID: 0}
+  Monitor: {fileID: 3929352947321916130}
+  Output: {fileID: 3817574162692879477}
+  Pace: {fileID: 3710916388717433847}
+  AimVitals:
+  - 60
+  - 37.1
+  - 116
+  - 65
+  - 99
+  - 22
+  AimPace: 60
+  AimOutput: 90
+--- !u!114 &5384998577631479850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8950670668092840195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cab4954ad8c5464880f4125605bb334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3710916388023035756
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4374,7 +4437,7 @@ PrefabInstance:
     - target: {fileID: 1321096571225771962, guid: 41c4eaa23178f5a419e5bd6d82203a70,
         type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[0].z
-      value: 1.0264795
+      value: 1.0264794
       objectReference: {fileID: 0}
     - target: {fileID: 1321096571225771962, guid: 41c4eaa23178f5a419e5bd6d82203a70,
         type: 3}
@@ -4549,7 +4612,7 @@ PrefabInstance:
     - target: {fileID: 1321096571225771962, guid: 41c4eaa23178f5a419e5bd6d82203a70,
         type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[0].x
-      value: -1.9486555
+      value: -1.9486556
       objectReference: {fileID: 0}
     - target: {fileID: 1321096571225771962, guid: 41c4eaa23178f5a419e5bd6d82203a70,
         type: 3}

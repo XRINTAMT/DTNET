@@ -15,10 +15,11 @@ public class Knob: MonoBehaviour
     Rigidbody rigid;
 
     [SerializeField] VitalsMonitor monitor;
-    [SerializeField] float minValue;
-    [SerializeField] float maxValue;
+    [field: SerializeField] public float minValue { get; private set; }
+    [field: SerializeField] public float maxValue { get; private set; }
     [SerializeField] int NumberOfValues;
     [SerializeField] int ValueID;
+    [SerializeField] Pacer Pacer;
 
     float lastDegrees = 0;
     float lastSnapDegrees = 0;
@@ -54,5 +55,6 @@ public class Knob: MonoBehaviour
         GetComponent<AudioSource>().Play();
 
         monitor.ChangeValue(ValueID, val, 1);
+        Pacer.OnValueChanged(ValueID, val);
     }
 }

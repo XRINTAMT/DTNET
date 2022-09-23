@@ -77,6 +77,11 @@ public class VitalsMonitor : MonoBehaviour
         }
     }
 
+    public int NumberOfVitalValues()
+    {
+        return VitalValues.Length;
+    }
+
     IEnumerator AlarmFiring()
     {
         while (true)
