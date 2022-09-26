@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Scenario1_Dialogue3_Node
   m_EditorClassIdentifier: 
   DataDB: {fileID: 11400000, guid: 46269392beed044489cf3d923e174f9a, type: 2}
-  NextID: 12
+  NextID: 13
   Nodes:
   - ID: 0
     Type: 2
@@ -184,9 +184,9 @@ MonoBehaviour:
       Y: 35
       AllowMultipleConnections: 0
       Connections:
-        keys: 0a000000
+        keys: 0c000000
         values:
-        - Array: 00000000
+        - Array: 01000000
     Outputs:
     - ID: 0
       Name: Speaker
@@ -496,7 +496,7 @@ MonoBehaviour:
       Y: 45
       AllowMultipleConnections: 0
       Connections:
-        keys: 03000000
+        keys: 0c000000
         values:
         - Array: 01000000
     - ID: 1
@@ -570,6 +570,100 @@ MonoBehaviour:
     - InputType: 3
       InputID: 1
       OutputType: 4
+      OutputID: 1
+  - ID: 12
+    Type: 3
+    Window:
+      serializedVersion: 2
+      x: 2134.936
+      y: 290
+      width: 200
+      height: 175
+    Inputs:
+    - ID: 0
+      Name: Speaker
+      Type: 0
+      Y: 7.5
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Previous
+      Type: 0
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 0a000000
+        values:
+        - Array: 00000000
+    Outputs:
+    - ID: 0
+      Name: Speaker
+      Type: 1
+      Y: 7.5
+      AllowMultipleConnections: 1
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Next
+      Type: 1
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 03000000
+        values:
+        - Array: 01000000
+    AllowedInputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 2
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 3
+      InputID: 1
+      OutputType: 1
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 0
+    AllowedOutputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 3
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 0
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 2
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 3
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 4
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 5
+      OutputType: 3
       OutputID: 1
   SpeakerNodes:
   - ID: 0
@@ -825,7 +919,7 @@ MonoBehaviour:
       ID: 3
       Speaker: 0
       SpeakerName: 'You:'
-      PreviousMessage: -1
+      PreviousMessage: 12
       NextMessage: 5
       MessageText: After ten minutes after dopamin injection, the patient complained
         that he  was very lightheaded and felt a pain in his chest. Blood pressure
@@ -1034,6 +1128,106 @@ MonoBehaviour:
       NextMessage: -1
       MessageText: Oxygen saturation is 97%
       Clip: {fileID: 8300000, guid: 700a4a9e362848940b35dc3962941b51, type: 3}
+  - ID: 12
+    Type: 3
+    Window:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 200
+      height: 175
+    Inputs:
+    - ID: 0
+      Name: Speaker
+      Type: 0
+      Y: 7.5
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Previous
+      Type: 0
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    Outputs:
+    - ID: 0
+      Name: Speaker
+      Type: 1
+      Y: 7.5
+      AllowMultipleConnections: 1
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Next
+      Type: 1
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    AllowedInputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 2
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 3
+      InputID: 1
+      OutputType: 1
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 0
+    AllowedOutputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 3
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 0
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 2
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 3
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 4
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 5
+      OutputType: 3
+      OutputID: 1
+    Data:
+      ID: 12
+      Speaker: -1
+      SpeakerName: 
+      PreviousMessage: -1
+      NextMessage: 3
+      MessageText: 
+      Clip: {fileID: 0}
   ConversationNodes:
   - ID: 1
     Type: 1
@@ -1099,12 +1293,9 @@ MonoBehaviour:
     Data:
       ID: 10
       Choices:
-      - After ten minutes after dopamin injection, the patient complained that he 
-        was very lightheaded and felt a pain in his chest. Blood pressure felt to
-        72/42 mmHg.  Absolute bradycardia developed and patient progresses into a
-        third-degree heart block
+      - Give the observation data to doctor
       - Close
-      NextMessages: 03000000ffffffff
+      NextMessages: 0c000000ffffffff
   - ID: 11
     Type: 2
     Window:

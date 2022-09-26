@@ -25,7 +25,11 @@ namespace QuantumTek.QuantumDialogue.Demo
                 Debug.Log("Close");
                 dialogue.SetActive(false);
             }
-     
+            if (text == "Give the observation data to doctor")
+            {
+                dialogue.SetActive(false);
+            }
+
         }
         public void Select() => demo.Choose(number);
     }
