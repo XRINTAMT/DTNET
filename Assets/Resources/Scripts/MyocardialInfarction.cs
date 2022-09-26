@@ -235,5 +235,15 @@ public class MyocardialInfarction : MonoBehaviour
         MITasks[3] = MyocardialInfarctionScenario.CompleteKeepMonitoringSubscenario;
         MITasks[4] = MyocardialInfarctionScenario.CompleteCardiacArrestSubscenario;
         MIScenario = new Scenario(MITasks, GoToADifferentRoomOnCompletion);
+        MyocardialInfarctionScenario.HygeneSubscenarioCompleter.Include(
+            new ScenarioActivator(MyocardialInfarctionScenario.CheckPatientSubscenario));
+        MyocardialInfarctionScenario.CheckPatientSubscenarioCompleter.Include(
+            new ScenarioActivator(MyocardialInfarctionScenario.InjectionSubscenario));
+        MyocardialInfarctionScenario.InjectionSubscenarioCompleter.Include(
+            new ScenarioActivator(MyocardialInfarctionScenario.KeepMonitoringSubscenario));
+        MyocardialInfarctionScenario.KeepMonitoringSubscenarioCompleter.Include(
+            new ScenarioActivator(MyocardialInfarctionScenario.CardiacArrestSubscenario));
+        MyocardialInfarctionScenario.HygeneSubscenario.Activate();
+        MyocardialInfarctionScenario.HygeneSubscenarios.WashHandsSubscenario.Activate();
     }
 }

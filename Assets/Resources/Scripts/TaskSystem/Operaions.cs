@@ -50,6 +50,26 @@ namespace ScenarioTaskSystem
         }
     }
 
+    public class ScenarioActivator : Operation
+    {
+        Scenario toActivate;
+
+        public ScenarioActivator(Scenario s, Operation n = null) : base(n)
+        {
+            if (s == null)
+            {
+                Debug.LogError("You are creating a task completer with null task in it!");
+            }
+            toActivate = s;
+        }
+
+        override public void Execute()
+        {
+            toActivate.Activate();
+            base.Execute();
+        }
+    }
+
     [System.Serializable]
     public class UniversalOperation : Operation
     {
