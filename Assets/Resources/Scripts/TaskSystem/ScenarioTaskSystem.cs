@@ -8,6 +8,7 @@ namespace ScenarioTaskSystem
     {
         List<TaskSettings> tasks;
         public Operation OnAllCompleted;
+        private bool active = false;
 
         public Scenario(TaskSettings[] ts, Operation operation)
         {
@@ -22,6 +23,10 @@ namespace ScenarioTaskSystem
 
         public void OnTaskCompleted(Task taskCompleted)
         {
+            if (!active)
+            {
+                return;
+            }
             TaskSettings completedTaskSettings = null;
             foreach(TaskSettings currentTask in tasks)
             {
@@ -115,6 +120,11 @@ namespace ScenarioTaskSystem
             if (OnAllCompleted != null)
                 OnAllCompleted.Execute();
         }
+
+        public void Activate()
+        {
+            active = true;
+        }
     }
 
     [System.Serializable]
@@ -142,6 +152,18 @@ namespace ScenarioTaskSystem
             if(Next != null)
             {
                 Next.Execute();
+            }
+        }
+
+        public void Include(Operation n)
+        {
+            if (Next == null)
+            {
+                Next = n;
+            }
+            else
+            {
+                Next.Include(n);
             }
         }
     }
