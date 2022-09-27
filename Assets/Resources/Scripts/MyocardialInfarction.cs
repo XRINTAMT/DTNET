@@ -7,7 +7,7 @@ using ScenarioTaskSystem;
 public class MyocardialInfarction : MonoBehaviour
 {
     Scenario MIScenario;
-
+    bool GuidedMode;
     //Initialization is a little tricky but there's a lot of fields and we better keep them organized like that if we don't want to end up with a mess in the inspector later. 
     //We'll have a lot going on in a real scenario.
 
@@ -134,6 +134,8 @@ public class MyocardialInfarction : MonoBehaviour
 
     void Awake()
     {
+        GuidedMode = FindObjectOfType<AppSettings>().guides == Guide.Enable;
+
         MyocardialInfarctionScenario.HygeneSubscenarios.CompleteWashHandsSubscenario = new TaskSettings();
         MyocardialInfarctionScenario.HygeneSubscenarios.CompleteWashHandsSubscenario.Task = gameObject.AddComponent<Task>();
         MyocardialInfarctionScenario.CompleteHygeneSubscenario = new TaskSettings();
@@ -245,5 +247,14 @@ public class MyocardialInfarction : MonoBehaviour
             new ScenarioActivator(MyocardialInfarctionScenario.CardiacArrestSubscenario));
         MyocardialInfarctionScenario.HygeneSubscenario.Activate();
         MyocardialInfarctionScenario.HygeneSubscenarios.WashHandsSubscenario.Activate();
+
+        MyocardialInfarctionScenario.CardiacArrestSubscenario.SetGuidedMode(GuidedMode);
+        MyocardialInfarctionScenario.CheckPatientSubscenario.SetGuidedMode(GuidedMode);
+        MyocardialInfarctionScenario.KeepMonitoringSubscenario.SetGuidedMode(GuidedMode);
+        MyocardialInfarctionScenario.InjectionSubscenario.SetGuidedMode(GuidedMode);
+        MyocardialInfarctionScenario.HygeneSubscenario.SetGuidedMode(GuidedMode);
+        MyocardialInfarctionScenario.HygeneSubscenarios.WashHandsSubscenario.SetGuidedMode(GuidedMode);
+
+
     }
 }

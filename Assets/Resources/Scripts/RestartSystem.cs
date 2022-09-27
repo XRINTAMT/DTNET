@@ -5,7 +5,6 @@ using UnityEngine;
 public class RestartSystem : MonoBehaviour
 {
     [SerializeField] GameObject Changables;
-    [SerializeField] FadeMessageManager Fade;
     GameObject SavedState;
 
 
@@ -26,10 +25,10 @@ public class RestartSystem : MonoBehaviour
         if(SavedState == null){
             return;
         }
-        Fade.FadeWithText(text);
         Object.Destroy(Changables);
         Changables = Object.Instantiate(SavedState);
         Changables.SetActive(true);
+        FindObjectOfType<FadeMessageManager>().FadeWithText(text);
     }
 
     void Update()
