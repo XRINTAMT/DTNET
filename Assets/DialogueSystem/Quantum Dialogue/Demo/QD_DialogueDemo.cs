@@ -55,11 +55,11 @@ namespace QuantumTek.QuantumDialogue.Demo
                 Next();
         }
 
-        //public void BackTextDialogue()
-        //{
-        //    if (handler.currentMessageInfo.Type == QD_NodeType.Message)
-        //        Back();
-        //}
+        public void BackTextDialogue()
+        {
+            if (handler.currentMessageInfo.Type == QD_NodeType.Message)
+                Back();
+        }
         private void ClearChoices()
         {
             Debug.Log("ClearChoices");
@@ -135,7 +135,11 @@ namespace QuantumTek.QuantumDialogue.Demo
                 speakerName.text = message.SpeakerName;
 
                 messageText.text = message.MessageText;
-
+                if (messageText.text== "NextChoise")
+                {
+                    NextTextDialogue();
+                    return;
+                }
                 Debug.Log("speakMessage");
                 audioSource.clip = message.Clip;
                 audioSource.Play();
@@ -184,40 +188,40 @@ namespace QuantumTek.QuantumDialogue.Demo
             }
                 
         }
-        //public void Back(int choice = -1)
-        //{
-        //    if (ended)
-        //    {
-        //        Task t;
-        //        if (TryGetComponent<Task>(out t))
-        //        {
-        //            t.Complete();
-        //        }
-        //        return;
-        //    }
+        public void Back(int choice = -1)
+        {
+            if (ended)
+            {
+                Task t;
+                if (TryGetComponent<Task>(out t))
+                {
+                    t.Complete();
+                }
+                return;
+            }
 
 
-        //    // Go to the next message
-        //    handler.NextMessage(choice);
-        //    // Set the new text
-        //    SetText();
-        //    // End if there is no next message
-        //    if (handler.currentMessageInfo.ID < 0)
-        //    {
-        //        if (dialogueSystem != null)
-        //        {
-        //            dialogueSystem.DialogueComplete[Convert.ToInt32(nameDialog) - 1] = true;
-        //        }
-        //        ended = true;
-        //        Task t;
-        //        if (TryGetComponent<Task>(out t))
-        //        {
-        //            Debug.Log("Task complete: " + gameObject.name);
-        //            t.Complete();
-        //        }
-        //    }
+            // Go to the next message
+            handler.NextMessage(choice);
+            // Set the new text
+            SetText();
+            // End if there is no next message
+            if (handler.currentMessageInfo.ID < 0)
+            {
+                if (dialogueSystem != null)
+                {
+                    dialogueSystem.DialogueComplete[Convert.ToInt32(nameDialog) - 1] = true;
+                }
+                ended = true;
+                Task t;
+                if (TryGetComponent<Task>(out t))
+                {
+                    Debug.Log("Task complete: " + gameObject.name);
+                    t.Complete();
+                }
+            }
 
-        //}
+        }
 
         public void EndDialogue(int countDialogue) 
         { 

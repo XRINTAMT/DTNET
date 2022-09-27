@@ -16,9 +16,6 @@ MonoBehaviour:
   - ID: 0
     Name: 1
     FirstMessage: 18
-  - ID: 20
-    Name: 
-    FirstMessage: -1
   Speakers:
   - ID: 2
     Name: 'Patient Edvin:'
@@ -31,20 +28,13 @@ MonoBehaviour:
     Speaker: 10
     SpeakerName: 'You:'
     PreviousMessage: -1
-    NextMessage: 3
+    NextMessage: 27
     MessageText: Hello, I am your nurse. How should I address you?
     Clip: {fileID: 8300000, guid: 7ede1f2c349830241ab51f7af817bd62, type: 3}
-  - ID: 3
-    Speaker: 2
-    SpeakerName: 'Patient Edvin:'
-    PreviousMessage: 1
-    NextMessage: 15
-    MessageText: "Hello, I\u2019m Mr. Howard Edvin. Call me Mr. Edwin.\r\n"
-    Clip: {fileID: 8300000, guid: ce9d8e8fa70377d49a91b6ec4803448b, type: 3}
   - ID: 4
     Speaker: 10
     SpeakerName: 'You:'
-    PreviousMessage: -1
+    PreviousMessage: 26
     NextMessage: 5
     MessageText: How are you, Mr. Edvin?
     Clip: {fileID: 8300000, guid: 7d35e0000aa829342b0d7ea50390667a, type: 3}
@@ -52,7 +42,7 @@ MonoBehaviour:
     Speaker: 2
     SpeakerName: 'Patient Edvin:'
     PreviousMessage: 4
-    NextMessage: 16
+    NextMessage: 26
     MessageText: I.m so so
     Clip: {fileID: 8300000, guid: 92733c30f1feb3e4984a1193182ae27e, type: 3}
   - ID: 6
@@ -66,14 +56,14 @@ MonoBehaviour:
     Speaker: 2
     SpeakerName: 'Patient Edvin:'
     PreviousMessage: 6
-    NextMessage: 17
+    NextMessage: 24
     MessageText: "I.m not experiencing chest pain, but I\u2019m feeling discomfort
       like shortness of breaths, very dizzy\n"
     Clip: {fileID: 8300000, guid: e76cf8ad49bc32f47a8915bd7a15f844, type: 3}
   - ID: 8
     Speaker: 10
     SpeakerName: 'You:'
-    PreviousMessage: -1
+    PreviousMessage: 22
     NextMessage: 9
     MessageText: I understand you, Mr. Edwin. These signs are characteristic of heart
       rhythm disorders, but I want to assure you that your condition is under control
@@ -83,14 +73,14 @@ MonoBehaviour:
     Speaker: 2
     SpeakerName: 'Patient Edvin:'
     PreviousMessage: 8
-    NextMessage: -1
+    NextMessage: 26
     MessageText: Thank you!
     Clip: {fileID: 8300000, guid: 38b431ec68c392e40b44d40caaa02897, type: 3}
   - ID: 18
     Speaker: -1
     SpeakerName: 
     PreviousMessage: -1
-    NextMessage: 19
+    NextMessage: 26
     MessageText: 
     Clip: {fileID: 0}
   - ID: 21
@@ -104,52 +94,41 @@ MonoBehaviour:
     Speaker: 2
     SpeakerName: 'Patient Edvin:'
     PreviousMessage: 21
-    NextMessage: 23
+    NextMessage: 8
     MessageText: I have pain in my upper left arm, in my neck and I feel nauseous.
     Clip: {fileID: 0}
   - ID: 24
     Speaker: 10
     SpeakerName: 'You:'
-    PreviousMessage: -1
-    NextMessage: -1
+    PreviousMessage: 7
+    NextMessage: 9
     MessageText: I understand you, Mr. Edwin. These signs are characteristic of heart
       rhythm disorders, but I want to assure you that your condition is under control
       and constantly monitored
     Clip: {fileID: 8300000, guid: 9dce1d01b5605b24d86d39839c7e06e6, type: 3}
-  - ID: 25
+  - ID: 27
     Speaker: 2
     SpeakerName: 'Patient Edvin:'
+    PreviousMessage: 1
+    NextMessage: 26
+    MessageText: Hello, I am Howard Edvin. Call me Mr. Edvin
+    Clip: {fileID: 8300000, guid: ce9d8e8fa70377d49a91b6ec4803448b, type: 3}
+  - ID: 38
+    Speaker: -1
+    SpeakerName: 
     PreviousMessage: -1
-    NextMessage: -1
-    MessageText: Thank you!
-    Clip: {fileID: 8300000, guid: 38b431ec68c392e40b44d40caaa02897, type: 3}
+    NextMessage: 15
+    MessageText: NextChoise
+    Clip: {fileID: 0}
   Choices:
   - ID: 15
     Choices:
-    - How are you, Mr. Edvin?
-    - So Mr. Edwin, what are your symptoms?
-    NextMessages: 0400000015000000
-  - ID: 16
+    - Ask what the complaint is about
+    - ' Ask about symptoms'
+    NextMessages: 0600000015000000
+  - ID: 26
     Choices:
-    - What are you complain of?
-    - Close
-    NextMessages: 06000000ffffffff
-  - ID: 17
-    Choices:
-    - I understand you, Mr. Edwin. These signs are characteristic of heart rhythm
-      disorders, but I want to assure you that your condition is under control and
-      constantly monitored
-    - Close
-    NextMessages: 08000000ffffffff
-  - ID: 19
-    Choices:
-    - Hello, I am your nurse. How should I address you?
-    - Hello, are you Mr.Edvin?"
-    NextMessages: 01000000ffffffff
-  - ID: 23
-    Choices:
-    - I understand you, Mr. Edwin. These signs are characteristic of heart rhythm
-      disorders, but I want to assure you that your condition is under control and
-      constantly monitored
-    - Close
-    NextMessages: 16000000ffffffff
+    - Introduction
+    - Ask about condition
+    - Ask about how they are feeling
+    NextMessages: 010000000400000026000000

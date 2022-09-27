@@ -121,6 +121,7 @@ namespace QuantumTek.QuantumDialogue.Editor
                 }
                 else if (e.type == EventType.MouseDown && e.button == 0 && connectingNodes)
                 {
+                    Debug.Log(0);
                     bool clicked = false;
                     int selectedIndex = -1;
                     bool knobClicked = false;
@@ -168,6 +169,7 @@ namespace QuantumTek.QuantumDialogue.Editor
                         EditorUtility.SetDirty(db);
                         if (knobType == QD_KnobType.Input && clickedKnobType == QD_KnobType.Output)
                         {
+                            Debug.Log(3);
                             QD_Node outputNode = db.Nodes[selectedIndex];
                             QD_Knob input = selectedNode.Inputs[selectedKnob];
                             QD_Knob output = outputNode.Outputs[knobSelectedIndex];
@@ -185,6 +187,7 @@ namespace QuantumTek.QuantumDialogue.Editor
                         }
                         else if (knobType == QD_KnobType.Output && clickedKnobType == QD_KnobType.Input)
                         {
+                            Debug.Log(4);
                             QD_Node inputNode = db.Nodes[selectedIndex];
                             QD_Knob input = inputNode.Inputs[knobSelectedIndex];
                             QD_Knob output = selectedNode.Outputs[selectedKnob];
