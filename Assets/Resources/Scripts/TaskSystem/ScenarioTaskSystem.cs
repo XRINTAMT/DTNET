@@ -43,7 +43,17 @@ namespace ScenarioTaskSystem
             }
         }
 
-        public void OnTaskCompleted(Task taskCompleted)
+        int RecalculateScore()
+        {
+            int score = 0;
+            foreach (TaskSettings task in tasks)
+            {
+                score += task.Score;
+            }
+            return score;
+        }
+
+        public void OnTaskCompleted(Task taskCompleted, int score)
         {
             TaskSettings completedTaskSettings = null;
             foreach (TaskSettings currentTask in tasks)
@@ -77,6 +87,7 @@ namespace ScenarioTaskSystem
                 if (completedTaskSettings.OnCompleted != null)
                     completedTaskSettings.OnCompleted.Execute();
                 allCompleted();
+                completedTaskSettings.Score = score;
             }
             else
             {
@@ -99,6 +110,7 @@ namespace ScenarioTaskSystem
                     Debug.Log("Task completion confirmed!");
                     if (completedTaskSettings.OnCompleted != null)
                         completedTaskSettings.OnCompleted.Execute();
+                    completedTaskSettings.Score = score;
                     allCompleted();
                 }
                 else
@@ -139,7 +151,7 @@ namespace ScenarioTaskSystem
                 }
             }
             if (OnAllCompleted != null)
-                OnAllCompleted.Execute();
+                OnAllCompleted.Execute(RecalculateScore());
         }
 
         public void Activate()
@@ -158,6 +170,7 @@ namespace ScenarioTaskSystem
         public Operation OnCompleted;
         public Operation OnWrongOrder;
         public UniversalOperation OnFailed;
+        public int Score;
     }
 
     [System.Serializable]
@@ -168,11 +181,11 @@ namespace ScenarioTaskSystem
             Next = n;
         }
         public Operation Next;
-        virtual public void Execute()
+        virtual public void Execute(int n = 0)
         {
-            if(Next != null)
+            if (Next != null)
             {
-                Next.Execute();
+                Next.Execute(n);
             }
         }
 
