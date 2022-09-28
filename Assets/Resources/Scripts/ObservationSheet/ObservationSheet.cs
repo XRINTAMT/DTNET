@@ -8,7 +8,8 @@ public class ObservationSheet : MonoBehaviour
 {
     [SerializeField] GameObject NextRow;
     [SerializeField] string[] RightValues;
-    string[] values;    
+    string[] values;
+    Coroutine countdown = null;
 
     void Awake()
     {
@@ -37,22 +38,40 @@ public class ObservationSheet : MonoBehaviour
     public void ChangeValue(int id, string val)
     {
         values[id] = val;
-        for(int i = 0; i < RightValues.Length; i++)
+        for (int i = 0; i < RightValues.Length; i++)
         {
-            if(values[i] != RightValues[i])
+            if (values[i] != RightValues[i])
             {
                 return;
             }
         }
-        if(TryGetComponent<Task>(out Task a))
+        if (TryGetComponent<Task>(out Task a))
             a.Complete();
         BakeAndContinue();
     }
 
-    public void BakeAndContinue(){
+    public void Submit()
+    {
+        bool correct = true;
+        for (int i = 0; i < RightValues.Length; i++)
+        {
+            if (values[i] != RightValues[i])
+            {
+                correct = false;
+                break;
+            }
+        }
+        if (correct)
+        {
+            if (TryGetComponent<Task>(out Task a))
+                a.Complete(1);
+        }
+    }
+
+    public void BakeAndContinue() {
         Toggle[] tickboxes = GetComponentsInChildren<Toggle>();
-        for(int i = 0; i < tickboxes.Length; i++){
-            if(tickboxes[i].isOn){
+        for (int i = 0; i < tickboxes.Length; i++) {
+            if (tickboxes[i].isOn) {
                 tickboxes[i].graphic.transform.SetParent(transform.parent);
             }
         }
@@ -80,6 +99,28 @@ public class ObservationSheet : MonoBehaviour
         }
         */
         Destroy(gameObject);
+    }
+
+    public void StartCoundown(float timeSeconds)
+    {
+        countdown = StartCoroutine(Count(timeSeconds));
+    }
+    public void AbortCoundown()
+    {
+        if(countdown != null)
+        {
+            StopCoroutine(countdown);
+            countdown = null;
+        }
+    }
+
+    IEnumerator Count(float timeSeconds)
+    {
+        for(float i = 0; i < timeSeconds; i += Time.deltaTime)
+        {
+            yield return 0;
+        }
+        BakeAndContinue();
     }
 
     void Update()

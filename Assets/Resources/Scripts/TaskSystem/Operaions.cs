@@ -65,10 +65,10 @@ namespace ScenarioTaskSystem
             toActivate = s;
         }
 
-        override public void Execute()
+        override public void Execute(int n)
         {
             toActivate.Activate();
-            base.Execute();
+            base.Execute(n);
         }
     }
 
