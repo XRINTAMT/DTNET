@@ -132,7 +132,7 @@ public class MyocardialInfarction : MonoBehaviour
     [SerializeField] RoomChanger GoToADifferentRoomOnCompletion;
     [SerializeField] MyocardialInfarctionSubscenariosGroup MyocardialInfarctionScenario;
 
-    void Awake()
+    void Start()
     {
         GuidedMode = FindObjectOfType<AppSettings>().guides == Guide.Enable;
 

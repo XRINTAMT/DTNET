@@ -26,7 +26,7 @@ public class PumpInjector : MonoBehaviour
                 {
                     if(srg.Lable == RequiredInjection)
                     {
-                        GetComponent<Task>().Complete();
+                        GetComponent<Task>().Complete((int)(RequiredInjection.Proximity * 100));
                     }
                 }
             }
