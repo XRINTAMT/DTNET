@@ -10,6 +10,7 @@ public class ObservationSheet : MonoBehaviour
     [SerializeField] string[] RightValues;
     string[] values;
     Coroutine countdown = null;
+    static float TimeOut = 60;
 
     void Awake()
     {
@@ -38,16 +39,6 @@ public class ObservationSheet : MonoBehaviour
     public void ChangeValue(int id, string val)
     {
         values[id] = val;
-        for (int i = 0; i < RightValues.Length; i++)
-        {
-            if (values[i] != RightValues[i])
-            {
-                return;
-            }
-        }
-        if (TryGetComponent<Task>(out Task a))
-            a.Complete();
-        BakeAndContinue();
     }
 
     public void Submit()
@@ -66,6 +57,12 @@ public class ObservationSheet : MonoBehaviour
             if (TryGetComponent<Task>(out Task a))
                 a.Complete(1);
         }
+        else
+        {
+            if (TryGetComponent<Task>(out Task a))
+                a.Complete(-1);
+        }
+
     }
 
     public void BakeAndContinue() {
@@ -101,9 +98,9 @@ public class ObservationSheet : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void StartCoundown(float timeSeconds)
+    public void StartCoundown()
     {
-        countdown = StartCoroutine(Count(timeSeconds));
+        countdown = StartCoroutine(Count(TimeOut));
     }
     public void AbortCoundown()
     {
@@ -120,6 +117,8 @@ public class ObservationSheet : MonoBehaviour
         {
             yield return 0;
         }
+        if (TryGetComponent<Task>(out Task a))
+            a.Complete(0);
         BakeAndContinue();
     }
 

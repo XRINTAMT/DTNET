@@ -19,15 +19,16 @@ public class Injection : MonoBehaviour
 
     public Injection CheckCompletion(Dictionary<string, float> ingredients)
     {
-        Proximity = 1;
+        Proximity = 0;
         foreach (Pair ingredient in DesiredResults)
         {
             if (!ingredients.ContainsKey(ingredient.Substance))
                 return null;
             if (Mathf.Abs(ingredients[ingredient.Substance] - ingredient.Amount) > ingredient.Epsilon)
                 return null;
-            Proximity -= (Mathf.Abs(ingredients[ingredient.Substance] - ingredient.Amount) / ingredient.Epsilon) / DesiredResults.Length;
+            //Proximity -= (Mathf.Abs(ingredients[ingredient.Substance] - ingredient.Amount) / ingredient.Epsilon) / DesiredResults.Length;
         }
+        Proximity = 1;
         GetComponent<Task>().Complete();
         return this;
     }
