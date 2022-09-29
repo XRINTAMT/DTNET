@@ -22,12 +22,16 @@ public class PumpInjector : MonoBehaviour
             Syringe srg;
             if (SyringeHolder.placedObject.TryGetComponent<Syringe>(out srg))
             {
-                if(srg.Lable != null)
+                if (srg.Lable != null)
                 {
-                    if(srg.Lable == RequiredInjection)
+                    if (srg.Lable == RequiredInjection)
                     {
-                        GetComponent<Task>().Complete((int)(RequiredInjection.Proximity * 100));
+                        GetComponent<Task>().Complete(1);
                     }
+                }
+                else
+                {
+                    GetComponent<Task>().Complete(0);
                 }
             }
 
