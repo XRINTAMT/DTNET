@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Scenario1_Dialogue1_Node
   m_EditorClassIdentifier: 
   DataDB: {fileID: 11400000, guid: 784a5fe5f6cd30c4ba577a8671a64337, type: 2}
-  NextID: 40
+  NextID: 42
   Nodes:
   - ID: 0
     Type: 1
@@ -757,7 +757,7 @@ MonoBehaviour:
       x: 853.8745
       y: 492
       width: 300
-      height: 125
+      height: 155
     Inputs:
     - ID: 0
       Name: Previous Messages
@@ -787,6 +787,15 @@ MonoBehaviour:
         keys: 15000000
         values:
         - Array: 01000000
+    - ID: 2
+      Name: Choice 3
+      Type: 1
+      Y: 105
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 29000000
+        values:
+        - Array: 01000000
     AllowedInputs:
     - InputType: 3
       InputID: 1
@@ -801,6 +810,10 @@ MonoBehaviour:
       InputID: 1
       OutputType: 4
       OutputID: 1
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 2
   - ID: 18
     Type: 3
     Window:
@@ -1241,6 +1254,10 @@ MonoBehaviour:
       InputID: 1
       OutputType: 4
       OutputID: 2
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 2
   - ID: 27
     Type: 3
     Window:
@@ -1379,6 +1396,99 @@ MonoBehaviour:
         keys: 0f000000
         values:
         - Array: 00000000
+    AllowedInputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 2
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 3
+      InputID: 1
+      OutputType: 1
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 0
+    AllowedOutputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 3
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 0
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 2
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 3
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 4
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 5
+      OutputType: 3
+      OutputID: 1
+  - ID: 41
+    Type: 3
+    Window:
+      serializedVersion: 2
+      x: 1261.0986
+      y: 667.83044
+      width: 200
+      height: 175
+    Inputs:
+    - ID: 0
+      Name: Speaker
+      Type: 0
+      Y: 7.5
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Previous
+      Type: 0
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 0f000000
+        values:
+        - Array: 02000000
+    Outputs:
+    - ID: 0
+      Name: Speaker
+      Type: 1
+      Y: 7.5
+      AllowMultipleConnections: 1
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Next
+      Type: 1
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
     AllowedInputs:
     - InputType: 3
       InputID: 0
@@ -2790,7 +2900,107 @@ MonoBehaviour:
       SpeakerName: 
       PreviousMessage: -1
       NextMessage: 15
-      MessageText: NextChoise
+      MessageText: Next
+      Clip: {fileID: 0}
+  - ID: 41
+    Type: 3
+    Window:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 200
+      height: 175
+    Inputs:
+    - ID: 0
+      Name: Speaker
+      Type: 0
+      Y: 7.5
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Previous
+      Type: 0
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    Outputs:
+    - ID: 0
+      Name: Speaker
+      Type: 1
+      Y: 7.5
+      AllowMultipleConnections: 1
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Next
+      Type: 1
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    AllowedInputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 2
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 3
+      InputID: 1
+      OutputType: 1
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 0
+    AllowedOutputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 3
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 0
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 2
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 3
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 4
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 5
+      OutputType: 3
+      OutputID: 1
+    Data:
+      ID: 41
+      Speaker: -1
+      SpeakerName: 
+      PreviousMessage: -1
+      NextMessage: 26
+      MessageText: Next
       Clip: {fileID: 0}
   ConversationNodes:
   - ID: 0
@@ -2859,7 +3069,8 @@ MonoBehaviour:
       Choices:
       - Ask what the complaint is about
       - ' Ask about symptoms'
-      NextMessages: 0600000015000000
+      - Back
+      NextMessages: 060000001500000029000000
   - ID: 26
     Type: 2
     Window:

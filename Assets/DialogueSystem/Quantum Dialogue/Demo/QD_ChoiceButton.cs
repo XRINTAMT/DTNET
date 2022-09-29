@@ -22,7 +22,6 @@ namespace QuantumTek.QuantumDialogue.Demo
             }
             if (text == "Close")
             {
-                Debug.Log("Close");
                 dialogue.SetActive(false);
             }
             if (text == "Give the observation data to doctor")
