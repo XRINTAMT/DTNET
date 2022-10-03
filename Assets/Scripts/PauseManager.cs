@@ -45,6 +45,7 @@ public class PauseManager : MonoBehaviour
         PauseMenu.transform.rotation = MenuOffset.transform.rotation;
         PauseMenu.transform.rotation = Quaternion.Euler(new Vector3(MenuOffset.transform.rotation.eulerAngles.x, MenuOffset.transform.rotation.eulerAngles.y, 0));
         Controls.SwitchLocomotion(-1);
+        GetComponent<UnscaleMove>().Pause();
     }
 
     public void AppUnpause()
@@ -62,6 +63,19 @@ public class PauseManager : MonoBehaviour
         PauseMenu.SetActive(false);
         Controls.SwitchLocomotion(PlayerPrefs.GetInt("MovementType", 0));
         UICamera.cullingMask = 1 << LayerMask.NameToLayer("Dialogue");
+        GetComponent<UnscaleMove>().Play();
+    }
+
+    public void PauseSwitch()
+    {
+        if (!PauseMenu.activeSelf)
+        {
+            AppPause();
+        }
+        else
+        {
+            AppUnpause();
+        }
     }
 
     // Update is called once per frame
