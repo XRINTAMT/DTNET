@@ -28,6 +28,7 @@ namespace QuantumTek.QuantumDialogue.Demo
         [SerializeField] DialogueSystem dialogueSystem;
         [SerializeField] GameObject panelUi;
         [SerializeField] GameObject panelChoice;
+        ControllerApp controllerApp;
         private void Awake()
         {
             audioSource = GetComponent<AudioSource>();
@@ -137,6 +138,12 @@ namespace QuantumTek.QuantumDialogue.Demo
                 messageText.text = message.MessageText;
                 if (messageText.text== "Next")
                 {
+                    NextTextDialogue();
+                    return;
+                }
+                if (messageText.text== "Put Off Shirt" && controllerApp!=null)
+                {
+                    controllerApp.PutOffShirt();
                     NextTextDialogue();
                     return;
                 }
