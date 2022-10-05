@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PauseMenu: {fileID: 9112116715924235964}
   MenuOffset: {fileID: 0}
+  UICamera: {fileID: 0}
 --- !u!114 &581694972566746597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,19 +68,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 581694972566746596}
         m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
-        m_MethodName: AppPause
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 581694972566746594}
-        m_TargetAssemblyTypeName: UnscaleMove, Assembly-CSharp
-        m_MethodName: Pause
+        m_MethodName: PauseSwitch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
