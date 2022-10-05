@@ -16,11 +16,6 @@ namespace ScenarioSystem
             
             for (int i = 0; i < Tasks.Length; i++)
             {
-                switch (conditionTypes[i]){
-                    case ("Injection"):
-                        Tasks[i].Condition = JsonUtility.FromJson<InjectionChecker>(serializedConditions[i]);
-                        break;
-                }
                 
             }
             
@@ -33,7 +28,7 @@ namespace ScenarioSystem
             {
                 if (!task.Completed)
                 {
-                    task.Condition.Check();
+                    
                 }
             }
         }

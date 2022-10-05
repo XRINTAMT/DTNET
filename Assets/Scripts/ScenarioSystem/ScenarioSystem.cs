@@ -12,40 +12,75 @@ namespace ScenarioSystem
         [SerializeField] string name;
         public bool WithPrevious;
         public bool Completed;
-        public ConditionChecker Condition;
-        public UnityEvent OnCompleted;
-        //public UnityEvent OnOutOfOrder;
-
-    }
-
-    public interface ConditionChecker
-    {
-        abstract public int Check();
+        public int Score;
+        public ConditionChecker[] Conditions;
     }
 
     [Serializable]
-    public class InjectionChecker : ConditionChecker
+    public class ConditionChecker
     {
-        [Serializable]
-        struct Dose
+        public struct Item
         {
-            public string Ingredient;
-            public float Amount;
-            public float Error;
+            public int Value;
+            public string Name;
+            public string Condition;    //can be "More", "Less" or "Equal";
         }
-        [SerializeField] Dose[] doses;
 
-        private Syringe[] Syringes;
+        [SerializeField] Item[] items;
+        [SerializeField] int[] targetIDs;
+        TaskSpecificValues[] targets;
 
-        public InjectionChecker()
+        ConditionChecker()
         {
-            Syringes = UnityEngine.Object.FindObjectsOfType<Syringe>();
+            targets = new TaskSpecificValues[targetIDs.Length];
+            for (int i = 0; i < targetIDs.Length; i++){
+                //find objects and get their TaskSpecificValues
+            }
         }
 
         public int Check()
         {
-            throw new NotImplementedException();
+            for (int j = 0; j < targets.Length; j++)
+            {
+                for (int i = 0; i < items.Length; i++)
+                {
+                    switch (items[i].Condition)
+                    {
+                        case ("More"):
+                            if (targets[i].Values[items[i].Name] <= items[i].Value)
+                            {
+                                i = -1;
+                                j++;
+                                continue;
+                            }
+                            break;
+                        case ("Less"):
+                            if (targets[i].Values[items[i].Name] >= items[i].Value)
+                            {
+                                i = -1;
+                                j++;
+                                continue;
+                            }
+                            break;
+                        case ("Equal"):
+                            if (targets[i].Values[items[i].Name] != items[i].Value)
+                            {
+                                i = -1;
+                                j++;
+                                continue;
+                            }
+                            break;
+                    }
+                    if(i == items.Length)
+                    {
+                        return 1;
+                    }
+                }
+            }
+            return 0;
         }
+        
     }
+
 }
 
