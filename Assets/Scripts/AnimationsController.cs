@@ -13,6 +13,7 @@ public class AnimationsController : MonoBehaviour
     [SerializeField] private Animation animationPump;
     [SerializeField] private Animator patientAnimator1;
     [SerializeField] private Animator patientAnimator2;
+    [SerializeField] private Animator patientAnimator3;
     [SerializeField] private Animator doctorAnimator;
     [SerializeField] private Animator nurseAnimator;
     [SerializeField] private DialogueSystem dialogueSystem;
@@ -42,6 +43,7 @@ public class AnimationsController : MonoBehaviour
         animationPattientSeatDown.Play("SeatDown1");
         patientAnimator1.SetTrigger("Sitting");
         patientAnimator2.SetTrigger("Sitting");
+        patientAnimator3.SetTrigger("Sitting");
         Invoke("activateButtonStandUp", 7f);
     }
 
@@ -50,13 +52,15 @@ public class AnimationsController : MonoBehaviour
        
         patientAnimator1.SetTrigger("UpRight");
         patientAnimator2.SetTrigger("UpRight");
-   
+        patientAnimator3.SetTrigger("UpRight");
+
     }
     public void AnimationLayingPatient1()
     {
         animationPattientSeatDown.Play("SeatDown2");
         patientAnimator1.SetTrigger("Laying2");
         patientAnimator2.SetTrigger("Laying2");
+        patientAnimator3.SetTrigger("Laying2");
 
     }
     public void AnimationLayingPatient2()
@@ -64,6 +68,7 @@ public class AnimationsController : MonoBehaviour
 
         patientAnimator1.SetTrigger("Laying");
         patientAnimator2.SetTrigger("Laying");
+        patientAnimator3.SetTrigger("Laying");
 
     }
     void activateButtonStandUp()
@@ -85,6 +90,7 @@ public class AnimationsController : MonoBehaviour
         animationPattientSeatDown.Play("StandUp");
         patientAnimator1.SetTrigger("StandUp");
         patientAnimator2.SetTrigger("StandUp");
+        patientAnimator3.SetTrigger("StandUp");
     }
 
     public void AnimationArriveDoctor()
