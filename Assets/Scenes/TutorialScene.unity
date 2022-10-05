@@ -7724,6 +7724,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 782662733}
   m_PrefabAsset: {fileID: 0}
+--- !u!20 &782662736 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5774460528060651708, guid: 4e05187a6ff897c43a52b886c17349ab,
+    type: 3}
+  m_PrefabInstance: {fileID: 782662733}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &782662737 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1597698742009534202, guid: 4e05187a6ff897c43a52b886c17349ab,
+    type: 3}
+  m_PrefabInstance: {fileID: 782662733}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &786793598
 Transform:
   m_ObjectHideFlags: 0
@@ -16662,9 +16674,14 @@ PrefabInstance:
       objectReference: {fileID: 7942002212124490488}
     - target: {fileID: 581694972566746596, guid: 0174bf02af0a86d44b00d7ccfac6a1de,
         type: 3}
+      propertyPath: UICamera
+      value: 
+      objectReference: {fileID: 782662736}
+    - target: {fileID: 581694972566746596, guid: 0174bf02af0a86d44b00d7ccfac6a1de,
+        type: 3}
       propertyPath: MenuOffset
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 782662737}
     - target: {fileID: 581694972566746597, guid: 0174bf02af0a86d44b00d7ccfac6a1de,
         type: 3}
       propertyPath: link
@@ -33941,8 +33958,6 @@ MonoBehaviour:
   maxMoveSpeed: 2
   moveAcceleration: 100
   groundedDrag: 100
-  teleporterL: {fileID: 0}
-  xrTeleporterLink: {fileID: 0}
   snapTurning: 1
   snapTurnAngle: 30
   smoothTurnSpeed: 10
@@ -37528,8 +37543,8 @@ Transform:
   - {fileID: 5823117660941250286}
   - {fileID: 4617729601415287991}
   - {fileID: 8364777523151831152}
-  - {fileID: 731441396}
   - {fileID: 1910700487}
+  - {fileID: 731441396}
   m_Father: {fileID: 7942002212170454344}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -182.95, z: 0}
