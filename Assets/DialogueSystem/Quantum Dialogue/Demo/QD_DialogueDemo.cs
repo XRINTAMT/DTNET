@@ -28,7 +28,7 @@ namespace QuantumTek.QuantumDialogue.Demo
         [SerializeField] DialogueSystem dialogueSystem;
         [SerializeField] GameObject panelUi;
         [SerializeField] GameObject panelChoice;
-        ControllerApp controllerApp;
+        public ControllerApp controllerApp;
         private void Awake()
         {
             audioSource = GetComponent<AudioSource>();
