@@ -7,6 +7,22 @@ using System;
 namespace ScenarioSystem
 {
     [Serializable]
+    struct Obj
+    {
+        public int id;
+        public float x, y, z, rot;
+        public string type;
+    }
+
+    [Serializable]
+    struct Room
+    {
+        public float RoomWidth, RoomHeight;
+        public Obj[] Objects;
+        public Task[] Tasks;
+    }
+
+    [Serializable]
     public class Task
     {
         [SerializeField] string name;
@@ -14,11 +30,14 @@ namespace ScenarioSystem
         public bool Completed;
         public int Score;
         public ConditionChecker[] Conditions;
+        public int TimeLimit; // -1 for no limit
+        public int OnTimeout; // 0 - complete with 0 score, 1 - load the latest save;
     }
 
     [Serializable]
     public class ConditionChecker
     {
+        [Serializable]
         public struct Item
         {
             public int Value;
