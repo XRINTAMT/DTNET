@@ -6,30 +6,64 @@ namespace ScenarioSystem
 {
     public class ScenarioBehaviour : MonoBehaviour
     {
-        [SerializeField] string[] serializedConditions;
-        [SerializeField] string[] conditionTypes;
-        [SerializeField] Task[] Tasks;
-        //[SerializeField] InjectionChecker IJ;
+        [SerializeField] string ScenarioJSON;
+        GameObject[] Objects;
+        [SerializeField]
+        Room ScenarioInfo;
 
         public void Awake()
         {
-            
-            for (int i = 0; i < Tasks.Length; i++)
+            ScenarioInfo = JsonUtility.FromJson<Room>(ScenarioJSON);
+            Objects = new GameObject[ScenarioInfo.Objects.Length];
+            foreach (Obj item in ScenarioInfo.Objects)
             {
+                GameObject Temp = Instantiate(Resources.Load("Prefabs/ConstructorItems/"+item.type)) as GameObject;
+                if(Temp == null)
+                {
+                    Debug.Log("Prefabs/ConstructorItems/" + item.type + " does not exist");
+                }
+                else
+                {
+                    Temp.transform.position = new Vector3(item.x, item.y, item.z);
+                    Temp.transform.rotation = Quaternion.Euler(0, item.rot, 0);
+                    Objects[item.id] = Temp;
+                }
                 
+
             }
-            
+            foreach (Task task in ScenarioInfo.Tasks)
+            {
+                foreach(ConditionChecker checker in task.Conditions)
+                {
+                    checker.ConnectToObjectsBase(this);
+                }
+            }
             //Debug.Log(JsonUtility.ToJson(IJ));
         }
 
         public void Update()
         {
+            /*
             foreach(Task task in Tasks)
             {
                 if (!task.Completed)
                 {
                     
                 }
+            }
+            */
+        }
+
+        public TaskSpecificValues AccessValues(int id)
+        {
+            if (Objects[id].TryGetComponent<TaskSpecificValues>(out TaskSpecificValues result))
+            {
+                return result;
+            }
+            else
+            {
+                Debug.LogWarning(Objects[id].name + " does not have a TaskSpecificValues component on it, you cannot use it as a subject of a task.");
+                return null;
             }
         }
     }

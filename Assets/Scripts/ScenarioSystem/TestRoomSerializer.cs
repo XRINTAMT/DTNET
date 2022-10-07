@@ -20,7 +20,7 @@ namespace ScenarioSystem
                 Scene.Objects[i].x = ObjectsToSerialize[i].transform.position.x;
                 Scene.Objects[i].y = ObjectsToSerialize[i].transform.position.y;
                 Scene.Objects[i].z = ObjectsToSerialize[i].transform.position.z;
-                Scene.Objects[i].rot = ObjectsToSerialize[i].transform.rotation.y;
+                Scene.Objects[i].rot = ObjectsToSerialize[i].transform.rotation.eulerAngles.y;
                 Scene.Objects[i].type = ObjectsToSerialize[i].name;
             }
             Scene.RoomHeight = 5;

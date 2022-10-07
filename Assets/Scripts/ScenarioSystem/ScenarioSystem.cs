@@ -48,14 +48,7 @@ namespace ScenarioSystem
         [SerializeField] Item[] items;
         [SerializeField] int[] targetIDs;
         TaskSpecificValues[] targets;
-
-        ConditionChecker()
-        {
-            targets = new TaskSpecificValues[targetIDs.Length];
-            for (int i = 0; i < targetIDs.Length; i++){
-                //find objects and get their TaskSpecificValues
-            }
-        }
+        private ScenarioBehaviour scenario;
 
         public int Check()
         {
@@ -98,7 +91,16 @@ namespace ScenarioSystem
             }
             return 0;
         }
-        
+
+        public void ConnectToObjectsBase(ScenarioBehaviour connectTo)
+        {
+            scenario = connectTo;
+            targets = new TaskSpecificValues[targetIDs.Length];
+            for (int i = 0; i < targetIDs.Length; i++)
+            {
+                targets[i] = scenario.AccessValues(targetIDs[i]);
+            }
+        }
     }
 
 }

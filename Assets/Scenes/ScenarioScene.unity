@@ -11551,7 +11551,6 @@ Transform:
   - {fileID: 2084266073}
   - {fileID: 2095842336}
   - {fileID: 1628357411}
-  - {fileID: 1580791749}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -31783,7 +31782,7 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CardiacArrestSubscenarios.ReportToDoc.Task
       value: 
-      objectReference: {fileID: 4520865017252753055}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.CheckPatientSubscenarios.DialogueOne.Order
@@ -32718,7 +32717,7 @@ PrefabInstance:
         type: 3}
       propertyPath: MyocardialInfarctionScenario.InjectionSubscenarios.MakeAnInjectionMarker.Function.m_PersistentCalls.m_Calls.Array.data[6].m_Target
       value: 
-      objectReference: {fileID: 1720110588}
+      objectReference: {fileID: 0}
     - target: {fileID: 6353209759911762496, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: MyocardialInfarctionScenario.InjectionSubscenarios.MakeAnInjectionMarker.Function.m_PersistentCalls.m_Calls.Array.data[7].m_Target
@@ -38560,61 +38559,6 @@ Transform:
   m_Father: {fileID: 625997891}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1580791748
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1580791749}
-  - component: {fileID: 1580791750}
-  m_Layer: 0
-  m_Name: ScenarioSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1580791749
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1580791748}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 524438702}
-  m_RootOrder: 34
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1580791750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1580791748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5667183db5a764d46a63f2cea21557e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializedConditions:
-  - '{ "doses":[{ "Ingredient":"Dopamine","Amount":20.0,"Error":0.5},{ "Ingredient":"Solanine","Amount":50.0,"Error":1.0}]}'
-  conditionTypes:
-  - Injection
-  Tasks:
-  - name: Dilude dopamine
-    WithPrevious: 0
-    Completed: 0
-    Score: 0
-    Conditions: []
-    TimeLimit: 0
-    OnTimeout: 0
 --- !u!1 &1582617153
 GameObject:
   m_ObjectHideFlags: 0
@@ -40519,12 +40463,6 @@ Transform:
   m_Father: {fileID: 1545098928}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1720110588 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3184878397354212921, guid: e4ee99523d710af4397e71218063f89d,
-    type: 3}
-  m_PrefabInstance: {fileID: 3184878397798626245}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1730975449
 GameObject:
   m_ObjectHideFlags: 0
@@ -48854,8 +48792,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2111817438}
+  - component: {fileID: 2111817439}
   m_Layer: 0
-  m_Name: ObjectLibrary
+  m_Name: ScenarioManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48875,6 +48814,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2111817439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111817437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5667183db5a764d46a63f2cea21557e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScenarioJSON: '{"RoomWidth":7.0,"RoomHeight":5.0,"Objects":[{"id":0,"x":1.0579999685287476,"y":0.8529999852180481,"z":4.671999931335449,"rot":0.0,"type":"Spritze"},{"id":1,"x":-2.0859999656677248,"y":0.04700058698654175,"z":5.782999515533447,"rot":165.0,"type":"DOCTOR"},{"id":2,"x":0.7119779586791992,"y":0.8509466052055359,"z":0.19617298245429994,"rot":270.0,"type":"Tablet"},{"id":3,"x":2.128999948501587,"y":0.022000610828399659,"z":-1.0260004997253419,"rot":321.75384521484377,"type":"SM_ECG_01a_LOD0"},{"id":4,"x":0.8669626712799072,"y":0.9880005717277527,"z":-1.7163164615631104,"rot":353.25,"type":"SM_Defibulator_01b_LOD0"},{"id":5,"x":0.7100000381469727,"y":0.8429999947547913,"z":0.781000018119812,"rot":0.0,"type":"ObservationSheet"}],"Tasks":[{"name":"DopamineInjection","WithPrevious":false,"Completed":false,"Score":1,"Conditions":[{"items":[{"Value":20,"Name":"Dopamine","Condition":"Equal"},{"Value":50,"Name":"Solanine","Condition":"Equal"}],"targetIDs":[0]}],"TimeLimit":-1,"OnTimeout":0},{"name":"FillObservationSheet","WithPrevious":false,"Completed":false,"Score":1,"Conditions":[{"items":[{"Value":21,"Name":"Respirations","Condition":"Equal"},{"Value":96,"Name":"SpO2","Condition":"Equal"},{"Value":3,"Name":"Air","Condition":"Equal"},{"Value":111,"Name":"Pressure","Condition":"Equal"},{"Value":0,"Name":"Date","Condition":"Equal"}],"targetIDs":[5]}],"TimeLimit":120,"OnTimeout":0}]}'
+  ScenarioInfo:
+    RoomWidth: 0
+    RoomHeight: 0
+    Objects: []
+    Tasks: []
 --- !u!1 &2117220586
 GameObject:
   m_ObjectHideFlags: 0
@@ -59970,11 +59927,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 524438702}
     m_Modifications:
-    - target: {fileID: 1635120897937625668, guid: e4ee99523d710af4397e71218063f89d,
-        type: 3}
-      propertyPath: link
-      value: 
-      objectReference: {fileID: 7942002211390072463}
     - target: {fileID: 2031653333650929169, guid: e4ee99523d710af4397e71218063f89d,
         type: 3}
       propertyPath: OnPlace.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -60030,31 +59982,6 @@ PrefabInstance:
       propertyPath: link
       value: 
       objectReference: {fileID: 7942002211390072463}
-    - target: {fileID: 3184878397354212804, guid: e4ee99523d710af4397e71218063f89d,
-        type: 3}
-      propertyPath: HandExit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 867665758}
-    - target: {fileID: 3184878397354212804, guid: e4ee99523d710af4397e71218063f89d,
-        type: 3}
-      propertyPath: HandEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 867665758}
-    - target: {fileID: 3184878397354212804, guid: e4ee99523d710af4397e71218063f89d,
-        type: 3}
-      propertyPath: HandEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1842544259}
-    - target: {fileID: 3184878397354212804, guid: e4ee99523d710af4397e71218063f89d,
-        type: 3}
-      propertyPath: HandEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 291139191}
-    - target: {fileID: 3184878397354212804, guid: e4ee99523d710af4397e71218063f89d,
-        type: 3}
-      propertyPath: HandEnter.m_PersistentCalls.m_Calls.Array.data[3].m_Target
-      value: 
-      objectReference: {fileID: 1602114023}
     - target: {fileID: 3184878398035447794, guid: e4ee99523d710af4397e71218063f89d,
         type: 3}
       propertyPath: m_RootOrder
@@ -60120,6 +60047,11 @@ PrefabInstance:
       propertyPath: link
       value: 
       objectReference: {fileID: 7942002211038711129}
+    - target: {fileID: 3184878398329884861, guid: e4ee99523d710af4397e71218063f89d,
+        type: 3}
+      propertyPath: controllerApp
+      value: 
+      objectReference: {fileID: 1842544259}
     - target: {fileID: 3184878398329884861, guid: e4ee99523d710af4397e71218063f89d,
         type: 3}
       propertyPath: dialogueSystem
@@ -60215,16 +60147,6 @@ PrefabInstance:
       propertyPath: link
       value: 
       objectReference: {fileID: 7942002211390072463}
-    - target: {fileID: 6781406873950214653, guid: e4ee99523d710af4397e71218063f89d,
-        type: 3}
-      propertyPath: dialogueIcon
-      value: 
-      objectReference: {fileID: 1602114023}
-    - target: {fileID: 7672525493540945997, guid: e4ee99523d710af4397e71218063f89d,
-        type: 3}
-      propertyPath: link
-      value: 
-      objectReference: {fileID: 7942002211038711129}
     - target: {fileID: 8816988544579499519, guid: e4ee99523d710af4397e71218063f89d,
         type: 3}
       propertyPath: cam
@@ -62023,18 +61945,6 @@ PrefabInstance:
       objectReference: {fileID: 7942002211038711129}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e2858ea35eb4904a9019f80656d477d, type: 3}
---- !u!114 &4520865017252753055 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4092576716889482496, guid: 0e2858ea35eb4904a9019f80656d477d,
-    type: 3}
-  m_PrefabInstance: {fileID: 4520865017252753054}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 557911214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cab4954ad8c5464880f4125605bb334, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &4520865017252753056 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4623648720811390464, guid: 0e2858ea35eb4904a9019f80656d477d,
