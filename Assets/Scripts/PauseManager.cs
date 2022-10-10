@@ -7,6 +7,7 @@ public class PauseManager : MonoBehaviour
     [SerializeField] GameObject PauseMenu;
     [SerializeField] GameObject MenuOffset;
     [SerializeField] Camera UICamera;
+    [SerializeField] Camera MainCamera;
     List<AudioSource> AudiosWerePlaying;
     List<Animation> AnimationsWerePlaying;
     XRMovementControls Controls;
@@ -39,7 +40,8 @@ public class PauseManager : MonoBehaviour
             }
         }
         */
-        UICamera.cullingMask = (1 << LayerMask.NameToLayer("Hand")) | (1 << LayerMask.NameToLayer("Dialogue"));
+        UICamera.cullingMask = (1 << LayerMask.NameToLayer("Hand")) | (1 << LayerMask.NameToLayer("MenusUI")) | (1 << LayerMask.NameToLayer("Fade"));
+        MainCamera.cullingMask = (~0) &~ (1 << LayerMask.NameToLayer("Dialogue"));
         PauseMenu.SetActive(true);
         PauseMenu.transform.position = MenuOffset.transform.position;
         PauseMenu.transform.rotation = MenuOffset.transform.rotation;
@@ -62,7 +64,8 @@ public class PauseManager : MonoBehaviour
         */
         PauseMenu.SetActive(false);
         Controls.SwitchLocomotion(PlayerPrefs.GetInt("MovementType", 0));
-        UICamera.cullingMask = 1 << LayerMask.NameToLayer("Dialogue");
+        MainCamera.cullingMask = ~0;
+        UICamera.cullingMask = (1 << LayerMask.NameToLayer("Fade"));
         GetComponent<UnscaleMove>().Play();
     }
 
