@@ -134,7 +134,11 @@ public class MyocardialInfarction : MonoBehaviour
 
     void Start()
     {
-        GuidedMode = FindObjectOfType<AppSettings>().guides == Guide.Enable;
+        GuidedMode = false;
+        if (FindObjectOfType<AppSettings>() != null)
+        {
+            GuidedMode = FindObjectOfType<AppSettings>().guides == Guide.Enable;
+        }
 
         MyocardialInfarctionScenario.HygeneSubscenarios.CompleteWashHandsSubscenario = new TaskSettings();
         MyocardialInfarctionScenario.HygeneSubscenarios.CompleteWashHandsSubscenario.Task = gameObject.AddComponent<Task>();
