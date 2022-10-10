@@ -14,6 +14,10 @@ namespace ScenarioSystem
         public void Awake()
         {
             ScenarioInfo = JsonUtility.FromJson<Room>(ScenarioJSON);
+
+            Transform playerTransform = Object.FindObjectOfType<PlayerObject>().transform;
+            playerTransform.position = new Vector3(ScenarioInfo.PlayerX, ScenarioInfo.PlayerY, ScenarioInfo.PlayerZ);
+            playerTransform.rotation = Quaternion.Euler(0, ScenarioInfo.PlayerRot, 0);
             Objects = new GameObject[ScenarioInfo.Objects.Length];
             foreach (Obj item in ScenarioInfo.Objects)
             {
@@ -28,8 +32,6 @@ namespace ScenarioSystem
                     Temp.transform.rotation = Quaternion.Euler(0, item.rot, 0);
                     Objects[item.id] = Temp;
                 }
-                
-
             }
             foreach (Task task in ScenarioInfo.Tasks)
             {

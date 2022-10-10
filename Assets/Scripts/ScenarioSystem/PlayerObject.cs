@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Autohand.Demo;
 
-public class ObjectLibrary : MonoBehaviour
+public class PlayerObject : MonoBehaviour
 {
-    
+    [SerializeField] XRHandControllerLink LeftHand;
+    [SerializeField] XRHandControllerLink RightHand;
+    [SerializeField] Camera Head;
 
     void Start()
     {

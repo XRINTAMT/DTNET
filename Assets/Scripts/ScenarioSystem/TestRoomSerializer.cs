@@ -9,6 +9,7 @@ namespace ScenarioSystem
     {
         [SerializeField] GameObject[] ObjectsToSerialize;
         [SerializeField] Task[] Tasks;
+        [SerializeField] Transform PlayerTransform;
         Room Scene;
 
         void Start()
@@ -25,10 +26,12 @@ namespace ScenarioSystem
             }
             Scene.RoomHeight = 5;
             Scene.RoomWidth = 7;
+            Scene.PlayerX = PlayerTransform.position.x;
+            Scene.PlayerY = PlayerTransform.position.y;
+            Scene.PlayerZ = PlayerTransform.position.z;
+            Scene.PlayerRot = PlayerTransform.rotation.eulerAngles.y;
             Scene.Tasks = Tasks;
             Debug.Log(JsonUtility.ToJson(Scene));
-
-
         }
 
         // Update is called once per frame

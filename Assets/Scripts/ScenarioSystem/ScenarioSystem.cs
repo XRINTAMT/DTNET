@@ -18,6 +18,7 @@ namespace ScenarioSystem
     struct Room
     {
         public float RoomWidth, RoomHeight;
+        public float PlayerX, PlayerY, PlayerZ, PlayerRot;
         public Obj[] Objects;
         public Task[] Tasks;
     }

@@ -10456,6 +10456,7 @@ MonoBehaviour:
       targetIDs: 05000000
     TimeLimit: 120
     OnTimeout: 0
+  PlayerTransform: {fileID: 7942002212170454352}
 --- !u!4 &478967738
 Transform:
   m_ObjectHideFlags: 0
@@ -48826,10 +48827,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5667183db5a764d46a63f2cea21557e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScenarioJSON: '{"RoomWidth":7.0,"RoomHeight":5.0,"Objects":[{"id":0,"x":1.0579999685287476,"y":0.8529999852180481,"z":4.671999931335449,"rot":0.0,"type":"Spritze"},{"id":1,"x":-2.0859999656677248,"y":0.04700058698654175,"z":5.782999515533447,"rot":165.0,"type":"DOCTOR"},{"id":2,"x":0.7119779586791992,"y":0.8509466052055359,"z":0.19617298245429994,"rot":270.0,"type":"Tablet"},{"id":3,"x":2.128999948501587,"y":0.022000610828399659,"z":-1.0260004997253419,"rot":321.75384521484377,"type":"SM_ECG_01a_LOD0"},{"id":4,"x":0.8669626712799072,"y":0.9880005717277527,"z":-1.7163164615631104,"rot":353.25,"type":"SM_Defibulator_01b_LOD0"},{"id":5,"x":0.7100000381469727,"y":0.8429999947547913,"z":0.781000018119812,"rot":0.0,"type":"ObservationSheet"}],"Tasks":[{"name":"DopamineInjection","WithPrevious":false,"Completed":false,"Score":1,"Conditions":[{"items":[{"Value":20,"Name":"Dopamine","Condition":"Equal"},{"Value":50,"Name":"Solanine","Condition":"Equal"}],"targetIDs":[0]}],"TimeLimit":-1,"OnTimeout":0},{"name":"FillObservationSheet","WithPrevious":false,"Completed":false,"Score":1,"Conditions":[{"items":[{"Value":21,"Name":"Respirations","Condition":"Equal"},{"Value":96,"Name":"SpO2","Condition":"Equal"},{"Value":3,"Name":"Air","Condition":"Equal"},{"Value":111,"Name":"Pressure","Condition":"Equal"},{"Value":0,"Name":"Date","Condition":"Equal"}],"targetIDs":[5]}],"TimeLimit":120,"OnTimeout":0}]}'
+  ScenarioJSON: '{"RoomWidth":7.0,"RoomHeight":5.0,"PlayerX":1.0740000009536744,"PlayerY":0.0,"PlayerZ":2.7119998931884767,"PlayerRot":-90.0,"Objects":[{"id":0,"x":0.9549779891967773,"y":0.8529999852180481,"z":4.641172885894775,"rot":90.0,"type":"Spritze"},{"id":1,"x":-2.0859999656677248,"y":0.04700058698654175,"z":5.782999515533447,"rot":165.0,"type":"DOCTOR"},{"id":2,"x":0.7119779586791992,"y":0.8509466052055359,"z":0.19617298245429994,"rot":270.0,"type":"Tablet"},{"id":3,"x":2.128999948501587,"y":0.022000610828399659,"z":-1.0260004997253419,"rot":321.75384521484377,"type":"SM_ECG_01a_LOD0"},{"id":4,"x":0.8669626712799072,"y":0.9880005717277527,"z":-1.7163164615631104,"rot":353.25,"type":"SM_Defibulator_01b_LOD0"},{"id":5,"x":0.7100000381469727,"y":0.8429999947547913,"z":0.781000018119812,"rot":0.0,"type":"ObservationSheet"}],"Tasks":[{"name":"DopamineInjection","WithPrevious":false,"Completed":false,"Score":1,"Conditions":[{"items":[{"Value":20,"Name":"Dopamine","Condition":"Equal"},{"Value":50,"Name":"Solanine","Condition":"Equal"}],"targetIDs":[0]}],"TimeLimit":-1,"OnTimeout":0},{"name":"FillObservationSheet","WithPrevious":false,"Completed":false,"Score":1,"Conditions":[{"items":[{"Value":21,"Name":"Respirations","Condition":"Equal"},{"Value":96,"Name":"SpO2","Condition":"Equal"},{"Value":3,"Name":"Air","Condition":"Equal"},{"Value":111,"Name":"Pressure","Condition":"Equal"},{"Value":0,"Name":"Date","Condition":"Equal"}],"targetIDs":[5]}],"TimeLimit":120,"OnTimeout":0}]}'
   ScenarioInfo:
     RoomWidth: 0
     RoomHeight: 0
+    PlayerX: 0
+    PlayerY: 0
+    PlayerZ: 0
+    PlayerRot: 0
     Objects: []
     Tasks: []
 --- !u!1 &2117220586
@@ -63577,6 +63582,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4351774533105134397, guid: 3c2109583f0d25d49baaac5499d96e0a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351774533105134397, guid: 3c2109583f0d25d49baaac5499d96e0a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4351774533914010778, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
       propertyPath: m_RootOrder
@@ -63585,7 +63600,7 @@ PrefabInstance:
     - target: {fileID: 4351774533914010778, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.074
+      value: 1.121
       objectReference: {fileID: 0}
     - target: {fileID: 4351774533914010778, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
@@ -63595,27 +63610,27 @@ PrefabInstance:
     - target: {fileID: 4351774533914010778, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.71199995
+      value: 3.31
       objectReference: {fileID: 0}
     - target: {fileID: 4351774533914010778, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.9842574
+      value: 0.9961947
       objectReference: {fileID: 0}
     - target: {fileID: 4351774533914010778, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4351774533914010778, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.17674102
+      value: 0.08715578
       objectReference: {fileID: 0}
     - target: {fileID: 4351774533914010778, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4351774533914010778, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
@@ -63625,7 +63640,7 @@ PrefabInstance:
     - target: {fileID: 4351774533914010778, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -339.64
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4351774533914010778, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
@@ -66482,6 +66497,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5932141274520908242}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &7942002212170454352 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4351774533914010778, guid: 3c2109583f0d25d49baaac5499d96e0a,
+    type: 3}
+  m_PrefabInstance: {fileID: 5932141274520908242}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7960110475841245425
 GameObject:
   m_ObjectHideFlags: 0
@@ -67627,10 +67648,25 @@ PrefabInstance:
       propertyPath: link
       value: 
       objectReference: {fileID: 7942002211038711129}
+    - target: {fileID: 5678319630627606685, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5678319630627606685, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 8512265354180483939, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
       propertyPath: m_Name
       value: Spritze
+      objectReference: {fileID: 0}
+    - target: {fileID: 8512265354180483939, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8512265354180483943, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
@@ -67665,7 +67701,7 @@ PrefabInstance:
     - target: {fileID: 9037163771738096089, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.719978
+      value: -1.823
       objectReference: {fileID: 0}
     - target: {fileID: 9037163771738096089, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
@@ -67675,7 +67711,7 @@ PrefabInstance:
     - target: {fileID: 9037163771738096089, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.134827
+      value: 4.104
       objectReference: {fileID: 0}
     - target: {fileID: 9037163771738096089, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
@@ -67685,17 +67721,17 @@ PrefabInstance:
     - target: {fileID: 9037163771738096089, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9037163771738096089, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 9037163771738096089, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9037163771738096089, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
@@ -67705,12 +67741,12 @@ PrefabInstance:
     - target: {fileID: 9037163771738096089, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 9037163771738096089, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9061535348185163198, guid: 84ad7b76959a28a4cb4646dd2e9afbb0,
         type: 3}
