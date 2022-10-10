@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Autohand;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,8 +22,15 @@ public class AnimationsController : MonoBehaviour
     [SerializeField] private GameObject MeshWithShirt;
     [SerializeField] private GameObject MeshWithoutShirt;
 
+    [SerializeField] private List<PlacePoint> placePoints;
 
-
+    private void Start()
+    {
+        for (int i = 0; i < placePoints.Count; i++)
+        {
+            placePoints[i].enabled = false;
+        }
+    }
     public void animatePump() 
     {
         animationPump.Play();
@@ -31,11 +39,19 @@ public class AnimationsController : MonoBehaviour
     {
         MeshWithShirt.SetActive(true);
         MeshWithoutShirt.SetActive(false);
+        for (int i = 0; i < placePoints.Count; i++)
+        {
+            placePoints[i].enabled = false;
+        }
     }
     public void PutOffShirt()
     {
         MeshWithShirt.SetActive(false);
         MeshWithoutShirt.SetActive(true);
+        for (int i = 0; i < placePoints.Count; i++)
+        {
+            placePoints[i].enabled = true;
+        }
     }
 
     public void AnimationSeatDownPatient1()
