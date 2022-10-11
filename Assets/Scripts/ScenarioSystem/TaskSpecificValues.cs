@@ -7,17 +7,35 @@ namespace ScenarioSystem
     public class TaskSpecificValues : MonoBehaviour
     {
         public Dictionary<string, int> Values;
-        public Dictionary<string, bool> Pull;
+        public Dictionary<string, int> Changes;
 
         private void Start()
         {
             Values = new Dictionary<string, int>();
         }
 
-        private void ChangeValues(string name, int val)
+        public void SendDataItem(string name, int val)
         {
             Values[name] = val;
-            Pull[name] = true;
+        }
+
+        public void SendDataSystem(string name, int val)
+        {
+            Changes[name] = val;
+        }
+
+        public Dictionary<string, int> GetDataItem()
+        {
+            Dictionary<string, int> temp = new Dictionary<string, int>(Changes);
+            Changes.Clear();
+            return temp;
+        }
+
+        public Dictionary<string, int> GetDataSystem()
+        {
+            Dictionary<string, int> temp = new Dictionary<string, int>(Values);
+            Values.Clear();
+            return temp;
         }
     }
 }

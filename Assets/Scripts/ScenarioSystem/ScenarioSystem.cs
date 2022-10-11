@@ -12,6 +12,14 @@ namespace ScenarioSystem
         public int id;
         public float x, y, z, rot;
         public string type;
+        public CustomField[] ObjectSpecificValues;
+    }
+
+    [Serializable]
+    struct CustomField
+    {
+        public string name;
+        public int value;
     }
 
     [Serializable]

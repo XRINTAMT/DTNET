@@ -21,6 +21,7 @@ namespace ScenarioSystem
             Objects = new GameObject[ScenarioInfo.Objects.Length];
             foreach (Obj item in ScenarioInfo.Objects)
             {
+                Debug.Log(item.type);
                 GameObject Temp = Instantiate(Resources.Load("Prefabs/ConstructorItems/"+item.type)) as GameObject;
                 if(Temp == null)
                 {
@@ -29,8 +30,9 @@ namespace ScenarioSystem
                 else
                 {
                     Temp.transform.position = new Vector3(item.x, item.y, item.z);
-                    Temp.transform.rotation = Quaternion.Euler(0, item.rot, 0);
+                    Temp.transform.rotation = Quaternion.Euler(Temp.transform.rotation.eulerAngles.x, item.rot, Temp.transform.rotation.eulerAngles.z);
                     Objects[item.id] = Temp;
+                    Temp.GetComponent<TaskSpecificValues>();
                 }
             }
             foreach (Task task in ScenarioInfo.Tasks)
