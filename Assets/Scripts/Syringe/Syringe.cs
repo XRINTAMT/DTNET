@@ -13,7 +13,7 @@ public class Syringe : MonoBehaviour
     [SerializeField] InjectionManager Manager;
     [SerializeField] Camera Head;
     [SerializeField] GameObject InnerPart;
-    [SerializeField] int MaxInnerPartDisplacement;
+    [SerializeField] float MaxInnerPartDisplacement;
     [SerializeField] int SyringeSensitivity;
     [SerializeField] int SyringeCapacity;
     [SerializeField] UnityEvent OnRequirementsMet;
