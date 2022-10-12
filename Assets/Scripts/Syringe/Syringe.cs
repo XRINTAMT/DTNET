@@ -40,8 +40,7 @@ public class Syringe : MonoBehaviour
         if (!setupInInspector)
         {
             DataInterface = GetComponent<TaskSpecificValues>();
-            Debug.Log("Getting syringe capacity: "+DataInterface.TryGetItem("SyringeCapacity", ref SyringeCapacity));
-            DataInterface.TryGetItem("SyringeSensitivity", ref SyringeSensitivity);
+            //Debug.Log("Getting syringe capacity: "+DataInterface.TryGetItem("SyringeCapacity", ref SyringeCapacity));
             PlayerObject player = FindObjectOfType<PlayerObject>();
             Head = player.Head;
         }
@@ -130,6 +129,8 @@ public class Syringe : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        DataInterface.TryGetItem("SyringeCapacity", ref SyringeCapacity);
+        DataInterface.TryGetItem("SyringeSensitivity", ref SyringeSensitivity);
         if (pulling)
         {
             float pullAmount = Mathf.Min(med.Amount, Time.deltaTime * SyringeSensitivity, SyringeCapacity - totalSubstance);
