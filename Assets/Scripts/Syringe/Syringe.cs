@@ -92,18 +92,19 @@ public class Syringe : MonoBehaviour
         Lable = Manager.CheckCompletion(ingredients);
     }
 
-    public void Empty()
+    public void Empty(float time)
     {
         if(totalSubstance != 0)
         {
-            StartCoroutine(EmptyingAnimation());
+            StartCoroutine(EmptyingAnimation(time));
         }
     }
 
-    IEnumerator EmptyingAnimation()
+    IEnumerator EmptyingAnimation(float time)
     {
         ingredients = new Dictionary<string, float>();
-        for (; totalSubstance > 0; totalSubstance -= Time.deltaTime * SyringeSensitivity)
+        float initValue = totalSubstance;
+        for (; totalSubstance > 0; totalSubstance -= Time.deltaTime / time * initValue)
         {
             InnerPart.transform.localPosition =
                 new Vector3(innerPartPositionInit.x,
