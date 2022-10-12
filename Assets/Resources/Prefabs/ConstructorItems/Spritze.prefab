@@ -346,6 +346,7 @@ GameObject:
   - component: {fileID: 9037163771738096089}
   - component: {fileID: 8512265354180483937}
   - component: {fileID: 8512265354180483936}
+  - component: {fileID: 818556067924591874}
   - component: {fileID: 8512265354180483940}
   - component: {fileID: 8512265354180483942}
   - component: {fileID: 8512265354180483941}
@@ -357,7 +358,6 @@ GameObject:
   - component: {fileID: 1694859928315181988}
   - component: {fileID: 2113299403181542047}
   - component: {fileID: -3069144020334438106}
-  - component: {fileID: 818556067924591874}
   m_Layer: 0
   m_Name: Spritze
   m_TagString: Untagged
@@ -372,7 +372,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8512265354180483939}
-  m_LocalRotation: {x: -0.7071068, y: -0.7071068, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 3.1585, y: 0.863, z: 1.5401}
   m_LocalScale: {x: 0.06, y: 0.06, z: 0.060000014}
   m_Children:
@@ -380,7 +380,7 @@ Transform:
   - {fileID: 5678319630627606685}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!136 &8512265354180483937
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -411,6 +411,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &818556067924591874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8512265354180483939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c522bd7d48c35c346bbea77c856dec7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8512265354180483940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -887,12 +899,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43bcfb289870dd74aa8dc82f518d58b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setupInInspector: 0
   Manager: {fileID: 0}
   Head: {fileID: 0}
   InnerPart: {fileID: 4860282050037492059}
-  MaxInnerPartDisplacement: 1.5
-  SyringeSensitivity: 7
-  SyringeCapacity: 100
+  MaxInnerPartDisplacement: 0
+  SyringeSensitivity: 1
+  SyringeCapacity: 0
   OnRequirementsMet:
     m_PersistentCalls:
       m_Calls:
@@ -1026,18 +1039,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TemporalOffset: 2
   TimeToGoBack: 1
---- !u!114 &818556067924591874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8512265354180483939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c522bd7d48c35c346bbea77c856dec7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8948215889411406389
 GameObject:
   m_ObjectHideFlags: 0

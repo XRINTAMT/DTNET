@@ -65,10 +65,12 @@ namespace ScenarioSystem
             {
                 for (int i = 0; i < items.Length; i++)
                 {
+                    int value = -1;
+                    targets[i].TryGetSystem(items[i].Name, ref value);
                     switch (items[i].Condition)
                     {
                         case ("More"):
-                            if (targets[i].Values[items[i].Name] <= items[i].Value)
+                            if (value <= items[i].Value)
                             {
                                 i = -1;
                                 j++;
@@ -76,7 +78,7 @@ namespace ScenarioSystem
                             }
                             break;
                         case ("Less"):
-                            if (targets[i].Values[items[i].Name] >= items[i].Value)
+                            if (value >= items[i].Value)
                             {
                                 i = -1;
                                 j++;
@@ -84,7 +86,7 @@ namespace ScenarioSystem
                             }
                             break;
                         case ("Equal"):
-                            if (targets[i].Values[items[i].Name] != items[i].Value)
+                            if (value != items[i].Value)
                             {
                                 i = -1;
                                 j++;

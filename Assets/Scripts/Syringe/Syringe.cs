@@ -5,21 +5,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Linq;
+using ScenarioSystem;
 
 public class Syringe : MonoBehaviour
 {
+    [SerializeField] bool setupInInspector = false;
     [SerializeField] InjectionManager Manager;
     [SerializeField] Camera Head;
     [SerializeField] GameObject InnerPart;
-    [SerializeField] float MaxInnerPartDisplacement;
-    [SerializeField] float SyringeSensitivity;
-    [SerializeField] float SyringeCapacity;
+    [SerializeField] int MaxInnerPartDisplacement;
+    [SerializeField] int SyringeSensitivity;
+    [SerializeField] int SyringeCapacity;
     [SerializeField] UnityEvent OnRequirementsMet;
     [SerializeField] GameObject MeasurementCanvas;
     [SerializeField] Text AmountText;
     [SerializeField] Text SubstanceText;
     [SerializeField] Vector3 Offset;
 
+    TaskSpecificValues DataInterface;
     Ampule med;
     bool inserted;
     bool pulling;
@@ -34,6 +37,14 @@ public class Syringe : MonoBehaviour
         innerPartPositionInit = InnerPart.transform.localPosition;
         ingredients = new Dictionary<string, float>();
         med = null;
+        if (!setupInInspector)
+        {
+            DataInterface = GetComponent<TaskSpecificValues>();
+            Debug.Log("Getting syringe capacity: "+DataInterface.TryGetItem("SyringeCapacity", ref SyringeCapacity));
+            DataInterface.TryGetItem("SyringeSensitivity", ref SyringeSensitivity);
+            PlayerObject player = FindObjectOfType<PlayerObject>();
+            Head = player.Head;
+        }
     }
 
     public void TurnTheHUD(bool OnOff)
@@ -90,6 +101,7 @@ public class Syringe : MonoBehaviour
     private void CheckCompletion()
     {
         Lable = Manager.CheckCompletion(ingredients);
+
     }
 
     public void Empty()
@@ -131,6 +143,10 @@ public class Syringe : MonoBehaviour
             //AmountText.text = ingredients[med.Substance].ToString("0.0");
             AmountText.text = totalSubstance.ToString("0.0");
             CheckCompletion();
+            foreach (string ingred in ingredients.Keys.ToList())
+            {
+                DataInterface.SendDataItem(ingred, (int)ingredients[ingred]);
+            }
         }
         else
         {

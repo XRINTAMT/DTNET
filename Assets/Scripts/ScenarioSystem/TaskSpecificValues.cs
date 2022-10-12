@@ -6,12 +6,13 @@ namespace ScenarioSystem
 {
     public class TaskSpecificValues : MonoBehaviour
     {
-        public Dictionary<string, int> Values;
-        public Dictionary<string, int> Changes;
+        Dictionary<string, int> Values;
+        Dictionary<string, int> Changes;
 
-        private void Start()
+        private void Awake()
         {
             Values = new Dictionary<string, int>();
+            Changes = new Dictionary<string, int>();
         }
 
         public void SendDataItem(string name, int val)
@@ -24,6 +25,27 @@ namespace ScenarioSystem
             Changes[name] = val;
         }
 
+        public bool TryGetItem(string name, ref int val)
+        {
+            if (Changes.ContainsKey(name))
+            {
+                val = Changes[name];
+                Changes.Remove(name);
+                return true;
+            }
+            return false;
+        }
+
+        public bool TryGetSystem(string name, ref int val)
+        {
+            if (Values.ContainsKey(name))
+            {
+                val = Values[name];
+                return true;
+            }
+            return false;
+        }
+
         public Dictionary<string, int> GetDataItem()
         {
             Dictionary<string, int> temp = new Dictionary<string, int>(Changes);
@@ -34,8 +56,19 @@ namespace ScenarioSystem
         public Dictionary<string, int> GetDataSystem()
         {
             Dictionary<string, int> temp = new Dictionary<string, int>(Values);
-            Values.Clear();
             return temp;
+        }
+
+        public void Update()
+        {
+            foreach(string key in Changes.Keys)
+            {
+                Debug.Log(key + " " + Changes[key]);
+            }
+            foreach (string key in Values.Keys)
+            {
+                Debug.Log(key + " " + Values[key]);
+            }
         }
     }
 }
