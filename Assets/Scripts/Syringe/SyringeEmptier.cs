@@ -13,14 +13,14 @@ public class SyringeEmptier : MonoBehaviour
         syringeHolder = GetComponent<PlacePoint>();
     }
 
-    public void EmptySyringe()
+    public void EmptySyringe(float time)
     {
         if(syringeHolder.placedObject  != null)
         {
             Syringe srg;
             if (syringeHolder.placedObject.TryGetComponent<Syringe>(out srg))
             {
-                srg.Empty();
+                srg.Empty(time);
             }
         }
     }

@@ -11,6 +11,7 @@ public class Syringe : MonoBehaviour
     [SerializeField] InjectionManager Manager;
     [SerializeField] Camera Head;
     [SerializeField] GameObject InnerPart;
+    [SerializeField] GameObject InnerPartPomp;
     [SerializeField] float MaxInnerPartDisplacement;
     [SerializeField] float SyringeSensitivity;
     [SerializeField] float SyringeCapacity;
@@ -26,12 +27,15 @@ public class Syringe : MonoBehaviour
     bool pushing;
     float totalSubstance;
     Vector3 innerPartPositionInit;
+    Vector3 innerPartPositionInitPomp;
     Dictionary<string, float> ingredients;
     public Injection Lable { get; private set; }
 
+    
     void Awake()
     {
         innerPartPositionInit = InnerPart.transform.localPosition;
+        innerPartPositionInitPomp = InnerPartPomp.transform.localPosition;
         ingredients = new Dictionary<string, float>();
         med = null;
     }
@@ -110,10 +114,15 @@ public class Syringe : MonoBehaviour
                 new Vector3(innerPartPositionInit.x,
                 Mathf.Lerp(innerPartPositionInit.y, innerPartPositionInit.y - MaxInnerPartDisplacement, totalSubstance / SyringeCapacity),
                 innerPartPositionInit.z);
+            InnerPartPomp.transform.localPosition =
+                new Vector3(innerPartPositionInitPomp.x,
+                Mathf.Lerp(innerPartPositionInitPomp.y, innerPartPositionInitPomp.y - MaxInnerPartDisplacement, totalSubstance / SyringeCapacity),
+                innerPartPositionInitPomp.z);
             yield return 0;
         }
         totalSubstance = 0;
         InnerPart.transform.localPosition = innerPartPositionInit;
+        InnerPartPomp.transform.localPosition = innerPartPositionInitPomp;
     }
 
     // Update is called once per frame
