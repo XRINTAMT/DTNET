@@ -18,6 +18,7 @@ namespace ScenarioSystem
         public void SendDataItem(string name, int val)
         {
             Values[name] = val;
+            //Debug.Log(name + ": " + val);
         }
 
         public void SendDataSystem(string name, int val)
@@ -61,6 +62,7 @@ namespace ScenarioSystem
 
         public void Update()
         {
+            
             foreach(string key in Changes.Keys)
             {
                 Debug.Log(key + " " + Changes[key]);
@@ -69,6 +71,7 @@ namespace ScenarioSystem
             {
                 Debug.Log(key + " " + Values[key]);
             }
+            
         }
     }
 }

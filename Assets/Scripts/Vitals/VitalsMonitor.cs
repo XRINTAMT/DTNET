@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using ScenarioTaskSystem;
-using static UnityEngine.Rendering.DebugUI;
+using ScenarioSystem;
+//using static UnityEngine.Rendering.DebugUI;
+
 
 public class VitalsMonitor : MonoBehaviour
 {
@@ -24,6 +26,7 @@ public class VitalsMonitor : MonoBehaviour
     [SerializeField] Image AlarmImage;
     [SerializeField] float AlarmInterval;
     [SerializeField] bool FireAlarmOnStart;
+    [SerializeField] TaskSpecificValues DataInterface;
     private Coroutine AlarmCoroutine;
 
     void Awake()
@@ -32,6 +35,8 @@ public class VitalsMonitor : MonoBehaviour
         for (int i = 0; i < VitalValues.Length; i++)
         {
             VitalValues[i].Text.text = VitalValues[i].Value.ToString(VitalValues[i].OutputFormat);
+            if(DataInterface != null)
+                DataInterface.SendDataItem(VitalValues[i].Name, VitalValues[i].Connected ? 1 : 0);
         }
     }
 
@@ -126,6 +131,8 @@ public class VitalsMonitor : MonoBehaviour
         if (VitalValues[n].Connected)
             return;
         VitalValues[n].Connected = true;
+        if (DataInterface != null)
+            DataInterface.SendDataItem(VitalValues[n].Name, 1);
         float temp = VitalValues[n].Value;
         VitalValues[n].Value = 0;
         VitalValues[n].Text.gameObject.SetActive(true);
@@ -135,7 +142,7 @@ public class VitalsMonitor : MonoBehaviour
             if (!VitalValues[i].Connected)
                 return;
         }
-        if(TryGetComponent<Task>(out Task t))
+        if(TryGetComponent<ScenarioTaskSystem.Task>(out ScenarioTaskSystem.Task t))
         {
             t.Complete();
         }
@@ -149,6 +156,11 @@ public class VitalsMonitor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        int toSwitchAlarm = -1;
+        if(DataInterface.TryGetItem("SwitchAlarm", ref toSwitchAlarm))
+        {
+            SwitchAlarm(toSwitchAlarm == 1);
+        }
         if(UnityEngine.Random.value < FluctuationIntensity)
         {
             for(int i = 0; i < VitalValues.Length; i++)
