@@ -21,15 +21,30 @@ public class AnimationsController : MonoBehaviour
     [SerializeField] private GameObject ButtonStandUp;
     [SerializeField] private GameObject MeshWithShirt;
     [SerializeField] private GameObject MeshWithoutShirt;
-
+    [SerializeField] private Animation syringeAnimation;
     [SerializeField] private List<PlacePoint> placePoints;
 
+    bool waterSyringe;
     private void Start()
     {
         for (int i = 0; i < placePoints.Count; i++)
         {
             placePoints[i].enabled = false;
         }
+    }
+
+    public void SyringeWater() 
+    {
+        waterSyringe = !waterSyringe;
+        if (waterSyringe)
+        {
+            syringeAnimation.Play("AnimationHygene");
+        }
+        if (!waterSyringe)
+        {
+            syringeAnimation.Play("HygeneOff");
+        }
+
     }
     public void animatePump() 
     {
