@@ -15,7 +15,7 @@ public class SyringeEmptier : MonoBehaviour
 
     public void EmptySyringe()
     {
-        if(syringeHolder.placedObject  != null)
+        if(syringeHolder.placedObject != null)
         {
             Syringe srg;
             if (syringeHolder.placedObject.TryGetComponent<Syringe>(out srg))

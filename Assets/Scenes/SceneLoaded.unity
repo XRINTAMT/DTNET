@@ -9152,24 +9152,45 @@ MonoBehaviour:
     },     {       "id": 4,       "x": 0.9318000078201294,       "y": 0.024000048637390137,      
     "z": -1.7026004791259766,       "rot": 353.25,       "type": "PacerAndDefibrilator"    
     },     {       "id": 5,       "x": 2.1955153942108154,       "y": 0.5905628204345703,      
-    "z": 0.41926729679107666,       "rot": 359.8023681640625,       "type": "PATIENT"    
-    },     {       "id": 6,       "x": -3.5425219535827637,       "y": 1.3827465772628784,      
+    "z": 0.41926729679107666,       "rot": 359.8023681640625,       "type": "PATIENT",      
+    "ObjectSpecificValues": [         {           "name": "HR/ECG",           "value":
+    55         },         {           "name": "Temp",           "value": 37        
+    },         {           "name": "BloodPressureHigh",           "value": 116        
+    },         {           "name": "BloodPressureLow",           "value": 65        
+    },         {           "name": "O2Saturation",           "value": 99        
+    },         {           "name": "ResprirationRate",           "value": 22        
+    },         {           "name": "NasalCannula",           "value": 3         }      
+    ]     },     {       "id": 6,       "x": -3.5425219535827637,       "y": 1.3827465772628784,      
     "z": -0.09522700309753418,       "rot": 0,       "type": "PhoneObj"     },    
     {       "id": 7,       "x": 0.9089779853820801,       "y": 0.8547465801239014,      
     "z": 4.637172698974609,       "rot": 90,       "type": "Spritze",       "ObjectSpecificValues":
-    [           {             "name": "SyringeCapacity",             "value": 100          
-    },           {             "name": "SyringeSensitivity",             "value":
-    2           }         ]     },     {       "id": 8,       "x": 0.7119779586791992,      
-    "y": 0.8509466052055359,       "z": 0.19617298245429993,       "rot": 270,      
-    "type": "Tablet"     },     {       "id": 9,       "x": 2.128999948501587,      
-    "y": 0.022000610828399658,       "z": -1.0260004997253418,       "rot": 321.75384521484375,      
-    "type": "VitalsMonitorAndSensors",       "ObjectSpecificValues": [          
-    {             "name": "SwitchAlarm",             "value": 0           }        
-    ]     }   ],   "Tasks": [     {       "name": "Dilude dopamine",       "WithPrevious":
-    false,       "Completed": false,       "Score": 0,       "Conditions": [        
-    {           "items": [             {               "Value": 20,              
-    "Name": "Dopamine",               "Condition": "Equal"             },            
-    {               "Value": 50,               "Name": "Solanine",              
+    [         {           "name": "SyringeCapacity",           "value": 100        
+    },         {           "name": "SyringeSensitivity",           "value": 2        
+    }       ]     },     {       "id": 8,       "x": 0.7119779586791992,       "y":
+    0.8509466052055359,       "z": 0.19617298245429993,       "rot": 270,       "type":
+    "Tablet"     },     {       "id": 9,       "x": 2.128999948501587,       "y":
+    0.022000610828399658,       "z": -1.0260004997253418,       "rot": 321.75384521484375,      
+    "type": "VitalsMonitorAndSensors",       "ObjectSpecificValues": [         {          
+    "name": "SwitchAlarm",           "value": 0         }       ]     }   ],   "Tasks":
+    [     {       "name": "Dilude dopamine",       "WithPrevious": false,       "Completed":
+    false,       "Score": 0,       "Conditions": [         {           "items": [            
+    {               "Value": 20,               "Name": "Dopamine",              
+    "Condition": "Equal"             },             {               "Value": 50,              
+    "Name": "Solanine",               "Condition": "Equal"             }          
+    ],           "targetIDs": [             7           ]         }       ],      
+    "TimeLimit": -1,       "OnTimeout": 0     },     {       "name": "Connect the
+    vitals monitor",       "WithPrevious": false,       "Completed": false,      
+    "Score": 0,       "Conditions": [         {           "items": [            
+    {               "Value": 1,               "Name": "HR/ECG",               "Condition":
+    "Equal"             },             {               "Value": 1,              
+    "Name": "Temp",               "Condition": "Equal"             },            
+    {               "Value": 1,               "Name": "BloodPressureHigh",              
+    "Condition": "Equal"             },             {               "Value": 1,              
+    "Name": "BloodPressureLow",               "Condition": "Equal"             },            
+    {               "Value": 1,               "Name": "O2Saturation",              
+    "Condition": "Equal"             },             {               "Value": 1,              
+    "Name": "ResprirationRate",               "Condition": "Equal"             },            
+    {               "Value": 1,               "Name": "NasalCannula",              
     "Condition": "Equal"             }           ],           "targetIDs": [            
     7           ]         }       ],       "TimeLimit": -1,       "OnTimeout": 0    
     }   ] }'
@@ -9564,7 +9585,7 @@ MonoBehaviour:
   - {fileID: 7928592060728120384}
   - {fileID: 8985661049232314164}
   Tasks:
-  - name: Dilude dopamine
+  - name: Dilute dopamine
     WithPrevious: 0
     Completed: 0
     Score: 0

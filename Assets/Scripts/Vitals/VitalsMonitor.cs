@@ -37,7 +37,9 @@ public class VitalsMonitor : MonoBehaviour
             VitalValues[i].Text.text = VitalValues[i].Value.ToString(VitalValues[i].OutputFormat);
             if(DataInterface != null)
                 DataInterface.SendDataItem(VitalValues[i].Name, VitalValues[i].Connected ? 1 : 0);
+            Debug.Log("{ \n \"name\": \"" + VitalValues[i].Name + "\",\n \"value\": " + (int)VitalValues[i].Value + "\n },");
         }
+        
     }
 
     //changes a given vital value linearly
@@ -124,6 +126,19 @@ public class VitalsMonitor : MonoBehaviour
                 AlarmImage.gameObject.SetActive(false);
             }
         }
+    }
+
+    public void ChangeFromSensor(string name, int value)
+    {
+        for(int i = 0; i < VitalValues.Length; i++)
+        {
+            if(name == VitalValues[i].Name)
+            {
+                VitalValues[i].Value = value;
+                return;
+            }
+        }
+        Debug.LogError("Value " + name + " not found on the monitor");
     }
 
     public void Connect(int n)
