@@ -13,6 +13,7 @@ public class Syringe : MonoBehaviour
     [SerializeField] InjectionManager Manager;
     [SerializeField] Camera Head;
     [SerializeField] GameObject InnerPart;
+    [SerializeField] GameObject Pomp;
     [SerializeField] float MaxInnerPartDisplacement;
     [SerializeField] int SyringeSensitivity;
     [SerializeField] int SyringeCapacity;
@@ -29,12 +30,15 @@ public class Syringe : MonoBehaviour
     bool pushing;
     float totalSubstance;
     Vector3 innerPartPositionInit;
+    
     Dictionary<string, float> ingredients;
     public Injection Lable { get; private set; }
 
+    
     void Awake()
     {
         innerPartPositionInit = InnerPart.transform.localPosition;
+
         ingredients = new Dictionary<string, float>();
         med = null;
         if (!setupInInspector)
@@ -103,27 +107,31 @@ public class Syringe : MonoBehaviour
 
     }
 
-    public void Empty()
+    public void Empty(float time)
     {
-        if(totalSubstance != 0)
+        Pomp.transform.parent = InnerPart.transform;
+        if (totalSubstance != 0)
         {
-            StartCoroutine(EmptyingAnimation());
+            StartCoroutine(EmptyingAnimation(time));
         }
     }
 
-    IEnumerator EmptyingAnimation()
+    IEnumerator EmptyingAnimation(float time)
     {
         ingredients = new Dictionary<string, float>();
-        for (; totalSubstance > 0; totalSubstance -= Time.deltaTime * SyringeSensitivity)
+        float initValue = totalSubstance;
+        for (; totalSubstance > 0; totalSubstance -= Time.deltaTime / time * initValue)
         {
             InnerPart.transform.localPosition =
                 new Vector3(innerPartPositionInit.x,
                 Mathf.Lerp(innerPartPositionInit.y, innerPartPositionInit.y - MaxInnerPartDisplacement, totalSubstance / SyringeCapacity),
                 innerPartPositionInit.z);
+
             yield return 0;
         }
         totalSubstance = 0;
         InnerPart.transform.localPosition = innerPartPositionInit;
+
     }
 
     // Update is called once per frame

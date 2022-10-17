@@ -249,7 +249,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5839741580292810273}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0.089, z: -3.330669e-18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -346,7 +346,6 @@ GameObject:
   - component: {fileID: 9037163771738096089}
   - component: {fileID: 8512265354180483937}
   - component: {fileID: 8512265354180483936}
-  - component: {fileID: 818556067924591874}
   - component: {fileID: 8512265354180483940}
   - component: {fileID: 8512265354180483942}
   - component: {fileID: 8512265354180483941}
@@ -357,8 +356,8 @@ GameObject:
   - component: {fileID: 3148744991086824738}
   - component: {fileID: 1694859928315181988}
   - component: {fileID: 2113299403181542047}
-  - component: {fileID: 5212913761028413375}
   - component: {fileID: -3069144020334438106}
+  - component: {fileID: 7861938171616032520}
   m_Layer: 0
   m_Name: Spritze
   m_TagString: Untagged
@@ -373,7 +372,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8512265354180483939}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0.7071068, y: 0.7071068, z: 0, w: 0}
   m_LocalPosition: {x: 3.1585, y: 0.863, z: 1.5401}
   m_LocalScale: {x: 0.06, y: 0.06, z: 0.060000014}
   m_Children:
@@ -381,7 +380,7 @@ Transform:
   - {fileID: 5678319630627606685}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 90}
 --- !u!136 &8512265354180483937
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -412,18 +411,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &818556067924591874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8512265354180483939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c522bd7d48c35c346bbea77c856dec7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8512265354180483940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -502,6 +489,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 7861938171616032520}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onRelease:
     m_PersistentCalls:
       m_Calls:
@@ -516,6 +515,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7861938171616032520}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
   onSqueeze:
     m_PersistentCalls:
@@ -900,13 +911,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43bcfb289870dd74aa8dc82f518d58b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setupInInspector: 0
   Manager: {fileID: 0}
   Head: {fileID: 0}
   InnerPart: {fileID: 4860282050037492059}
+  Pomp: {fileID: 0}
   MaxInnerPartDisplacement: 1.5
-  SyringeSensitivity: 1
-  SyringeCapacity: 0
+  SyringeSensitivity: 7
+  SyringeCapacity: 100
   OnRequirementsMet:
     m_PersistentCalls:
       m_Calls:
@@ -1026,24 +1037,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5212913761028413375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8512265354180483939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d53ad83f22f55c439773bada6829709, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LeftEvents:
-  - {fileID: 8512265354180483943}
-  - {fileID: 8512265354180483944}
-  RightEvents:
-  - {fileID: 1694859928315181988}
-  - {fileID: 2113299403181542047}
 --- !u!114 &-3069144020334438106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1058,6 +1051,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TemporalOffset: 2
   TimeToGoBack: 1
+--- !u!114 &7861938171616032520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8512265354180483939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 935aaf7da50abf94697c8d70a7a71efe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ignoreMe: 0
+  instantPull: 1
+  grabType: 0
+  archMultiplier: 0.6
+  gravitationVelocity: 1
+  rotate: 1
+  rotationSpeed: 1
+  ignoreHighlights: 1
+  targetedMaterial: {fileID: 0}
+  selectedMaterial: {fileID: 0}
+  showEvents: 1
+  OnPull:
+    m_PersistentCalls:
+      m_Calls: []
+  StartTargeting:
+    m_PersistentCalls:
+      m_Calls: []
+  StopTargeting:
+    m_PersistentCalls:
+      m_Calls: []
+  StartSelecting:
+    m_PersistentCalls:
+      m_Calls: []
+  StopSelecting:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8948215889411406389
 GameObject:
   m_ObjectHideFlags: 0
