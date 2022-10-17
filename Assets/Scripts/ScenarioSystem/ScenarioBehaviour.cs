@@ -21,7 +21,7 @@ namespace ScenarioSystem
             Objects = new GameObject[ScenarioInfo.Objects.Length];
             foreach (Obj item in ScenarioInfo.Objects)
             {
-                GameObject Temp = Instantiate(Resources.Load("Prefabs/ConstructorItems/"+item.type)) as GameObject;
+                GameObject Temp = Instantiate(Resources.Load("Prefabs/Constructor/"+item.type)) as GameObject;
                 if (Temp == null)
                 {
                     Debug.Log("Prefabs/ConstructorItems/" + item.type + " does not exist");
