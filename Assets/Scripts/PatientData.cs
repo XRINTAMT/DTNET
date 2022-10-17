@@ -12,12 +12,10 @@ public class PatientData : MonoBehaviour
     [SerializeField] TaskSpecificValues DataInterface;
     [SerializeField] Dictionary<string, Sensor> SubscriberSensors;
 
-    void Awake()
+    void Start()
     {
-        for (int i = 0; i < VitalValues.Count; i++)
-        {
-            VitalValues = DataInterface.GetDataItem();
-        }
+        VitalValues = DataInterface.GetDataItem();
+        SubscriberSensors = new Dictionary<string, Sensor>();
     }
 
     //changes a given vital value linearly

@@ -137,8 +137,11 @@ public class Syringe : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DataInterface.TryGetItem("SyringeCapacity", ref SyringeCapacity);
-        DataInterface.TryGetItem("SyringeSensitivity", ref SyringeSensitivity);
+        if (!setupInInspector)
+        {
+            DataInterface.TryGetItem("SyringeCapacity", ref SyringeCapacity);
+            DataInterface.TryGetItem("SyringeSensitivity", ref SyringeSensitivity);
+        }
         if (pulling)
         {
             float pullAmount = Mathf.Min(med.Amount, Time.deltaTime * SyringeSensitivity, SyringeCapacity - totalSubstance);

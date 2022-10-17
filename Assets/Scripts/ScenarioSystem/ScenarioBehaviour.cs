@@ -31,6 +31,10 @@ namespace ScenarioSystem
                     Temp.transform.position = new Vector3(item.x, item.y, item.z);
                     Temp.transform.rotation = Quaternion.Euler(Temp.transform.rotation.eulerAngles.x, item.rot, Temp.transform.rotation.eulerAngles.z);
                     TaskSpecificValues Values = Temp.GetComponent<TaskSpecificValues>();
+                    if (Values == null)
+                    {
+                        Debug.LogError(item.type + " does not have TaskSpecificValues");
+                    }
                     if(item.ObjectSpecificValues != null)
                     {
                         foreach (CustomField field in item.ObjectSpecificValues)

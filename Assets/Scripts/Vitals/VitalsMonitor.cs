@@ -29,7 +29,7 @@ public class VitalsMonitor : MonoBehaviour
     [SerializeField] TaskSpecificValues DataInterface;
     private Coroutine AlarmCoroutine;
 
-    void Awake()
+    void Start()
     {
         SwitchAlarm(FireAlarmOnStart);
         for (int i = 0; i < VitalValues.Length; i++)
@@ -37,7 +37,7 @@ public class VitalsMonitor : MonoBehaviour
             VitalValues[i].Text.text = VitalValues[i].Value.ToString(VitalValues[i].OutputFormat);
             if(DataInterface != null)
                 DataInterface.SendDataItem(VitalValues[i].Name, VitalValues[i].Connected ? 1 : 0);
-            Debug.Log("{ \n \"name\": \"" + VitalValues[i].Name + "\",\n \"value\": " + (int)VitalValues[i].Value + "\n },");
+            //Debug.Log("{ \n \"name\": \"" + VitalValues[i].Name + "\",\n \"value\": " + (int)VitalValues[i].Value + "\n },");
         }
         
     }

@@ -13,13 +13,22 @@ public class SensorSocket : MonoBehaviour
 
     public void AttachSensor()
     {
+        StartCoroutine(WaitForSensor());
+    }
+
+    IEnumerator WaitForSensor()
+    {
+        yield return 0;
         Sensor toAttach = GetComponentInChildren<Sensor>();
         if (toAttach == null)
         {
             Debug.LogError("No sensor found!");
-            return;
         }
-        patient.Subscribe(toAttach);
+        else
+        {
+            patient.Subscribe(toAttach);
+        }
+        
     }
     
     void Update()

@@ -23,6 +23,7 @@ public class Sensor : MonoBehaviour
         for(int i = 0; i < ports.Length; i++)
         {
             Monitor.Connect(ports[i]);
+            Debug.Log("Connecting port " + ports[i]);
         }
     }
 
