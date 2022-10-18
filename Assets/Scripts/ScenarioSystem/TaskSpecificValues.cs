@@ -62,14 +62,9 @@ namespace ScenarioSystem
 
         public void Update()
         {
-            
-            foreach(string key in Changes.Keys)
-            {
-                Debug.Log(key + " " + Changes[key]);
-            }
             foreach (string key in Values.Keys)
             {
-                Debug.Log(key + " " + Values[key]);
+                Debug.Log(gameObject.name + ": " + key + " " + Values[key]);
             }
             
         }

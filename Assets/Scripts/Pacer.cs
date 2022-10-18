@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ScenarioTaskSystem;
+using ScenarioSystem;
 
 public class Pacer : MonoBehaviour
 {
-    [SerializeField] PatientData Patient;
+    [SerializeField] TaskSpecificValues DataInterface;
     [SerializeField] VitalsMonitor Monitor;
     [SerializeField] Knob Output;
     [SerializeField] Knob Pace;
-    [SerializeField] float[] AimVitals;
+    [SerializeField] Dictionary<string, int> AimVitals;
     [SerializeField] float AimPace;
+    [SerializeField] Sensor Pad;
+    PatientData Patient;
     float AimOutput;
-    float[] Vitals;
+    Dictionary<string, int> Vitals;
     float maxOutputDiff;
     float maxPaceDiff;
     float paceValue;
@@ -26,16 +29,17 @@ public class Pacer : MonoBehaviour
 
     public void StartPacing()
     {
-        AimOutput = ((int)Patient.weight / 10) * 10;
+        Patient = Pad.patient;
+        AimOutput = ((int)Monitor.GetValue(5) / 10) * 10;
+        AimVitals = DataInterface.GetDataItem();
         maxOutputDiff = Mathf.Max(Output.maxValue - AimOutput, AimOutput - Output.minValue);
         maxPaceDiff = Mathf.Max(Pace.maxValue - AimPace, AimPace - Pace.minValue);
-        Vitals = new float[Monitor.NumberOfVitalValues()];
-        for(int i = 0; i < Vitals.Length; i++)
+        Vitals = new Dictionary<string,int>();
+        foreach(string key in Patient.Values())
         {
-            Vitals[i] = Monitor.GetValue(i);
+            Vitals[key] = Patient.GetValue(key);
         }
         pacing = true;
-
     }
 
     public void OnValueChanged(int id, float value)
@@ -50,17 +54,19 @@ public class Pacer : MonoBehaviour
         {
             paceValue = value;
         }
-        for (int i = 0; i < AimVitals.Length; i++)
+        foreach (string key in Patient.Values())
         {
             float score = 1;
             score *= 1 - (Mathf.Abs(AimPace - paceValue) / maxPaceDiff);
             score *= 1 - (Mathf.Abs(AimOutput - outputValue) / maxOutputDiff);
-            Monitor.ChangeValue(i, Mathf.Lerp(Vitals[i], AimVitals[i], score), 1);
+            Patient.ChangeValue(key, (int)Mathf.Lerp(Vitals[key], AimVitals[key], score), 1);
             Debug.Log(score);
-            if(score == 1)
+            if (score == 1)
             {
-                if(TryGetComponent<Task>(out Task task))
+                Debug.Log("PatientCured");
+                if (TryGetComponent<ScenarioTaskSystem.Task>(out ScenarioTaskSystem.Task task))
                 {
+                    
                     task.Complete();
                 }
             }

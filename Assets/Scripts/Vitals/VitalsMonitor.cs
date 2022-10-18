@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using ScenarioTaskSystem;
 using ScenarioSystem;
 //using static UnityEngine.Rendering.DebugUI;
@@ -27,6 +28,7 @@ public class VitalsMonitor : MonoBehaviour
     [SerializeField] float AlarmInterval;
     [SerializeField] bool FireAlarmOnStart;
     [SerializeField] TaskSpecificValues DataInterface;
+    [SerializeField] UnityEvent OnAllConnected;
     private Coroutine AlarmCoroutine;
 
     void Start()
@@ -161,6 +163,7 @@ public class VitalsMonitor : MonoBehaviour
         {
             t.Complete();
         }
+        OnAllConnected.Invoke();
     }
 
     public float GetValue(int ID)

@@ -6,8 +6,6 @@ using ScenarioSystem;
 
 public class PatientData : MonoBehaviour
 {
-    [field: SerializeField] public float weight { private set; get; }
-
     [SerializeField] Dictionary<string, int> VitalValues;
     [SerializeField] TaskSpecificValues DataInterface;
     [SerializeField] Dictionary<string, Sensor> SubscriberSensors;
@@ -15,6 +13,10 @@ public class PatientData : MonoBehaviour
     void Start()
     {
         VitalValues = DataInterface.GetDataItem();
+        foreach(string key in VitalValues.Keys)
+        {
+            DataInterface.SendDataItem(key, VitalValues[key]);
+        }
         SubscriberSensors = new Dictionary<string, Sensor>();
     }
 
@@ -30,6 +32,7 @@ public class PatientData : MonoBehaviour
         }
         VitalValues[id] = toValue;
         SubscriberSensors[id].SendData(id, VitalValues[id]);
+        DataInterface.SendDataItem(id, VitalValues[id]);
     }
 
     public void ChangeValue(string id, int toValue, float interval)
@@ -45,9 +48,15 @@ public class PatientData : MonoBehaviour
         return VitalValues.Count;
     }
 
-    public float GetValue(string ID)
+    public int GetValue(string ID)
     {
         return VitalValues[ID];
+    }
+
+    public string[] Values()
+    {
+        Debug.Log(VitalValues.Keys.ToString());
+        return VitalValues.Keys.ToString().Split(',');;
     }
 
     public void Subscribe(Sensor Subscriber)
