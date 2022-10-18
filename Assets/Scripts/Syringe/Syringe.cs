@@ -31,7 +31,7 @@ public class Syringe : MonoBehaviour
     float totalSubstance;
     Vector3 innerPartPositionInit;
     
-    Dictionary<string, float> ingredients;
+    public Dictionary<string, float> ingredients { private set; get;}
     public Injection Lable { get; private set; }
 
     
