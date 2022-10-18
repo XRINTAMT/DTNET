@@ -9,9 +9,14 @@ public class PatientData : MonoBehaviour
     [SerializeField] Dictionary<string, int> VitalValues;
     [SerializeField] TaskSpecificValues DataInterface;
     [SerializeField] Dictionary<string, Sensor> SubscriberSensors;
+    [SerializeField] bool UseConstructor = true;
 
     void Start()
     {
+        if (!UseConstructor)
+        {
+            return;
+        }
         VitalValues = DataInterface.GetDataItem();
         foreach(string key in VitalValues.Keys)
         {
@@ -23,20 +28,27 @@ public class PatientData : MonoBehaviour
     //changes a given vital value linearly
     IEnumerator ChangeVitalValue(string id, int toValue, float interval)
     {
-        int initialVal = VitalValues[id];
-        for (float i = 0; i < 1; i += Time.deltaTime / interval)
+        if (UseConstructor)
         {
-            VitalValues[id] = (int)Mathf.Lerp(initialVal, toValue, i);
+            int initialVal = VitalValues[id];
+            for (float i = 0; i < 1; i += Time.deltaTime / interval)
+            {
+                VitalValues[id] = (int)Mathf.Lerp(initialVal, toValue, i);
+                SubscriberSensors[id].SendData(id, VitalValues[id]);
+                yield return 0;
+            }
+            VitalValues[id] = toValue;
             SubscriberSensors[id].SendData(id, VitalValues[id]);
-            yield return 0;
+            DataInterface.SendDataItem(id, VitalValues[id]);
         }
-        VitalValues[id] = toValue;
-        SubscriberSensors[id].SendData(id, VitalValues[id]);
-        DataInterface.SendDataItem(id, VitalValues[id]);
     }
 
     public void ChangeValue(string id, int toValue, float interval)
     {
+        if (!UseConstructor)
+        {
+            return;
+        }
         if (VitalValues.ContainsKey(id))
         {
             StartCoroutine(ChangeVitalValue(id, toValue, interval));
@@ -55,6 +67,10 @@ public class PatientData : MonoBehaviour
 
     public void Subscribe(Sensor Subscriber)
     {
+        if (!UseConstructor)
+        {
+            return;
+        }
         for (int i = 0; i < Subscriber.ValuesScanned.Length; i++)
         {
             if (VitalValues.ContainsKey(Subscriber.ValuesScanned[i]))
@@ -72,7 +88,11 @@ public class PatientData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach(string val in VitalValues.Keys)
+        if (!UseConstructor)
+        {
+            return;
+        }
+        foreach (string val in VitalValues.Keys)
         {
             int temp = 0;
             if (DataInterface.TryGetItem(val, ref temp))
