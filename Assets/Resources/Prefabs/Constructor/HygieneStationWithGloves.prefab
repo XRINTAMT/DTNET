@@ -159,6 +159,7 @@ GameObject:
   - component: {fileID: 3144946993274850439}
   - component: {fileID: 3144946993274850432}
   - component: {fileID: 6359793883921769495}
+  - component: {fileID: 686769336094620446}
   m_Layer: 0
   m_Name: WaterValve
   m_TagString: Untagged
@@ -272,7 +273,7 @@ MonoBehaviour:
   throwPower: 1
   jointBreakForce: 3500
   showAdvancedSettings: 1
-  makeChildrenGrabbable: 1
+  makeChildrenGrabbable: 0
   grabPriorityWeight: 1
   ignoreReleaseTime: 0.5
   heldPositionOffset: {x: 0, y: 0, z: 0}
@@ -416,6 +417,64 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &686769336094620446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3144946993274850434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf4e711b062ea3f4e9b98bb216629994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oneHanded: 1
+  handType: 0
+  exitTriggerRelease: 1
+  exitTriggerUnsqueeze: 1
+  HandEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3144946993274850438}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  HandExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3144946993274850438}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HandGrab:
+    m_PersistentCalls:
+      m_Calls: []
+  HandRelease:
+    m_PersistentCalls:
+      m_Calls: []
+  HandSqueeze:
+    m_PersistentCalls:
+      m_Calls: []
+  HandUnsqueeze:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3144946993657293369
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,6 +846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7067455373270131224, guid: c5b6a75eaab173046bada82498fc0875, type: 3}
+    - {fileID: 114940694535258831, guid: c5b6a75eaab173046bada82498fc0875, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c5b6a75eaab173046bada82498fc0875, type: 3}
 --- !u!4 &6184782270544520665 stripped
 Transform:

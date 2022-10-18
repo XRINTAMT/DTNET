@@ -34,10 +34,10 @@ public class test : MonoBehaviour {
 
 		this._size=GUILayout.HorizontalSlider(this._size,0.1f,1,GUILayout.Width(100));
 
-		if(GUILayout.Button("remove",EditorStyles.miniButton,GUILayout.Width(100))) {
+		//if(GUILayout.Button("remove",EditorStyles.miniButton,GUILayout.Width(100))) {
 
-			this._emit=!this._emit;
-		}
+		//	this._emit=!this._emit;
+		//}
 
 		GUILayout.FlexibleSpace();
 	}
