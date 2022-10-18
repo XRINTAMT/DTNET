@@ -53,12 +53,6 @@ public class PatientData : MonoBehaviour
         return VitalValues[ID];
     }
 
-    public string[] Values()
-    {
-        Debug.Log(VitalValues.Keys.ToString());
-        return VitalValues.Keys.ToString().Split(',');;
-    }
-
     public void Subscribe(Sensor Subscriber)
     {
         for (int i = 0; i < Subscriber.ValuesScanned.Length; i++)

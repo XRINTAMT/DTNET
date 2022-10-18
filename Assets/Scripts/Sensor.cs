@@ -7,8 +7,6 @@ public class Sensor : MonoBehaviour
     [SerializeField] VitalsMonitor Monitor;
     [field: SerializeField] public string[] ValuesScanned { private set; get; }
     [SerializeField] int[] ports;
-    public bool AffectsPatient = false;
-    [field: SerializeField] public PatientData patient { private set; get; }
 
     void Start()
     {
@@ -26,10 +24,6 @@ public class Sensor : MonoBehaviour
         {
             Monitor.Connect(ports[i]);
             Debug.Log("Connecting port " + ports[i]);
-            if (AffectsPatient)
-            {
-                patient = GetComponentInParent<PatientData>();
-            }
         }
     }
 

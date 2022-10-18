@@ -10,12 +10,9 @@ public class Pacer : MonoBehaviour
     [SerializeField] VitalsMonitor Monitor;
     [SerializeField] Knob Output;
     [SerializeField] Knob Pace;
-    [SerializeField] Dictionary<string, int> AimVitals;
     [SerializeField] float AimPace;
     [SerializeField] Sensor Pad;
-    PatientData Patient;
-    float AimOutput;
-    Dictionary<string, int> Vitals;
+    [SerializeField] float AimOutput;
     float maxOutputDiff;
     float maxPaceDiff;
     float paceValue;
@@ -24,21 +21,15 @@ public class Pacer : MonoBehaviour
 
     void Start()
     {
-
+        DataInterface.SendDataItem("Output", 0);
+        DataInterface.SendDataItem("Pace", 60);
     }
 
     public void StartPacing()
     {
-        Patient = Pad.patient;
-        AimOutput = ((int)Monitor.GetValue(5) / 10) * 10;
-        AimVitals = DataInterface.GetDataItem();
+        //AimOutput = ((int)Monitor.GetValue(5) / 10) * 10;
         maxOutputDiff = Mathf.Max(Output.maxValue - AimOutput, AimOutput - Output.minValue);
         maxPaceDiff = Mathf.Max(Pace.maxValue - AimPace, AimPace - Pace.minValue);
-        Vitals = new Dictionary<string,int>();
-        foreach(string key in Patient.Values())
-        {
-            Vitals[key] = Patient.GetValue(key);
-        }
         pacing = true;
     }
 
@@ -49,29 +40,27 @@ public class Pacer : MonoBehaviour
         if (id == 0)
         {
             outputValue = value;
+            DataInterface.SendDataItem("Output", (int)value);
         }
         else
         {
             paceValue = value;
+            DataInterface.SendDataItem("Pace", (int)value);
         }
-        foreach (string key in Patient.Values())
+        float score = 1;
+        score *= 1 - (Mathf.Abs(AimPace - paceValue) / maxPaceDiff);
+        score *= 1 - (Mathf.Abs(AimOutput - outputValue) / maxOutputDiff);
+        Debug.Log(score);
+        if (score == 1)
         {
-            float score = 1;
-            score *= 1 - (Mathf.Abs(AimPace - paceValue) / maxPaceDiff);
-            score *= 1 - (Mathf.Abs(AimOutput - outputValue) / maxOutputDiff);
-            Patient.ChangeValue(key, (int)Mathf.Lerp(Vitals[key], AimVitals[key], score), 1);
-            Debug.Log(score);
-            if (score == 1)
+            Debug.Log("PatientCured");
+            if (TryGetComponent<ScenarioTaskSystem.Task>(out ScenarioTaskSystem.Task task))
             {
-                Debug.Log("PatientCured");
-                if (TryGetComponent<ScenarioTaskSystem.Task>(out ScenarioTaskSystem.Task task))
-                {
-                    
-                    task.Complete();
-                }
+                task.Complete();
             }
         }
     }
+
 
     // Update is called once per frame
     void Update()
