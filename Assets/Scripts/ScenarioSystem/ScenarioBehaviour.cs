@@ -51,6 +51,10 @@ namespace ScenarioSystem
                 {
                     checker.ConnectToObjectsBase(this);
                 }
+                foreach (Command command in task.OnComplete)
+                {
+                    command.ConnectToObjectsBase(this);
+                }
             }
             //Debug.Log(JsonUtility.ToJson(IJ));
         }

@@ -32,15 +32,38 @@ namespace ScenarioSystem
     }
 
     [Serializable]
-    public class Task
+    class Task
     {
         [SerializeField] string name;
         public bool WithPrevious;
         public bool Completed;
         public int Score;
         public ConditionChecker[] Conditions;
+        public Command[] OnComplete;
         public int TimeLimit; // -1 for no limit
-        public int OnTimeout; // 0 - complete with 0 score, 1 - load the latest save;
+        public int OnTimeout; // 0 - complete with 0 score, 1 - load the latest save
+    }
+
+    [Serializable]
+    class Command
+    {
+        public CustomField[] Settings;
+        public int ObjectID;
+        private ScenarioBehaviour scenario;
+        private TaskSpecificValues data;
+        public void ConnectToObjectsBase(ScenarioBehaviour connectTo)
+        {
+            scenario = connectTo;
+            data = scenario.AccessValues(ObjectID);
+        }
+
+        public void Completed()
+        {
+            for(int i = 0; i < Settings.Length; i++)
+            {
+                data.SendDataSystem(Settings[i].name, Settings[i].value);
+            }
+        }
     }
 
     [Serializable]
