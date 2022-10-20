@@ -10,11 +10,14 @@ namespace ScenarioSystem
         GameObject[] Objects;
         [SerializeField]
         Room ScenarioInfo;
+        [SerializeField] float RefreshTime;
+        float Refresh;
+        
 
         public void Awake()
         {
+            Refresh = 0;
             ScenarioInfo = JsonUtility.FromJson<Room>(ScenarioJSON);
-
             Transform playerTransform = Object.FindObjectOfType<PlayerObject>().transform;
             playerTransform.position = new Vector3(ScenarioInfo.PlayerX, ScenarioInfo.PlayerY, ScenarioInfo.PlayerZ);
             playerTransform.rotation = Quaternion.Euler(0, ScenarioInfo.PlayerRot, 0);
@@ -61,6 +64,12 @@ namespace ScenarioSystem
 
         public void Update()
         {
+            Refresh += Time.deltaTime;
+            if(Refresh > RefreshTime)
+            {
+                Refresh -= RefreshTime;
+
+            }
             /*
             foreach(Task task in Tasks)
             {
@@ -70,6 +79,22 @@ namespace ScenarioSystem
                 }
             }
             */
+        }
+
+        private void GoThroughTheScenario()
+        {
+            for(int i = 0; i < ScenarioInfo.Tasks.Length; i++)
+            {
+                if (ScenarioInfo.Tasks[i].Completed)
+                    continue;
+                foreach(ConditionChecker condition in ScenarioInfo.Tasks[i].Conditions)
+                {
+                    if (condition.Check())
+                    {
+
+                    }
+                }
+            }
         }
 
         public TaskSpecificValues AccessValues(int id)

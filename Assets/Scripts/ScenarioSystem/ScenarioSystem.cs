@@ -82,11 +82,12 @@ namespace ScenarioSystem
         TaskSpecificValues[] targets;
         private ScenarioBehaviour scenario;
 
-        public int Check()
+        public bool Check()
         {
             for (int j = 0; j < targets.Length; j++)
             {
-                for (int i = 0; i < items.Length; i++)
+                int i;
+                for (i = 0; i < items.Length; i++)
                 {
                     int value = -1;
                     targets[i].TryGetSystem(items[i].Name, ref value);
@@ -95,35 +96,36 @@ namespace ScenarioSystem
                         case ("More"):
                             if (value <= items[i].Value)
                             {
-                                i = -1;
-                                j++;
                                 continue;
                             }
                             break;
                         case ("Less"):
                             if (value >= items[i].Value)
                             {
-                                i = -1;
-                                j++;
                                 continue;
                             }
                             break;
                         case ("Equal"):
                             if (value != items[i].Value)
                             {
-                                i = -1;
-                                j++;
+                                continue;
+                            }
+                            break;
+                        case ("NotEqual"):
+                            if (value == items[i].Value)
+                            {
                                 continue;
                             }
                             break;
                     }
-                    if(i == items.Length)
-                    {
-                        return 1;
-                    }
+                    break;
+                }
+                if (i == items.Length)
+                {
+                    return true;
                 }
             }
-            return 0;
+            return false;
         }
 
         public void ConnectToObjectsBase(ScenarioBehaviour connectTo)
