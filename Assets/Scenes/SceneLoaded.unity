@@ -9135,8 +9135,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScenarioJSON: '{   "RoomWidth": 7,   "RoomHeight": 5,   "PlayerX": 1.0740000009536743,  
-    "PlayerY": 0,   "PlayerZ": -0.7119999527931213,   "PlayerRot": 62.300025939941406,  
-    "Objects": [     {       "id": 0,       "x": 3.40339994430542,       "y": 1.2100000381469727,      
+    "PlayerY": 0,   "PlayerZ": 2,   "PlayerRot": 62.300025939941406,   "Objects":
+    [     {       "id": 0,       "x": 3.40339994430542,       "y": 1.2100000381469727,      
     "z": -0.03600001335144043,       "rot": 0,       "type": "AlarmButton"     },    
     {       "id": 1,       "x": 2.0759999752044678,       "y": 0.02399998903274536,      
     "z": 0.49999964237213135,       "rot": 270,       "type": "BED"     },     {      
@@ -9168,17 +9168,19 @@ MonoBehaviour:
     0.022000610828399658,       "z": -1.0260004997253418,       "rot": 321.75384521484375,      
     "type": "VitalsMonitorAndSensors",       "ObjectSpecificValues": [         {          
     "name": "SwitchAlarm",           "value": 0         }       ]     }   ],   "Tasks":
-    [     {       "name": "Dilude dopamine",       "WithPrevious": false,       "Completed":
+    [     {       "name": "Dilute dopamine",       "WithPrevious": false,       "Completed":
     false,       "Score": 0,       "Conditions": [         {           "items": [            
     {               "Value": 20,               "Name": "Dopamine",              
     "Condition": "Equal"             },             {               "Value": 50,              
     "Name": "Solanine",               "Condition": "Equal"             }          
     ],           "targetIDs": [             7           ]         }       ],      
-    "TimeLimit": -1,       "OnTimeout": 0     },     {       "name": "Connect the
-    vitals monitor",       "WithPrevious": false,       "Completed": false,      
-    "Score": 0,       "Conditions": [         {           "items": [            
-    {               "Value": 1,               "Name": "HR/ECG",               "Condition":
-    "Equal"             },             {               "Value": 1,              
+    "OnComplete": [         {           "Settings": [             {              
+    "name": "SwitchAlarm",               "value": 1             }           ],          
+    "ObjectID": 9         }       ],       "TimeLimit": -1,       "OnTimeout": 0    
+    },     {       "name": "Connect the vitals monitor",       "WithPrevious": false,      
+    "Completed": false,       "Score": 0,       "Conditions": [         {          
+    "items": [             {               "Value": 1,               "Name": "HR/ECG",              
+    "Condition": "Equal"             },             {               "Value": 1,              
     "Name": "Temp",               "Condition": "Equal"             },            
     {               "Value": 1,               "Name": "BloodPressureHigh",              
     "Condition": "Equal"             },             {               "Value": 1,              
@@ -9188,8 +9190,10 @@ MonoBehaviour:
     "Name": "ResprirationRate",               "Condition": "Equal"             },            
     {               "Value": 1,               "Name": "NasalCannula",              
     "Condition": "Equal"             }           ],           "targetIDs": [            
-    7           ]         }       ],       "TimeLimit": -1,       "OnTimeout": 0    
-    }   ] }'
+    9           ]         }       ],       "OnComplete": [         {           "Settings":
+    [             {               "name": "SwitchAlarm",               "value": 0            
+    }           ],           "ObjectID": 9         }       ],       "TimeLimit":
+    -1,       "OnTimeout": 0     }   ] }'
   ScenarioInfo:
     RoomWidth: 0
     RoomHeight: 0
@@ -9199,6 +9203,7 @@ MonoBehaviour:
     PlayerRot: 0
     Objects: []
     Tasks: []
+  RefreshTime: 2
 --- !u!4 &1630497431
 Transform:
   m_ObjectHideFlags: 0
@@ -9594,6 +9599,46 @@ MonoBehaviour:
         Name: Solanine
         Condition: Equal
       targetIDs: 07000000
+    OnComplete:
+    - Settings:
+      - name: SwitchAlarm
+        value: 1
+      ObjectID: 9
+    TimeLimit: -1
+    OnTimeout: 0
+  - name: Connect the vitals monitor
+    WithPrevious: 1
+    Completed: 0
+    Score: 0
+    Conditions:
+    - items:
+      - Value: 1
+        Name: HR/ECG
+        Condition: Equal
+      - Value: 1
+        Name: Temp
+        Condition: Equal
+      - Value: 1
+        Name: BloodPressureHigh
+        Condition: Equal
+      - Value: 1
+        Name: BloodPressureLow
+        Condition: Equal
+      - Value: 1
+        Name: O2Saturation
+        Condition: Equal
+      - Value: 1
+        Name: ResprirationRate
+        Condition: Equal
+      - Value: 1
+        Name: NasalCannula
+        Condition: Equal
+      targetIDs: 09000000
+    OnComplete:
+    - Settings:
+      - name: SwitchAlarm
+        value: 0
+      ObjectID: 9
     TimeLimit: -1
     OnTimeout: 0
   PlayerTransform: {fileID: 5932141274520908245}
@@ -20182,7 +20227,7 @@ PrefabInstance:
     - target: {fileID: 4351774533914010778, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.074
+      value: 0.981
       objectReference: {fileID: 0}
     - target: {fileID: 4351774533914010778, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
@@ -20192,7 +20237,7 @@ PrefabInstance:
     - target: {fileID: 4351774533914010778, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.71199995
+      value: 3.467
       objectReference: {fileID: 0}
     - target: {fileID: 4351774533914010778, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}

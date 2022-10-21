@@ -34,7 +34,7 @@ namespace ScenarioSystem
     [Serializable]
     class Task
     {
-        [SerializeField] string name;
+        public string name;
         public bool WithPrevious;
         public bool Completed;
         public int Score;
@@ -86,38 +86,42 @@ namespace ScenarioSystem
         {
             for (int j = 0; j < targets.Length; j++)
             {
+                //Debug.Log("Checking values on " + targets[j].name);
                 int i;
                 for (i = 0; i < items.Length; i++)
                 {
                     int value = -1;
-                    targets[i].TryGetSystem(items[i].Name, ref value);
+                    targets[j].TryGetSystem(items[i].Name, ref value);
+                    //Debug.Log("Checking " + items[i].Name);
                     switch (items[i].Condition)
                     {
                         case ("More"):
-                            if (value <= items[i].Value)
+                            if (value > items[i].Value)
                             {
                                 continue;
                             }
                             break;
                         case ("Less"):
-                            if (value >= items[i].Value)
+                            if (value < items[i].Value)
                             {
                                 continue;
                             }
                             break;
                         case ("Equal"):
-                            if (value != items[i].Value)
-                            {
-                                continue;
-                            }
-                            break;
-                        case ("NotEqual"):
                             if (value == items[i].Value)
                             {
                                 continue;
                             }
                             break;
+                        case ("NotEqual"):
+                            if (value != items[i].Value)
+                            {
+                                continue;
+                            }
+                            break;
                     }
+                    //Debug.Log(items[i].Name + " did not meet the requirements");
+                    //Debug.Log(items[i].Name + " is " + value + " but should be " + items[i].Condition + " " + items[i].Value);
                     break;
                 }
                 if (i == items.Length)

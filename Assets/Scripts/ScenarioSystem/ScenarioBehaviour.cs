@@ -27,7 +27,7 @@ namespace ScenarioSystem
                 GameObject Temp = Instantiate(Resources.Load("Prefabs/Constructor/"+item.type)) as GameObject;
                 if (Temp == null)
                 {
-                    Debug.Log("Prefabs/ConstructorItems/" + item.type + " does not exist");
+                    Debug.LogError("Prefabs/ConstructorItems/" + item.type + " does not exist");
                 }
                 else
                 {
@@ -54,6 +54,7 @@ namespace ScenarioSystem
                 {
                     checker.ConnectToObjectsBase(this);
                 }
+                //Debug.Log(task.OnComplete);
                 foreach (Command command in task.OnComplete)
                 {
                     command.ConnectToObjectsBase(this);
@@ -68,7 +69,7 @@ namespace ScenarioSystem
             if(Refresh > RefreshTime)
             {
                 Refresh -= RefreshTime;
-
+                GoThroughTheScenario();
             }
             /*
             foreach(Task task in Tasks)
@@ -83,18 +84,61 @@ namespace ScenarioSystem
 
         private void GoThroughTheScenario()
         {
-            for(int i = 0; i < ScenarioInfo.Tasks.Length; i++)
+            for (int i = 0; i < ScenarioInfo.Tasks.Length; i++)
             {
                 if (ScenarioInfo.Tasks[i].Completed)
                     continue;
-                foreach(ConditionChecker condition in ScenarioInfo.Tasks[i].Conditions)
+                bool goOn = false;
+                if (ScenarioInfo.Tasks[i].Completed)
                 {
-                    if (condition.Check())
+                    goOn = true;
+                }
+                else
+                {
+                    //Debug.Log("Checking " + ScenarioInfo.Tasks[i].name);
+                    if (GoThroughTaskConditions(ScenarioInfo.Tasks[i]))
                     {
+                        goOn = true;
+                        //Debug.Log(ScenarioInfo.Tasks[i].name + " completed");
+                        foreach (Command command in ScenarioInfo.Tasks[i].OnComplete)
+                        {
+                            command.Completed();
+                        }
+                        ScenarioInfo.Tasks[i].Completed = true;
+                    }
+                    else
+                    {
+                        Debug.Log(ScenarioInfo.Tasks[i].name + " failed");
+                    }
 
+                }
+                if (!goOn)
+                {
+                    if (i + 1 < ScenarioInfo.Tasks.Length)
+                    {
+                        if (ScenarioInfo.Tasks[i + 1].WithPrevious)
+                        {
+                            goOn = true;
+                        }
                     }
                 }
+                if (!goOn)
+                {
+                    return;
+                }
             }
+        }
+
+        private bool GoThroughTaskConditions(Task task)
+        {
+            for (int i = 0; i < task.Conditions.Length; i++)
+            {
+                if (!task.Conditions[i].Check())
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public TaskSpecificValues AccessValues(int id)
