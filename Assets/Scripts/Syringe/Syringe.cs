@@ -103,8 +103,8 @@ public class Syringe : MonoBehaviour
 
     private void CheckCompletion()
     {
-        Lable = Manager.CheckCompletion(ingredients);
-
+        if(Manager!=null)
+            Lable = Manager.CheckCompletion(ingredients);
     }
 
     public void Empty(float time)
@@ -187,6 +187,10 @@ public class Syringe : MonoBehaviour
                         new Vector3(innerPartPositionInit.x,
                         Mathf.Lerp(innerPartPositionInit.y, innerPartPositionInit.y - MaxInnerPartDisplacement, totalSubstance / SyringeCapacity),
                         innerPartPositionInit.z);
+                }
+                foreach (string ingred in ingredients.Keys.ToList())
+                {
+                    DataInterface.SendDataItem(ingred, (int)ingredients[ingred]);
                 }
             }
         }
