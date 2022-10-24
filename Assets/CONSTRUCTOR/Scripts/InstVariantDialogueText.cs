@@ -15,6 +15,7 @@ public class InstVariantDialogueText : MonoBehaviour
         instVariant = Instantiate(gameObject, instPos.position, Quaternion.identity);
 
         instVariant.transform.parent = transform.parent;
+        instVariant.transform.localScale = new Vector3(1, 1, 1);
     }
     // Update is called once per frame
     void Update()
