@@ -7,7 +7,7 @@ using System;
 namespace ScenarioSystem
 {
     [Serializable]
-    struct Obj
+     public struct Obj
     {
         public int id;
         public float x, y, z, rot;
