@@ -14,7 +14,7 @@ public class ObjectPool : MonoBehaviour
 
     public void ChooseObj(int numberChoose) 
     {
-        spawnObject.ChooseObject(obj[numberChoose]);
+        //spawnObject.ChooseObject(obj[numberChoose]);
     }
     // Update is called once per frame
     void Update()

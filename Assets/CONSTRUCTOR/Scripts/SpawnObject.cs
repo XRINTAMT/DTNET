@@ -12,11 +12,13 @@ public class SpawnObject : MonoBehaviour
         
     }
 
-    public void ChooseObject(GameObject obj) 
+    public void ChooseObject(string obj) 
     {
-        ObjSpawn = obj;
+        ObjSpawn = Resources.Load("Prefabs/ConstructorEditor/" +obj) as GameObject;
+        Debug.Log("Prefabs/ConstructorEditor/" + obj);
+        Debug.Log(ObjSpawn);
     }
-    // Update is called once per frame
+
     void Update()
     {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
