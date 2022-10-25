@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+using DTNET.Actions;
+
 namespace DTNET.Handlers {
     public class TaskTrackingHandler : MonoBehaviour
     {
         public AllTaskCompletedUIHandler tasksCompletedCanvas;
+        [SerializeField] private VisualGuideHandler visualGuide;
 
         private int NumberOfTasks = 5;
         private int currentTaskOrder = 1;
@@ -30,6 +33,9 @@ namespace DTNET.Handlers {
             correctOrder.Add(referralMatchKey, 3);
             correctOrder.Add(materialsKey, 4);
             correctOrder.Add(glovesKey, 5);
+
+            Vector3 sinkPos = new Vector3(-2.811f,1.2f, -0.536f);
+            visualGuide.setPosition(sinkPos);
         }
 
         // Update is called once per frame
@@ -42,32 +48,40 @@ namespace DTNET.Handlers {
             Debug.Log("All tasks Completed!");
  
             tasksCompletedCanvas.Show(GetResults());
-            //cameraUI.DisplayMessage("Congratulations\nYou have completed all tasks");
         }
 
         public void HygienTaskCompleted() 
         {
             addToCompletedTasks(hygienKey);
+            Vector3 patientPos = new Vector3(2.122f, 1.013f, -0.723f);
+            visualGuide.setPosition(patientPos);
         }
 
         public void AskForPatientIDTaskCompleted() 
         {
             addToCompletedTasks(askIdKey);
+            Vector3 computerPos = new Vector3(-1.87f, 0.85f, 1.6f);
+            visualGuide.setPosition(computerPos);
         }
 
         public void CheckReferralTaskCompleted() 
         {
             addToCompletedTasks(referralMatchKey);
+            Vector3 materialPlacementPos = new Vector3(1.34f, 0.892f, -1.497f);
+            visualGuide.setPosition(materialPlacementPos);
         }
 
         public void CollectedAllMaterialsTaskCompleted()
         {
             addToCompletedTasks(materialsKey);
+            Vector3 glovesPos = new Vector3(0.896f, 0.852f, -1.5f);
+            visualGuide.setPosition(glovesPos);
         }
 
         public void PutOnGlovesTaskCompleted()
         {
             addToCompletedTasks(glovesKey);
+            visualGuide.hide();
         }
 
 
@@ -80,7 +94,6 @@ namespace DTNET.Handlers {
             } catch (System.Exception e)  
             {  
                 Debug.Log("Task already done: "+key);
-                //Debug.Log(e.Message);
             }
         }
 
