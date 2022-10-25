@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 
 using DTNET.Actions;
+using DTNET.Models;
 
 namespace DTNET.Handlers {
     public class TaskTrackingHandler : MonoBehaviour
@@ -36,6 +37,11 @@ namespace DTNET.Handlers {
 
             Vector3 sinkPos = new Vector3(-2.811f,1.2f, -0.536f);
             visualGuide.setPosition(sinkPos);
+
+            string selectedMode = GameMode.SelectedMode;
+            if (selectedMode == "Experience") {
+                visualGuide.hide();
+            }
         }
 
         // Update is called once per frame
