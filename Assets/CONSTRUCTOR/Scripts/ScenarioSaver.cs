@@ -16,6 +16,6 @@ public class ScenarioSaver : MonoBehaviour
     {
         Room SaveFile = new Room();
         SaveFile.Objects = Objects.GetData();
-        Debug.Log(JsonUtility.ToJson(SaveFile));
+        //Debug.Log(JsonUtility.ToJson(SaveFile));
     }
 }

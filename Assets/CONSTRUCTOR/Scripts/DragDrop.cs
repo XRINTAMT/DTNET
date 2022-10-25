@@ -47,15 +47,16 @@ public class DragDrop : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         //Vector3 newWorldPos = Camera.main.ScreenToWorldPoint(pos);
         //transform.position = pos;
 
-        if (Input.GetMouseButton(0) && pointerEnter)
+        if (Input.GetMouseButton(0) && pointerEnter && !DialogueEditor.moveObj)
         {
             startFollow = true;
-          
+            DialogueEditor.moveObj = true;
         }
         if (Input.GetMouseButtonUp(0) && pointerEnter)
         {
             startFollow = false;
             transform.position=new Vector3(transform.position.x, transform.position.y,0);
+            DialogueEditor.moveObj = false;
         }
 
         if (startFollow)

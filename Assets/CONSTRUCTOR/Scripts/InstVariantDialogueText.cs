@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InstVariantDialogueText : MonoBehaviour
 {
+    [SerializeField] GameObject prefabVariant;
     // Start is called before the first frame update
     void Start()
     {
@@ -11,8 +12,9 @@ public class InstVariantDialogueText : MonoBehaviour
     }
     public void ButtonInstVariant(Transform instPos)
     {
+        Debug.Log(66);
         GameObject instVariant;
-        instVariant = Instantiate(gameObject, instPos.position, Quaternion.identity);
+        instVariant = Instantiate(prefabVariant, instPos.position, Quaternion.identity);
 
         instVariant.transform.parent = transform.parent;
         instVariant.transform.localScale = new Vector3(1, 1, 1);
