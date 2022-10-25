@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using DTNET.Actions;
 using DTNET.Handlers;
 
 namespace DTNET.Tasks {
@@ -27,8 +28,8 @@ namespace DTNET.Tasks {
             if(hasNotBeenSelected) {
                 cameraUI.DisplayMessage("Next\nAsk Patient for ID");
                 hasNotBeenSelected = false;
+                //visualGuide.hide();
             }
         }
     }
-
 }
