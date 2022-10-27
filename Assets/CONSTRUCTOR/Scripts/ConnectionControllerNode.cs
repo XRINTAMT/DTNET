@@ -13,7 +13,7 @@ public class ConnectionControllerNode : MonoBehaviour
 
     public Transform ParentNode;
 
-    Transform connectedPoint;  
+    public Transform connectedPoint;  
     
     Vector3 startPos;
 
@@ -36,6 +36,7 @@ public class ConnectionControllerNode : MonoBehaviour
         startFollow = false;
         connected = false;
         onTrigger = false;
+        GetComponent<CircleCollider2D>().enabled = true;
     }
     void ChangeIndexPos() 
     {
@@ -55,8 +56,10 @@ public class ConnectionControllerNode : MonoBehaviour
         if (onTrigger)
         {
             connected = true;
-            transform.parent = connectedPoint;
+            transform.parent = connectedPoint.parent;
             transform.position = connectedPoint.position;
+
+            GetComponent<CircleCollider2D>().enabled = false;
    
             if (connectedPoint.GetChild(0).GetComponent<Image>() != null)
             {
@@ -110,13 +113,16 @@ public class ConnectionControllerNode : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        onTrigger = false;
-
-        if (connectedPoint.GetChild(0).GetComponent<Image>() !=null)
+        if (!connected)
         {
-            connectedPoint.GetChild(0).GetComponent<Image>().color = Color.grey;
+            onTrigger = false;
+
+            if (connectedPoint.GetChild(0).GetComponent<Image>() != null)
+            {
+                connectedPoint.GetChild(0).GetComponent<Image>().color = Color.grey;
+            }
         }
-      
+
     }
     void Update()
     {

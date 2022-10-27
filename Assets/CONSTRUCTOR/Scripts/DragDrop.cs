@@ -3,12 +3,12 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class DragDrop : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class DragDrop : MonoBehaviour/*, IPointerEnterHandler, IPointerExitHandler*/
 {
 
-    public float OffsetX;
-    public float OffsetY;
-    public float OffsetZ;
+    public float OffsetMoveX;
+    public float OffsetMoveY;
+    public float OffsetMoveZ;
 
 
 
@@ -20,24 +20,37 @@ public class DragDrop : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
       
     }
 
-    public void OnJoinFollow(GameObject obj) 
+
+    public void PointDown()
     {
-        obj.transform.parent = transform;
+        startFollow = true;
+        DialogueEditor.moveObj = true;
+
     }
-    public void OffJoinFollow(GameObject obj)
+    public void PointUp()
     {
-        obj.transform.parent = transform.parent;
+        startFollow = false;
+        DialogueEditor.moveObj = false;
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        pointerEnter = true;
-    }
+    //public void OnJoinFollow(GameObject obj) 
+    //{
+    //    obj.transform.parent = transform;
+    //}
+    //public void OffJoinFollow(GameObject obj)
+    //{
+    //    obj.transform.parent = transform.parent;
+    //}
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        pointerEnter = false;
-    }
+    //public void OnPointerEnter(PointerEventData eventData)
+    //{
+    //    pointerEnter = true;
+    //}
+
+    //public void OnPointerExit(PointerEventData eventData)
+    //{
+    //    pointerEnter = false;
+    //}
     void Update()
     {
         //var position = (Vector2)Input.mousePosition + (Vector2.up * verticalOffset) + (Vector2.left * horizontalOffset);
@@ -47,22 +60,24 @@ public class DragDrop : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         //Vector3 newWorldPos = Camera.main.ScreenToWorldPoint(pos);
         //transform.position = pos;
 
-        if (Input.GetMouseButton(0) && pointerEnter && !DialogueEditor.moveObj)
-        {
-            startFollow = true;
-            DialogueEditor.moveObj = true;
-        }
-        if (Input.GetMouseButtonUp(0) && pointerEnter)
-        {
-            startFollow = false;
-            transform.position=new Vector3(transform.position.x, transform.position.y,0);
-            DialogueEditor.moveObj = false;
-        }
+        //if (Input.GetMouseButton(0) && pointerEnter && !DialogueEditor.moveObj)
+        //{
+        //    startFollow = true;
+        //    DialogueEditor.moveObj = true;
+        //}
+        //if (Input.GetMouseButtonUp(0) && pointerEnter)
+        //{
+        //    startFollow = false;
+        //    transform.position=new Vector3(transform.position.x, transform.position.y,0);
+        //    DialogueEditor.moveObj = false;
+        //}
 
         if (startFollow)
         {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.y + OffsetZ));
-            transform.position = mousePosition;
+            var position = (Vector2)Input.mousePosition + (Vector2.up * OffsetMoveX) + (Vector2.left * OffsetMoveY);
+            transform.position = position;
+            //Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.y + OffsetZ));
+            //transform.position = mousePosition;
         }
 
         //pos = new Vector3(Input.mousePosition.x + verticalOffset, Input.mousePosition.y+horizontalOffset, 1) ;
