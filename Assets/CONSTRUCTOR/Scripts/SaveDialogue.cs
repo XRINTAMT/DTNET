@@ -5,20 +5,27 @@ using UnityEngine.UI;
 [System.Serializable]
 public class TextList
 {
-    public List<string> Text;
+    public List<string> Text = new List<string>();
 }
 [System.Serializable]
 public class NodeList
 {
-    public List<TextList> Nodes;
+    public List<TextList> Nodes = new List<TextList>();
 }
 
 public class SaveDialogue : MonoBehaviour
 {
+    TextList textList = new TextList();
+    NodeList nodeList = new NodeList();
 
-    public List<NodeList> Dialogues;
- 
-   
+    public int countNodes;
+
+    public List<NodeList> Dialogues = new List<NodeList>();
+
+
+
+    //ClickObject obj =new ClickObject();
+    //public List<ClickObject> te = new List<ClickObject>();
     void Start()
     {
         
@@ -28,5 +35,20 @@ public class SaveDialogue : MonoBehaviour
     void Update()
     {
         
+    }
+    public void ButtonSaveDialogue() 
+    {
+        //te.Add(obj);
+
+        Dialogues.Add(new NodeList());
+    
+        //for (int i = 0; i < countNodes; i++)
+        //{
+        //    nodeList.Nodes.Add(textList);
+        //}
+       
+
+    
+    
     }
 }

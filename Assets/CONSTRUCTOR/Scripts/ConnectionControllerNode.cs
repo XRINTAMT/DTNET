@@ -30,6 +30,7 @@ public class ConnectionControllerNode : MonoBehaviour
 
     public void DeleteConnection() 
     {
+        ParentNode.gameObject.GetComponent<InstVariantDialogueText>().SetConnection(-1);
         transform.parent = ParentNode;
         transform.localPosition = startPos;
 
@@ -47,7 +48,6 @@ public class ConnectionControllerNode : MonoBehaviour
     public void PointDown()
     {
         startFollow = true;
-        DialogueEditor.moveObj = true;
     }
     public void PointUp()
     {
@@ -56,10 +56,15 @@ public class ConnectionControllerNode : MonoBehaviour
         if (onTrigger)
         {
             connected = true;
+
+            ParentNode.gameObject.GetComponent<InstVariantDialogueText>().SetConnection(connectedPoint.parent.GetComponent<NodeController>().indexNode);
+
             transform.parent = connectedPoint.parent;
             transform.position = connectedPoint.position;
 
             GetComponent<CircleCollider2D>().enabled = false;
+
+          
    
             if (connectedPoint.GetChild(0).GetComponent<Image>() != null)
             {
@@ -74,8 +79,6 @@ public class ConnectionControllerNode : MonoBehaviour
             transform.localPosition = startPos;
             ButtonDeleteConnect.SetActive(false);
         }
-
-        DialogueEditor.moveObj = false;
     }
 
   

@@ -24,13 +24,10 @@ public class DragDrop : MonoBehaviour/*, IPointerEnterHandler, IPointerExitHandl
     public void PointDown()
     {
         startFollow = true;
-        DialogueEditor.moveObj = true;
-
     }
     public void PointUp()
     {
         startFollow = false;
-        DialogueEditor.moveObj = false;
     }
 
     //public void OnJoinFollow(GameObject obj) 
