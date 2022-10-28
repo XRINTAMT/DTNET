@@ -10,10 +10,12 @@ public class TransformController : MonoBehaviour
     public void ButtonPosition() 
     {
         runtimeTransformHandle.type = (HandleType)0;
+        runtimeTransformHandle.axes = HandleAxes.XYZ;
     }
     public void ButtonRotation()
     {
         runtimeTransformHandle.type = (HandleType)1;
+        runtimeTransformHandle.axes = HandleAxes.Y;
     }
 
     public void ButtonScale()
