@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6672230043501027238}
   - component: {fileID: 1168234157166370170}
   - component: {fileID: 7491398549841440060}
+  - component: {fileID: 2545735074102317863}
   m_Layer: 0
   m_Name: Facemask
   m_TagString: Untagged
@@ -101,6 +102,21 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6963600172689466893, guid: 38875ce838c7a254ca1b613b540de097, type: 3}
+--- !u!114 &2545735074102317863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989569612745013189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad72a440cda7d614bad465276db209f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TemporalOffset: 2
+  TimeToGoBack: 1
+  Interactible: {fileID: 1437223649070871170}
 --- !u!1 &2225329023324683025
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,6 +670,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TemporalOffset: 2
   TimeToGoBack: 1
+  Interactible: {fileID: 0}
 --- !u!114 &6505164979172797358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -880,6 +897,11 @@ PrefabInstance:
       objectReference: {fileID: 1947618870753145235}
     - target: {fileID: 1321096571225771962, guid: 41c4eaa23178f5a419e5bd6d82203a70,
         type: 3}
+      propertyPath: editorData.vertexPathUpToDate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1321096571225771962, guid: 41c4eaa23178f5a419e5bd6d82203a70,
+        type: 3}
       propertyPath: editorData._bezierPath.points.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -891,7 +913,7 @@ PrefabInstance:
     - target: {fileID: 1321096571225771962, guid: 41c4eaa23178f5a419e5bd6d82203a70,
         type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[0].y
-      value: 0.4995063
+      value: 0.49950635
       objectReference: {fileID: 0}
     - target: {fileID: 1321096571225771962, guid: 41c4eaa23178f5a419e5bd6d82203a70,
         type: 3}
