@@ -10,7 +10,8 @@ public class InstVariantDialogueText : MonoBehaviour
     DialogueEditor dialogueEditor;
     ListTextElementCustom listTextElementCustom;
 
-    public NodeController nodeController;
+    public GameObject NodeConnector;
+    NodeController nodeController;
     public int indexText;
     public Text TextVariant;
    
@@ -44,14 +45,17 @@ public class InstVariantDialogueText : MonoBehaviour
 
         Obj.transform.parent = transform.parent;
         Obj.transform.localScale = new Vector3(1, 1, 1);
+        nodeController.TextVariant.Add(gameObject);
 
-    
     }
     public void ButtonDelVariant()
     {
         dialogueEditor.listDialogue[dialogueEditor.indexDialogue].listNode[nodeController.indexNode].listText.Remove(listTextElementCustom);
         Destroy(gameObject);
     }
+
+   
+
     // Update is called once per frame
     public void SetConnection(int index) 
     {

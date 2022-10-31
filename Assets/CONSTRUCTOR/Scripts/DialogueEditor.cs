@@ -28,12 +28,16 @@ public class ListTextElementCustom
 public class ListText
 {
     [HideInInspector] public string NameNode;
+    public string Character;
     public int IndexNode;
+    [HideInInspector] public GameObject Node;
     public List<ListTextElementCustom> listText = new List<ListTextElementCustom>();
-    public ListText(string text, int indexNode)
+    public ListText(string text, int indexNode, string character, GameObject node)
     {
         NameNode = text;
         IndexNode = indexNode;
+        Character = character;
+        Node = node;
     }
 }
 [System.Serializable]
@@ -83,7 +87,7 @@ public class DialogueEditor : MonoBehaviour
         instNode.transform.localPosition = new Vector3(0, 0, 0);
 
  
-        ListText listNode = new ListText(null,0);
+        ListText listNode = new ListText(null,0, null,null);
         listDialogue[indexDialogue].listNode.Add(listNode);
 
         int index = listDialogue[indexDialogue].listNode.IndexOf(listNode);
@@ -92,7 +96,21 @@ public class DialogueEditor : MonoBehaviour
 
         listDialogue[indexDialogue].listNode[index].NameNode = "Node " + index;
         listDialogue[indexDialogue].listNode[index].IndexNode = index;
+        listDialogue[indexDialogue].listNode[index].Character = instNode.GetComponent<NodeController>().character.text;
+        listDialogue[indexDialogue].listNode[index].Node = instNode;
 
+    }
+    public void ButtonDelNode(int index)
+    {
+        listDialogue[indexDialogue].listNode.Remove(listDialogue[indexDialogue].listNode[index]);
+        for (int i = 0; i < listDialogue[indexDialogue].listNode.Count; i++)
+        {
+
+            int indexChange = listDialogue[indexDialogue].listNode.IndexOf(listDialogue[indexDialogue].listNode[i]);
+            listDialogue[indexDialogue].listNode[i].Node.GetComponent<NodeController>().indexNode = indexChange;
+            listDialogue[indexDialogue].listNode[i].NameNode = "Node " + indexChange;
+            listDialogue[indexDialogue].listNode[i].IndexNode = indexChange;
+        }
     }
 
     void Update()

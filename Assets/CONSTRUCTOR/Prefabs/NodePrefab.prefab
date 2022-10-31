@@ -818,7 +818,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 0c041a921234e6e4f81d736112dca4a6, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -1627,9 +1627,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indexNode: 0
+  character: {fileID: 2508982413293961633}
   OffsetMoveX: -95
   OffsetMoveY: 0
   OffsetMoveZ: 9
+  TextVariant: []
 --- !u!1 &2410563256018997721
 GameObject:
   m_ObjectHideFlags: 0
@@ -1760,7 +1762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd9fd6a3eeeab346a2bb9b4988726a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeController: {fileID: 0}
+  NodeConnector: {fileID: 0}
   indexText: 0
   TextVariant: {fileID: 0}
 --- !u!1 &4167862430355993160
@@ -2627,14 +2629,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 1}
+  m_Color: {r: 0, g: 0.2627451, b: 0.41568628, a: 0.78039217}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b97b30bfe2881410bbf885d8190b7c8f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9bdd8d28113b91841ad847781e910aec, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3319,10 +3321,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2040193085671292002}
     m_Modifications:
+    - target: {fileID: 113828639239594304, guid: 50b87fd78ddb6254db5fa0d19f74b0d5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 113828639239594304, guid: 50b87fd78ddb6254db5fa0d19f74b0d5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2368522418995862591}
+    - target: {fileID: 113828639239594304, guid: 50b87fd78ddb6254db5fa0d19f74b0d5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 113828639239594304, guid: 50b87fd78ddb6254db5fa0d19f74b0d5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ButtonDelNode
+      objectReference: {fileID: 0}
+    - target: {fileID: 113828639239594304, guid: 50b87fd78ddb6254db5fa0d19f74b0d5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: NodeController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 3602884491060940344, guid: 50b87fd78ddb6254db5fa0d19f74b0d5,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6495882883906266585, guid: 50b87fd78ddb6254db5fa0d19f74b0d5,
         type: 3}
@@ -3442,12 +3469,12 @@ PrefabInstance:
     - target: {fileID: 8472035571048658324, guid: 50b87fd78ddb6254db5fa0d19f74b0d5,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8472035571048658324, guid: 50b87fd78ddb6254db5fa0d19f74b0d5,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 8472035572783790886, guid: 50b87fd78ddb6254db5fa0d19f74b0d5,
         type: 3}
