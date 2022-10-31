@@ -10,15 +10,21 @@ public class InteractiblesGoBack : MonoBehaviour
     bool kinematic;
     Quaternion initAngle;
     Coroutine goingBack;
+    [SerializeField] Transform Interactible;
 
     void Start()
     {
-        initPos = transform.position;
-        initAngle = transform.rotation;
-        goingBack = null;
-        if (TryGetComponent<Rigidbody>(out _))
+        if (Interactible == null)
         {
-            kinematic = GetComponent<Rigidbody>().isKinematic;
+            Interactible = transform;
+        }
+        initPos = Interactible.position;
+        initAngle = Interactible.rotation;
+        goingBack = null;
+        
+        if (Interactible.TryGetComponent<Rigidbody>(out _))
+        {
+            kinematic = Interactible.GetComponent<Rigidbody>().isKinematic;
         }
         
     }
@@ -46,24 +52,24 @@ public class InteractiblesGoBack : MonoBehaviour
         {
             yield return 0;
         }
-        Vector3 startingPos = transform.position;
-        Quaternion startingAngle = transform.rotation;
-        if(TryGetComponent<Rigidbody>(out _))
+        Vector3 startingPos = Interactible.position;
+        Quaternion startingAngle = Interactible.rotation;
+        if(Interactible.TryGetComponent<Rigidbody>(out _))
         {
-            GetComponent<Rigidbody>().isKinematic = true;
+            Interactible.GetComponent<Rigidbody>().isKinematic = true;
         }
         for (float i = 0; i < 1; i += Time.deltaTime / TimeToGoBack)
         {
-            transform.rotation = Quaternion.Lerp(startingAngle, initAngle, i);
-            transform.position = Vector3.Lerp(startingPos, initPos, i);
+            Interactible.rotation = Quaternion.Lerp(startingAngle, initAngle, i);
+            Interactible.position = Vector3.Lerp(startingPos, initPos, i);
             yield return 0;
         }
-        transform.rotation = initAngle;
-        transform.position = initPos;
+        Interactible.rotation = initAngle;
+        Interactible.position = initPos;
         goingBack = null;
-        if (TryGetComponent<Rigidbody>(out _))
+        if (Interactible.TryGetComponent<Rigidbody>(out _))
         {
-            GetComponent<Rigidbody>().isKinematic = kinematic;
+            Interactible.GetComponent<Rigidbody>().isKinematic = kinematic;
         }
     }
 }
