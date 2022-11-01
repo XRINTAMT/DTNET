@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Autohand;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,6 +11,7 @@ public class TutorialEditor : MonoBehaviour
 
     public UnityEvent OnTutorialStart = new UnityEvent();
     public UnityEvent OnTutorialComplete = new UnityEvent();
+
 
     private void Start()
     {
@@ -22,6 +24,14 @@ public class TutorialEditor : MonoBehaviour
         OnTutorialStart?.Invoke();
     }
 
+
+    public void LocomtionSystem(bool teleport) 
+    {
+        if (!teleport) AutoHandPlayer.teleportMove = false;
+       
+        if (teleport) AutoHandPlayer.teleportMove = true;
+       
+    }
     public void StartTask(int index)
     {
         if (index >= 0 && index < ListTasks.Count)
