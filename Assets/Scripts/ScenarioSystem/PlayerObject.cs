@@ -5,9 +5,9 @@ using Autohand.Demo;
 
 public class PlayerObject : MonoBehaviour
 {
-    [SerializeField] XRHandControllerLink LeftHand;
-    [SerializeField] XRHandControllerLink RightHand;
-    [SerializeField] Camera Head;
+    [field: SerializeField] public XRHandControllerLink LeftHand { private set; get; }
+    [field: SerializeField] public XRHandControllerLink RightHand { private set; get; }
+    [field: SerializeField] public Camera Head { private set; get; }
 
     void Start()
     {
