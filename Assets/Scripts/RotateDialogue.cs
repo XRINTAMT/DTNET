@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class RotateDialogue : MonoBehaviour
 {
-    
+
     [SerializeField] private Camera cam;
-    // Start is called before the first frame update
     void Start()
     {
-        
+        cam = FindObjectOfType<PlayerObject>().Head;
     }
 
     // Update is called once per frame

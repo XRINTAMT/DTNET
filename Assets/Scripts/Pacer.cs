@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ScenarioTaskSystem;
+using ScenarioSystem;
 
 public class Pacer : MonoBehaviour
 {
-    [SerializeField] PatientData Patient;
+    [SerializeField] TaskSpecificValues DataInterface;
     [SerializeField] VitalsMonitor Monitor;
     [SerializeField] Knob Output;
     [SerializeField] Knob Pace;
-    [SerializeField] float[] AimVitals;
     [SerializeField] float AimPace;
-    float AimOutput;
-    float[] Vitals;
+    [SerializeField] Sensor Pad;
+    [SerializeField] float AimOutput;
     float maxOutputDiff;
     float maxPaceDiff;
     float paceValue;
@@ -21,21 +21,16 @@ public class Pacer : MonoBehaviour
 
     void Start()
     {
-
+        DataInterface.SendDataItem("Output", 0);
+        DataInterface.SendDataItem("Pace", 60);
     }
 
     public void StartPacing()
     {
-        AimOutput = ((int)Patient.weight / 10) * 10;
+        //AimOutput = ((int)Monitor.GetValue(5) / 10) * 10;
         maxOutputDiff = Mathf.Max(Output.maxValue - AimOutput, AimOutput - Output.minValue);
         maxPaceDiff = Mathf.Max(Pace.maxValue - AimPace, AimPace - Pace.minValue);
-        Vitals = new float[Monitor.NumberOfVitalValues()];
-        for(int i = 0; i < Vitals.Length; i++)
-        {
-            Vitals[i] = Monitor.GetValue(i);
-        }
         pacing = true;
-
     }
 
     public void OnValueChanged(int id, float value)
@@ -45,27 +40,27 @@ public class Pacer : MonoBehaviour
         if (id == 0)
         {
             outputValue = value;
+            DataInterface.SendDataItem("Output", (int)value);
         }
         else
         {
             paceValue = value;
+            DataInterface.SendDataItem("Pace", (int)value);
         }
-        for (int i = 0; i < AimVitals.Length; i++)
+        float score = 1;
+        score *= 1 - (Mathf.Abs(AimPace - paceValue) / maxPaceDiff);
+        score *= 1 - (Mathf.Abs(AimOutput - outputValue) / maxOutputDiff);
+        Debug.Log(score);
+        if (score == 1)
         {
-            float score = 1;
-            score *= 1 - (Mathf.Abs(AimPace - paceValue) / maxPaceDiff);
-            score *= 1 - (Mathf.Abs(AimOutput - outputValue) / maxOutputDiff);
-            Monitor.ChangeValue(i, Mathf.Lerp(Vitals[i], AimVitals[i], score), 1);
-            Debug.Log(score);
-            if(score == 1)
+            Debug.Log("PatientCured");
+            if (TryGetComponent<ScenarioTaskSystem.Task>(out ScenarioTaskSystem.Task task))
             {
-                if(TryGetComponent<Task>(out Task task))
-                {
-                    task.Complete();
-                }
+                task.Complete();
             }
         }
     }
+
 
     // Update is called once per frame
     void Update()

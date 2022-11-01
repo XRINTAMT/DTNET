@@ -12,6 +12,14 @@ namespace ScenarioSystem
         public int id;
         public float x, y, z, rot;
         public string type;
+        public CustomField[] ObjectSpecificValues;
+    }
+
+    [Serializable]
+    struct CustomField
+    {
+        public string name;
+        public int value;
     }
 
     [Serializable]
@@ -24,15 +32,38 @@ namespace ScenarioSystem
     }
 
     [Serializable]
-    public class Task
+    class Task
     {
-        [SerializeField] string name;
+        public string name;
         public bool WithPrevious;
         public bool Completed;
         public int Score;
         public ConditionChecker[] Conditions;
+        public Command[] OnComplete;
         public int TimeLimit; // -1 for no limit
-        public int OnTimeout; // 0 - complete with 0 score, 1 - load the latest save;
+        public int OnTimeout; // 0 - complete with 0 score, 1 - load the latest save
+    }
+
+    [Serializable]
+    class Command
+    {
+        public CustomField[] Settings;
+        public int ObjectID;
+        private ScenarioBehaviour scenario;
+        private TaskSpecificValues data;
+        public void ConnectToObjectsBase(ScenarioBehaviour connectTo)
+        {
+            scenario = connectTo;
+            data = scenario.AccessValues(ObjectID);
+        }
+
+        public void Completed()
+        {
+            for(int i = 0; i < Settings.Length; i++)
+            {
+                data.SendDataSystem(Settings[i].name, Settings[i].value);
+            }
+        }
     }
 
     [Serializable]
@@ -51,46 +82,54 @@ namespace ScenarioSystem
         TaskSpecificValues[] targets;
         private ScenarioBehaviour scenario;
 
-        public int Check()
+        public bool Check()
         {
             for (int j = 0; j < targets.Length; j++)
             {
-                for (int i = 0; i < items.Length; i++)
+                //Debug.Log("Checking values on " + targets[j].name);
+                int i;
+                for (i = 0; i < items.Length; i++)
                 {
+                    int value = -1;
+                    targets[j].TryGetSystem(items[i].Name, ref value);
+                    //Debug.Log("Checking " + items[i].Name);
                     switch (items[i].Condition)
                     {
                         case ("More"):
-                            if (targets[i].Values[items[i].Name] <= items[i].Value)
+                            if (value > items[i].Value)
                             {
-                                i = -1;
-                                j++;
                                 continue;
                             }
                             break;
                         case ("Less"):
-                            if (targets[i].Values[items[i].Name] >= items[i].Value)
+                            if (value < items[i].Value)
                             {
-                                i = -1;
-                                j++;
                                 continue;
                             }
                             break;
                         case ("Equal"):
-                            if (targets[i].Values[items[i].Name] != items[i].Value)
+                            if (value == items[i].Value)
                             {
-                                i = -1;
-                                j++;
+                                continue;
+                            }
+                            break;
+                        case ("NotEqual"):
+                            if (value != items[i].Value)
+                            {
                                 continue;
                             }
                             break;
                     }
-                    if(i == items.Length)
-                    {
-                        return 1;
-                    }
+                    //Debug.Log(items[i].Name + " did not meet the requirements");
+                    //Debug.Log(items[i].Name + " is " + value + " but should be " + items[i].Condition + " " + items[i].Value);
+                    break;
+                }
+                if (i == items.Length)
+                {
+                    return true;
                 }
             }
-            return 0;
+            return false;
         }
 
         public void ConnectToObjectsBase(ScenarioBehaviour connectTo)

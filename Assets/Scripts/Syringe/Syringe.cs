@@ -5,22 +5,25 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Linq;
+using ScenarioSystem;
 
 public class Syringe : MonoBehaviour
 {
+    [SerializeField] bool setupInInspector = false;
     [SerializeField] InjectionManager Manager;
     [SerializeField] Camera Head;
     [SerializeField] GameObject InnerPart;
     [SerializeField] GameObject Pomp;
     [SerializeField] float MaxInnerPartDisplacement;
-    [SerializeField] float SyringeSensitivity;
-    [SerializeField] float SyringeCapacity;
+    [SerializeField] int SyringeSensitivity;
+    [SerializeField] int SyringeCapacity;
     [SerializeField] UnityEvent OnRequirementsMet;
     [SerializeField] GameObject MeasurementCanvas;
     [SerializeField] Text AmountText;
     [SerializeField] Text SubstanceText;
     [SerializeField] Vector3 Offset;
 
+    TaskSpecificValues DataInterface;
     Ampule med;
     bool inserted;
     bool pulling;
@@ -28,7 +31,7 @@ public class Syringe : MonoBehaviour
     float totalSubstance;
     Vector3 innerPartPositionInit;
     
-    Dictionary<string, float> ingredients;
+    public Dictionary<string, float> ingredients { private set; get;}
     public Injection Lable { get; private set; }
 
     
@@ -38,6 +41,13 @@ public class Syringe : MonoBehaviour
 
         ingredients = new Dictionary<string, float>();
         med = null;
+        if (!setupInInspector)
+        {
+            DataInterface = GetComponent<TaskSpecificValues>();
+            //Debug.Log("Getting syringe capacity: "+DataInterface.TryGetItem("SyringeCapacity", ref SyringeCapacity));
+            PlayerObject player = FindObjectOfType<PlayerObject>();
+            Head = player.Head;
+        }
     }
 
     public void TurnTheHUD(bool OnOff)
@@ -93,7 +103,8 @@ public class Syringe : MonoBehaviour
 
     private void CheckCompletion()
     {
-        Lable = Manager.CheckCompletion(ingredients);
+        if(Manager!=null)
+            Lable = Manager.CheckCompletion(ingredients);
     }
 
     public void Empty(float time)
@@ -126,6 +137,11 @@ public class Syringe : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!setupInInspector)
+        {
+            DataInterface.TryGetItem("SyringeCapacity", ref SyringeCapacity);
+            DataInterface.TryGetItem("SyringeSensitivity", ref SyringeSensitivity);
+        }
         if (pulling)
         {
             float pullAmount = Mathf.Min(med.Amount, Time.deltaTime * SyringeSensitivity, SyringeCapacity - totalSubstance);
@@ -139,6 +155,10 @@ public class Syringe : MonoBehaviour
             //AmountText.text = ingredients[med.Substance].ToString("0.0");
             AmountText.text = totalSubstance.ToString("0.0");
             CheckCompletion();
+            foreach (string ingred in ingredients.Keys.ToList())
+            {
+                DataInterface.SendDataItem(ingred, (int)ingredients[ingred]);
+            }
         }
         else
         {
@@ -167,6 +187,10 @@ public class Syringe : MonoBehaviour
                         new Vector3(innerPartPositionInit.x,
                         Mathf.Lerp(innerPartPositionInit.y, innerPartPositionInit.y - MaxInnerPartDisplacement, totalSubstance / SyringeCapacity),
                         innerPartPositionInit.z);
+                }
+                foreach (string ingred in ingredients.Keys.ToList())
+                {
+                    DataInterface.SendDataItem(ingred, (int)ingredients[ingred]);
                 }
             }
         }
