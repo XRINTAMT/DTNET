@@ -16,6 +16,8 @@ public class UIController : MonoBehaviour
     //[SerializeField] private Dropdown setMovetHandStatus;
     [SerializeField] private Toggle setSubstitlesStatus;
     [SerializeField] private Toggle setGuidesStatus;
+    [SerializeField] private GameObject teleportChosen;
+    [SerializeField] private GameObject smoothChosen;
 
     public static float dialogueVolume;
     public static float soundVolume;
@@ -24,58 +26,67 @@ public class UIController : MonoBehaviour
     public static int subtitles;
     public static int guides;
 
-    [SerializeField] private AppSettings appSettings;
     void Start()
     {
-        SetDialogueVolume();
-        SetSoundVolume();
-        SetLanguage(0);
-        SetLocomotionType(PlayerPrefs.GetInt("MovementType"));
-        SetSubtitles();
+        LoadSettingsIntoUI();
+    }
 
-        appSettings = FindObjectOfType<AppSettings>();
-        appSettings.UpdateSettings();
+    public void LoadSettingsIntoUI()
+    {
+        setDialogueVolumeStatus.value = PlayerPrefs.GetFloat("dialogueVolume", 0.5f);
+        setSoundVolumeStatus.value = PlayerPrefs.GetFloat("soundVolume", 0.5f);
+        setSubstitlesStatus.isOn = PlayerPrefs.GetInt("Subtitles", 0) == 0;
+        setGuidesStatus.isOn = PlayerPrefs.GetInt("Subtitles", 0) == 0;
+        teleport = PlayerPrefs.GetInt("MovementType", 0);
+        teleportChosen.SetActive(teleport == 0);
+        smoothChosen.SetActive(teleport == 1);
     }
     public void SetDialogueVolume() 
     {
         dialogueVolume = setDialogueVolumeStatus.value;
-/*        appSettings.UpdateSettings()*/;
+        PlayerPrefs.SetFloat("dialogueVolume", dialogueVolume);
     }
 
     public void SetSoundVolume()
     {
         soundVolume = setSoundVolumeStatus.value;
         //appSettings.UpdateSettings();
+        PlayerPrefs.SetFloat("soundVolume", soundVolume);
     }
 
     public void SetLanguage(int languageIndex)
     {
-        //language = setLanguageStatus.value;
         language = languageIndex;
-        //appSettings.UpdateSettings();
-        return;
+        PlayerPrefs.SetInt("Language", languageIndex);
     }
 
-    public void SetLocomotionType(int LocomotionID) 
+    public void SetLocomotionType(int LocomotionID)
     {
         //teleportLeftHand = setTeleportHandStatus.value;
         teleport = LocomotionID;
-        appSettings.UpdateSettings();
-        return;
+        teleportChosen.SetActive(teleport == 0);
+        smoothChosen.SetActive(teleport == 1);
+        PlayerPrefs.SetInt("MovementType", teleport);
+        Object.FindObjectOfType<XRMovementControls>().SwitchLocomotion(teleport);
     }
 
     public void SetSubtitles()
     {
-        if (setSubstitlesStatus.isOn) subtitles=0;
-        if (!setSubstitlesStatus.isOn) subtitles = 1;
-        //appSettings.UpdateSettings();
+
+        if (setSubstitlesStatus.isOn) 
+            subtitles = 0;
+        else
+            subtitles = 1;
+        PlayerPrefs.SetInt("Subtitles", subtitles);
     }
 
     public void SetGuides()
     {
-        if (setGuidesStatus.isOn) guides = 0;
-        if (!setGuidesStatus.isOn) guides = 1;
-        appSettings.UpdateSettings();
+        if (setGuidesStatus.isOn)
+            guides = 0;
+        else
+            guides = 1;
+        PlayerPrefs.SetInt("GuidedMode", guides);
     }
     public void LoadScene(string name)
     {
