@@ -11,9 +11,7 @@ public class XRMovementControls : MonoBehaviour
 
     void Awake()
     {
-        //int MovementType = PlayerPrefs.GetInt("MovementType", 0);
-        //Debug.Log("Loaded movement type as " + MovementType);
-        //SwitchLocomotion(MovementType);
+        SwitchLocomotion(PlayerPrefs.GetInt("MovementType", 0));
     }
 
     public void SwitchLocomotion(int type)
