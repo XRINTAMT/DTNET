@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotateDialogue : MonoBehaviour
+public class RotateUiToCamera : MonoBehaviour
 {
 
     [SerializeField] private Camera cam;
