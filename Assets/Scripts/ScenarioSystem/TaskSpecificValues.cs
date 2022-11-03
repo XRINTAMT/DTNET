@@ -64,7 +64,7 @@ namespace ScenarioSystem
         {
             foreach (string key in Values.Keys)
             {
-                Debug.Log(gameObject.name + ": " + key + " " + Values[key]);
+                //Debug.Log(gameObject.name + ": " + key + " " + Values[key]);
             }
             
         }

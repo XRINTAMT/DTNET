@@ -361,9 +361,10 @@ namespace Autohand {
                         var highlightRenderer = highlightObj.AddComponent<MeshRenderer>();
                         var mats = new Material[meshRenderer.materials.Length];
                         for (int i = 0; i < mats.Length; i++)
-                            mats[i] = highlightMat;
+                            mats[i] = obj.GetComponent<MeshRenderer>().material; //highlightMat;
                         highlightRenderer.materials = mats;
                         highlightObjs[highlightMat].Add(highlightObj);
+                        highlightObj.layer= 12;
                     }
 
                     return true;
