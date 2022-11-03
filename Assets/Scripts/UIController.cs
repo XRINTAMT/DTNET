@@ -18,10 +18,13 @@ public class UIController : MonoBehaviour
     [SerializeField] private Toggle setGuidesStatus;
     [SerializeField] private GameObject teleportChosen;
     [SerializeField] private GameObject smoothChosen;
+    [SerializeField] private GameObject englishChosen;
+    [SerializeField] private GameObject germanChosen;
+    [SerializeField] private GameObject lithuanianChosen;
 
     public static float dialogueVolume;
     public static float soundVolume;
-    public static int language;
+    public static string language;
     public static int teleport;
     public static int subtitles;
     public static int guides;
@@ -38,8 +41,12 @@ public class UIController : MonoBehaviour
         setSubstitlesStatus.isOn = PlayerPrefs.GetInt("Subtitles", 0) == 0;
         setGuidesStatus.isOn = PlayerPrefs.GetInt("Subtitles", 0) == 0;
         teleport = PlayerPrefs.GetInt("MovementType", 0);
+        language = PlayerPrefs.GetString("Language", "English");
         teleportChosen.SetActive(teleport == 0);
         smoothChosen.SetActive(teleport == 1);
+        englishChosen.SetActive(language == "English");
+        germanChosen.SetActive(language == "German");
+        lithuanianChosen.SetActive(language == "Lithuanian");
     }
     public void SetDialogueVolume() 
     {
@@ -54,10 +61,10 @@ public class UIController : MonoBehaviour
         PlayerPrefs.SetFloat("soundVolume", soundVolume);
     }
 
-    public void SetLanguage(int languageIndex)
+    public void SetLanguage(string lang)
     {
-        language = languageIndex;
-        PlayerPrefs.SetInt("Language", languageIndex);
+        language = lang;
+        PlayerPrefs.SetString("Language", lang);
     }
 
     public void SetLocomotionType(int LocomotionID)

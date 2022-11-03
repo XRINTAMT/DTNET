@@ -23,7 +23,6 @@ public class AppSettings : MonoBehaviour
     {
         dialogueVolume = UIController.dialogueVolume;
         soundVolume = UIController.soundVolume;
-        language = (Language)UIController.language;
         locomotion = (Locomotion)UIController.teleport;
         subtitles = (Subtitles)UIController.subtitles;
         guides = (Guide)UIController.guides;
