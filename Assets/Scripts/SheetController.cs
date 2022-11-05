@@ -6,107 +6,60 @@ using UnityEngine.UI;
 
 public class SheetController : MonoBehaviour
 {
-    // Start is called before the first frame update
 
-    public Camera cam;
-    Transform startPos;
-    public Vector3 startPos2;
+    Camera cam;
+    Vector3 startPos;
+    Quaternion startRot;
     Transform startParent;
-    Grabbable grabbable;
-    HandTriggerAreaEvents handTriggerAreaEvents;
-    [SerializeField] List <GameObject> sheet; 
+    Rigidbody rb;
     [SerializeField] GameObject canvas;
     [SerializeField] GameObject buttonExit;
-    [SerializeField] TypeSheet typeSheet;
-    bool grab;
+
     
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         cam = Camera.main;
         startParent = transform.parent;
-        startPos = transform;
-        startPos2 = startPos.localPosition;
-        grabbable = GetComponent<Grabbable>();
-        handTriggerAreaEvents = GetComponent<HandTriggerAreaEvents>();
-        switch (typeSheet)
-        {
-            case TypeSheet.ObservationSheet:
-                sheet[0].SetActive(true);
-                break;
-            case TypeSheet.Tablet:
-                sheet[1].SetActive(true);
-                break;
-            case TypeSheet.DoctorsAppointments:
-                sheet[2].SetActive(true);
-                break;
-            default:
-                break;
-        }
-
+        startPos = transform.localPosition;
+        startRot = transform.localRotation;
     }
 
     public void Grab() 
     {
         if (cam!=null)
         {
+            rb.isKinematic = false;
             transform.parent = cam.transform;
             transform.localPosition = new Vector3(0, 0, 0.5f);
             transform.localRotation = Quaternion.Euler(0,0,0);
-            grab = true;
 
             canvas.GetComponent<GraphicRaycaster>().enabled = true;
             buttonExit.SetActive(true);
         }
     }
-    IEnumerator activateGrabbable() 
+ 
+    public void Exit()
     {
-        yield return new WaitForSeconds(1f);
-        handTriggerAreaEvents.enabled = false;
-        //grabbable.enabled = true;
-    }
-    public void Release()
-    {
+        rb.isKinematic = true;
         transform.parent = startParent;
-        transform.localPosition = startPos.localPosition;
-        transform.localRotation = startPos.localRotation;
-        grabbable.enabled = false;
-        handTriggerAreaEvents.enabled = true;
+        transform.localPosition = startPos;
+        transform.localRotation = startRot;
+
         canvas.GetComponent<GraphicRaycaster>().enabled = false;
         buttonExit.SetActive(false);
     }
 
-    public void RealeseArea() 
+ 
+    public void Realesee()
     {
-        if (grab)
-        {
-            grabbable.enabled = true;
-            handTriggerAreaEvents.enabled = false;
-        }
+        rb.isKinematic = true;
+        transform.parent = cam.transform;
     }
-    public void RealeseGrabbable()
-    {
-        if (grab)
-        {
-            transform.parent = cam.transform;
-        }
-    }
-    //public void Sqeaze()
-    //{
-    //    if (grab)
-    //    {
-    //        grabbable.enabled = true;
-    //        handTriggerAreaEvents.enabled = false;
-    //    }
-    //}
-    // Update is called once per frame
+  
     void Update()
     {
         
     }
-    enum TypeSheet 
-    {
-        ObservationSheet,
-        Tablet,
-        DoctorsAppointments
-    }
+   
 }
