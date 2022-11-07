@@ -222,6 +222,102 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storeInTexcoordChannel: 1
   cospatialVertexDistance: 0.01
+--- !u!1 &5602885934775206271
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2487272992109064347}
+  - component: {fileID: 8361737722787102511}
+  - component: {fileID: 665194688872126239}
+  - component: {fileID: 3673374604666224586}
+  m_Layer: 0
+  m_Name: Liquid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2487272992109064347
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5602885934775206271}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.466, z: 0}
+  m_LocalScale: {x: 0.45, y: 0, z: 0.45}
+  m_Children: []
+  m_Father: {fileID: 5678319630627606685}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &8361737722787102511
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5602885934775206271}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &665194688872126239
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5602885934775206271}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: bee507427e7767247957a39819087d7e, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &3673374604666224586
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5602885934775206271}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.50000083
+  m_Height: 2.0000017
+  m_Direction: 1
+  m_Center: {x: -0.0000008940702, y: 0.00000047683756, z: -0.000000923873}
 --- !u!1 &5839741580292810273
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +351,7 @@ Transform:
   m_Children:
   - {fileID: 2585917288460490636}
   - {fileID: 6668741191729676901}
+  - {fileID: 2487272992109064347}
   m_Father: {fileID: 9037163771738096089}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -285,7 +382,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: de0b75d2ee2a81f43a63176b8517ae94, type: 2}
+  - {fileID: 2100000, guid: 11f747aeef2a5064babd295aa0a19c9f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -935,8 +1032,10 @@ MonoBehaviour:
   Manager: {fileID: 0}
   Head: {fileID: 0}
   InnerPart: {fileID: 4860282050037492059}
+  Liquid: {fileID: 5602885934775206271}
   Pomp: {fileID: 0}
   MaxInnerPartDisplacement: 1.5
+  MaxLiquidScale: 0.73
   SyringeSensitivity: 7
   SyringeCapacity: 100
   OnRequirementsMet:
@@ -958,6 +1057,7 @@ MonoBehaviour:
   AmountText: {fileID: 9061535347864316693}
   SubstanceText: {fileID: 9061535348214342774}
   Offset: {x: -0.08, y: 0.08, z: 0}
+  Guided: 0
 --- !u!114 &3148744991086824738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1072,6 +1172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TemporalOffset: 2
   TimeToGoBack: 1
+  Interactible: {fileID: 0}
 --- !u!114 &7861938171616032520
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,8 +13,10 @@ public class Syringe : MonoBehaviour
     [SerializeField] InjectionManager Manager;
     [SerializeField] Camera Head;
     [SerializeField] GameObject InnerPart;
+    [SerializeField] GameObject Liquid;
     [SerializeField] GameObject Pomp;
     [SerializeField] float MaxInnerPartDisplacement;
+    [SerializeField] float MaxLiquidScale;
     [SerializeField] int SyringeSensitivity;
     [SerializeField] int SyringeCapacity;
     [SerializeField] UnityEvent OnRequirementsMet;
@@ -22,6 +24,7 @@ public class Syringe : MonoBehaviour
     [SerializeField] Text AmountText;
     [SerializeField] Text SubstanceText;
     [SerializeField] Vector3 Offset;
+    [SerializeField] bool Guided;
 
     TaskSpecificValues DataInterface;
     Ampule med;
@@ -30,7 +33,8 @@ public class Syringe : MonoBehaviour
     bool pushing;
     float totalSubstance;
     Vector3 innerPartPositionInit;
-    
+    Vector3 LiquidPositionInit;
+
     public Dictionary<string, float> ingredients { private set; get;}
     public Injection Lable { get; private set; }
 
@@ -38,6 +42,7 @@ public class Syringe : MonoBehaviour
     void Awake()
     {
         innerPartPositionInit = InnerPart.transform.localPosition;
+        LiquidPositionInit = Liquid.transform.localPosition;
 
         ingredients = new Dictionary<string, float>();
         med = null;
@@ -150,6 +155,14 @@ public class Syringe : MonoBehaviour
                 new Vector3(innerPartPositionInit.x, 
                 Mathf.Lerp(innerPartPositionInit.y, innerPartPositionInit.y - MaxInnerPartDisplacement, totalSubstance / SyringeCapacity), 
                 innerPartPositionInit.z);
+            Liquid.transform.localPosition =
+                new Vector3(LiquidPositionInit.x,
+                Mathf.Lerp(LiquidPositionInit.y, LiquidPositionInit.y - (MaxInnerPartDisplacement/2), totalSubstance / SyringeCapacity),
+                LiquidPositionInit.z);
+            Liquid.transform.localScale =
+                new Vector3(Liquid.transform.localScale.x,
+                Mathf.Lerp(0, MaxLiquidScale, totalSubstance / SyringeCapacity),
+                Liquid.transform.localScale.z);
             ingredients[med.Substance] += pullAmount;
             med.Amount -= pullAmount;
             //AmountText.text = ingredients[med.Substance].ToString("0.0");
@@ -187,6 +200,14 @@ public class Syringe : MonoBehaviour
                         new Vector3(innerPartPositionInit.x,
                         Mathf.Lerp(innerPartPositionInit.y, innerPartPositionInit.y - MaxInnerPartDisplacement, totalSubstance / SyringeCapacity),
                         innerPartPositionInit.z);
+                    Liquid.transform.localPosition =
+                new Vector3(LiquidPositionInit.x,
+                Mathf.Lerp(LiquidPositionInit.y, LiquidPositionInit.y - (MaxInnerPartDisplacement / 2), totalSubstance / SyringeCapacity),
+                LiquidPositionInit.z);
+                    Liquid.transform.localScale =
+                        new Vector3(Liquid.transform.localScale.x,
+                        Mathf.Lerp(0, MaxLiquidScale, totalSubstance / SyringeCapacity),
+                        Liquid.transform.localScale.z);
                 }
                 foreach (string ingred in ingredients.Keys.ToList())
                 {
