@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc788fe28a1947c5906bf24c0472406, type: 3}
+  m_Name: New QD_Dialogue Tutorial
+  m_EditorClassIdentifier: 
+  Conversations:
+  - ID: 5
+    Name: 5
+    FirstMessage: 0
+  - ID: 8
+    Name: 5
+    FirstMessage: 4
+  Speakers:
+  - ID: 0
+    Name: 'You:'
+    Icon: {fileID: 0}
+  - ID: 1
+    Name: Doctor
+    Icon: {fileID: 0}
+  Messages:
+  - ID: 4
+    Speaker: 1
+    SpeakerName: Doctor
+    PreviousMessage: -1
+    NextMessage: -1
+    MessageText: Hi, I'm your doctor, how are you feeling?
+    Clip: {fileID: 0}
+  - ID: 5
+    Speaker: 0
+    SpeakerName: 'You:'
+    PreviousMessage: -1
+    NextMessage: 6
+    MessageText: ' I''m fine!'
+    Clip: {fileID: 0}
+  - ID: 6
+    Speaker: 1
+    SpeakerName: Doctor
+    PreviousMessage: 5
+    NextMessage: 7
+    MessageText: If you need me, you can call me by phone
+    Clip: {fileID: 0}
+  - ID: 7
+    Speaker: 0
+    SpeakerName: 'You:'
+    PreviousMessage: 6
+    NextMessage: -1
+    MessageText: Thank you!
+    Clip: {fileID: 0}
+  Choices: []
