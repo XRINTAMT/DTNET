@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Assets.SimpleLocalization;
 
 
 public class UIController : MonoBehaviour
@@ -40,9 +39,9 @@ public class UIController : MonoBehaviour
         setDialogueVolumeStatus.value = PlayerPrefs.GetFloat("dialogueVolume", 0.5f);
         setSoundVolumeStatus.value = PlayerPrefs.GetFloat("soundVolume", 0.5f);
         setSubstitlesStatus.isOn = PlayerPrefs.GetInt("Subtitles", 0) == 0;
+        setGuidesStatus.isOn = PlayerPrefs.GetInt("Subtitles", 0) == 0;
         teleport = PlayerPrefs.GetInt("MovementType", 0);
         language = PlayerPrefs.GetString("Language", "English");
-        LocalizationManager.Language = language;
         teleportChosen.SetActive(teleport == 0);
         smoothChosen.SetActive(teleport == 1);
         englishChosen.SetActive(language == "English");
@@ -66,7 +65,6 @@ public class UIController : MonoBehaviour
     {
         language = lang;
         PlayerPrefs.SetString("Language", lang);
-        LocalizationManager.Language = language;
     }
 
     public void SetLocomotionType(int LocomotionID)
@@ -89,6 +87,14 @@ public class UIController : MonoBehaviour
         PlayerPrefs.SetInt("Subtitles", subtitles);
     }
 
+    public void SetGuides()
+    {
+        if (setGuidesStatus.isOn)
+            guides = 0;
+        else
+            guides = 1;
+        PlayerPrefs.SetInt("GuidedMode", guides);
+    }
     public void LoadScene(string name)
     {
         SceneManager.LoadScene(name);

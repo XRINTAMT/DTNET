@@ -289,6 +289,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8269465958133096719}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &213772018 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8269465958188877821, guid: 05cd5980b32d42b498fbff048b08e780,
+    type: 3}
+  m_PrefabInstance: {fileID: 8269465958133096719}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &549352472 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8269465957585065239, guid: 05cd5980b32d42b498fbff048b08e780,
@@ -621,18 +633,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056276341}
   m_CullTransparentMesh: 1
---- !u!1 &1150207795 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8269465957328282908, guid: 05cd5980b32d42b498fbff048b08e780,
-    type: 3}
-  m_PrefabInstance: {fileID: 8269465958133096719}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1169992601 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8269465959204549701, guid: 05cd5980b32d42b498fbff048b08e780,
-    type: 3}
-  m_PrefabInstance: {fileID: 8269465958133096719}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1261968355
 GameObject:
   m_ObjectHideFlags: 0
@@ -971,7 +971,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1538642931}
   - component: {fileID: 1538642930}
-  - component: {fileID: 1538642932}
   m_Layer: 0
   m_Name: CONTROLLER_APP
   m_TagString: Untagged
@@ -994,12 +993,12 @@ MonoBehaviour:
   setDialogueVolumeStatus: {fileID: 549352472}
   setSoundVolumeStatus: {fileID: 1427683159}
   setSubstitlesStatus: {fileID: 565117647}
-  setGuidesStatus: {fileID: 0}
+  setGuidesStatus: {fileID: 213772018}
   teleportChosen: {fileID: 2136555072}
   smoothChosen: {fileID: 25379690}
-  englishChosen: {fileID: 1169992601}
-  germanChosen: {fileID: 1150207795}
-  lithuanianChosen: {fileID: 1978108758}
+  englishChosen: {fileID: 0}
+  germanChosen: {fileID: 0}
+  lithuanianChosen: {fileID: 0}
 --- !u!4 &1538642931
 Transform:
   m_ObjectHideFlags: 0
@@ -1014,29 +1013,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1538642932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1538642929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50cf2546973275f4caa0511552ee3aef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TableId: 1Ej0lpLuzY8fHZHwaB1U9qIPL5fPW_M6sQRlamNUx_PA
-  Sheets:
-  - Name: Menu
-    Id: 0
-  - Name: GuidedMode
-    Id: 293157285
-  - Name: Tutorial
-    Id: 1218923209
-  - Name: TaskList
-    Id: 927248811
-  SaveFolder: {fileID: 102900000, guid: 344925dbf33b75447be7bb39ed4683b4, type: 3}
 --- !u!1001 &1538979766
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1256,12 +1232,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1978108758 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8269465957469723452, guid: 05cd5980b32d42b498fbff048b08e780,
-    type: 3}
-  m_PrefabInstance: {fileID: 8269465958133096719}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2136555072 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8269465958909542955, guid: 05cd5980b32d42b498fbff048b08e780,
@@ -4796,11 +4766,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 6507212361619480078, guid: 05cd5980b32d42b498fbff048b08e780,
-        type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7728665060623183405, guid: 05cd5980b32d42b498fbff048b08e780,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4962,6 +4927,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1538642930}
     - target: {fileID: 8269465958909542955, guid: 05cd5980b32d42b498fbff048b08e780,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8269465958985330406, guid: 05cd5980b32d42b498fbff048b08e780,
         type: 3}
       propertyPath: m_IsActive
       value: 0
