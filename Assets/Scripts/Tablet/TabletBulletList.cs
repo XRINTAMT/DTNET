@@ -61,10 +61,31 @@ public struct BulletListItemLink
             {
                 Debug.Log("text is NULL at " + Description);
             }
-            Text.color = new Color(142f,142f,142f);
+            Text.color = new Color(0.5f, 0.5f, 0.5f);
+            Text.text = StrikeThrough(Text.text);
+            /*
+            GameObject temp = UnityEngine.Object.Instantiate(Text.gameObject);
+            //temp.AddComponent<Image>();
+            temp.transform.SetParent(Text.transform, false);
+            temp.GetComponent<RectTransform>().pivot = new Vector2(0, 1);
+            temp.GetComponent<RectTransform>().position = new Vector2(0, 0);
+            */
+            //temp.GetComponent<RectTransform>().rect = Text.flexibleWidth;
         }
     }
+
+    string StrikeThrough(string s)
+    {
+        string strikethrough = "";
+        foreach (char c in s)
+        {
+            strikethrough = strikethrough + c + '\u0336';
+        }
+        return strikethrough;
+    }
 }
+
+
 
 public class TabletBulletList : MonoBehaviour
 {
