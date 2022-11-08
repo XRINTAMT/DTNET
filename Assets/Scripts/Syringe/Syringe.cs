@@ -24,7 +24,7 @@ public class Syringe : MonoBehaviour
     [SerializeField] Text AmountText;
     [SerializeField] Text SubstanceText;
     [SerializeField] Vector3 Offset;
-    [SerializeField] bool Guided;
+    bool Guided;
     [SerializeField] Material LiquidRight;
     [SerializeField] Material LiquidTooMuch;
 
@@ -47,6 +47,7 @@ public class Syringe : MonoBehaviour
     {
         innerPartPositionInit = InnerPart.transform.localPosition;
         LiquidPositionInit = Liquid.transform.localPosition;
+        Guided = PlayerPrefs.GetInt("GuidedMode", 1) == 1;
 
         ingredients = new Dictionary<string, float>();
         med = null;
