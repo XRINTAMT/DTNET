@@ -25,6 +25,8 @@ public class Syringe : MonoBehaviour
     [SerializeField] Text SubstanceText;
     [SerializeField] Vector3 Offset;
     [SerializeField] bool Guided;
+    [SerializeField] Material LiquidRight;
+    [SerializeField] Material LiquidTooMuch;
 
     TaskSpecificValues DataInterface;
     Ampule med;
@@ -34,6 +36,8 @@ public class Syringe : MonoBehaviour
     float totalSubstance;
     Vector3 innerPartPositionInit;
     Vector3 LiquidPositionInit;
+    MeshRenderer liquidRenderer;
+    Material LiquidNormal;
 
     public Dictionary<string, float> ingredients { private set; get;}
     public Injection Lable { get; private set; }
@@ -52,6 +56,11 @@ public class Syringe : MonoBehaviour
             //Debug.Log("Getting syringe capacity: "+DataInterface.TryGetItem("SyringeCapacity", ref SyringeCapacity));
             PlayerObject player = FindObjectOfType<PlayerObject>();
             Head = player.Head;
+        }
+        if (Guided)
+        {
+            liquidRenderer = Liquid.GetComponent<MeshRenderer>();
+            LiquidNormal = liquidRenderer.material;
         }
     }
 
@@ -72,12 +81,65 @@ public class Syringe : MonoBehaviour
         }
         //SubstanceText.text = med.Substance;
         //AmountText.text = ingredients[med.Substance].ToString("0.0");
+        UpdateGuidedLiquidColor(med.Substance);
+    }
+
+    private void UpdateGuidedLiquidColor(string substance)
+    {
+        if (Guided)
+        {
+            if (substance == "Dopamine")
+            {
+                if ( Mathf.Round(ingredients[substance]) == 20)
+                {
+                    liquidRenderer.material = LiquidRight;
+                }
+                else
+                {
+                    if(ingredients[substance] > 20)
+                    {
+                        liquidRenderer.material = LiquidTooMuch;
+                    }
+                    else
+                    {
+                        liquidRenderer.material = LiquidNormal;
+                    }
+                }
+            }
+            if (substance == "Solanine")
+            {
+                if (Mathf.Round(ingredients[substance]) == 50)
+                {
+                    liquidRenderer.material = LiquidRight;
+                }
+                else
+                {
+                    if (ingredients[substance] > 50)
+                    {
+                        liquidRenderer.material = LiquidTooMuch;
+                    }
+                    else
+                    {
+                        liquidRenderer.material = LiquidNormal;
+                    }
+                }
+            }
+        }
+    }
+
+    private void ReleaseGuidedLiquidColor()
+    {
+        if (Guided)
+        {
+            liquidRenderer.material = LiquidNormal;
+        }
     }
 
     public void Ejected()
     {
         inserted = false;
         pulling = false;
+        //ReleaseGuidedLiquidColor();
     }
 
     public void Pull()
@@ -172,6 +234,7 @@ public class Syringe : MonoBehaviour
             {
                 DataInterface.SendDataItem(ingred, (int)ingredients[ingred]);
             }
+            UpdateGuidedLiquidColor(med.Substance);
         }
         else
         {
@@ -213,6 +276,7 @@ public class Syringe : MonoBehaviour
                 {
                     DataInterface.SendDataItem(ingred, (int)ingredients[ingred]);
                 }
+                UpdateGuidedLiquidColor(med.Substance);
             }
         }
         Vector3 targetPosition = new Vector3(Head.transform.position.x, Head.transform.position.y, Head.transform.position.z);
