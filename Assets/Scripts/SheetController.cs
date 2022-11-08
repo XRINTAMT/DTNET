@@ -1,38 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
+using Autohand;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SheetController : MonoBehaviour
 {
-    // Start is called before the first frame update
 
     Camera cam;
-    Transform startPos;
+    Vector3 startPos;
+    Quaternion startRot;
     Transform startParent;
+    Rigidbody rb;
+    [SerializeField] GameObject canvas;
+    [SerializeField] GameObject buttonExit;
+
+    
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         cam = Camera.main;
         startParent = transform.parent;
-        startPos = transform;
+        startPos = transform.localPosition;
+        startRot = transform.localRotation;
     }
 
     public void Grab() 
     {
         if (cam!=null)
         {
+            rb.isKinematic = false;
             transform.parent = cam.transform;
-            transform.localPosition = new Vector3(0, 0, 0);
+            transform.localPosition = new Vector3(0, 0, 0.5f);
+            transform.localRotation = Quaternion.Euler(0,0,0);
+
+            canvas.GetComponent<GraphicRaycaster>().enabled = true;
+            buttonExit.SetActive(true);
         }
     }
-    public void Release()
+ 
+    public void Exit()
     {
+        rb.isKinematic = true;
         transform.parent = startParent;
-        transform.localPosition = startPos.position;
-        transform.localRotation = startPos.rotation;
+        transform.localPosition = startPos;
+        transform.localRotation = startRot;
+
+        canvas.GetComponent<GraphicRaycaster>().enabled = false;
+        buttonExit.SetActive(false);
     }
-    // Update is called once per frame
+
+ 
+    public void Realesee()
+    {
+        rb.isKinematic = true;
+        transform.parent = cam.transform;
+    }
+  
     void Update()
     {
         
     }
+   
 }
