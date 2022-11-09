@@ -14,8 +14,10 @@ public class SheetController : MonoBehaviour
     Rigidbody rb;
     [SerializeField] GameObject canvas;
     [SerializeField] GameObject buttonExit;
+    [SerializeField] GameObject areaLimit;
+    [SerializeField] GameObject modelCollider;
+    public bool inHead = true;
 
-    
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -23,19 +25,35 @@ public class SheetController : MonoBehaviour
         startParent = transform.parent;
         startPos = transform.localPosition;
         startRot = transform.localRotation;
+      
     }
 
     public void Grab() 
     {
-        if (cam!=null)
+        if (inHead)
         {
+            GetComponent<Grabbable>().parentOnGrab = false;
             rb.isKinematic = false;
             transform.parent = cam.transform;
             transform.localPosition = new Vector3(0, 0, 0.5f);
             transform.localRotation = Quaternion.Euler(0,0,0);
-
+            GetComponent<Rigidbody>().useGravity = true;
+            GetComponent<Rigidbody>().constraints= RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
             canvas.GetComponent<GraphicRaycaster>().enabled = true;
             buttonExit.SetActive(true);
+
+            modelCollider.layer = 16;
+
+            if (areaLimit != null) areaLimit.SetActive(true);
+           
+        }
+        if (!inHead)
+        {
+            GetComponent<Grabbable>().parentOnGrab = true;
+            modelCollider.layer = 10;
+            rb.isKinematic = false;
+            GetComponent<Rigidbody>().useGravity = true;
+            GetComponent<Rigidbody>().constraints = 0;
         }
     }
  
@@ -53,13 +71,21 @@ public class SheetController : MonoBehaviour
  
     public void Realesee()
     {
-        rb.isKinematic = true;
-        transform.parent = cam.transform;
+        if (inHead)
+        {
+            modelCollider.layer = 16;
+            rb.isKinematic = true;
+            transform.parent = cam.transform;
+        }
+        if (!inHead)
+        {
+            modelCollider.layer = 10;
+        }
     }
   
     void Update()
     {
-        
+
     }
    
 }

@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Autohand;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
-
 public class AnimationsController : MonoBehaviour
 {
 
@@ -23,8 +23,13 @@ public class AnimationsController : MonoBehaviour
     [SerializeField] private GameObject MeshWithoutShirt;
     [SerializeField] private Animation syringeAnimation;
     [SerializeField] private List<PlacePoint> placePoints;
+    [SerializeField] private SheetController observSheet;
+
 
     bool waterSyringe;
+
+
+
     private void Start()
     {
         for (int i = 0; i < placePoints.Count; i++)
@@ -129,7 +134,9 @@ public class AnimationsController : MonoBehaviour
         animationOpenDoor.Play("OpenDoor");
         doctorAnimator.SetTrigger("OpenDoor");
 
-        StartCoroutine(startDialogue());
+        observSheet.inHead = false; 
+
+        //StartCoroutine(startDialogue());
 
     }
     IEnumerator startDialogue()
@@ -172,7 +179,7 @@ public class AnimationsController : MonoBehaviour
     {
         //nurseAnimator.applyRootMotion=false;
         nurseAnimator.SetTrigger("Put Inject");
-        animationDoctorNurse.Stop();
+        //animationDoctorNurse.Stop();
     }
     public void AnimationDoctorInspect()
     {
