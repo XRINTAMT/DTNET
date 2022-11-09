@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wire: MonoBehaviour
+public class Wire : MonoBehaviour
 {
 	public int iterations = 5;
 	public float gravity = 10;
@@ -17,14 +17,22 @@ public class Wire: MonoBehaviour
 	float pointSpacing;
 	Vector3[] points;
 	Vector3[] pointsOld;
+	Vector3 LastOrigin;
+	Vector3 LastTarget;
 
 	Mesh mesh;
 	bool pinStart = true;
 	bool pinEnd = true;
-    [SerializeField] float floorOffset;
+	[SerializeField] float floorOffset;
+	[SerializeField] static float refreshDistance = 0.01f;
+	[SerializeField] static float refreshTimeout = 1.5f;
+	float refreshProgress;
 
-    void Start()
+	void Start()
 	{
+		refreshProgress = 5f;
+		LastTarget = Vector3.zero;
+		LastOrigin = Vector3.zero;
 		points = new Vector3[numPoints];
 		pointsOld = new Vector3[numPoints];
 
@@ -44,9 +52,28 @@ public class Wire: MonoBehaviour
 
 	void LateUpdate()
 	{
-        CylinderGenerator.CreateMesh(ref mesh, points, cylinderResolution, meshThickness);
-		meshFilter.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity); // mesh is in worldspace
-		meshFilter.mesh = mesh;
+		if(refreshProgress > 0)
+        {
+			CylinderGenerator.CreateMesh(ref mesh, points, cylinderResolution, meshThickness);
+			meshFilter.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity); // mesh is in worldspace
+			meshFilter.mesh = mesh;
+			LastOrigin = pathInfo.origin.position;
+			LastTarget = pathInfo.target.position;
+			refreshProgress -= Time.deltaTime;
+		}
+        else
+        {
+			if (((pathInfo.origin.position - LastOrigin).magnitude > refreshDistance) || ((pathInfo.target.position - LastTarget).magnitude > refreshDistance))
+			{
+				CylinderGenerator.CreateMesh(ref mesh, points, cylinderResolution, meshThickness);
+				meshFilter.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity); // mesh is in worldspace
+				meshFilter.mesh = mesh;
+				LastOrigin = pathInfo.origin.position;
+				LastTarget = pathInfo.target.position;
+				refreshProgress = refreshTimeout;
+			}
+		}
+		
 	}
 
 
