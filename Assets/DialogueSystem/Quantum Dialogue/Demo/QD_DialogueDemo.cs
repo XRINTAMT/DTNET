@@ -29,6 +29,7 @@ namespace QuantumTek.QuantumDialogue.Demo
         [SerializeField] GameObject panelUi;
         [SerializeField] GameObject panelChoice;
         public ControllerApp controllerApp;
+        [SerializeField] bool CompleteOnLastMessage = true;
         private void Awake()
         {
             audioSource = GetComponent<AudioSource>();
@@ -163,7 +164,7 @@ namespace QuantumTek.QuantumDialogue.Demo
 
         public void Next(int choice = -1)
         {
-            if (ended)
+            if (ended && CompleteOnLastMessage)
             {
                 Task t;
                 if(TryGetComponent<Task>(out t))
@@ -186,18 +187,21 @@ namespace QuantumTek.QuantumDialogue.Demo
                     dialogueSystem.DialogueComplete[Convert.ToInt32(nameDialog)-1] = true;
                 }
                 ended = true;
-                Task t;
-                if (TryGetComponent<Task>(out t))
+                if (CompleteOnLastMessage)
                 {
-                    Debug.Log("Task complete: " + gameObject.name);
-                    t.Complete();
+                    Task t;
+                    if (TryGetComponent<Task>(out t))
+                    {
+                        Debug.Log("Task complete: " + gameObject.name);
+                        t.Complete();
+                    }
                 }
             }
                 
         }
         public void Back(int choice = -1)
         {
-            if (ended)
+            if (ended && CompleteOnLastMessage)
             {
                 Task t;
                 if (TryGetComponent<Task>(out t))
@@ -220,12 +224,16 @@ namespace QuantumTek.QuantumDialogue.Demo
                     dialogueSystem.DialogueComplete[Convert.ToInt32(nameDialog) - 1] = true;
                 }
                 ended = true;
-                Task t;
-                if (TryGetComponent<Task>(out t))
+                if (CompleteOnLastMessage)
                 {
-                    Debug.Log("Task complete: " + gameObject.name);
-                    t.Complete();
+                    Task t;
+                    if (TryGetComponent<Task>(out t))
+                    {
+                        Debug.Log("Task complete: " + gameObject.name);
+                        t.Complete();
+                    }
                 }
+                
             }
 
         }
@@ -237,7 +245,7 @@ namespace QuantumTek.QuantumDialogue.Demo
         }
         public void Choose(int choice)
         {
-            if (ended)
+            if (ended && CompleteOnLastMessage)
             {
                 Task t;
                 if (TryGetComponent<Task>(out t))
