@@ -13,8 +13,10 @@ public class Syringe : MonoBehaviour
     [SerializeField] InjectionManager Manager;
     [SerializeField] Camera Head;
     [SerializeField] GameObject InnerPart;
+    [SerializeField] GameObject Liquid;
     [SerializeField] GameObject Pomp;
     [SerializeField] float MaxInnerPartDisplacement;
+    [SerializeField] float MaxLiquidScale;
     [SerializeField] int SyringeSensitivity;
     [SerializeField] int SyringeCapacity;
     [SerializeField] UnityEvent OnRequirementsMet;
@@ -22,6 +24,9 @@ public class Syringe : MonoBehaviour
     [SerializeField] Text AmountText;
     [SerializeField] Text SubstanceText;
     [SerializeField] Vector3 Offset;
+    bool Guided;
+    [SerializeField] Material LiquidRight;
+    [SerializeField] Material LiquidTooMuch;
 
     TaskSpecificValues DataInterface;
     Ampule med;
@@ -30,7 +35,10 @@ public class Syringe : MonoBehaviour
     bool pushing;
     float totalSubstance;
     Vector3 innerPartPositionInit;
-    
+    Vector3 LiquidPositionInit;
+    MeshRenderer liquidRenderer;
+    Material LiquidNormal;
+
     public Dictionary<string, float> ingredients { private set; get;}
     public Injection Lable { get; private set; }
 
@@ -38,6 +46,8 @@ public class Syringe : MonoBehaviour
     void Awake()
     {
         innerPartPositionInit = InnerPart.transform.localPosition;
+        LiquidPositionInit = Liquid.transform.localPosition;
+        Guided = PlayerPrefs.GetInt("GuidedMode", 1) == 1;
 
         ingredients = new Dictionary<string, float>();
         med = null;
@@ -47,6 +57,11 @@ public class Syringe : MonoBehaviour
             //Debug.Log("Getting syringe capacity: "+DataInterface.TryGetItem("SyringeCapacity", ref SyringeCapacity));
             PlayerObject player = FindObjectOfType<PlayerObject>();
             Head = player.Head;
+        }
+        if (Guided)
+        {
+            liquidRenderer = Liquid.GetComponent<MeshRenderer>();
+            LiquidNormal = liquidRenderer.material;
         }
     }
 
@@ -67,12 +82,65 @@ public class Syringe : MonoBehaviour
         }
         //SubstanceText.text = med.Substance;
         //AmountText.text = ingredients[med.Substance].ToString("0.0");
+        UpdateGuidedLiquidColor(med.Substance);
+    }
+
+    private void UpdateGuidedLiquidColor(string substance)
+    {
+        if (Guided)
+        {
+            if (substance == "Dopamine")
+            {
+                if ( Mathf.Round(ingredients[substance]) == 20)
+                {
+                    liquidRenderer.material = LiquidRight;
+                }
+                else
+                {
+                    if(ingredients[substance] > 20)
+                    {
+                        liquidRenderer.material = LiquidTooMuch;
+                    }
+                    else
+                    {
+                        liquidRenderer.material = LiquidNormal;
+                    }
+                }
+            }
+            if (substance == "Solanine")
+            {
+                if (Mathf.Round(ingredients[substance]) == 50)
+                {
+                    liquidRenderer.material = LiquidRight;
+                }
+                else
+                {
+                    if (ingredients[substance] > 50)
+                    {
+                        liquidRenderer.material = LiquidTooMuch;
+                    }
+                    else
+                    {
+                        liquidRenderer.material = LiquidNormal;
+                    }
+                }
+            }
+        }
+    }
+
+    private void ReleaseGuidedLiquidColor()
+    {
+        if (Guided)
+        {
+            liquidRenderer.material = LiquidNormal;
+        }
     }
 
     public void Ejected()
     {
         inserted = false;
         pulling = false;
+        //ReleaseGuidedLiquidColor();
     }
 
     public void Pull()
@@ -150,6 +218,14 @@ public class Syringe : MonoBehaviour
                 new Vector3(innerPartPositionInit.x, 
                 Mathf.Lerp(innerPartPositionInit.y, innerPartPositionInit.y - MaxInnerPartDisplacement, totalSubstance / SyringeCapacity), 
                 innerPartPositionInit.z);
+            Liquid.transform.localPosition =
+                new Vector3(LiquidPositionInit.x,
+                Mathf.Lerp(LiquidPositionInit.y, LiquidPositionInit.y - (MaxInnerPartDisplacement/2), totalSubstance / SyringeCapacity),
+                LiquidPositionInit.z);
+            Liquid.transform.localScale =
+                new Vector3(Liquid.transform.localScale.x,
+                Mathf.Lerp(0, MaxLiquidScale, totalSubstance / SyringeCapacity),
+                Liquid.transform.localScale.z);
             ingredients[med.Substance] += pullAmount;
             med.Amount -= pullAmount;
             //AmountText.text = ingredients[med.Substance].ToString("0.0");
@@ -159,6 +235,7 @@ public class Syringe : MonoBehaviour
             {
                 DataInterface.SendDataItem(ingred, (int)ingredients[ingred]);
             }
+            UpdateGuidedLiquidColor(med.Substance);
         }
         else
         {
@@ -187,11 +264,20 @@ public class Syringe : MonoBehaviour
                         new Vector3(innerPartPositionInit.x,
                         Mathf.Lerp(innerPartPositionInit.y, innerPartPositionInit.y - MaxInnerPartDisplacement, totalSubstance / SyringeCapacity),
                         innerPartPositionInit.z);
+                    Liquid.transform.localPosition =
+                new Vector3(LiquidPositionInit.x,
+                Mathf.Lerp(LiquidPositionInit.y, LiquidPositionInit.y - (MaxInnerPartDisplacement / 2), totalSubstance / SyringeCapacity),
+                LiquidPositionInit.z);
+                    Liquid.transform.localScale =
+                        new Vector3(Liquid.transform.localScale.x,
+                        Mathf.Lerp(0, MaxLiquidScale, totalSubstance / SyringeCapacity),
+                        Liquid.transform.localScale.z);
                 }
                 foreach (string ingred in ingredients.Keys.ToList())
                 {
                     DataInterface.SendDataItem(ingred, (int)ingredients[ingred]);
                 }
+                UpdateGuidedLiquidColor(med.Substance);
             }
         }
         Vector3 targetPosition = new Vector3(Head.transform.position.x, Head.transform.position.y, Head.transform.position.z);
