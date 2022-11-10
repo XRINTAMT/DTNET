@@ -19,8 +19,8 @@ MonoBehaviour:
     Type: 1
     Window:
       serializedVersion: 2
-      x: -31.419556
-      y: 457.42017
+      x: -32.419556
+      y: 582.42017
       width: 200
       height: 65
     Inputs: []
@@ -755,8 +755,8 @@ MonoBehaviour:
     Type: 4
     Window:
       serializedVersion: 2
-      x: 853.8745
-      y: 492
+      x: 867.8745
+      y: 476
       width: 300
       height: 155
     Inputs:
@@ -819,8 +819,8 @@ MonoBehaviour:
     Type: 3
     Window:
       serializedVersion: 2
-      x: -39
-      y: 280
+      x: -5
+      y: 306
       width: 200
       height: 175
     Inputs:
@@ -1195,10 +1195,10 @@ MonoBehaviour:
     Type: 4
     Window:
       serializedVersion: 2
-      x: 232
-      y: 112
+      x: 284
+      y: 144
       width: 300
-      height: 185
+      height: 215
     Inputs:
     - ID: 0
       Name: Previous Messages
@@ -1246,6 +1246,14 @@ MonoBehaviour:
         keys: 2a000000
         values:
         - Array: 01000000
+    - ID: 4
+      Name: Choice 5
+      Type: 1
+      Y: 165
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
     AllowedInputs:
     - InputType: 3
       InputID: 1
@@ -1272,6 +1280,10 @@ MonoBehaviour:
       InputID: 1
       OutputType: 4
       OutputID: 3
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 4
   - ID: 27
     Type: 3
     Window:
@@ -1370,8 +1382,8 @@ MonoBehaviour:
     Type: 3
     Window:
       serializedVersion: 2
-      x: 600
-      y: 452
+      x: 591
+      y: 449
       width: 200
       height: 175
     Inputs:
@@ -1557,8 +1569,8 @@ MonoBehaviour:
     Type: 3
     Window:
       serializedVersion: 2
-      x: 242
-      y: 541
+      x: 374
+      y: 658
       width: 200
       height: 175
     Inputs:
@@ -1580,100 +1592,6 @@ MonoBehaviour:
         keys: 1a000000
         values:
         - Array: 03000000
-    Outputs:
-    - ID: 0
-      Name: Speaker
-      Type: 1
-      Y: 7.5
-      AllowMultipleConnections: 1
-      Connections:
-        keys: 
-        values: []
-    - ID: 1
-      Name: Next
-      Type: 1
-      Y: 35
-      AllowMultipleConnections: 0
-      Connections:
-        keys: 2c000000
-        values:
-        - Array: 01000000
-    AllowedInputs:
-    - InputType: 3
-      InputID: 0
-      OutputType: 2
-      OutputID: 0
-    - InputType: 3
-      InputID: 1
-      OutputType: 3
-      OutputID: 1
-    - InputType: 3
-      InputID: 1
-      OutputType: 1
-      OutputID: 0
-    - InputType: 3
-      InputID: 1
-      OutputType: 4
-      OutputID: 0
-    AllowedOutputs:
-    - InputType: 3
-      InputID: 0
-      OutputType: 3
-      OutputID: 0
-    - InputType: 3
-      InputID: 1
-      OutputType: 3
-      OutputID: 1
-    - InputType: 4
-      InputID: 0
-      OutputType: 3
-      OutputID: 1
-    - InputType: 4
-      InputID: 1
-      OutputType: 3
-      OutputID: 1
-    - InputType: 4
-      InputID: 2
-      OutputType: 3
-      OutputID: 1
-    - InputType: 4
-      InputID: 3
-      OutputType: 3
-      OutputID: 1
-    - InputType: 4
-      InputID: 4
-      OutputType: 3
-      OutputID: 1
-    - InputType: 4
-      InputID: 5
-      OutputType: 3
-      OutputID: 1
-  - ID: 44
-    Type: 3
-    Window:
-      serializedVersion: 2
-      x: 497.75586
-      y: 540
-      width: 200
-      height: 175
-    Inputs:
-    - ID: 0
-      Name: Speaker
-      Type: 0
-      Y: 7.5
-      AllowMultipleConnections: 0
-      Connections:
-        keys: 
-        values: []
-    - ID: 1
-      Name: Previous
-      Type: 0
-      Y: 35
-      AllowMultipleConnections: 0
-      Connections:
-        keys: 2a000000
-        values:
-        - Array: 01000000
     Outputs:
     - ID: 0
       Name: Speaker
@@ -3301,109 +3219,9 @@ MonoBehaviour:
       Speaker: 10
       SpeakerName: 'You:'
       PreviousMessage: -1
-      NextMessage: 44
+      NextMessage: -1
       MessageText: Take off your shirt, please?
       Clip: {fileID: 8300000, guid: 5b5c1f68b8ca38d4c9b6dbbef23fc609, type: 3}
-  - ID: 44
-    Type: 3
-    Window:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 200
-      height: 175
-    Inputs:
-    - ID: 0
-      Name: Speaker
-      Type: 0
-      Y: 7.5
-      AllowMultipleConnections: 0
-      Connections:
-        keys: 
-        values: []
-    - ID: 1
-      Name: Previous
-      Type: 0
-      Y: 35
-      AllowMultipleConnections: 0
-      Connections:
-        keys: 
-        values: []
-    Outputs:
-    - ID: 0
-      Name: Speaker
-      Type: 1
-      Y: 7.5
-      AllowMultipleConnections: 1
-      Connections:
-        keys: 
-        values: []
-    - ID: 1
-      Name: Next
-      Type: 1
-      Y: 35
-      AllowMultipleConnections: 0
-      Connections:
-        keys: 
-        values: []
-    AllowedInputs:
-    - InputType: 3
-      InputID: 0
-      OutputType: 2
-      OutputID: 0
-    - InputType: 3
-      InputID: 1
-      OutputType: 3
-      OutputID: 1
-    - InputType: 3
-      InputID: 1
-      OutputType: 1
-      OutputID: 0
-    - InputType: 3
-      InputID: 1
-      OutputType: 4
-      OutputID: 0
-    AllowedOutputs:
-    - InputType: 3
-      InputID: 0
-      OutputType: 3
-      OutputID: 0
-    - InputType: 3
-      InputID: 1
-      OutputType: 3
-      OutputID: 1
-    - InputType: 4
-      InputID: 0
-      OutputType: 3
-      OutputID: 1
-    - InputType: 4
-      InputID: 1
-      OutputType: 3
-      OutputID: 1
-    - InputType: 4
-      InputID: 2
-      OutputType: 3
-      OutputID: 1
-    - InputType: 4
-      InputID: 3
-      OutputType: 3
-      OutputID: 1
-    - InputType: 4
-      InputID: 4
-      OutputType: 3
-      OutputID: 1
-    - InputType: 4
-      InputID: 5
-      OutputType: 3
-      OutputID: 1
-    Data:
-      ID: 44
-      Speaker: -1
-      SpeakerName: 
-      PreviousMessage: 42
-      NextMessage: -1
-      MessageText: Put Off Shirt
-      Clip: {fileID: 0}
   ConversationNodes:
   - ID: 0
     Type: 1
@@ -3516,4 +3334,5 @@ MonoBehaviour:
       - Ask about condition
       - Ask about how they are feeling
       - Ask to take shirt off
-      NextMessages: 0100000004000000260000002a000000
+      - Close
+      NextMessages: 0100000004000000260000002a000000ffffffff
