@@ -61,7 +61,7 @@ public struct BulletListItemLink
             {
                 Debug.Log("text is NULL at " + Description);
             }
-            Text.color = new Color(0.15f,1f,0.74f);
+            Text.color = new Color(0.42f, 0.42f, 0.42f);
         }
     }
 }
