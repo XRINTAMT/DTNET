@@ -89,6 +89,12 @@ public class UIController : MonoBehaviour
         PlayerPrefs.SetInt("Subtitles", subtitles);
     }
 
+    public void SetGuides(bool guides)
+    {
+        PlayerPrefs.SetInt("GuidedMode", guides ? 1 : 0);
+        
+    }
+
     public void LoadScene(string name)
     {
         SceneManager.LoadScene(name);
