@@ -61,7 +61,7 @@ public struct BulletListItemLink
             {
                 Debug.Log("text is NULL at " + Description);
             }
-            Text.color = new Color(0.5f, 0.5f, 0.5f);
+            Text.color = new Color(0.85f, 0.85f, 0.85f);
             Text.text = StrikeThrough(Text.text);
             /*
             GameObject temp = UnityEngine.Object.Instantiate(Text.gameObject);
