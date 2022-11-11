@@ -293,8 +293,12 @@ namespace Autohand {
                 placeObj.DeactivateRigidbody();
 
 
-            if (disablePlacePointOnPlace)
+            if (disablePlacePointOnPlace) 
+            {
+                Debug.Log(44);
                 enabled = false;
+            }
+              
 
             if (disableGrabOnPlace || disablePlacePointOnPlace)
                 placeObj.isGrabbable = false;
