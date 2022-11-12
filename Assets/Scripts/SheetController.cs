@@ -37,8 +37,8 @@ public class SheetController : MonoBehaviour
             transform.parent = cam.transform;
             transform.localPosition = new Vector3(0, 0, 0.5f);
             transform.localRotation = Quaternion.Euler(0,0,0);
-            GetComponent<Rigidbody>().useGravity = true;
-            GetComponent<Rigidbody>().constraints= RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+            rb.useGravity = true;
+            rb.constraints= RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
             canvas.GetComponent<GraphicRaycaster>().enabled = true;
             buttonExit.SetActive(true);
 
@@ -52,8 +52,8 @@ public class SheetController : MonoBehaviour
             GetComponent<Grabbable>().parentOnGrab = true;
             modelCollider.layer = 10;
             rb.isKinematic = false;
-            GetComponent<Rigidbody>().useGravity = true;
-            GetComponent<Rigidbody>().constraints = 0;
+            rb.useGravity = true;
+            rb.constraints = 0;
         }
     }
  
@@ -80,6 +80,7 @@ public class SheetController : MonoBehaviour
         if (!inHead)
         {
             modelCollider.layer = 10;
+            rb.isKinematic = true;
         }
     }
   

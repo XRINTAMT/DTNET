@@ -6,16 +6,27 @@ public class PauseManager : MonoBehaviour
 {
     [SerializeField] GameObject PauseMenu;
     [SerializeField] GameObject MenuOffset;
+    [SerializeField] GameObject Congrats;
+    [SerializeField] GameObject Main;
     [SerializeField] Camera UICamera;
     [SerializeField] Camera MainCamera;
     List<AudioSource> AudiosWerePlaying;
     List<Animation> AnimationsWerePlaying;
     XRMovementControls Controls;
+    bool ScenarioCompleted = false;
     void Awake()
     {
         AudiosWerePlaying = new List<AudioSource>();
         AnimationsWerePlaying = new List<Animation>();
         Controls = FindObjectOfType<XRMovementControls>();
+    }
+
+    public void ShowOutroMessage()
+    {
+        AppPause();
+        ScenarioCompleted = true;
+        Congrats.SetActive(true);
+        Main.SetActive(false);
     }
 
     public void AppPause()
@@ -52,7 +63,16 @@ public class PauseManager : MonoBehaviour
 
     public void AppUnpause()
     {
-        foreach(AudioSource Audio in AudiosWerePlaying)
+        if (ScenarioCompleted)
+        {
+            return;
+        }
+        ForceUnpause();
+    }
+
+    public void ForceUnpause()
+    {
+        foreach (AudioSource Audio in AudiosWerePlaying)
         {
             Audio.UnPause();
         }

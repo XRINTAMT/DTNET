@@ -17,7 +17,14 @@ namespace ScenarioTaskSystem
             for (int i = 0; i < ts.Length; i++)
             {
                 tasks.Add(ts[i]);
-                ts[i].Task.AddParentScenario(this);
+                if(ts[i].Task != null)
+                {
+                    ts[i].Task.AddParentScenario(this);
+                }
+                else
+                {
+                    Debug.LogWarning("There is an empty task in the scenario!");
+                }
             }
             OnAllCompleted = operation;
             Restart = Object.FindObjectOfType<RestartSystem>();
@@ -39,7 +46,8 @@ namespace ScenarioTaskSystem
             }
             else
             {
-                Restart.Load();
+                //Restart.Load();
+                Debug.LogWarning("Wrong completion order! Should have loaded the save here!");
             }
         }
 

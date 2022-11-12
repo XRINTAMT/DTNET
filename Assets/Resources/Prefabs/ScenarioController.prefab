@@ -44,14 +44,157 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GoToADifferentRoomOnCompletion:
-    RoomID: -1
+    RoomID: 0
   MyocardialInfarctionScenario:
     HygeneSubscenarioMarker:
       Function:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 0}
+            m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+            m_MethodName: CrossOut
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 0}
+            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_MethodName: SetActive
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
+          - m_Target: {fileID: 0}
+            m_TargetAssemblyTypeName: GuideSystem, Assembly-CSharp
+            m_MethodName: GuidePanelActivate
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 2
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
+          - m_Target: {fileID: 0}
+            m_TargetAssemblyTypeName: RestartSystem, Assembly-CSharp
+            m_MethodName: Save
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
+          - m_Target: {fileID: 0}
+            m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
     HygeneSubscenarios:
       WashHandsSubscenarioMarker:
+        Function:
+          m_PersistentCalls:
+            m_Calls: []
+      WashHandsTasks:
+        WetHands:
+          Task: {fileID: 0}
+          Order: {fileID: 0}
+          Completed: 0
+          OnFailed:
+            Function:
+              m_PersistentCalls:
+                m_Calls: []
+          Score: 0
+        GetSoap:
+          Task: {fileID: 0}
+          Order: {fileID: 0}
+          Completed: 0
+          OnFailed:
+            Function:
+              m_PersistentCalls:
+                m_Calls: []
+          Score: 0
+        WashSoapAway:
+          Task: {fileID: 0}
+          Order: {fileID: 0}
+          Completed: 0
+          OnFailed:
+            Function:
+              m_PersistentCalls:
+                m_Calls: []
+          Score: 0
+      PutGlovesOn:
+        Task: {fileID: 0}
+        Order: {fileID: 0}
+        Completed: 0
+        OnFailed:
+          Function:
+            m_PersistentCalls:
+              m_Calls: []
+        Score: 0
+      PutGlovesOnSubscenarioMarker:
+        Function:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: RestartSystem, Assembly-CSharp
+              m_MethodName: Save
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    CheckPatientSubscenarioMarker:
+      Function:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 0}
+            m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+            m_MethodName: CrossOut
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 1
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    CheckPatientSubscenarios:
+      DialogueOne:
+        Task: {fileID: 0}
+        Order: {fileID: 0}
+        Completed: 0
+        OnFailed:
+          Function:
+            m_PersistentCalls:
+              m_Calls: []
+        Score: 0
+      DialogueOneMarker:
         Function:
           m_PersistentCalls:
             m_Calls:
@@ -62,10 +205,1145 @@ MonoBehaviour:
               m_Arguments:
                 m_ObjectArgument: {fileID: 0}
                 m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 1
+                m_IntArgument: 2
                 m_FloatArgument: 0
                 m_StringArgument: 
                 m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: ControllerApp, Assembly-CSharp
+              m_MethodName: PutOffShirt
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: GuideSystem, Assembly-CSharp
+              m_MethodName: GuidePanelActivate
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 4
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: RestartSystem, Assembly-CSharp
+              m_MethodName: Save
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+      ConnectTheMonitor:
+        Task: {fileID: 0}
+        Order: {fileID: 0}
+        Completed: 0
+        OnFailed:
+          Function:
+            m_PersistentCalls:
+              m_Calls: []
+        Score: 0
+      ConnectTheMonitorMarker:
+        Function:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+              m_MethodName: CrossOut
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 3
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: GuideSystem, Assembly-CSharp
+              m_MethodName: GuidePanelActivate
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 5
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: RestartSystem, Assembly-CSharp
+              m_MethodName: Save
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: ObservationSheet, Assembly-CSharp
+              m_MethodName: StartCoundown
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+      FillObservationSheet:
+        Task: {fileID: 0}
+        Order: {fileID: 0}
+        Completed: 0
+        OnFailed:
+          Function:
+            m_PersistentCalls:
+              m_Calls: []
+        Score: 0
+      FillObservationSheetMarker:
+        Function:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+              m_MethodName: CrossOut
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 4
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+              m_MethodName: CrossOut
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 5
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: GuideSystem, Assembly-CSharp
+              m_MethodName: GuidePanelActivate
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 6
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: RestartSystem, Assembly-CSharp
+              m_MethodName: Save
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+      ReadDoctorsAppointments:
+        Task: {fileID: 0}
+        Order: {fileID: 0}
+        Completed: 0
+        OnFailed:
+          Function:
+            m_PersistentCalls:
+              m_Calls: []
+        Score: 0
+      ReadDoctorsAppointmentsMarker:
+        Function:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+              m_MethodName: CrossOut
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 6
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: GuideSystem, Assembly-CSharp
+              m_MethodName: GuidePanelActivate
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 7
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: RestartSystem, Assembly-CSharp
+              m_MethodName: Save
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    InjectionSubscenarioMarker:
+      Function:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 0}
+            m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+            m_MethodName: CrossOut
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 7
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    InjectionSubscenarios:
+      DiluteDopamine:
+        Task: {fileID: 0}
+        Order: {fileID: 0}
+        Completed: 0
+        OnFailed:
+          Function:
+            m_PersistentCalls:
+              m_Calls: []
+        Score: 0
+      DiluteDopamineMarker:
+        Function:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+              m_MethodName: CrossOut
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 8
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: GuideSystem, Assembly-CSharp
+              m_MethodName: GuidePanelActivate
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 8
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: RestartSystem, Assembly-CSharp
+              m_MethodName: Save
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+      ConnectPumps:
+        Task: {fileID: 0}
+        Order: {fileID: 0}
+        Completed: 0
+        OnFailed:
+          Function:
+            m_PersistentCalls:
+              m_Calls: []
+        Score: 0
+      ConnectPumpsMarker:
+        Function:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+              m_MethodName: CrossOut
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 9
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: GuideSystem, Assembly-CSharp
+              m_MethodName: GuidePanelActivate
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 9
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+      MakeAnInjection:
+        Task: {fileID: 0}
+        Order: {fileID: 0}
+        Completed: 0
+        OnFailed:
+          Function:
+            m_PersistentCalls:
+              m_Calls: []
+        Score: 0
+      MakeAnInjectionMarker:
+        Function:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+              m_MethodName: CrossOut
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 10
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: VitalsMonitor, Assembly-CSharp
+              m_MethodName: ChangeValueInspector
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 1,37.1,10
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: VitalsMonitor, Assembly-CSharp
+              m_MethodName: ChangeValueInspector
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 2,110,10
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: VitalsMonitor, Assembly-CSharp
+              m_MethodName: ChangeValueInspector
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 3,65,10
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: VitalsMonitor, Assembly-CSharp
+              m_MethodName: ChangeValueInspector
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 4,99,10
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: VitalsMonitor, Assembly-CSharp
+              m_MethodName: ChangeValueInspector
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 5,24,10
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: FadeMessageManager, Assembly-CSharp
+              m_MethodName: FadeWithText
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 5 minutes later...
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: GuideSystem, Assembly-CSharp
+              m_MethodName: GuidePanelActivate
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 10
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: RestartSystem, Assembly-CSharp
+              m_MethodName: Save
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+              m_MethodName: Play
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    KeepMonitoringSubscenarioMarker:
+      Function:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 0}
+            m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+            m_MethodName: CrossOut
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 11
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    KeepMonitoringSubscenarios:
+      FillObservationSheet:
+        Task: {fileID: 0}
+        Order: {fileID: 0}
+        Completed: 0
+        OnFailed:
+          Function:
+            m_PersistentCalls:
+              m_Calls: []
+        Score: 0
+      FillObservationSheetMarker:
+        Function:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+              m_MethodName: CrossOut
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 13
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: VitalsMonitor, Assembly-CSharp
+              m_MethodName: ChangeValueInspector
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 2,72,10
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: VitalsMonitor, Assembly-CSharp
+              m_MethodName: ChangeValueInspector
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 3,42,10
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: VitalsMonitor, Assembly-CSharp
+              m_MethodName: ChangeValueInspector
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 4,97,10
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: VitalsMonitor, Assembly-CSharp
+              m_MethodName: ChangeValueInspector
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 5,22,10
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: VitalsMonitor, Assembly-CSharp
+              m_MethodName: SwitchAlarm
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: FadeMessageManager, Assembly-CSharp
+              m_MethodName: FadeWithText
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 5 minutes later...
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: GuideSystem, Assembly-CSharp
+              m_MethodName: GuidePanelActivate
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 11
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: RestartSystem, Assembly-CSharp
+              m_MethodName: Save
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+              m_MethodName: Play
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+      DialogueTwo:
+        Task: {fileID: 0}
+        Order: {fileID: 0}
+        Completed: 0
+        OnFailed:
+          Function:
+            m_PersistentCalls:
+              m_Calls: []
+        Score: 0
+      DialogueTwoMarker:
+        Function:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+              m_MethodName: CrossOut
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 12
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: GuideSystem, Assembly-CSharp
+              m_MethodName: GuidePanelActivate
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 12
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: RestartSystem, Assembly-CSharp
+              m_MethodName: Save
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    CardiacArrestSubscenarioMarker:
+      Function:
+        m_PersistentCalls:
+          m_Calls: []
+    CardiacArrestSubscenarios:
+      AlarmButton:
+        Task: {fileID: 0}
+        Order: {fileID: 0}
+        Completed: 0
+        OnFailed:
+          Function:
+            m_PersistentCalls:
+              m_Calls: []
+        Score: 0
+      AlarmButtonMarker:
+        Function:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+              m_MethodName: CrossOut
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 15
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: GuideSystem, Assembly-CSharp
+              m_MethodName: GuidePanelActivate
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 13
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: RestartSystem, Assembly-CSharp
+              m_MethodName: Save
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+      CallDoctor:
+        Task: {fileID: 0}
+        Order: {fileID: 0}
+        Completed: 0
+        OnFailed:
+          Function:
+            m_PersistentCalls:
+              m_Calls: []
+        Score: 0
+      CallDoctorMarker:
+        Function:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+              m_MethodName: CrossOut
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 16
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: GuideSystem, Assembly-CSharp
+              m_MethodName: GuidePanelActivate
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 14
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: RestartSystem, Assembly-CSharp
+              m_MethodName: Save
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+      ApplyStimPads:
+        Task: {fileID: 0}
+        Order: {fileID: 0}
+        Completed: 0
+        OnFailed:
+          Function:
+            m_PersistentCalls:
+              m_Calls: []
+        Score: 0
+      ApplyStimPadsMarker:
+        Function:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+              m_MethodName: CrossOut
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 17
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: GuideSystem, Assembly-CSharp
+              m_MethodName: GuidePanelActivate
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 15
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: ControllerApp, Assembly-CSharp
+              m_MethodName: CallDoctorAdamsAnimation
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: Pacer, Assembly-CSharp
+              m_MethodName: StartPacing
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: RestartSystem, Assembly-CSharp
+              m_MethodName: Save
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+      ReportToDoc:
+        Task: {fileID: 0}
+        Order: {fileID: 0}
+        Completed: 0
+        OnFailed:
+          Function:
+            m_PersistentCalls:
+              m_Calls: []
+        Score: 0
+      ReportToDocMarker:
+        Function:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+              m_MethodName: CrossOut
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 18
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+              m_MethodName: CrossOut
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 19
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: GuideSystem, Assembly-CSharp
+              m_MethodName: GuidePanelActivate
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 16
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+      PositionThePatient:
+        Task: {fileID: 0}
+        Order: {fileID: 0}
+        Completed: 0
+        OnFailed:
+          Function:
+            m_PersistentCalls:
+              m_Calls: []
+        Score: 0
+      PositionThePatientMarker:
+        Function:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+              m_MethodName: CrossOut
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 20
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+              m_MethodName: CrossOut
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 21
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: GuideSystem, Assembly-CSharp
+              m_MethodName: GuidePanelActivate
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 17
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: RestartSystem, Assembly-CSharp
+              m_MethodName: Save
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: ControllerApp, Assembly-CSharp
+              m_MethodName: NurseAnimation
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+      ReportSpO2:
+        Task: {fileID: 0}
+        Order: {fileID: 0}
+        Completed: 0
+        OnFailed:
+          Function:
+            m_PersistentCalls:
+              m_Calls: []
+        Score: 0
+      ReportSpO2Marker:
+        Function:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+              m_MethodName: CrossOut
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 22
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: GuideSystem, Assembly-CSharp
+              m_MethodName: GuidePanelActivate
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 18
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: GuideSystem, Assembly-CSharp
+              m_MethodName: GuidePanelActivate
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 20
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+      MakeAnInjection:
+        Task: {fileID: 0}
+        Order: {fileID: 0}
+        Completed: 0
+        OnFailed:
+          Function:
+            m_PersistentCalls:
+              m_Calls: []
+        Score: 0
+      MakeAnInjectionMarker:
+        Function:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+              m_MethodName: CrossOut
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 23
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+              m_MethodName: CrossOut
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 19
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: GuideSystem, Assembly-CSharp
+              m_MethodName: GuidePanelActivate
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 19
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+      KeepRegulating:
+        Task: {fileID: 0}
+        Order: {fileID: 0}
+        Completed: 0
+        OnFailed:
+          Function:
+            m_PersistentCalls:
+              m_Calls: []
+        Score: 0
+      KeepRegulatingMarker:
+        Function:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+              m_MethodName: CrossOut
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 24
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+              m_MethodName: CrossOut
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 25
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: VitalsMonitor, Assembly-CSharp
+              m_MethodName: ChangeValueInspector
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 0,60,5
+                m_BoolArgument: 1
               m_CallState: 2
             - m_Target: {fileID: 0}
               m_TargetAssemblyTypeName: VitalsMonitor, Assembly-CSharp
@@ -80,6 +1358,18 @@ MonoBehaviour:
                 m_BoolArgument: 0
               m_CallState: 2
             - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: FadeMessageManager, Assembly-CSharp
+              m_MethodName: FadeWithText
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 10 minutes later...
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
               m_TargetAssemblyTypeName: VitalsMonitor, Assembly-CSharp
               m_MethodName: ChangeValueInspector
               m_Mode: 5
@@ -88,114 +1378,91 @@ MonoBehaviour:
                 m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
                 m_IntArgument: 0
                 m_FloatArgument: 0
-                m_StringArgument: 0,80,1.8
+                m_StringArgument: 1,37.1,10
                 m_BoolArgument: 0
               m_CallState: 2
-      WashHandsTasks:
-        WetHands:
-          Task: {fileID: 0}
-          Order: {fileID: 0}
-          Completed: 0
-        GetSoap:
-          Task: {fileID: 0}
-          Order: {fileID: 0}
-          Completed: 0
-        WashSoapAway:
-          Task: {fileID: 0}
-          Order: {fileID: 0}
-          Completed: 0
-    CheckPatientSubscenarioMarker:
-      Function:
-        m_PersistentCalls:
-          m_Calls: []
-    CheckPatientSubscenarios:
-      DialogueOne:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: VitalsMonitor, Assembly-CSharp
+              m_MethodName: ChangeValueInspector
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 2,110,10
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: VitalsMonitor, Assembly-CSharp
+              m_MethodName: ChangeValueInspector
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 3,65,10
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: VitalsMonitor, Assembly-CSharp
+              m_MethodName: ChangeValueInspector
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 4,99,10
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: VitalsMonitor, Assembly-CSharp
+              m_MethodName: ChangeValueInspector
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 5,22,10
+                m_BoolArgument: 0
+              m_CallState: 2
+      DialogueThree:
         Task: {fileID: 0}
         Order: {fileID: 0}
-        Completed: 0
-      DialogueOneMarker:
+        Completed: 1
+        OnFailed:
+          Function:
+            m_PersistentCalls:
+              m_Calls: []
+        Score: 0
+      DialogueThreeMarker:
         Function:
           m_PersistentCalls:
-            m_Calls: []
-      ConnectTheMonitor:
-        Task: {fileID: 0}
-        Order: {fileID: 0}
-        Completed: 0
-      ConnectTheMonitorMarker:
-        Function:
-          m_PersistentCalls:
-            m_Calls: []
-      FillObservationSheet:
-        Task: {fileID: 0}
-        Order: {fileID: 0}
-        Completed: 0
-      FillObservationSheetMarker:
-        Function:
-          m_PersistentCalls:
-            m_Calls: []
-      ReadDoctorsAppointments:
-        Task: {fileID: 0}
-        Order: {fileID: 0}
-        Completed: 0
-      ReadDoctorsAppointmentsMarker:
-        Function:
-          m_PersistentCalls:
-            m_Calls: []
-    InjectionSubscenarioMarker:
-      Function:
-        m_PersistentCalls:
-          m_Calls: []
-    InjectionSubscenarios:
-      DiluteDopamine:
-        Task: {fileID: 0}
-        Order: {fileID: 0}
-        Completed: 0
-      DiluteDopamineMarker:
-        Function:
-          m_PersistentCalls:
-            m_Calls: []
-      ConnectPumps:
-        Task: {fileID: 0}
-        Order: {fileID: 0}
-        Completed: 0
-      ConnectPumpsMarker:
-        Function:
-          m_PersistentCalls:
-            m_Calls: []
-      MakeAnInjection:
-        Task: {fileID: 0}
-        Order: {fileID: 0}
-        Completed: 0
-      MakeAnInjectionMarker:
-        Function:
-          m_PersistentCalls:
-            m_Calls: []
-    KeepMonitoringSubscenarioMarker:
-      Function:
-        m_PersistentCalls:
-          m_Calls: []
-    KeepMonitoringSubscenarios:
-      FillObservationSheet:
-        Task: {fileID: 0}
-        Order: {fileID: 0}
-        Completed: 0
-      FillObservationSheetMarker:
-        Function:
-          m_PersistentCalls:
-            m_Calls: []
-      DialogueTwo:
-        Task: {fileID: 0}
-        Order: {fileID: 0}
-        Completed: 0
-      DialogueTwoMarker:
-        Function:
-          m_PersistentCalls:
-            m_Calls: []
-      AlarmButton:
-        Task: {fileID: 0}
-        Order: {fileID: 0}
-        Completed: 0
-      AlarmButtonMarker:
-        Function:
-          m_PersistentCalls:
-            m_Calls: []
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+              m_MethodName: CrossOut
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 26
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
+              m_MethodName: CrossOut
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 27
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2

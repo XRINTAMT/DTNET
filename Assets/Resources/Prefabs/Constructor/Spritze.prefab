@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 297ae997f6cb9f144ab1d679e80ba864, type: 2}
+  - {fileID: 2100000, guid: de0b75d2ee2a81f43a63176b8517ae94, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -282,7 +282,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bee507427e7767247957a39819087d7e, type: 2}
+  - {fileID: 2100000, guid: 14b720a809962114a9bd83cf112e57a6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -382,7 +382,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 11f747aeef2a5064babd295aa0a19c9f, type: 2}
+  - {fileID: 2100000, guid: 36337debf072c4a46b09a62fd390497e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -529,7 +529,7 @@ MonoBehaviour:
   CopySettings: {fileID: 0}
   grabType: 0
   handType: 0
-  singleHandOnly: 0
+  singleHandOnly: 1
   allowHeldSwapping: 1
   instantGrab: 0
   useGentleGrab: 0
@@ -576,9 +576,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8512265354180483947}
-        m_TargetAssemblyTypeName: Syringe, Assembly-CSharp
-        m_MethodName: TurnTheHUD
+      - m_Target: {fileID: 9061535348185163194}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -603,9 +603,9 @@ MonoBehaviour:
   onRelease:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8512265354180483947}
-        m_TargetAssemblyTypeName: Syringe, Assembly-CSharp
-        m_MethodName: TurnTheHUD
+      - m_Target: {fileID: 9061535348185163194}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1057,7 +1057,6 @@ MonoBehaviour:
   AmountText: {fileID: 9061535347864316693}
   SubstanceText: {fileID: 9061535348214342774}
   Offset: {x: -0.08, y: 0.08, z: 0}
-  Guided: 0
   LiquidRight: {fileID: 2100000, guid: e4cfaf3bd398c3947bc040e8ddb1d49d, type: 2}
   LiquidTooMuch: {fileID: 2100000, guid: 149adfb0496097b4b99598d01d25e6cb, type: 2}
 --- !u!114 &3148744991086824738

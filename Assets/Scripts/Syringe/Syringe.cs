@@ -239,7 +239,7 @@ public class Syringe : MonoBehaviour
         }
         else
         {
-            if (pushing)
+            if (pushing && (med != null))
             {
                 float delta = Mathf.Min(Time.deltaTime * SyringeSensitivity, totalSubstance);
                 if(delta >= totalSubstance)
