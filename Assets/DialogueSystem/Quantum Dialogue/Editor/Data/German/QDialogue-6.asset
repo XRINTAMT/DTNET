@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a74e3a65cc4b487bb14b164cb3ec0e7, type: 3}
-  m_Name: QDialogue-3
+  m_Name: QDialogue-6
   m_EditorClassIdentifier: 
-  DataDB: {fileID: 11400000, guid: 78b7348fc07868b4db33e573a14253a9, type: 2}
-  NextID: 13
+  DataDB: {fileID: 11400000, guid: d8920f8bf55b9d24da0246fa985564f1, type: 2}
+  NextID: 14
   Nodes:
   - ID: 0
     Type: 2
     Window:
       serializedVersion: 2
-      x: 1227.9683
-      y: 155
+      x: 2463.9683
+      y: 55
       width: 200
       height: 110
     Inputs: []
@@ -31,7 +31,7 @@ MonoBehaviour:
       Y: 40
       AllowMultipleConnections: 1
       Connections:
-        keys: 03000000
+        keys: 06000000
         values:
         - Array: 00000000
     AllowedInputs: []
@@ -44,8 +44,8 @@ MonoBehaviour:
     Type: 1
     Window:
       serializedVersion: 2
-      x: 1067.9683
-      y: 60
+      x: 1860.9683
+      y: 398
       width: 200
       height: 65
     Inputs: []
@@ -56,7 +56,7 @@ MonoBehaviour:
       Y: 40
       AllowMultipleConnections: 0
       Connections:
-        keys: 02000000
+        keys: 0d000000
         values:
         - Array: 01000000
     AllowedInputs: []
@@ -89,9 +89,8 @@ MonoBehaviour:
       Y: 35
       AllowMultipleConnections: 0
       Connections:
-        keys: 01000000
-        values:
-        - Array: 00000000
+        keys: 
+        values: []
     Outputs:
     - ID: 0
       Name: Speaker
@@ -175,9 +174,8 @@ MonoBehaviour:
       Y: 7.5
       AllowMultipleConnections: 0
       Connections:
-        keys: 00000000
-        values:
-        - Array: 00000000
+        keys: 
+        values: []
     - ID: 1
       Name: Previous
       Type: 0
@@ -285,8 +283,8 @@ MonoBehaviour:
     Type: 3
     Window:
       serializedVersion: 2
-      x: 2170.9683
-      y: 50
+      x: 2049.9683
+      y: 12
       width: 200
       height: 175
     Inputs:
@@ -390,8 +388,9 @@ MonoBehaviour:
       Y: 7.5
       AllowMultipleConnections: 0
       Connections:
-        keys: 
-        values: []
+        keys: 00000000
+        values:
+        - Array: 00000000
     - ID: 1
       Name: Previous
       Type: 0
@@ -472,8 +471,8 @@ MonoBehaviour:
     Type: 4
     Window:
       serializedVersion: 2
-      x: 2681.4475
-      y: 68
+      x: 2384.4475
+      y: 314
       width: 300
       height: 125
     Inputs:
@@ -483,8 +482,9 @@ MonoBehaviour:
       Y: 7.5
       AllowMultipleConnections: 0
       Connections:
-        keys: 
-        values: []
+        keys: 0d000000
+        values:
+        - Array: 01000000
     Outputs:
     - ID: 0
       Name: Choice 1
@@ -516,6 +516,100 @@ MonoBehaviour:
     - InputType: 3
       InputID: 1
       OutputType: 4
+      OutputID: 1
+  - ID: 13
+    Type: 3
+    Window:
+      serializedVersion: 2
+      x: 2115.1492
+      y: 311
+      width: 200
+      height: 175
+    Inputs:
+    - ID: 0
+      Name: Speaker
+      Type: 0
+      Y: 7.5
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Previous
+      Type: 0
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 01000000
+        values:
+        - Array: 00000000
+    Outputs:
+    - ID: 0
+      Name: Speaker
+      Type: 1
+      Y: 7.5
+      AllowMultipleConnections: 1
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Next
+      Type: 1
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 0b000000
+        values:
+        - Array: 00000000
+    AllowedInputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 2
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 3
+      InputID: 1
+      OutputType: 1
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 0
+    AllowedOutputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 3
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 0
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 2
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 3
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 4
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 5
+      OutputType: 3
       OutputID: 1
   SpeakerNodes:
   - ID: 0
@@ -769,8 +863,8 @@ MonoBehaviour:
       OutputID: 1
     Data:
       ID: 3
-      Speaker: 0
-      SpeakerName: 'You:'
+      Speaker: -1
+      SpeakerName: 
       PreviousMessage: 2
       NextMessage: 5
       MessageText: After ten minutes after dopamin injection, the patient complained
@@ -980,6 +1074,106 @@ MonoBehaviour:
       NextMessage: -1
       MessageText: Oxygen saturation is 97%
       Clip: {fileID: 8300000, guid: 700a4a9e362848940b35dc3962941b51, type: 3}
+  - ID: 13
+    Type: 3
+    Window:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 200
+      height: 175
+    Inputs:
+    - ID: 0
+      Name: Speaker
+      Type: 0
+      Y: 7.5
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Previous
+      Type: 0
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    Outputs:
+    - ID: 0
+      Name: Speaker
+      Type: 1
+      Y: 7.5
+      AllowMultipleConnections: 1
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Next
+      Type: 1
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    AllowedInputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 2
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 3
+      InputID: 1
+      OutputType: 1
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 0
+    AllowedOutputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 3
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 0
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 2
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 3
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 4
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 5
+      OutputType: 3
+      OutputID: 1
+    Data:
+      ID: 13
+      Speaker: -1
+      SpeakerName: 
+      PreviousMessage: -1
+      NextMessage: 11
+      MessageText: 
+      Clip: {fileID: 0}
   ConversationNodes:
   - ID: 1
     Type: 1
@@ -1007,8 +1201,8 @@ MonoBehaviour:
       OutputID: 0
     Data:
       ID: 1
-      Name: 3
-      FirstMessage: 2
+      Name: 6
+      FirstMessage: 13
   ChoiceNodes:
   - ID: 11
     Type: 2
