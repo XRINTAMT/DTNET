@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fc788fe28a1947c5906bf24c0472406, type: 3}
-  m_Name: Dialogue-3
+  m_Name: Dialogue-6
   m_EditorClassIdentifier: 
   Conversations:
   - ID: 1
-    Name: 3
-    FirstMessage: 2
+    Name: 6
+    FirstMessage: 13
   Speakers:
   - ID: 0
     Name: 'You:'
@@ -32,14 +32,14 @@ MonoBehaviour:
     MessageText: "What happened? What is the patient\u2019s data?\r\n"
     Clip: {fileID: 8300000, guid: 4fbae1550cb97c24ab13459abcf4450e, type: 3}
   - ID: 3
-    Speaker: 0
-    SpeakerName: 'You:'
+    Speaker: -1
+    SpeakerName: 
     PreviousMessage: 2
     NextMessage: 5
-    MessageText: After ten minutes after dopamin injection, the patient complained
-      that he  was very lightheaded and felt a pain in his chest. Blood pressure
-      felt to 72/42 mmHg.  Absolute bradycardia developed and patient progresses
-      into a third-degree heart block
+    MessageText: Ten minutes after dopamin injection, the patient complained that
+      he  was very lightheaded and felt a pain in his chest. Blood pressure felt
+      to 72/42 mmHg.  Absolute bradycardia developed and patient progresses into
+      a third-degree heart block
     Clip: {fileID: 8300000, guid: 6fc39721f256a9c43b32f83a8802938a, type: 3}
   - ID: 5
     Speaker: 4
@@ -57,9 +57,48 @@ MonoBehaviour:
     NextMessage: -1
     MessageText: Oxygen saturation is 97%
     Clip: {fileID: 8300000, guid: 700a4a9e362848940b35dc3962941b51, type: 3}
+  - ID: 13
+    Speaker: -1
+    SpeakerName: 
+    PreviousMessage: -1
+    NextMessage: 11
+    MessageText: 
+    Clip: {fileID: 0}
+  - ID: 14
+    Speaker: 0
+    SpeakerName: 'You:'
+    PreviousMessage: -1
+    NextMessage: -1
+    MessageText: Oxygen saturation is 96%
+    Clip: {fileID: 0}
+  - ID: 15
+    Speaker: 0
+    SpeakerName: 'You:'
+    PreviousMessage: 11
+    NextMessage: -1
+    MessageText: Oxygen saturation is 95%
+    Clip: {fileID: 0}
+  - ID: 16
+    Speaker: 0
+    SpeakerName: 'You:'
+    PreviousMessage: -1
+    NextMessage: -1
+    MessageText: Oxygen saturation is 94%
+    Clip: {fileID: 0}
+  - ID: 17
+    Speaker: 0
+    SpeakerName: 'You:'
+    PreviousMessage: -1
+    NextMessage: -1
+    MessageText: Oxygen saturation is 98%
+    Clip: {fileID: 0}
   Choices:
   - ID: 11
     Choices:
-    - Report oxygen saturation
+    - Oxygen saturation is 94%
+    - Oxygen saturation is 95%
+    - Oxygen saturation is 96%
+    - Oxygen saturation is 97%
+    - Oxygen saturation is 98%
     - Close
-    NextMessages: 06000000ffffffff
+    NextMessages: 100000000f0000000e0000000600000011000000ffffffff
