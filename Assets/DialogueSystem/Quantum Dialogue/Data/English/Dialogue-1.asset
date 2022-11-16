@@ -153,7 +153,7 @@ MonoBehaviour:
     SpeakerName: 'Patient Edvin:'
     PreviousMessage: 48
     NextMessage: 26
-    MessageText: Answer to BadOption
+    MessageText: Answer to a BadOption
     Clip: {fileID: 0}
   - ID: 52
     Speaker: 10
@@ -167,7 +167,7 @@ MonoBehaviour:
     SpeakerName: 'Patient Edvin:'
     PreviousMessage: 52
     NextMessage: 26
-    MessageText: Answer to OkOption
+    MessageText: Answer to an Ok Option
     Clip: {fileID: 0}
   - ID: 54
     Speaker: -1
@@ -203,7 +203,7 @@ MonoBehaviour:
     Speaker: 2
     SpeakerName: 'Patient Edvin:'
     PreviousMessage: 57
-    NextMessage: -1
+    NextMessage: 26
     MessageText: 'Answer to a bad option
 
 '
@@ -212,8 +212,45 @@ MonoBehaviour:
     Speaker: 2
     SpeakerName: 'Patient Edvin:'
     PreviousMessage: 58
-    NextMessage: -1
+    NextMessage: 26
     MessageText: Answer to an ok option
+    Clip: {fileID: 0}
+  - ID: 61
+    Speaker: -1
+    SpeakerName: 
+    PreviousMessage: -1
+    NextMessage: 63
+    MessageText: 'Next
+
+'
+    Clip: {fileID: 0}
+  - ID: 64
+    Speaker: 2
+    SpeakerName: 'Patient Edvin:'
+    PreviousMessage: 67
+    NextMessage: 26
+    MessageText: Answer to a bad option
+    Clip: {fileID: 0}
+  - ID: 65
+    Speaker: 2
+    SpeakerName: 'Patient Edvin:'
+    PreviousMessage: 66
+    NextMessage: 26
+    MessageText: Answer to an ok option
+    Clip: {fileID: 0}
+  - ID: 66
+    Speaker: 10
+    SpeakerName: 'You:'
+    PreviousMessage: 63
+    NextMessage: 65
+    MessageText: Ok option
+    Clip: {fileID: 0}
+  - ID: 67
+    Speaker: 10
+    SpeakerName: 'You:'
+    PreviousMessage: -1
+    NextMessage: 64
+    MessageText: Bad option
     Clip: {fileID: 0}
   Choices:
   - ID: 15
@@ -221,7 +258,7 @@ MonoBehaviour:
     - Ask what the complaint is about
     - Ask about symptoms
     - Back
-    NextMessages: 060000003800000029000000
+    NextMessages: 3d0000003800000029000000
   - ID: 26
     Choices:
     - Introduction
@@ -236,11 +273,18 @@ MonoBehaviour:
     - Bad option
     - Ok option
     - Back
-    NextMessages: 01000000300000003400000036000000
+    NextMessages: 0100000030000000340000001a000000
   - ID: 55
     Choices:
     - Ok option
     - So Mr. Edwin, what are your symptoms?
     - Bad option
     - Back
-    NextMessages: 3a0000001500000039000000ffffffff
+    NextMessages: 3a00000015000000390000001a000000
+  - ID: 63
+    Choices:
+    - Bad option
+    - Ok option
+    - What are you complain of?
+    - Back
+    NextMessages: 4300000042000000060000001a000000
