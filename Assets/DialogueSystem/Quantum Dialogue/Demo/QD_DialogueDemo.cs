@@ -137,9 +137,11 @@ namespace QuantumTek.QuantumDialogue.Demo
                 speakerName.text = message.SpeakerName;
 
                 messageText.text = message.MessageText;
-                if (messageText.text== "Next")
+                Debug.Log("Checking if this is a dummy: \"" + message.MessageText + "\"");
+                if (message.MessageText == "Next")
                 {
                     NextTextDialogue();
+                    Debug.Log("Skipping the dummy message");
                     return;
                 }
                 if (messageText.text== "Put Off Shirt" && controllerApp!=null)
