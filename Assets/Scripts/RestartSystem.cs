@@ -14,7 +14,13 @@ public class RestartSystem : MonoBehaviour
     }
 
     public void Save(){
-        if(SavedState != null){
+        Invoke("MakeASave", 1);
+    }
+
+    private void MakeASave()
+    {
+        if (SavedState != null)
+        {
             Object.Destroy(SavedState);
         }
         SavedState = Object.Instantiate(Changables);
