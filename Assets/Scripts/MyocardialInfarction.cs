@@ -16,16 +16,16 @@ public class MyocardialInfarction : MonoBehaviour
         //All of this scenarios tasks here
 
         //Hygene subscenario tasks here
-        public Scenario HygeneSubscenario;
-        [NonSerialized] public TaskSettings CompleteHygeneSubscenario;
+        [SerializeReference] public Scenario HygeneSubscenario;
+        /*[NonSerialized]*/ public TaskSettings CompleteHygeneSubscenario;
         public Operation HygeneSubscenarioCompleter;
         public UniversalOperation HygeneSubscenarioMarker;
 
         [Serializable]
         public struct HygeneSubscenarioGroup
         {
-            public Scenario WashHandsSubscenario;
-            [NonSerialized] public TaskSettings CompleteWashHandsSubscenario;
+            [SerializeReference] public Scenario WashHandsSubscenario;
+            /*[NonSerialized]*/ public TaskSettings CompleteWashHandsSubscenario;
             public Operation WashHandsSubscenarioCompleter;
             public UniversalOperation WashHandsSubscenarioMarker;
 
@@ -44,8 +44,8 @@ public class MyocardialInfarction : MonoBehaviour
         public HygeneSubscenarioGroup HygeneSubscenarios;
 
         //Check patient subscenario tasks here
-        public Scenario CheckPatientSubscenario;
-        [NonSerialized] public TaskSettings CompleteCheckPatientSubscenario;
+        [SerializeReference] public Scenario CheckPatientSubscenario;
+        /*[NonSerialized]*/ public TaskSettings CompleteCheckPatientSubscenario;
         public Operation CheckPatientSubscenarioCompleter;
         public UniversalOperation CheckPatientSubscenarioMarker;
 
@@ -64,8 +64,8 @@ public class MyocardialInfarction : MonoBehaviour
         public CheckPatientSubscenarioGroup CheckPatientSubscenarios;
 
         //Injection subscenario tasks here
-        public Scenario InjectionSubscenario;
-        [NonSerialized] public TaskSettings CompleteInjectionSubscenario;
+        [SerializeReference] public Scenario InjectionSubscenario;
+        /*[NonSerialized]*/ public TaskSettings CompleteInjectionSubscenario;
         public Operation InjectionSubscenarioCompleter;
         public UniversalOperation InjectionSubscenarioMarker;
 
@@ -82,8 +82,8 @@ public class MyocardialInfarction : MonoBehaviour
         public InjectionSubscenarioGroup InjectionSubscenarios;
 
         //Keep monitoring subscenario tasks here
-        public Scenario KeepMonitoringSubscenario;
-        [NonSerialized] public TaskSettings CompleteKeepMonitoringSubscenario;
+        [SerializeReference] public Scenario KeepMonitoringSubscenario;
+        /*[NonSerialized]*/ public TaskSettings CompleteKeepMonitoringSubscenario;
         public Operation KeepMonitoringSubscenarioCompleter;
         public UniversalOperation KeepMonitoringSubscenarioMarker;
 
@@ -98,9 +98,9 @@ public class MyocardialInfarction : MonoBehaviour
         public KeepMonitoringSubscenarioGroup KeepMonitoringSubscenarios;
 
         //Cardiac arrest handling tasks here
-        
-        public Scenario CardiacArrestSubscenario;
-        [NonSerialized] public TaskSettings CompleteCardiacArrestSubscenario;
+
+        [SerializeReference] public Scenario CardiacArrestSubscenario;
+        /*[NonSerialized]*/ public TaskSettings CompleteCardiacArrestSubscenario;
         public Operation CardiacArrestSubscenarioCompleter;
         public UniversalOperation CardiacArrestSubscenarioMarker;
 
@@ -132,8 +132,30 @@ public class MyocardialInfarction : MonoBehaviour
     [SerializeField] RoomChanger GoToADifferentRoomOnCompletion;
     [SerializeField] MyocardialInfarctionSubscenariosGroup MyocardialInfarctionScenario;
 
-    void Awake()
+    void Start()
     {
+        if (transform.parent.name.Contains("(Clone)"))
+        {
+            Debug.Log("This is a clone (parent has Clone in its name), no need to initialize");
+            MyocardialInfarctionScenario.CardiacArrestSubscenario.Reconnect();
+            MyocardialInfarctionScenario.CheckPatientSubscenario.Reconnect();
+            MyocardialInfarctionScenario.KeepMonitoringSubscenario.Reconnect();
+            MyocardialInfarctionScenario.InjectionSubscenario.Reconnect();
+            MyocardialInfarctionScenario.HygeneSubscenario.Reconnect();
+            MyocardialInfarctionScenario.HygeneSubscenarios.WashHandsSubscenario.Reconnect();
+
+            MyocardialInfarctionScenario.HygeneSubscenarioCompleter.Include(
+           new ScenarioActivator(MyocardialInfarctionScenario.CheckPatientSubscenario));
+            MyocardialInfarctionScenario.CheckPatientSubscenarioCompleter.Include(
+                new ScenarioActivator(MyocardialInfarctionScenario.InjectionSubscenario));
+            MyocardialInfarctionScenario.InjectionSubscenarioCompleter.Include(
+                new ScenarioActivator(MyocardialInfarctionScenario.KeepMonitoringSubscenario));
+            MyocardialInfarctionScenario.KeepMonitoringSubscenarioCompleter.Include(
+                new ScenarioActivator(MyocardialInfarctionScenario.CardiacArrestSubscenario));
+
+            return;
+        }
+
         GuidedMode = PlayerPrefs.GetInt("GuidedMode", 1) == 1;
 
         MyocardialInfarctionScenario.HygeneSubscenarios.CompleteWashHandsSubscenario = new TaskSettings();

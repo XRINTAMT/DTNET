@@ -8,10 +8,10 @@ namespace ScenarioTaskSystem
     [Serializable]
     public class Scenario
     {
-        [SerializeField] List<TaskSettings> tasks;
-        public Operation OnAllCompleted;
+        [SerializeReference] List<TaskSettings> tasks;
+        [SerializeReference] public Operation OnAllCompleted;
         [SerializeField] RestartSystem Restart;
-        [SerializeField] private bool active;
+        [SerializeField] bool active;
         [SerializeField] private bool guided;
         public Scenario(TaskSettings[] ts, Operation operation)
         {
@@ -31,6 +31,14 @@ namespace ScenarioTaskSystem
             OnAllCompleted = operation;
             Restart = UnityEngine.Object.FindObjectOfType<RestartSystem>();
             Debug.Log("Is the scenario active? " + active);
+        }
+
+        public void Reconnect()
+        {
+            foreach (TaskSettings ts in tasks)
+            {
+                ts.Task.AddParentScenario(this);
+            }
         }
 
         public void SetGuidedMode(bool enabled)
@@ -182,9 +190,9 @@ namespace ScenarioTaskSystem
         public Task Order;
         //[System.NonSerialized]
         public bool Completed;
-        public Operation OnCompleted;
-        public Operation OnWrongOrder;
-        public UniversalOperation OnFailed;
+        [SerializeReference] public Operation OnCompleted;
+        [SerializeReference] public Operation OnWrongOrder;
+        [SerializeReference] public UniversalOperation OnFailed;
         public int Score;
     }
 
