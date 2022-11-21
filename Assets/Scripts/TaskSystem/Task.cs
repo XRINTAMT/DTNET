@@ -6,7 +6,7 @@ namespace ScenarioTaskSystem
 {
     public class Task : MonoBehaviour
     {
-        public List<Scenario> ParentScenario;
+        [SerializeReference] public List<Scenario> ParentScenario;
 
         public Task()
         {
@@ -25,9 +25,9 @@ namespace ScenarioTaskSystem
         public void Complete()
         {
             int score = 0;
+            Debug.Log("Task completed on " + name + " with the score of " + score);
             foreach (Scenario s in ParentScenario)
             {
-                Debug.Log("Task completed on " + name + " with the score of " + score);
                 s.OnTaskCompleted(this, score);
             }
         }
@@ -40,7 +40,7 @@ namespace ScenarioTaskSystem
             }
         }
 
-        public void AddParentScenario(Scenario s)
+        public void AddParentScenario(in Scenario s)
         {
             ParentScenario.Add(s);
         }
