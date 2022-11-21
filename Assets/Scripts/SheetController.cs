@@ -17,7 +17,7 @@ public class SheetController : MonoBehaviour
     [SerializeField] GameObject areaLimit;
     [SerializeField] GameObject modelCollider;
     public bool inHead = true;
-
+    
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -43,6 +43,7 @@ public class SheetController : MonoBehaviour
             buttonExit.SetActive(true);
 
             modelCollider.layer = 16;
+            canvas.SetActive(false);
 
             if (areaLimit != null) areaLimit.SetActive(true);
            
@@ -76,6 +77,7 @@ public class SheetController : MonoBehaviour
             modelCollider.layer = 16;
             rb.isKinematic = true;
             transform.parent = cam.transform;
+            canvas.SetActive(true);
         }
         if (!inHead)
         {

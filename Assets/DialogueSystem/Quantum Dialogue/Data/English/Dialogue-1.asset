@@ -86,7 +86,7 @@ MonoBehaviour:
   - ID: 21
     Speaker: 10
     SpeakerName: 'You:'
-    PreviousMessage: 15
+    PreviousMessage: 55
     NextMessage: 22
     MessageText: So Mr. Edwin, what are your symptoms?
     Clip: {fileID: 0}
@@ -134,13 +134,127 @@ MonoBehaviour:
     NextMessage: 26
     MessageText: Take off your shirt, please?
     Clip: {fileID: 8300000, guid: 5b5c1f68b8ca38d4c9b6dbbef23fc609, type: 3}
+  - ID: 47
+    Speaker: -1
+    SpeakerName: 
+    PreviousMessage: -1
+    NextMessage: 45
+    MessageText: Next
+    Clip: {fileID: 0}
+  - ID: 48
+    Speaker: 10
+    SpeakerName: 'You:'
+    PreviousMessage: 45
+    NextMessage: 50
+    MessageText: Bad option
+    Clip: {fileID: 0}
+  - ID: 50
+    Speaker: 2
+    SpeakerName: 'Patient Edvin:'
+    PreviousMessage: 48
+    NextMessage: 26
+    MessageText: Answer to a BadOption
+    Clip: {fileID: 0}
+  - ID: 52
+    Speaker: 10
+    SpeakerName: 'You:'
+    PreviousMessage: -1
+    NextMessage: 53
+    MessageText: Ok option
+    Clip: {fileID: 0}
+  - ID: 53
+    Speaker: 2
+    SpeakerName: 'Patient Edvin:'
+    PreviousMessage: 52
+    NextMessage: 26
+    MessageText: Answer to an Ok Option
+    Clip: {fileID: 0}
+  - ID: 54
+    Speaker: -1
+    SpeakerName: 
+    PreviousMessage: -1
+    NextMessage: -1
+    MessageText: Next
+    Clip: {fileID: 0}
+  - ID: 56
+    Speaker: -1
+    SpeakerName: 
+    PreviousMessage: 15
+    NextMessage: 55
+    MessageText: Next
+    Clip: {fileID: 0}
+  - ID: 57
+    Speaker: 10
+    SpeakerName: 'You:'
+    PreviousMessage: -1
+    NextMessage: 59
+    MessageText: Bad option
+    Clip: {fileID: 0}
+  - ID: 58
+    Speaker: 10
+    SpeakerName: 'You:'
+    PreviousMessage: -1
+    NextMessage: 60
+    MessageText: Ok option
+    Clip: {fileID: 0}
+  - ID: 59
+    Speaker: 2
+    SpeakerName: 'Patient Edvin:'
+    PreviousMessage: 57
+    NextMessage: 26
+    MessageText: 'Answer to a bad option
+
+'
+    Clip: {fileID: 0}
+  - ID: 60
+    Speaker: 2
+    SpeakerName: 'Patient Edvin:'
+    PreviousMessage: 58
+    NextMessage: 26
+    MessageText: Answer to an ok option
+    Clip: {fileID: 0}
+  - ID: 61
+    Speaker: -1
+    SpeakerName: 
+    PreviousMessage: -1
+    NextMessage: 63
+    MessageText: Next
+    Clip: {fileID: 0}
+  - ID: 64
+    Speaker: 2
+    SpeakerName: 'Patient Edvin:'
+    PreviousMessage: 67
+    NextMessage: 26
+    MessageText: Answer to a bad option
+    Clip: {fileID: 0}
+  - ID: 65
+    Speaker: 2
+    SpeakerName: 'Patient Edvin:'
+    PreviousMessage: 66
+    NextMessage: 26
+    MessageText: Answer to an ok option
+    Clip: {fileID: 0}
+  - ID: 66
+    Speaker: 10
+    SpeakerName: 'You:'
+    PreviousMessage: 63
+    NextMessage: 65
+    MessageText: Ok option
+    Clip: {fileID: 0}
+  - ID: 67
+    Speaker: 10
+    SpeakerName: 'You:'
+    PreviousMessage: -1
+    NextMessage: 64
+    MessageText: Bad option
+    Clip: {fileID: 0}
   Choices:
   - ID: 15
     Choices:
     - Ask what the complaint is about
     - Ask about symptoms
     - Back
-    NextMessages: 060000001500000029000000
+    NextMessages: 3d0000003800000029000000
   - ID: 26
     Choices:
     - Introduction
@@ -148,4 +262,25 @@ MonoBehaviour:
     - Ask about how they are feeling
     - Ask to take shirt off
     - Close
-    NextMessages: 0100000004000000260000002a000000ffffffff
+    NextMessages: 2f00000004000000260000002a000000ffffffff
+  - ID: 45
+    Choices:
+    - Hello, I am your nurse. How should I address you?
+    - Bad option
+    - Ok option
+    - Back
+    NextMessages: 01000000300000003400000029000000
+  - ID: 55
+    Choices:
+    - Ok option
+    - So Mr. Edwin, what are your symptoms?
+    - Bad option
+    - Back
+    NextMessages: 3a000000150000003900000029000000
+  - ID: 63
+    Choices:
+    - Bad option
+    - Ok option
+    - What are you complain of?
+    - Back
+    NextMessages: 43000000420000000600000029000000

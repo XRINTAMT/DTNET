@@ -40,6 +40,8 @@ public class AnimationsController : MonoBehaviour
 
     public void SyringeWater() 
     {
+        syringeAnimation.GetComponent<Collider>().enabled = false;
+        Invoke("HaltCollider", 1);
         waterSyringe = !waterSyringe;
         if (waterSyringe)
         {
@@ -51,6 +53,12 @@ public class AnimationsController : MonoBehaviour
         }
 
     }
+
+    void HaltCollider()
+    {
+        syringeAnimation.GetComponent<Collider>().enabled = true;
+    }
+
     public void animatePump() 
     {
         animationPump.Play();

@@ -137,7 +137,7 @@ namespace QuantumTek.QuantumDialogue.Demo
                 speakerName.text = message.SpeakerName;
 
                 messageText.text = message.MessageText;
-                if (messageText.text== "Next")
+                if (message.MessageText == "Next")
                 {
                     NextTextDialogue();
                     return;
