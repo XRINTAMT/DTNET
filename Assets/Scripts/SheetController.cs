@@ -42,7 +42,7 @@ public class SheetController : MonoBehaviour
             transform.localPosition = new Vector3(0, 0, 0.5f);
             transform.localRotation = Quaternion.Euler(0,0,0);
             rb.useGravity = true;
-            rb.constraints= RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+            rb.constraints= RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
             canvas.GetComponent<GraphicRaycaster>().enabled = true;
             buttonExit.SetActive(true);
 
