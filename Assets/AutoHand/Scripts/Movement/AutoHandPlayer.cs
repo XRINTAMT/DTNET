@@ -57,7 +57,8 @@ namespace Autohand {
         public Teleporter teleporterL;
         public XRTeleporterLink xrTeleporterLink;
         bool teleportEnable;
-        public static bool teleportMove = true;
+        //public static bool teleportMove = true;
+        public static MovementType movementType;
 
         [AutoToggleHeader("Snap Turning")]
         [Tooltip("Whether or not to use snap turning or smooth turning"), Min(0)]
@@ -352,29 +353,66 @@ namespace Autohand {
 
         /// <summary>Sets move direction for this fixedupdate</summary>
         public virtual void Move(Vector2 axis, bool useDeadzone = true, bool useRelativeDirection = false) {
-           
-            if (teleportMove)
-            {
-                if (axis != Vector2.zero && !teleportEnable)
-                {
-                    //xrTeleporterLink.Teleport();
-                    teleporterL.StartTeleport();
-                    teleportEnable = true;
-                }
-                if (axis == Vector2.zero && teleportEnable)
-                {
-                    teleporterL.Teleport();
-                    teleportEnable = false;
-                }
-            }
 
-            if (!teleportMove)
+
+            switch (movementType)
             {
-                moveDirection.x = (!useDeadzone || Mathf.Abs(axis.x) > movementDeadzone) ? axis.x : 0;
-                moveDirection.z = (!useDeadzone || Mathf.Abs(axis.y) > movementDeadzone) ? axis.y : 0;
-                if (useRelativeDirection)
-                    moveDirection = transform.rotation * moveDirection;
+                case MovementType.Teleport:
+                    if (xrTeleporterLink.enabled)
+                        xrTeleporterLink.enabled = false;
+                    if (axis != Vector2.zero && !teleportEnable)
+                    {
+                        teleporterL.StartTeleport();
+                        teleportEnable = true;
+                    }
+                    if (axis == Vector2.zero && teleportEnable)
+                    {
+                        teleporterL.Teleport();
+                        teleportEnable = false;
+                    }
+                    break;
+                case MovementType.Move:
+                    moveDirection.x = (!useDeadzone || Mathf.Abs(axis.x) > movementDeadzone) ? axis.x : 0;
+                    moveDirection.z = (!useDeadzone || Mathf.Abs(axis.y) > movementDeadzone) ? axis.y : 0;
+                    if (useRelativeDirection)
+                        moveDirection = transform.rotation * moveDirection;
+                    if (xrTeleporterLink.enabled)
+                        xrTeleporterLink.enabled = false;
+                    break;
+                case MovementType.Mixed:
+                    moveDirection.x = (!useDeadzone || Mathf.Abs(axis.x) > movementDeadzone) ? axis.x : 0;
+                    moveDirection.z = (!useDeadzone || Mathf.Abs(axis.y) > movementDeadzone) ? axis.y : 0;
+                    if (useRelativeDirection)
+                        moveDirection = transform.rotation * moveDirection;
+                    if (!xrTeleporterLink.enabled)
+                        xrTeleporterLink.enabled = true;
+
+                    break;
+                default:
+                    break;
             }
+            //if (teleportMove)
+            //{
+            //    if (axis != Vector2.zero && !teleportEnable)
+            //    {
+            //        //xrTeleporterLink.Teleport();
+            //        teleporterL.StartTeleport();
+            //        teleportEnable = true;
+            //    }
+            //    if (axis == Vector2.zero && teleportEnable)
+            //    {
+            //        teleporterL.Teleport();
+            //        teleportEnable = false;
+            //    }
+            //}
+
+            //if (!teleportMove)
+            //{
+            //    moveDirection.x = (!useDeadzone || Mathf.Abs(axis.x) > movementDeadzone) ? axis.x : 0;
+            //    moveDirection.z = (!useDeadzone || Mathf.Abs(axis.y) > movementDeadzone) ? axis.y : 0;
+            //    if (useRelativeDirection)
+            //        moveDirection = transform.rotation * moveDirection;
+            //}
             //moveDirection.x = (!useDeadzone || Mathf.Abs(axis.x) > movementDeadzone) ? axis.x : 0;
             //moveDirection.z = (!useDeadzone || Mathf.Abs(axis.y) > movementDeadzone) ? axis.y : 0;
             //if (useRelativeDirection)
@@ -1044,4 +1082,10 @@ namespace Autohand {
 
 
     }
+}
+public enum MovementType 
+{
+    Teleport,
+    Move,
+    Mixed
 }
