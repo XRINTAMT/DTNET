@@ -29,7 +29,7 @@ public class XRMovementControls : MonoBehaviour
                 break;
             case (2):
                 AutoHandPlayer.movementType = MovementType.Mixed;
-                Teleport.SetActive(false);
+                Teleport.SetActive(true);
                 break;
         }
     }
