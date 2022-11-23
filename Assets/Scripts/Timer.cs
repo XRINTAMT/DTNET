@@ -4,32 +4,34 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
-{
+{   
     [SerializeField] Text timerText;
-    [SerializeField] Text timerTextPassed;
-    [SerializeField] Text timerTextPassedTest;
-    float sec = 0;
-    float min = 0;
-    float hour = 0;
-    float secPassed = 0;
-    float minPassed = 0;
-    float hourPassed = 0;
+    [SerializeField] Text timerTextCurrent;
+
+    float secTimer = 0;
+    float minTimer = 0;
+    float hourTimer = 0;
+
+    float secCurrent = 0;
+    float minCurrent = 0;
+    float hourCurrent = 0;
+   
 
     bool flashSecond;
     bool pause;
     // Start is called before the first frame update
     void Start()
     {
-        hour = System.DateTime.Now.Hour;
-        min = System.DateTime.Now.Minute;
-        sec = System.DateTime.Now.Second;
+        hourCurrent = System.DateTime.Now.Hour;
+        minCurrent = System.DateTime.Now.Minute;
+        secCurrent = System.DateTime.Now.Second;
 
-        StartCoroutine(TimerFlow());
-        StartCoroutine(TimerFlowPassed());
+        StartCoroutine(TimerFlowUp());
+        StartCoroutine(TimerFlowCurrentTime());
     }
     public void TimePassed(Text textTime)
     {
-        textTime.text= "Your time: " + minPassed.ToString("00") + " : " + secPassed.ToString("00");
+        textTime.text= "Your time: " + minTimer.ToString("00") + " : " + secTimer.ToString("00");
     }
     public void Pause() 
     {
@@ -37,68 +39,70 @@ public class Timer : MonoBehaviour
     }
     public void WaitTime(float waitTime)
     {
-        min = min + waitTime;
-        minPassed = minPassed + waitTime;
+        minTimer = minTimer + waitTime;
+        minCurrent = minCurrent + waitTime;
     }
-    IEnumerator TimerFlow()
+
+    IEnumerator TimerFlowUp()
+    {
+        while (!pause)
+        {
+            if (secTimer == 59)
+            {
+                minTimer++;
+                secTimer = -1;
+            }
+            if (minTimer >= 60)
+            {
+                float difference = minTimer - 60;
+                hourTimer++;
+                minTimer = 0 + difference;
+            }
+            if (hourTimer == 24)
+            {
+                hourTimer = 0;
+            }
+            secTimer += 1;
+
+            if (timerText != null)
+            {
+                timerText.text = hourTimer.ToString("00") + ":" + minTimer.ToString("00") + ":" + secTimer.ToString("00");
+            }
+            yield return new WaitForSeconds(1);
+
+        }
+    }
+    IEnumerator TimerFlowCurrentTime()
     {
         while (!pause)
         {
             flashSecond = !flashSecond;
 
-            if (sec == 59)
+            if (secCurrent == 59)
             {
-                min++;
-                sec = -1;
+                minCurrent++;
+                secCurrent = -1;
             }
-            if (min >= 60)
+            if (minCurrent >= 60)
             {
-                float difference = min - 60;
-                hour++;
-                min = 0 + difference;
+                float difference = minCurrent - 60;
+                hourCurrent++;
+                minCurrent = 0 + difference;
             }
-            if (hour == 24)
+            if (hourCurrent == 24)
             {
-                hour = 0;
+                hourCurrent = 0;
             }
-            sec += 1;
+            secCurrent += 1;
 
-            if (flashSecond) timerText.text = hour.ToString("00") + ":" + min.ToString("00")/* + ":" + sec.ToString("00")*/;
-            else timerText.text = hour.ToString("00") + " " + min.ToString("00")/* + " " + sec.ToString("00")*/;
+            if (flashSecond) timerTextCurrent.text = hourCurrent.ToString("00") + ":" + minCurrent.ToString("00")/* + ":" + secCurrent.ToString("00")*/;
+            else timerTextCurrent.text = hourCurrent.ToString("00") + " " + minCurrent.ToString("00")/* + " " + sec.ToString("00")*/;
           
             yield return new WaitForSeconds(1);
         }
     }
 
-    IEnumerator TimerFlowPassed()
-    {
-        while (!pause)
-        {
-            if (secPassed == 59)
-            {
-                minPassed++;
-                secPassed = -1;
-            }
-            if (minPassed >= 60)
-            {
-                float difference = min - 60;
-                hourPassed++;
-                minPassed = 0 + difference;
-            }
-            if (hourPassed == 24)
-            {
-                hourPassed = 0;
-            }
-            secPassed += 1;
 
-            if (timerTextPassedTest!=null)
-            {
-                timerTextPassedTest.text = hourPassed.ToString("00") + ":" + minPassed.ToString("00")+ ":" + secPassed.ToString("00");
-            }
-            yield return new WaitForSeconds(1);
-
-        }
-    }
     // Update is called once per frame
     void Update()
     {
