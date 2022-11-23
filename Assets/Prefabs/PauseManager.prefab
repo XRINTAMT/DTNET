@@ -81,6 +81,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Timer, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Released:
     m_PersistentCalls:
       m_Calls: []
@@ -407,6 +419,85 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LocalizationKey: Menu
+--- !u!1 &2559112579873100520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 277639413231613407}
+  - component: {fileID: 8373817624556620863}
+  - component: {fileID: 931584148048499991}
+  m_Layer: 14
+  m_Name: TextTime
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &277639413231613407
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2559112579873100520}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1459380469760788457}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.000039101, y: 53}
+  m_SizeDelta: {x: 804.9, y: 77.8}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8373817624556620863
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2559112579873100520}
+  m_CullTransparentMesh: 1
+--- !u!114 &931584148048499991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2559112579873100520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: d63650ce43fcf5f4aa5be844fe76ec03, type: 3}
+    m_FontSize: 40
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 4
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Your time: 00 : 00'
 --- !u!1 &2677867501779741252
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,7 +848,6 @@ GameObject:
   - component: {fileID: 5241422989121664503}
   - component: {fileID: 4222842453559313616}
   - component: {fileID: 2376735380050826201}
-  - component: {fileID: 4294914047084948277}
   m_Layer: 14
   m_Name: Congrats
   m_TagString: Untagged
@@ -781,7 +871,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 43.600002}
+  m_AnchoredPosition: {x: 0, y: 82}
   m_SizeDelta: {x: -0.000015258789, y: -354.59998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4222842453559313616
@@ -825,23 +915,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Congratulations!
-
-    You have completed the guided mode! Use the experience
-    you''ve gained to try and beat the exam mode!'
---- !u!114 &4294914047084948277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4650062457939989055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2404a37f3bd75444aa4ad05d0f228347, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LocalizationKey: Menu
+  m_Text: "Congratulations!\nYou have completed the guided mode! \n\nUse the experience
+    you've gained\n to try and beat the exam mode!"
 --- !u!1 &5894160783462424513
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,7 +933,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1459380469760788457
 RectTransform:
   m_ObjectHideFlags: 0
@@ -873,6 +948,7 @@ RectTransform:
   - {fileID: 8539674036888769731}
   - {fileID: 5241422989121664503}
   - {fileID: 1608740952644360185}
+  - {fileID: 277639413231613407}
   m_Father: {fileID: 9112116715924235952}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2695,6 +2771,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Timer, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &9112116716041961005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2937,15 +3025,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb82462854d3c1846aa973c6f2008e80, type: 3}
---- !u!1 &3687370044669280382 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4802981935644745308, guid: cb82462854d3c1846aa973c6f2008e80,
-    type: 3}
-  m_PrefabInstance: {fileID: 8181832277418106402}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3687370044669280381 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4802981935644745311, guid: cb82462854d3c1846aa973c6f2008e80,
+    type: 3}
+  m_PrefabInstance: {fileID: 8181832277418106402}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3687370044669280382 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4802981935644745308, guid: cb82462854d3c1846aa973c6f2008e80,
     type: 3}
   m_PrefabInstance: {fileID: 8181832277418106402}
   m_PrefabAsset: {fileID: 0}

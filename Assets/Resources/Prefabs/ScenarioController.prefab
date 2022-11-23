@@ -44,8 +44,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GoToADifferentRoomOnCompletion:
-    RoomID: 0
+    RoomID: -1
   MyocardialInfarctionScenario:
+    HygeneSubscenario:
+      id: 0
+    CompleteHygeneSubscenario:
+      Task: {fileID: 0}
+      Order: {fileID: 0}
+      Completed: 0
+      OnCompleted:
+        id: 0
+      OnWrongOrder:
+        id: 0
+      OnFailed:
+        id: 0
+      Score: 0
     HygeneSubscenarioMarker:
       Function:
         m_PersistentCalls:
@@ -111,6 +124,19 @@ MonoBehaviour:
               m_BoolArgument: 1
             m_CallState: 2
     HygeneSubscenarios:
+      WashHandsSubscenario:
+        id: 0
+      CompleteWashHandsSubscenario:
+        Task: {fileID: 0}
+        Order: {fileID: 0}
+        Completed: 0
+        OnCompleted:
+          id: 0
+        OnWrongOrder:
+          id: 0
+        OnFailed:
+          id: 0
+        Score: 0
       WashHandsSubscenarioMarker:
         Function:
           m_PersistentCalls:
@@ -120,37 +146,45 @@ MonoBehaviour:
           Task: {fileID: 0}
           Order: {fileID: 0}
           Completed: 0
+          OnCompleted:
+            id: 0
+          OnWrongOrder:
+            id: 0
           OnFailed:
-            Function:
-              m_PersistentCalls:
-                m_Calls: []
+            id: 0
           Score: 0
         GetSoap:
           Task: {fileID: 0}
           Order: {fileID: 0}
           Completed: 0
+          OnCompleted:
+            id: 0
+          OnWrongOrder:
+            id: 0
           OnFailed:
-            Function:
-              m_PersistentCalls:
-                m_Calls: []
+            id: 0
           Score: 0
         WashSoapAway:
           Task: {fileID: 0}
           Order: {fileID: 0}
           Completed: 0
+          OnCompleted:
+            id: 0
+          OnWrongOrder:
+            id: 0
           OnFailed:
-            Function:
-              m_PersistentCalls:
-                m_Calls: []
+            id: 0
           Score: 0
       PutGlovesOn:
         Task: {fileID: 0}
         Order: {fileID: 0}
         Completed: 0
+        OnCompleted:
+          id: 0
+        OnWrongOrder:
+          id: 0
         OnFailed:
-          Function:
-            m_PersistentCalls:
-              m_Calls: []
+          id: 0
         Score: 0
       PutGlovesOnSubscenarioMarker:
         Function:
@@ -168,6 +202,19 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
+    CheckPatientSubscenario:
+      id: 0
+    CompleteCheckPatientSubscenario:
+      Task: {fileID: 0}
+      Order: {fileID: 0}
+      Completed: 0
+      OnCompleted:
+        id: 0
+      OnWrongOrder:
+        id: 0
+      OnFailed:
+        id: 0
+      Score: 0
     CheckPatientSubscenarioMarker:
       Function:
         m_PersistentCalls:
@@ -189,10 +236,12 @@ MonoBehaviour:
         Task: {fileID: 0}
         Order: {fileID: 0}
         Completed: 0
+        OnCompleted:
+          id: 0
+        OnWrongOrder:
+          id: 0
         OnFailed:
-          Function:
-            m_PersistentCalls:
-              m_Calls: []
+          id: 0
         Score: 0
       DialogueOneMarker:
         Function:
@@ -209,18 +258,6 @@ MonoBehaviour:
                 m_FloatArgument: 0
                 m_StringArgument: 
                 m_BoolArgument: 0
-              m_CallState: 2
-            - m_Target: {fileID: 0}
-              m_TargetAssemblyTypeName: ControllerApp, Assembly-CSharp
-              m_MethodName: PutOffShirt
-              m_Mode: 1
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 1
               m_CallState: 2
             - m_Target: {fileID: 0}
               m_TargetAssemblyTypeName: GuideSystem, Assembly-CSharp
@@ -274,10 +311,12 @@ MonoBehaviour:
         Task: {fileID: 0}
         Order: {fileID: 0}
         Completed: 0
+        OnCompleted:
+          id: 0
+        OnWrongOrder:
+          id: 0
         OnFailed:
-          Function:
-            m_PersistentCalls:
-              m_Calls: []
+          id: 0
         Score: 0
       ConnectTheMonitorMarker:
         Function:
@@ -335,10 +374,12 @@ MonoBehaviour:
         Task: {fileID: 0}
         Order: {fileID: 0}
         Completed: 0
+        OnCompleted:
+          id: 0
+        OnWrongOrder:
+          id: 0
         OnFailed:
-          Function:
-            m_PersistentCalls:
-              m_Calls: []
+          id: 0
         Score: 0
       FillObservationSheetMarker:
         Function:
@@ -396,10 +437,12 @@ MonoBehaviour:
         Task: {fileID: 0}
         Order: {fileID: 0}
         Completed: 0
+        OnCompleted:
+          id: 0
+        OnWrongOrder:
+          id: 0
         OnFailed:
-          Function:
-            m_PersistentCalls:
-              m_Calls: []
+          id: 0
         Score: 0
       ReadDoctorsAppointmentsMarker:
         Function:
@@ -441,6 +484,19 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
+    InjectionSubscenario:
+      id: 0
+    CompleteInjectionSubscenario:
+      Task: {fileID: 0}
+      Order: {fileID: 0}
+      Completed: 0
+      OnCompleted:
+        id: 0
+      OnWrongOrder:
+        id: 0
+      OnFailed:
+        id: 0
+      Score: 0
     InjectionSubscenarioMarker:
       Function:
         m_PersistentCalls:
@@ -462,10 +518,12 @@ MonoBehaviour:
         Task: {fileID: 0}
         Order: {fileID: 0}
         Completed: 0
+        OnCompleted:
+          id: 0
+        OnWrongOrder:
+          id: 0
         OnFailed:
-          Function:
-            m_PersistentCalls:
-              m_Calls: []
+          id: 0
         Score: 0
       DiluteDopamineMarker:
         Function:
@@ -511,10 +569,12 @@ MonoBehaviour:
         Task: {fileID: 0}
         Order: {fileID: 0}
         Completed: 0
+        OnCompleted:
+          id: 0
+        OnWrongOrder:
+          id: 0
         OnFailed:
-          Function:
-            m_PersistentCalls:
-              m_Calls: []
+          id: 0
         Score: 0
       ConnectPumpsMarker:
         Function:
@@ -548,10 +608,12 @@ MonoBehaviour:
         Task: {fileID: 0}
         Order: {fileID: 0}
         Completed: 0
+        OnCompleted:
+          id: 0
+        OnWrongOrder:
+          id: 0
         OnFailed:
-          Function:
-            m_PersistentCalls:
-              m_Calls: []
+          id: 0
         Score: 0
       MakeAnInjectionMarker:
         Function:
@@ -677,6 +739,19 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 1
               m_CallState: 2
+    KeepMonitoringSubscenario:
+      id: 0
+    CompleteKeepMonitoringSubscenario:
+      Task: {fileID: 0}
+      Order: {fileID: 0}
+      Completed: 0
+      OnCompleted:
+        id: 0
+      OnWrongOrder:
+        id: 0
+      OnFailed:
+        id: 0
+      Score: 0
     KeepMonitoringSubscenarioMarker:
       Function:
         m_PersistentCalls:
@@ -698,10 +773,12 @@ MonoBehaviour:
         Task: {fileID: 0}
         Order: {fileID: 0}
         Completed: 0
+        OnCompleted:
+          id: 0
+        OnWrongOrder:
+          id: 0
         OnFailed:
-          Function:
-            m_PersistentCalls:
-              m_Calls: []
+          id: 0
         Score: 0
       FillObservationSheetMarker:
         Function:
@@ -855,10 +932,12 @@ MonoBehaviour:
         Task: {fileID: 0}
         Order: {fileID: 0}
         Completed: 0
+        OnCompleted:
+          id: 0
+        OnWrongOrder:
+          id: 0
         OnFailed:
-          Function:
-            m_PersistentCalls:
-              m_Calls: []
+          id: 0
         Score: 0
       DialogueTwoMarker:
         Function:
@@ -900,6 +979,19 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
+    CardiacArrestSubscenario:
+      id: 0
+    CompleteCardiacArrestSubscenario:
+      Task: {fileID: 0}
+      Order: {fileID: 0}
+      Completed: 0
+      OnCompleted:
+        id: 0
+      OnWrongOrder:
+        id: 0
+      OnFailed:
+        id: 0
+      Score: 0
     CardiacArrestSubscenarioMarker:
       Function:
         m_PersistentCalls:
@@ -909,10 +1001,12 @@ MonoBehaviour:
         Task: {fileID: 0}
         Order: {fileID: 0}
         Completed: 0
+        OnCompleted:
+          id: 0
+        OnWrongOrder:
+          id: 0
         OnFailed:
-          Function:
-            m_PersistentCalls:
-              m_Calls: []
+          id: 0
         Score: 0
       AlarmButtonMarker:
         Function:
@@ -958,10 +1052,12 @@ MonoBehaviour:
         Task: {fileID: 0}
         Order: {fileID: 0}
         Completed: 0
+        OnCompleted:
+          id: 0
+        OnWrongOrder:
+          id: 0
         OnFailed:
-          Function:
-            m_PersistentCalls:
-              m_Calls: []
+          id: 0
         Score: 0
       CallDoctorMarker:
         Function:
@@ -1007,10 +1103,12 @@ MonoBehaviour:
         Task: {fileID: 0}
         Order: {fileID: 0}
         Completed: 0
+        OnCompleted:
+          id: 0
+        OnWrongOrder:
+          id: 0
         OnFailed:
-          Function:
-            m_PersistentCalls:
-              m_Calls: []
+          id: 0
         Score: 0
       ApplyStimPadsMarker:
         Function:
@@ -1080,10 +1178,12 @@ MonoBehaviour:
         Task: {fileID: 0}
         Order: {fileID: 0}
         Completed: 0
+        OnCompleted:
+          id: 0
+        OnWrongOrder:
+          id: 0
         OnFailed:
-          Function:
-            m_PersistentCalls:
-              m_Calls: []
+          id: 0
         Score: 0
       ReportToDocMarker:
         Function:
@@ -1129,10 +1229,12 @@ MonoBehaviour:
         Task: {fileID: 0}
         Order: {fileID: 0}
         Completed: 0
+        OnCompleted:
+          id: 0
+        OnWrongOrder:
+          id: 0
         OnFailed:
-          Function:
-            m_PersistentCalls:
-              m_Calls: []
+          id: 0
         Score: 0
       PositionThePatientMarker:
         Function:
@@ -1198,23 +1300,37 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
       ReportSpO2:
         Task: {fileID: 0}
         Order: {fileID: 0}
         Completed: 0
+        OnCompleted:
+          id: 0
+        OnWrongOrder:
+          id: 0
         OnFailed:
-          Function:
-            m_PersistentCalls:
-              m_Calls: []
+          id: 0
         Score: 0
       ReportSpO2Marker:
         Function:
           m_PersistentCalls:
             m_Calls:
             - m_Target: {fileID: 0}
-              m_TargetAssemblyTypeName: TabletBulletList, Assembly-CSharp
-              m_MethodName: CrossOut
-              m_Mode: 3
+              m_TargetAssemblyTypeName: ScenarioTaskSystem.Task, Assembly-CSharp
+              m_MethodName: Complete
+              m_Mode: 1
               m_Arguments:
                 m_ObjectArgument: {fileID: 0}
                 m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1251,10 +1367,12 @@ MonoBehaviour:
         Task: {fileID: 0}
         Order: {fileID: 0}
         Completed: 0
+        OnCompleted:
+          id: 0
+        OnWrongOrder:
+          id: 0
         OnFailed:
-          Function:
-            m_PersistentCalls:
-              m_Calls: []
+          id: 0
         Score: 0
       MakeAnInjectionMarker:
         Function:
@@ -1300,10 +1418,12 @@ MonoBehaviour:
         Task: {fileID: 0}
         Order: {fileID: 0}
         Completed: 0
+        OnCompleted:
+          id: 0
+        OnWrongOrder:
+          id: 0
         OnFailed:
-          Function:
-            m_PersistentCalls:
-              m_Calls: []
+          id: 0
         Score: 0
       KeepRegulatingMarker:
         Function:
@@ -1429,14 +1549,40 @@ MonoBehaviour:
                 m_StringArgument: 5,22,10
                 m_BoolArgument: 0
               m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
+              m_MethodName: ShowOutroMessage
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: Timer, Assembly-CSharp
+              m_MethodName: TimePassed
+              m_Mode: 2
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
       DialogueThree:
         Task: {fileID: 0}
         Order: {fileID: 0}
         Completed: 1
+        OnCompleted:
+          id: 0
+        OnWrongOrder:
+          id: 0
         OnFailed:
-          Function:
-            m_PersistentCalls:
-              m_Calls: []
+          id: 0
         Score: 0
       DialogueThreeMarker:
         Function:
@@ -1466,3 +1612,7 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
