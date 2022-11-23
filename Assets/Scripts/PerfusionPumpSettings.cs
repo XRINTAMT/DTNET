@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using System;
 
 public class PerfusionPumpSettings : MonoBehaviour
@@ -16,6 +17,7 @@ public class PerfusionPumpSettings : MonoBehaviour
     [SerializeField] Digit[] digits;
 
     int selector;
+    float Value;
 
     void Start()
     {
@@ -31,6 +33,17 @@ public class PerfusionPumpSettings : MonoBehaviour
     public void Down()
     {
         digits[selector].number.Down();
+    }
+
+    public float GetValue()
+    {
+        Value = 0;
+        for(int i = 0; i < digits.Length; i++)
+        {
+            Value += digits[i].number.Value * digits[i].multiplier;
+        }
+        Debug.Log("Perfusion pump rate is " + Value + "ml/h");
+        return Value;
     }
 
     public void Right()
