@@ -31,7 +31,7 @@ public class Pacer : MonoBehaviour
     int currentMilestone = 0;
     Coroutine DelayedMilestone;
 
-    void Start()
+    void Awake()
     {
         paceValue = 60;
         outputValue = 0;
