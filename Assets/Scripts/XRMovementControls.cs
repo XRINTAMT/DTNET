@@ -18,19 +18,18 @@ public class XRMovementControls : MonoBehaviour
     {
         switch (type)
         {
-            //case (-1):
-            //    Teleport.SetActive(false);
-            //    MovementControls.moveController = DummyHand;
-            //    break;
+
             case (0):
-                AutoHandPlayer.teleportMove = true;
+                AutoHandPlayer.movementType= MovementType.Teleport;
                 Teleport.SetActive(true);
-                //MovementControls.moveController = DummyHand;
                 break;
             case (1):
-                AutoHandPlayer.teleportMove = false;
+                AutoHandPlayer.movementType = MovementType.Move;
                 Teleport.SetActive(false);
-                //MovementControls.moveController = RealHand;
+                break;
+            case (2):
+                AutoHandPlayer.movementType = MovementType.Mixed;
+                Teleport.SetActive(true);
                 break;
         }
     }

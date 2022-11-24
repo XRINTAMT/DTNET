@@ -28,17 +28,21 @@ public class SheetController : MonoBehaviour
       
     }
 
-    public void Grab() 
+    public void Grab()
     {
         if (inHead)
         {
             GetComponent<Grabbable>().parentOnGrab = false;
             rb.isKinematic = false;
+            if (cam == null || !cam.isActiveAndEnabled)
+            {
+                cam = Camera.main;
+            }
             transform.parent = cam.transform;
             transform.localPosition = new Vector3(0, 0, 0.5f);
             transform.localRotation = Quaternion.Euler(0,0,0);
             rb.useGravity = true;
-            rb.constraints= RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+            rb.constraints= RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
             canvas.GetComponent<GraphicRaycaster>().enabled = true;
             buttonExit.SetActive(true);
 

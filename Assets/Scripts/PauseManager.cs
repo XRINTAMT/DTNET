@@ -51,6 +51,7 @@ public class PauseManager : MonoBehaviour
             }
         }
         */
+        UICamera.gameObject.GetComponent<Camera>().enabled = true;
         UICamera.cullingMask = (1 << LayerMask.NameToLayer("Hand")) | (1 << LayerMask.NameToLayer("MenusUI")) | (1 << LayerMask.NameToLayer("Fade"));
         MainCamera.cullingMask = (~0) &~ (1 << LayerMask.NameToLayer("Dialogue"));
         PauseMenu.SetActive(true);
@@ -82,10 +83,12 @@ public class PauseManager : MonoBehaviour
             Animation.Play();
         }
         */
+
         PauseMenu.SetActive(false);
         Controls.SwitchLocomotion(PlayerPrefs.GetInt("MovementType", 0));
         MainCamera.cullingMask = ~0;
         UICamera.cullingMask = (1 << LayerMask.NameToLayer("Fade"));
+        UICamera.gameObject.GetComponent<Camera>().enabled=false;
         GetComponent<UnscaleMove>().Play();
     }
 

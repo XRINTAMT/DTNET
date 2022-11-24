@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace ScenarioTaskSystem
 {
+    [Serializable]
     public class Scenario
     {
-        List<TaskSettings> tasks;
-        public Operation OnAllCompleted;
+        [SerializeReference] List<TaskSettings> tasks;
+        [SerializeReference] public Operation OnAllCompleted;
         [SerializeField] RestartSystem Restart;
-        private bool active = false;
-        private bool guided = false;
+        [SerializeField] bool active;
+        [SerializeField] private bool guided;
         public Scenario(TaskSettings[] ts, Operation operation)
         {
             tasks = new List<TaskSettings>();
@@ -27,7 +29,16 @@ namespace ScenarioTaskSystem
                 }
             }
             OnAllCompleted = operation;
-            Restart = Object.FindObjectOfType<RestartSystem>();
+            Restart = UnityEngine.Object.FindObjectOfType<RestartSystem>();
+            Debug.Log("Is the scenario active? " + active);
+        }
+
+        public void Reconnect()
+        {
+            foreach (TaskSettings ts in tasks)
+            {
+                ts.Task.AddParentScenario(this);
+            }
         }
 
         public void SetGuidedMode(bool enabled)
@@ -46,7 +57,7 @@ namespace ScenarioTaskSystem
             }
             else
             {
-                //Restart.Load();
+                Restart.Load();
                 Debug.LogWarning("Wrong completion order! Should have loaded the save here!");
             }
         }
@@ -64,6 +75,10 @@ namespace ScenarioTaskSystem
         public void OnTaskCompleted(Task taskCompleted, int score)
         {
             TaskSettings completedTaskSettings = null;
+            if(tasks == null)
+            {
+                Debug.Log("Tasks field is empty");
+            }
             foreach (TaskSettings currentTask in tasks)
             {
                 if (currentTask.Task == taskCompleted)
@@ -175,9 +190,9 @@ namespace ScenarioTaskSystem
         public Task Order;
         //[System.NonSerialized]
         public bool Completed;
-        public Operation OnCompleted;
-        public Operation OnWrongOrder;
-        public UniversalOperation OnFailed;
+        [SerializeReference] public Operation OnCompleted;
+        [SerializeReference] public Operation OnWrongOrder;
+        [SerializeReference] public UniversalOperation OnFailed;
         public int Score;
     }
 

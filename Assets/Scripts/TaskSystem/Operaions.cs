@@ -9,8 +9,8 @@ namespace ScenarioTaskSystem
     [System.Serializable]
     public class TaskCompleter : Operation
     {
-        private Task task;
-        private Scenario scenario;
+        [SerializeField] private Task task;
+        [SerializeReference] private Scenario scenario;
 
         public TaskCompleter(Task t, Operation n = null) : base(n)
         {
@@ -54,7 +54,7 @@ namespace ScenarioTaskSystem
 
     public class ScenarioActivator : Operation
     {
-        Scenario toActivate;
+        [SerializeReference] Scenario toActivate;
 
         public ScenarioActivator(Scenario s, Operation n = null) : base(n)
         {
