@@ -1,0 +1,33 @@
+#pragma kernel CSMain
+#define arrSize 185
+#define texWidth 185
+#define texHeight 40
+RWTexture2D<float4> Result;
+float4 Color;
+float Values[arrSize+1];
+
+float DistToLine(float2 p, float2 a, float2 b)
+{
+	float2 pa = p - a, ba = b - a;
+	float h = saturate(dot(pa, ba) / dot(ba, ba));
+	float2 d = pa - ba * h;
+	return dot(d, d);
+}
+
+[numthreads(8, 8, 1)]
+void CSMain(uint2 id : SV_DispatchThreadID)
+{
+	float2 uv = float2 ((float)id.x / texWidth, (float)id.y / texHeight);
+	int fit = (int)(id.x / (texWidth / arrSize));
+	float k;
+	
+	if (Values[fit] != -1 && Values[fit+1] != -1 && Values[fit - 1] != -1) {
+		k = DistToLine(uv, float2(((float)fit) / arrSize, Values[fit] / 2.2 + 0.5), float2(((float)fit + 1) / arrSize, Values[fit + 1] / 2.2 + 0.5));
+		float thickness = 0.00003;
+		Result[id.xy] = lerp(float4(Color.x, Color.y, Color.z, Color.w), float4(0, 0, 0, 1), smoothstep(0.0, thickness, k));
+	}
+	else {
+		Result[id.xy] = float4(0, 0, 0, 1);
+	}
+	
+}

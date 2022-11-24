@@ -19,11 +19,18 @@ Keep the feature branch up to date. Push changes even if they are not complete. 
 
 Once a feature is complete move task to the Review column om Monday and submit a merge request on github.
 
+### How to add highlights to objects
+
+1. Add a OutlineNormalsCalculator component to an object.
+2. Set GameObject layer to "Outlined".
+3. Find this object's mesh and set "Read/write enabled" to True.
+
 ## External assets
 
+[Obsolete!] Spline mesh: https://assetstore.unity.com/packages/tools/modeling/splinemesh-104989
 
-PathCreator: https://assetstore.unity.com/packages/tools/utilities/b-zier-path-creator-136082
-Spline mesh: https://assetstore.unity.com/packages/tools/modeling/splinemesh-104989
+Bézier Path Creator: https://assetstore.unity.com/packages/tools/utilities/b-zier-path-creator-136082
 
+Photon: https://assetstore.unity.com/packages/tools/network/pun-2-free-119922
 
 If adding libraries or packages from the Unity asset store add them here.

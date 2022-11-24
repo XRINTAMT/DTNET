@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Assets.SimpleLocalization;
 
 
 public class UIController : MonoBehaviour
@@ -15,66 +16,88 @@ public class UIController : MonoBehaviour
     //[SerializeField] private Dropdown setTeleportHandStatus;
     //[SerializeField] private Dropdown setMovetHandStatus;
     [SerializeField] private Toggle setSubstitlesStatus;
+    [SerializeField] private Toggle setGuidesStatus;
+    [SerializeField] private GameObject teleportChosen;
+    [SerializeField] private GameObject smoothChosen;
+    [SerializeField] private GameObject englishChosen;
+    [SerializeField] private GameObject germanChosen;
+    [SerializeField] private GameObject lithuanianChosen;
 
     public static float dialogueVolume;
     public static float soundVolume;
-    public static int language;
-    public static int teleportLeftHand;
-    public static int moveLeftHand;
+    public static string language;
+    public static int teleport;
     public static int subtitles;
+    public static int guides;
 
-    AppSettings appSettings;
     void Start()
     {
-        SetDialogueVolume();
-        SetSoundVolume();
-        SetLanguage(0);
-        SetTeleportHand(0);
-        SetMoveHand(0);
-        SetSubtitles();
+        LoadSettingsIntoUI();
+    }
 
-        appSettings = FindObjectOfType<AppSettings>();
-        appSettings.UpdateSettings();
+    public void LoadSettingsIntoUI()
+    {
+        setDialogueVolumeStatus.value = PlayerPrefs.GetFloat("dialogueVolume", 0.5f);
+        setSoundVolumeStatus.value = PlayerPrefs.GetFloat("soundVolume", 0.5f);
+        setSubstitlesStatus.isOn = PlayerPrefs.GetInt("Subtitles", 0) == 0;
+        teleport = PlayerPrefs.GetInt("MovementType", 0);
+        language = PlayerPrefs.GetString("Language", "English");
+        LocalizationManager.Language = language;
+        teleportChosen.SetActive(teleport == 0);
+        smoothChosen.SetActive(teleport == 1);
+        englishChosen.SetActive(language == "English");
+        germanChosen.SetActive(language == "German");
+        lithuanianChosen.SetActive(language == "Lithuanian");
     }
     public void SetDialogueVolume() 
     {
         dialogueVolume = setDialogueVolumeStatus.value;
+        PlayerPrefs.SetFloat("dialogueVolume", dialogueVolume);
     }
 
     public void SetSoundVolume()
     {
         soundVolume = setSoundVolumeStatus.value;
+        //appSettings.UpdateSettings();
+        PlayerPrefs.SetFloat("soundVolume", soundVolume);
     }
 
-    public void SetLanguage(int languageIndex)
+    public void SetLanguage(string lang)
     {
-        //language = setLanguageStatus.value;
-        language = languageIndex;
-        return;
+        language = lang;
+        PlayerPrefs.SetString("Language", lang);
+        LocalizationManager.Language = language;
     }
 
-    public void SetTeleportHand(int handIndex) 
+    public void SetLocomotionType(int LocomotionID)
     {
         //teleportLeftHand = setTeleportHandStatus.value;
-        teleportLeftHand = handIndex;
-        return;
-    }
-
-    public void SetMoveHand(int handIndex)
-    {
-        //moveLeftHand = setMovetHandStatus.value;
-        teleportLeftHand = handIndex;
-        return;
+        teleport = LocomotionID;
+        teleportChosen.SetActive(teleport == 0);
+        smoothChosen.SetActive(teleport == 1);
+        PlayerPrefs.SetInt("MovementType", teleport);
+        Object.FindObjectOfType<XRMovementControls>().SwitchLocomotion(teleport);
     }
 
     public void SetSubtitles()
     {
-        if (setSubstitlesStatus.isOn) subtitles=0;
-        if (!setSubstitlesStatus.isOn) subtitles = 1;
+
+        if (setSubstitlesStatus.isOn) 
+            subtitles = 0;
+        else
+            subtitles = 1;
+        PlayerPrefs.SetInt("Subtitles", subtitles);
     }
-    public void LoadScene()
+
+    public void SetGuides(bool guides)
     {
-        SceneManager.LoadScene("TutorialScene");
+        PlayerPrefs.SetInt("GuidedMode", guides ? 1 : 0);
+        
+    }
+
+    public void LoadScene(string name)
+    {
+        SceneManager.LoadScene(name);
     }
 
     public void Exit() 
