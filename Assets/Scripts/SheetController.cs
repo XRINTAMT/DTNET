@@ -8,6 +8,7 @@ public class SheetController : MonoBehaviour
 {
 
     Camera cam;
+    [SerializeField] Transform body;
     Vector3 startPos;
     Quaternion startRot;
     Transform startParent;
@@ -48,12 +49,18 @@ public class SheetController : MonoBehaviour
             rb.constraints= RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
             canvas.GetComponent<GraphicRaycaster>().enabled = true;
             buttonExit.SetActive(true);
-
+           
             modelCollider.layer = 16;
             canvas.SetActive(false);
 
             if (areaLimit != null) areaLimit.SetActive(true);
-           
+
+            if (body != null)
+            {
+                transform.parent = body.transform;
+                if (areaLimit != null) areaLimit.SetActive(false);
+            }
+
         }
         if (interpolation)
         {
@@ -113,6 +120,11 @@ public class SheetController : MonoBehaviour
             rb.isKinematic = true;
             transform.parent = cam.transform;
             canvas.SetActive(true);
+            if (body != null)
+            {
+                transform.parent = body.transform;
+                if (areaLimit != null) areaLimit.SetActive(false);
+            }
         }
         if (!inHead)
         {

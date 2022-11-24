@@ -58,6 +58,7 @@ public class AnimationMovement : MonoBehaviour
         {
             if (!startEvent)
             {
+                Debug.Log(33);
                 OnStartMove.Invoke();
                 startEvent = true;
             }
