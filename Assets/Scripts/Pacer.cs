@@ -96,7 +96,7 @@ public class Pacer : MonoBehaviour
 
     IEnumerator IntermilestonePause()
     {
-        for(float i = 0; i < 2; i += Time.deltaTime)
+        for(float i = 0; i < 5; i += Time.deltaTime)
         {
             yield return 0;
         }
