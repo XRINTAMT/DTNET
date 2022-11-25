@@ -249,8 +249,8 @@ namespace Autohand {
                 headFollower.transform.position = headCamera.transform.position;
                 headFollower.name = "Head Follower";
                 headFollower.parent = transform.parent;
-
                 var col = headFollower.gameObject.AddComponent<SphereCollider>();
+                col.isTrigger = true;
                 col.material = bodyCapsule.material;
                 col.radius = bodyCapsule.radius;
 
