@@ -8,6 +8,7 @@ public class SheetController : MonoBehaviour
 {
 
     Camera cam;
+    [SerializeField] Transform body;
     Vector3 startPos;
     Quaternion startRot;
     Transform startParent;
@@ -17,7 +18,9 @@ public class SheetController : MonoBehaviour
     [SerializeField] GameObject areaLimit;
     [SerializeField] GameObject modelCollider;
     public bool inHead = true;
-    
+    public bool interpolation;
+
+    Vector3 interpolatePos;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -32,6 +35,7 @@ public class SheetController : MonoBehaviour
     {
         if (inHead)
         {
+            interpolation = false;
             GetComponent<Grabbable>().parentOnGrab = false;
             rb.isKinematic = false;
             if (cam == null || !cam.isActiveAndEnabled)
@@ -45,14 +49,48 @@ public class SheetController : MonoBehaviour
             rb.constraints= RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
             canvas.GetComponent<GraphicRaycaster>().enabled = true;
             buttonExit.SetActive(true);
-
+           
             modelCollider.layer = 16;
             canvas.SetActive(false);
 
             if (areaLimit != null) areaLimit.SetActive(true);
-           
+
+            if (body != null)
+            {
+                transform.parent = body.transform;
+                if (areaLimit != null) areaLimit.SetActive(false);
+            }
+
         }
-        if (!inHead)
+        if (interpolation)
+        {
+            inHead = false;
+            GetComponent<Grabbable>().parentOnGrab = false;
+            rb.isKinematic = false;
+            if (cam == null || !cam.isActiveAndEnabled)
+            {
+                cam = Camera.main;
+            }
+            transform.parent = cam.transform;
+            transform.localPosition = new Vector3(0, 0, 0.5f);
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+            rb.useGravity = true;
+            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+            canvas.GetComponent<GraphicRaycaster>().enabled = true;
+            buttonExit.SetActive(true);
+
+            transform.parent = startParent;
+            interpolatePos = transform.localPosition;
+
+            modelCollider.layer = 16;
+            canvas.SetActive(false);
+
+
+
+            //if (areaLimit != null) areaLimit.SetActive(true);
+
+        }
+        if (!inHead && !interpolation)
         {
             GetComponent<Grabbable>().parentOnGrab = true;
             modelCollider.layer = 10;
@@ -68,7 +106,7 @@ public class SheetController : MonoBehaviour
         transform.parent = startParent;
         transform.localPosition = startPos;
         transform.localRotation = startRot;
-
+        if (areaLimit != null) areaLimit.SetActive(false);
         canvas.GetComponent<GraphicRaycaster>().enabled = false;
         buttonExit.SetActive(false);
     }
@@ -82,6 +120,11 @@ public class SheetController : MonoBehaviour
             rb.isKinematic = true;
             transform.parent = cam.transform;
             canvas.SetActive(true);
+            if (body != null)
+            {
+                transform.parent = body.transform;
+                if (areaLimit != null) areaLimit.SetActive(false);
+            }
         }
         if (!inHead)
         {
@@ -89,10 +132,22 @@ public class SheetController : MonoBehaviour
             rb.isKinematic = true;
         }
     }
-  
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag=="AreaLimit")
+        {
+
+        }
+    }
+   
+
     void Update()
     {
-
+        if (transform.localPosition != interpolatePos & interpolation)
+        {
+            transform.localPosition = Vector3.Lerp(transform.localPosition, interpolatePos, 10);
+        }
     }
    
 }
