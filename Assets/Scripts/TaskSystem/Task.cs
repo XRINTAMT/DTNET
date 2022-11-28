@@ -42,7 +42,10 @@ namespace ScenarioTaskSystem
 
         public void AddParentScenario(in Scenario s)
         {
+            ParentScenario.Clear();
             ParentScenario.Add(s);
+            //That's what we probably want
+            //ParentScenario.Add(s);
         }
     }
 }

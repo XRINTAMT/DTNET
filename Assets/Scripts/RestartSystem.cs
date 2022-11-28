@@ -25,6 +25,7 @@ public class RestartSystem : MonoBehaviour
         }
         SavedState = Object.Instantiate(Changables);
         SavedState.SetActive(false);
+        SavedState.GetComponentInChildren<OldScenarioBehaviour>().Activate(false);
     }
 
     public void Load(string text = "") {
@@ -47,6 +48,7 @@ public class RestartSystem : MonoBehaviour
         Object.Destroy(Changables);
         Changables = Object.Instantiate(SavedState);
         Changables.SetActive(true);
+        Changables.GetComponentInChildren<OldScenarioBehaviour>().Activate(true);
     }
 
     void Update()

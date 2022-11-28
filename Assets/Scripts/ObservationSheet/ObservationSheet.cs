@@ -60,7 +60,7 @@ public class ObservationSheet : MonoBehaviour
         else
         {
             if (TryGetComponent<Task>(out Task a))
-                a.Complete(-1);
+                a.Complete(0);
         }
 
     }
@@ -95,7 +95,10 @@ public class ObservationSheet : MonoBehaviour
             NextRow.SetActive(true);
         }
         */
-        Destroy(gameObject);
+        foreach(Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     public void StartCoundown()

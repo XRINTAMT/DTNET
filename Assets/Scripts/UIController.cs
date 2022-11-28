@@ -79,6 +79,12 @@ public class UIController : MonoBehaviour
         Object.FindObjectOfType<XRMovementControls>().SwitchLocomotion(teleport);
     }
 
+    public void SetGender(int genderID)
+    {
+        //teleportLeftHand = setTeleportHandStatus.value;
+        PlayerPrefs.SetInt("Gender", genderID);
+    }
+
     public void SetSubtitles()
     {
 
