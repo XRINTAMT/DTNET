@@ -46,7 +46,7 @@ public class SheetController : MonoBehaviour
             transform.localPosition = new Vector3(0, 0, 0.5f);
             transform.localRotation = Quaternion.Euler(0,0,0);
             rb.useGravity = true;
-            rb.constraints= RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+            //rb.constraints= RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
             canvas.GetComponent<GraphicRaycaster>().enabled = true;
             buttonExit.SetActive(true);
            
@@ -75,7 +75,7 @@ public class SheetController : MonoBehaviour
             transform.localPosition = new Vector3(0, 0, 0.5f);
             transform.localRotation = Quaternion.Euler(0, 0, 0);
             rb.useGravity = true;
-            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+            //rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
             canvas.GetComponent<GraphicRaycaster>().enabled = true;
             buttonExit.SetActive(true);
 
@@ -126,6 +126,7 @@ public class SheetController : MonoBehaviour
                 if (areaLimit != null) areaLimit.SetActive(false);
             }
         }
+
         if (!inHead)
         {
             modelCollider.layer = 10;
@@ -133,13 +134,7 @@ public class SheetController : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag=="AreaLimit")
-        {
-
-        }
-    }
+    
    
 
     void Update()

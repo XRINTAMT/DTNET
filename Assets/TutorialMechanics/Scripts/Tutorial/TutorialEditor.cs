@@ -19,6 +19,11 @@ public class TutorialEditor : MonoBehaviour
         AutoHandPlayer.movementType = MovementType.Move;
     }
 
+    public void SwichLocomotion() 
+    {
+    
+    }
+
     public void StartTutorial()
     {
         StartTask(0);
@@ -46,6 +51,7 @@ public class TutorialEditor : MonoBehaviour
         if (index >= 0 && index < ListTasks.Count)
         {
             ListTasks[index].CompleteTask();
+            ListTasks[index+1].StartTask();
 
             if (index == (ListTasks.Count - 1) && ListTasks[index].IsComplete)
             {

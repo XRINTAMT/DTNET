@@ -29,7 +29,7 @@ public class XRMovementControlsTutorial : MonoBehaviour
     public void SwitchLocomotionMixed()
     {
         AutoHandPlayer.movementType = MovementType.Mixed;
-        Teleport.SetActive(false);
+        Teleport.SetActive(true);
     }
     public void SwitchLocomotionHand()
     {

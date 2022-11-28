@@ -8,26 +8,44 @@ using UnityEngine.UI;
 
 public class CheckTutorialSyringe : MonoBehaviour
 {
-    [SerializeField]  Text textValueML;
+    [SerializeField]  Syringe syringe;
     [SerializeField] TutorialEditor tutorialEditor;
     public int value;
     public UnityEvent valueReached = new UnityEvent();
     int countCompleteTask;
-  
+    float valueSyringe;
+    bool dial=true;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        syringe = GetComponent<Syringe>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (int.Parse(textValueML.text) == value)
+        valueSyringe = syringe.totalSubstance;
+ 
+        if (dial)
         {
-            tutorialEditor.CompleteTask(countCompleteTask);
-            valueReached.Invoke();
+            if (valueSyringe >= value)
+            {
+                tutorialEditor.CompleteTask(countCompleteTask);
+                valueReached.Invoke();
+                dial = false;
+            }
         }
+        if (!dial)
+        {
+            if (valueSyringe <= value)
+            {
+                tutorialEditor.CompleteTask(countCompleteTask);
+                valueReached.Invoke();
+                dial = true;
+            }
+        }
+        
     }
     public void SetValue(int val) 
     {

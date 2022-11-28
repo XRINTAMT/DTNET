@@ -30,6 +30,7 @@ namespace QuantumTek.QuantumDialogue.Demo
         [SerializeField] GameObject panelChoice;
         public ControllerApp controllerApp;
         [SerializeField] bool CompleteOnLastMessage = true;
+        [SerializeField] bool loop;
         private void Awake()
         {
             audioSource = GetComponent<AudioSource>();
@@ -182,6 +183,7 @@ namespace QuantumTek.QuantumDialogue.Demo
             // End if there is no next message
             if (handler.currentMessageInfo.ID < 0) 
             {
+                Debug.Log(5555);
                 if (dialogueSystem != null)
                 {
                     dialogueSystem.DialogueComplete[Convert.ToInt32(nameDialog)-1] = true;
