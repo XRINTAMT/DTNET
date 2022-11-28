@@ -358,7 +358,6 @@ namespace Autohand {
             switch (movementType)
             {
                 case MovementType.Teleport:
-                    Debug.Log("Teleport");
                     if (xrTeleporterLink.enabled)
                         xrTeleporterLink.enabled = false;
                     if (axis != Vector2.zero && !teleportEnable)
@@ -373,7 +372,6 @@ namespace Autohand {
                     }
                     break;
                 case MovementType.Move:
-                    Debug.Log("Move");
                     moveDirection.x = (!useDeadzone || Mathf.Abs(axis.x) > movementDeadzone) ? axis.x : 0;
                     moveDirection.z = (!useDeadzone || Mathf.Abs(axis.y) > movementDeadzone) ? axis.y : 0;
                     if (useRelativeDirection)

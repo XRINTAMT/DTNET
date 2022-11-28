@@ -8,12 +8,14 @@ namespace ScenarioTaskSystem
     [Serializable]
     public class Scenario
     {
-        [SerializeReference] List<TaskSettings> tasks;
-        [SerializeReference] public Operation OnAllCompleted;
+        [SerializeField] List<TaskSettings> tasks;
+        [SerializeReference] public UniversalOperation OnAllCompleted;
         [SerializeField] RestartSystem Restart;
         [SerializeField] bool active;
         [SerializeField] private bool guided;
-        public Scenario(TaskSettings[] ts, Operation operation)
+        
+        /*
+        public Scenario(TaskSettings[] ts, UniversalOperation operation)
         {
             tasks = new List<TaskSettings>();
             for (int i = 0; i < ts.Length; i++)
@@ -32,6 +34,7 @@ namespace ScenarioTaskSystem
             Restart = UnityEngine.Object.FindObjectOfType<RestartSystem>();
             Debug.Log("Is the scenario active? " + active);
         }
+        */
 
         public void Reconnect()
         {
@@ -74,6 +77,8 @@ namespace ScenarioTaskSystem
 
         public void OnTaskCompleted(Task taskCompleted, int score)
         {
+            if (!active)
+                return;
             TaskSettings completedTaskSettings = null;
             if(tasks == null)
             {
@@ -98,11 +103,6 @@ namespace ScenarioTaskSystem
                 Debug.LogWarning("This task is getting completed multiple times");
                 return;
             }
-            if (!active && guided)
-            {
-                WrongOrder(completedTaskSettings);
-                return;
-            }
             if (completedTaskSettings.Order == null)
             {
                 completedTaskSettings.Completed = true;
@@ -119,13 +119,16 @@ namespace ScenarioTaskSystem
                 {
                     if (currentTask == completedTaskSettings)
                     {
+                        Debug.Log(currentTask.Task.gameObject.name + " is our task, let's go!");
                         break;
                     }
                     if (currentTask.Completed == false)
                     {
+                        Debug.Log(currentTask.Task.gameObject.name + " is not our task and it is not completed, aborting!");
                         ordered = false;
                         break;
                     }
+                    Debug.Log(currentTask.Task.gameObject.name + " is not our task yet, but it is completed");
                 }
                 if (ordered)
                 {
@@ -177,9 +180,9 @@ namespace ScenarioTaskSystem
                 OnAllCompleted.Execute(RecalculateScore());
         }
 
-        public void Activate()
+        public void Activate(bool _active = true)
         {
-            active = true;
+            active = _active;
         }
     }
 
@@ -190,9 +193,9 @@ namespace ScenarioTaskSystem
         public Task Order;
         //[System.NonSerialized]
         public bool Completed;
-        [SerializeReference] public Operation OnCompleted;
-        [SerializeReference] public Operation OnWrongOrder;
-        [SerializeReference] public UniversalOperation OnFailed;
+        [SerializeField] public UniversalOperation OnCompleted;
+        [SerializeField] public UniversalOperation OnWrongOrder;
+        [SerializeField] public UniversalOperation OnFailed;
         public int Score;
     }
 
