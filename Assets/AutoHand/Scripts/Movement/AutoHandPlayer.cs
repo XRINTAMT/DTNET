@@ -249,8 +249,8 @@ namespace Autohand {
                 headFollower.transform.position = headCamera.transform.position;
                 headFollower.name = "Head Follower";
                 headFollower.parent = transform.parent;
-
                 var col = headFollower.gameObject.AddComponent<SphereCollider>();
+                col.isTrigger = true;
                 col.material = bodyCapsule.material;
                 col.radius = bodyCapsule.radius;
 
@@ -358,6 +358,7 @@ namespace Autohand {
             switch (movementType)
             {
                 case MovementType.Teleport:
+                    Debug.Log("Teleport");
                     if (xrTeleporterLink.enabled)
                         xrTeleporterLink.enabled = false;
                     if (axis != Vector2.zero && !teleportEnable)
@@ -372,6 +373,7 @@ namespace Autohand {
                     }
                     break;
                 case MovementType.Move:
+                    Debug.Log("Move");
                     moveDirection.x = (!useDeadzone || Mathf.Abs(axis.x) > movementDeadzone) ? axis.x : 0;
                     moveDirection.z = (!useDeadzone || Mathf.Abs(axis.y) > movementDeadzone) ? axis.y : 0;
                     if (useRelativeDirection)

@@ -28,9 +28,9 @@ public class TutorialEditor : MonoBehaviour
 
     public void LocomtionSystem(bool teleport) 
     {
-        if (!teleport) AutoHandPlayer.movementType = MovementType.Teleport;
+        if (!teleport) AutoHandPlayer.movementType = MovementType.Move;
        
-        if (teleport) AutoHandPlayer.movementType = MovementType.Move;
+        if (teleport) AutoHandPlayer.movementType = MovementType.Teleport;
        
     }
     public void StartTask(int index)
