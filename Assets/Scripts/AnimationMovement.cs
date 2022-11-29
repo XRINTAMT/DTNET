@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
-
+[ExecuteInEditMode]
 public class AnimationMovement : MonoBehaviour
 {
     [SerializeField] private Transform moveObj;
@@ -51,6 +52,11 @@ public class AnimationMovement : MonoBehaviour
         }
 
     }
+
+    public void StartMove(bool startMoving) 
+    {
+        this.startMoving = startMoving;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -58,7 +64,6 @@ public class AnimationMovement : MonoBehaviour
         {
             if (!startEvent)
             {
-                Debug.Log(33);
                 OnStartMove.Invoke();
                 startEvent = true;
             }
@@ -67,3 +72,17 @@ public class AnimationMovement : MonoBehaviour
 
     }
 }
+
+//[CustomEditor(typeof(AnimationMovement))]
+//class DecalMeshHelper : Editor
+//{
+//    public override void OnInspectorGUI()
+//    {
+//        DrawDefaultInspector();
+//        AnimationMovement animationMovement= (AnimationMovement)target;
+//        if (GUILayout.Button("StartMove")) 
+//        {
+//            animationMovement.StartMove(true);
+//        }
+//    }
+//}
