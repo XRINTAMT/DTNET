@@ -24,17 +24,45 @@ public class AnimationsController : MonoBehaviour
     [SerializeField] private Animation syringeAnimation;
     [SerializeField] private List<PlacePoint> placePoints;
     [SerializeField] private SheetController observSheet;
+    [SerializeField] private Material highlightMaterial;
 
 
     bool waterSyringe;
 
 
 
-    private void Start()
+    private void Awake()
     {
-        for (int i = 0; i < placePoints.Count; i++)
+        if (!transform.parent.parent.name.Contains("(Clone)"))
         {
-            placePoints[i].enabled = false;
+            for (int i = 0; i < placePoints.Count; i++)
+            {
+                placePoints[i].enabled = false;
+            }
+        }
+        else
+        {
+            Debug.Log("Just loaded, gotta remove some highlights");
+            for (int i = 0; i < placePoints.Count; i++)
+            {
+                if (placePoints[i].GetComponentInChildren<Sensor>() != null)
+                {
+                    MeshRenderer[] highlights = placePoints[i].GetComponentsInChildren<MeshRenderer>();
+                    //Debug.Log("Mesh renderers in " + placePoints[i] + ": " + highlights.Length);
+                    foreach(MeshRenderer highlight in highlights)
+                    {
+                        if(highlight.material.color == highlightMaterial.color)
+                        {
+                            highlight.gameObject.SetActive(false);
+                            Debug.Log("Removed this highlight");
+                        }
+                        else
+                        {
+                            Debug.Log(highlight.material.color + " is not the same as " + highlightMaterial.color);
+                        }
+                    }
+                }
+            }
         }
     }
 

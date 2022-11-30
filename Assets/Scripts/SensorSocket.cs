@@ -22,7 +22,7 @@ public class SensorSocket : MonoBehaviour
         Sensor toAttach = GetComponentInChildren<Sensor>();
         if (toAttach == null)
         {
-            Debug.LogError("No sensor found!");
+            Debug.LogError("No sensor found on "+gameObject.name);
         }
         else
         {
