@@ -12,6 +12,8 @@ public class UIController : MonoBehaviour
 {
     [SerializeField] private Slider setDialogueVolumeStatus;
     [SerializeField] private Slider setSoundVolumeStatus;
+    [SerializeField] private Slider setMusicVolumeStatus;
+    [SerializeField] private Slider setWalkingSpeed;
     //[SerializeField] private Dropdown setLanguageStatus;
     //[SerializeField] private Dropdown setTeleportHandStatus;
     //[SerializeField] private Dropdown setMovetHandStatus;
@@ -19,12 +21,17 @@ public class UIController : MonoBehaviour
     [SerializeField] private Toggle setGuidesStatus;
     [SerializeField] private GameObject teleportChosen;
     [SerializeField] private GameObject smoothChosen;
+    [SerializeField] private GameObject mixedChosen;
     [SerializeField] private GameObject englishChosen;
     [SerializeField] private GameObject germanChosen;
     [SerializeField] private GameObject lithuanianChosen;
+    [SerializeField] private GameObject latvianChosen;
+    [SerializeField] private GameObject swedishChosen;
 
     public static float dialogueVolume;
     public static float soundVolume;
+    public static float musicVolume;
+    public static float walkingSpeed;
     public static string language;
     public static int teleport;
     public static int subtitles;
@@ -39,15 +46,20 @@ public class UIController : MonoBehaviour
     {
         setDialogueVolumeStatus.value = PlayerPrefs.GetFloat("dialogueVolume", 0.5f);
         setSoundVolumeStatus.value = PlayerPrefs.GetFloat("soundVolume", 0.5f);
+        setMusicVolumeStatus.value = PlayerPrefs.GetFloat("musicVolume", 0.5f);
+        setWalkingSpeed.value = PlayerPrefs.GetFloat("walkingSpeed", 1.5f);
         setSubstitlesStatus.isOn = PlayerPrefs.GetInt("Subtitles", 0) == 0;
         teleport = PlayerPrefs.GetInt("MovementType", 0);
         language = PlayerPrefs.GetString("Language", "English");
         LocalizationManager.Language = language;
         teleportChosen.SetActive(teleport == 0);
         smoothChosen.SetActive(teleport == 1);
+        mixedChosen.SetActive(teleport == 2);
         englishChosen.SetActive(language == "English");
         germanChosen.SetActive(language == "German");
         lithuanianChosen.SetActive(language == "Lithuanian");
+        latvianChosen.SetActive(language == "Latvian");
+        swedishChosen.SetActive(language == "Swedish");
     }
     public void SetDialogueVolume() 
     {
@@ -62,11 +74,31 @@ public class UIController : MonoBehaviour
         PlayerPrefs.SetFloat("soundVolume", soundVolume);
     }
 
+    public void SetMusicVolume()
+    {
+        musicVolume = setMusicVolumeStatus.value;
+        //appSettings.UpdateSettings();
+        PlayerPrefs.SetFloat("musicVolume", musicVolume);
+    }
+
+    public void SetWalkingSpeed()
+    {
+        walkingSpeed = setWalkingSpeed.value;
+        //appSettings.UpdateSettings();
+        PlayerPrefs.SetFloat("walkingSpeed", walkingSpeed);
+        Object.FindObjectOfType<XRMovementControls>().SetMovementSpeed(walkingSpeed);
+    }
+
     public void SetLanguage(string lang)
     {
         language = lang;
         PlayerPrefs.SetString("Language", lang);
         LocalizationManager.Language = language;
+        englishChosen.SetActive(language == "English");
+        germanChosen.SetActive(language == "German");
+        lithuanianChosen.SetActive(language == "Lithuanian");
+        latvianChosen.SetActive(language == "Latvian");
+        swedishChosen.SetActive(language == "Swedish");
     }
 
     public void SetLocomotionType(int LocomotionID)
@@ -76,7 +108,15 @@ public class UIController : MonoBehaviour
         teleportChosen.SetActive(teleport == 0);
         smoothChosen.SetActive(teleport == 1);
         PlayerPrefs.SetInt("MovementType", teleport);
+        Debug.Log("Looking for a thing");
         Object.FindObjectOfType<XRMovementControls>().SwitchLocomotion(teleport);
+        Debug.Log("found one");
+    }
+
+    public void SetGender(int genderID)
+    {
+        //teleportLeftHand = setTeleportHandStatus.value;
+        PlayerPrefs.SetInt("Gender", genderID);
     }
 
     public void SetSubtitles()

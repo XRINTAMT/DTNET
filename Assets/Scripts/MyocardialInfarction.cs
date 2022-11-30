@@ -134,6 +134,7 @@ public class MyocardialInfarction : MonoBehaviour
 
     void Start()
     {
+        /*
         if (transform.parent.name.Contains("(Clone)"))
         {
             Debug.Log("This is a clone (parent has Clone in its name), no need to initialize");
@@ -276,7 +277,7 @@ public class MyocardialInfarction : MonoBehaviour
         MyocardialInfarctionScenario.InjectionSubscenario.SetGuidedMode(GuidedMode);
         MyocardialInfarctionScenario.HygeneSubscenario.SetGuidedMode(GuidedMode);
         MyocardialInfarctionScenario.HygeneSubscenarios.WashHandsSubscenario.SetGuidedMode(GuidedMode);
-
-
+         */
     }
+
 }
