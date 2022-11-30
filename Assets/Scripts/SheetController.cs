@@ -59,6 +59,7 @@ public class SheetController : MonoBehaviour
             {
                 transform.parent = body.transform;
                 if (areaLimit != null) areaLimit.SetActive(false);
+                Debug.Log("body");
             }
 
         }
@@ -102,6 +103,7 @@ public class SheetController : MonoBehaviour
  
     public void Exit()
     {
+        Debug.Log(startParent);
         rb.isKinematic = true;
         transform.parent = startParent;
         transform.localPosition = startPos;
