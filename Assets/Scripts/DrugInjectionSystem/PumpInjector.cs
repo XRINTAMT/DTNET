@@ -9,24 +9,32 @@ public class PumpInjector : MonoBehaviour
 {
     public Injection RequiredInjection;
     [SerializeField] PlacePoint SyringeHolder;
+    [SerializeField] float AimValue;
+    [SerializeField] PerfusionPumpSettings SpeedSetup;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     public void Inject()
     {
-        if (SyringeHolder.placedObject != null)
+        float speed = SpeedSetup.GetValue();
+        if (SyringeHolder.placedObject != null && (speed > 0))
         {
             Syringe srg;
             if (SyringeHolder.placedObject.TryGetComponent<Syringe>(out srg))
             {
-                if (srg.Lable != null)
+                if (srg.Lable != null && (speed == AimValue))
                 {
                     if (srg.Lable == RequiredInjection)
                     {
                         GetComponent<Task>().Complete(1);
+                    }
+                    else
+                    {
+                        GetComponent<Task>().Complete(0);
                     }
                 }
                 else
