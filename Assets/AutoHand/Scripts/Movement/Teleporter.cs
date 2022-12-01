@@ -43,7 +43,7 @@ namespace Autohand{
         bool aiming;
         bool hitting;
         RaycastHit aimHit;
-        HandTeleportGuard[] teleportGuards;
+        [SerializeField] HandTeleportGuard[] teleportGuards;
         AutoHandPlayer playerBody;
 
         private void Start() {
@@ -52,6 +52,11 @@ namespace Autohand{
                 teleportObject = null;
 
             lineArr = new Vector3[lineSegments];
+            teleportGuards = FindObjectsOfType<HandTeleportGuard>();
+        }
+
+        void RecalculateGuards()
+        {
             teleportGuards = FindObjectsOfType<HandTeleportGuard>();
         }
 
@@ -120,6 +125,11 @@ namespace Autohand{
         public void Teleport(){
             Queue<Vector3> fromPos = new Queue<Vector3>();
             foreach(var guard in teleportGuards) {
+                if (guard == null)
+                {
+                    RecalculateGuards();
+                    continue;
+                }
                 if(guard.gameObject.activeInHierarchy)
                     fromPos.Enqueue(guard.transform.position);
             }
