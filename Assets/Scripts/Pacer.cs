@@ -6,6 +6,14 @@ using ScenarioSystem;
 
 public class Pacer : MonoBehaviour
 {
+    [System.Serializable]
+    class Milestone
+    {
+        public int Value;
+        public UnityEngine.Events.UnityEvent OnReached;
+    }
+
+    [SerializeField] Milestone[] Milestones;
     [SerializeField] TaskSpecificValues DataInterface;
     [SerializeField] VitalsMonitor Monitor;
     [SerializeField] Knob Output;
@@ -13,16 +21,23 @@ public class Pacer : MonoBehaviour
     [SerializeField] float AimPace;
     [SerializeField] Sensor Pad;
     [SerializeField] float AimOutput;
+
+    
     float maxOutputDiff;
     float maxPaceDiff;
     float paceValue;
     float outputValue;
     bool pacing = false;
+    int currentMilestone = 0;
+    Coroutine DelayedMilestone;
 
-    void Start()
+    void Awake()
     {
-        DataInterface.SendDataItem("Output", 0);
-        DataInterface.SendDataItem("Pace", 60);
+        paceValue = 60;
+        outputValue = 0;
+        DataInterface.SendDataItem("Output", (int)outputValue);
+        DataInterface.SendDataItem("Pace", (int)paceValue);
+
     }
 
     public void StartPacing()
@@ -41,6 +56,7 @@ public class Pacer : MonoBehaviour
         {
             outputValue = value;
             DataInterface.SendDataItem("Output", (int)value);
+            CheckOutputMilestone();
         }
         else
         {
@@ -51,7 +67,7 @@ public class Pacer : MonoBehaviour
         score *= 1 - (Mathf.Abs(AimPace - paceValue) / maxPaceDiff);
         score *= 1 - (Mathf.Abs(AimOutput - outputValue) / maxOutputDiff);
         Debug.Log(score);
-        if (score == 1)
+        if (score == 1 && currentMilestone == Milestones.Length)
         {
             Debug.Log("PatientCured");
             if (TryGetComponent<ScenarioTaskSystem.Task>(out ScenarioTaskSystem.Task task))
@@ -59,6 +75,33 @@ public class Pacer : MonoBehaviour
                 task.Complete();
             }
         }
+    }
+
+    private void CheckOutputMilestone()
+    {
+        if(DelayedMilestone == null)
+        {
+            if(currentMilestone < Milestones.Length)
+            {
+                if (outputValue == Milestones[currentMilestone].Value)
+                {
+                    DelayedMilestone = StartCoroutine(IntermilestonePause());
+                    Debug.Log("Milestone " + Milestones[currentMilestone].Value + " reached");
+                    Milestones[currentMilestone].OnReached.Invoke();
+                    currentMilestone++;
+                }
+            }
+        }
+    }
+
+    IEnumerator IntermilestonePause()
+    {
+        for(float i = 0; i < 5; i += Time.deltaTime)
+        {
+            yield return 0;
+        }
+        DelayedMilestone = null;
+        CheckOutputMilestone();
     }
 
 

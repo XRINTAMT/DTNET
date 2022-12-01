@@ -30,6 +30,7 @@ namespace QuantumTek.QuantumDialogue.Demo
         [SerializeField] GameObject panelChoice;
         public ControllerApp controllerApp;
         [SerializeField] bool CompleteOnLastMessage = true;
+        [SerializeField] bool loop;
         private void Awake()
         {
             audioSource = GetComponent<AudioSource>();

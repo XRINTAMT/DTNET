@@ -33,7 +33,7 @@ public class Syringe : MonoBehaviour
     bool inserted;
     bool pulling;
     bool pushing;
-    float totalSubstance;
+    public float totalSubstance;
     Vector3 innerPartPositionInit;
     Vector3 LiquidPositionInit;
     MeshRenderer liquidRenderer;

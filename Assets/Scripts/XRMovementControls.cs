@@ -8,31 +8,37 @@ public class XRMovementControls : MonoBehaviour
 {
     [SerializeField] XRHandPlayerControllerLink MovementControls;
     [SerializeField] GameObject Teleport;
+    [SerializeField] AutoHandPlayer AHPlayer;
 
     void Awake()
     {
         SwitchLocomotion(PlayerPrefs.GetInt("MovementType", 0));
+        AHPlayer.maxMoveSpeed = PlayerPrefs.GetFloat("walkingSpeed", 2);
     }
 
     public void SwitchLocomotion(int type)
     {
         switch (type)
         {
-            //case (-1):
-            //    Teleport.SetActive(false);
-            //    MovementControls.moveController = DummyHand;
-            //    break;
+
             case (0):
-                AutoHandPlayer.teleportMove = true;
+                AutoHandPlayer.movementType= MovementType.Teleport;
                 Teleport.SetActive(true);
-                //MovementControls.moveController = DummyHand;
                 break;
             case (1):
-                AutoHandPlayer.teleportMove = false;
+                AutoHandPlayer.movementType = MovementType.Move;
                 Teleport.SetActive(false);
-                //MovementControls.moveController = RealHand;
+                break;
+            case (2):
+                AutoHandPlayer.movementType = MovementType.Mixed;
+                Teleport.SetActive(true);
                 break;
         }
+    }
+
+    public void SetMovementSpeed(float speed)
+    {
+        AHPlayer.maxMoveSpeed = speed;
     }
 
     // Update is called once per frame

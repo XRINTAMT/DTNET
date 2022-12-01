@@ -14,11 +14,18 @@ public class RestartSystem : MonoBehaviour
     }
 
     public void Save(){
-        if(SavedState != null){
+        Invoke("MakeASave", 1);
+    }
+
+    private void MakeASave()
+    {
+        if (SavedState != null)
+        {
             Object.Destroy(SavedState);
         }
         SavedState = Object.Instantiate(Changables);
         SavedState.SetActive(false);
+        SavedState.GetComponentInChildren<OldScenarioBehaviour>().Activate(false);
     }
 
     public void Load(string text = "") {
@@ -41,6 +48,7 @@ public class RestartSystem : MonoBehaviour
         Object.Destroy(Changables);
         Changables = Object.Instantiate(SavedState);
         Changables.SetActive(true);
+        Changables.GetComponentInChildren<OldScenarioBehaviour>().Activate(true);
     }
 
     void Update()

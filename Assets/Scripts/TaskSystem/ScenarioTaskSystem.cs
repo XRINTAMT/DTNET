@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace ScenarioTaskSystem
 {
+    [Serializable]
     public class Scenario
     {
-        List<TaskSettings> tasks;
-        public Operation OnAllCompleted;
+        [SerializeField] List<TaskSettings> tasks;
+        [SerializeReference] public UniversalOperation OnAllCompleted;
         [SerializeField] RestartSystem Restart;
-        private bool active = false;
-        private bool guided = false;
-        public Scenario(TaskSettings[] ts, Operation operation)
+        [SerializeField] bool active;
+        [SerializeField] private bool guided;
+        
+        /*
+        public Scenario(TaskSettings[] ts, UniversalOperation operation)
         {
             tasks = new List<TaskSettings>();
             for (int i = 0; i < ts.Length; i++)
@@ -27,7 +31,17 @@ namespace ScenarioTaskSystem
                 }
             }
             OnAllCompleted = operation;
-            Restart = Object.FindObjectOfType<RestartSystem>();
+            Restart = UnityEngine.Object.FindObjectOfType<RestartSystem>();
+            Debug.Log("Is the scenario active? " + active);
+        }
+        */
+
+        public void Reconnect()
+        {
+            foreach (TaskSettings ts in tasks)
+            {
+                ts.Task.AddParentScenario(this);
+            }
         }
 
         public void SetGuidedMode(bool enabled)
@@ -46,7 +60,7 @@ namespace ScenarioTaskSystem
             }
             else
             {
-                //Restart.Load();
+                Restart.Load();
                 Debug.LogWarning("Wrong completion order! Should have loaded the save here!");
             }
         }
@@ -63,7 +77,13 @@ namespace ScenarioTaskSystem
 
         public void OnTaskCompleted(Task taskCompleted, int score)
         {
+            if (!active)
+                return;
             TaskSettings completedTaskSettings = null;
+            if(tasks == null)
+            {
+                Debug.Log("Tasks field is empty");
+            }
             foreach (TaskSettings currentTask in tasks)
             {
                 if (currentTask.Task == taskCompleted)
@@ -83,11 +103,6 @@ namespace ScenarioTaskSystem
                 Debug.LogWarning("This task is getting completed multiple times");
                 return;
             }
-            if (!active && guided)
-            {
-                WrongOrder(completedTaskSettings);
-                return;
-            }
             if (completedTaskSettings.Order == null)
             {
                 completedTaskSettings.Completed = true;
@@ -104,13 +119,16 @@ namespace ScenarioTaskSystem
                 {
                     if (currentTask == completedTaskSettings)
                     {
+                        Debug.Log(currentTask.Task.gameObject.name + " is our task, let's go!");
                         break;
                     }
                     if (currentTask.Completed == false)
                     {
+                        Debug.Log(currentTask.Task.gameObject.name + " is not our task and it is not completed, aborting!");
                         ordered = false;
                         break;
                     }
+                    Debug.Log(currentTask.Task.gameObject.name + " is not our task yet, but it is completed");
                 }
                 if (ordered)
                 {
@@ -162,9 +180,9 @@ namespace ScenarioTaskSystem
                 OnAllCompleted.Execute(RecalculateScore());
         }
 
-        public void Activate()
+        public void Activate(bool _active = true)
         {
-            active = true;
+            active = _active;
         }
     }
 
@@ -175,9 +193,9 @@ namespace ScenarioTaskSystem
         public Task Order;
         //[System.NonSerialized]
         public bool Completed;
-        public Operation OnCompleted;
-        public Operation OnWrongOrder;
-        public UniversalOperation OnFailed;
+        [SerializeField] public UniversalOperation OnCompleted;
+        [SerializeField] public UniversalOperation OnWrongOrder;
+        [SerializeField] public UniversalOperation OnFailed;
         public int Score;
     }
 

@@ -18,13 +18,18 @@ public class XRMovementControlsTutorial : MonoBehaviour
 
     public void SwitchLocomotionTeleport()
     {
-        AutoHandPlayer.teleportMove = true;
+        AutoHandPlayer.movementType = MovementType.Teleport;
         Teleport.SetActive(true);
     }
     public void SwitchLocomotionMove()
     {
-        AutoHandPlayer.teleportMove = false;
+        AutoHandPlayer.movementType = MovementType.Move;
         Teleport.SetActive(false);
+    }
+    public void SwitchLocomotionMixed()
+    {
+        AutoHandPlayer.movementType = MovementType.Mixed;
+        Teleport.SetActive(true);
     }
     public void SwitchLocomotionHand()
     {

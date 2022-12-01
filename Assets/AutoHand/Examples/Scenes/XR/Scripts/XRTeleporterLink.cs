@@ -22,35 +22,39 @@ namespace Autohand.Demo{
             if(devices.Count > 0)
                 device = devices[0];
 
-            //if(device != null && device.isValid){
-            //    //Sets hand fingers wrap
-            //    if(device.TryGetFeatureValue(XRHandControllerLink.GetCommonButton(button), out bool teleportButton)) {
-            //        if(teleporting && !teleportButton){
-            //            hand.Teleport();
-            //            teleporting = false;
-            //        }
-            //        else if(!teleporting && teleportButton){
-            //            hand.StartTeleport();
-            //            teleporting = true;
-            //        }
-            //    }
-            //}
+            if (device != null && device.isValid)
+            {
+                //Sets hand fingers wrap
+                if (device.TryGetFeatureValue(XRHandControllerLink.GetCommonButton(button), out bool teleportButton))
+                {
+                    if (teleporting && !teleportButton)
+                    {
+                        hand.Teleport();
+                        teleporting = false;
+                    }
+                    else if (!teleporting && teleportButton)
+                    {
+                        hand.StartTeleport();
+                        teleporting = true;
+                    }
+                }
+            }
         }
 
-        public void Teleport() 
-        {
-            if (teleporting)
-            {
-                Debug.Log("teleport");
-                hand.Teleport();
-                teleporting = false;
-            }
-            else if (!teleporting)
-            {
-                Debug.Log("startTeleport");
-                hand.StartTeleport();
-                teleporting = true;
-            }
-        }
+        //public void Teleport() 
+        //{
+        //    if (teleporting)
+        //    {
+        //        Debug.Log("teleport");
+        //        hand.Teleport();
+        //        teleporting = false;
+        //    }
+        //    else if (!teleporting)
+        //    {
+        //        Debug.Log("startTeleport");
+        //        hand.StartTeleport();
+        //        teleporting = true;
+        //    }
+        //}
     }
 }

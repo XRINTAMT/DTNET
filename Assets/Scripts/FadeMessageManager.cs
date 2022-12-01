@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class FadeMessageManager : MonoBehaviour
 {
     [SerializeField] Image fadeBackground;
     [SerializeField] Text displayText;
     [SerializeField] float fadeTime;
+    [SerializeField] UnityEvent OnStartFade;
+    [SerializeField] UnityEvent OnEndFade;
 
     void Start()
     {
@@ -29,6 +32,7 @@ public class FadeMessageManager : MonoBehaviour
     IEnumerator fadeAnimation()
     {
         float episodeTime = fadeTime / 3;
+        OnStartFade.Invoke();
         for (float i = 0; i < 1; i += Time.deltaTime / episodeTime)
         {
             fadeBackground.color = alterAlpha(fadeBackground.color, i);
@@ -47,6 +51,7 @@ public class FadeMessageManager : MonoBehaviour
         }
         fadeBackground.color = alterAlpha(fadeBackground.color, 0);
         displayText.color = alterAlpha(displayText.color, 0);
+        OnEndFade.Invoke();
     }
 
     Color alterAlpha(Color c, float alpha)
