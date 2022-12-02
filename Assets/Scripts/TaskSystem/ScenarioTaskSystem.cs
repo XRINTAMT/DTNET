@@ -13,6 +13,7 @@ namespace ScenarioTaskSystem
         [SerializeField] RestartSystem Restart;
         [SerializeField] bool active;
         [SerializeField] private bool guided;
+        [SerializeField] ScoreGenerator Scoring;
         
         /*
         public Scenario(TaskSettings[] ts, UniversalOperation operation)
@@ -42,6 +43,11 @@ namespace ScenarioTaskSystem
             {
                 ts.Task.AddParentScenario(this);
             }
+        }
+
+        public void RecieveScore()
+        {
+            Scoring.Refresh(tasks);
         }
 
         public void SetGuidedMode(bool enabled)
@@ -102,6 +108,11 @@ namespace ScenarioTaskSystem
             {
                 Debug.LogWarning("This task is getting completed multiple times");
                 return;
+            }
+            if (completedTaskSettings.maxScore < score)
+            {
+                score = completedTaskSettings.maxScore;
+                Debug.LogWarning(taskCompleted.gameObject.name + " score is too high");
             }
             if (completedTaskSettings.Order == null)
             {
@@ -178,6 +189,7 @@ namespace ScenarioTaskSystem
             }
             if (OnAllCompleted != null)
                 OnAllCompleted.Execute(RecalculateScore());
+            Scoring.Refresh(tasks);
         }
 
         public void Activate(bool _active = true)
@@ -197,6 +209,7 @@ namespace ScenarioTaskSystem
         [SerializeField] public UniversalOperation OnWrongOrder;
         [SerializeField] public UniversalOperation OnFailed;
         public int Score;
+        public int maxScore;
     }
 
     [System.Serializable]

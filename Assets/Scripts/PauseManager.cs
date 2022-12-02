@@ -7,6 +7,7 @@ public class PauseManager : MonoBehaviour
     [SerializeField] GameObject PauseMenu;
     [SerializeField] GameObject MenuOffset;
     [SerializeField] GameObject Congrats;
+    [SerializeField] GameObject CongratsExam;
     [SerializeField] GameObject Main;
     [SerializeField] Camera UICamera;
     [SerializeField] Camera MainCamera;
@@ -25,7 +26,14 @@ public class PauseManager : MonoBehaviour
     {
         AppPause();
         ScenarioCompleted = true;
-        Congrats.SetActive(true);
+        if(PlayerPrefs.GetInt("GuidedMode", 1) == 1)
+        {
+            Congrats.SetActive(true);
+        }
+        else
+        {
+            CongratsExam.SetActive(true);
+        }
         Main.SetActive(false);
     }
 
