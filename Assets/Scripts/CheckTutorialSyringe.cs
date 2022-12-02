@@ -13,7 +13,7 @@ public class CheckTutorialSyringe : MonoBehaviour
     public int value;
     public UnityEvent valueReached = new UnityEvent();
     int countCompleteTask;
-    float valueSyringe;
+    public float valueSyringe;
     bool dial=true;
     
     // Start is called before the first frame update
