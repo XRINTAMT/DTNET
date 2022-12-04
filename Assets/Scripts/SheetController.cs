@@ -19,6 +19,8 @@ public class SheetController : MonoBehaviour
     [SerializeField] GameObject modelCollider;
     public bool inHead = true;
     public bool interpolation;
+    public bool grab;
+    public bool onPlace=true;
 
     Vector3 interpolatePos;
     void Start()
@@ -33,6 +35,7 @@ public class SheetController : MonoBehaviour
 
     public void Grab()
     {
+        grab = true;
         if (inHead)
         {
             interpolation = false;
@@ -50,7 +53,7 @@ public class SheetController : MonoBehaviour
             canvas.GetComponent<GraphicRaycaster>().enabled = true;
             buttonExit.SetActive(true);
            
-            modelCollider.layer = 16;
+            //modelCollider.layer = 16;
             canvas.SetActive(false);
 
             if (areaLimit != null) areaLimit.SetActive(true);
@@ -59,9 +62,8 @@ public class SheetController : MonoBehaviour
             {
                 transform.parent = body.transform;
                 if (areaLimit != null) areaLimit.SetActive(false);
-                Debug.Log("body");
             }
-
+    
         }
         if (interpolation)
         {
@@ -83,7 +85,7 @@ public class SheetController : MonoBehaviour
             transform.parent = startParent;
             interpolatePos = transform.localPosition;
 
-            modelCollider.layer = 16;
+            //modelCollider.layer = 16;
             canvas.SetActive(false);
 
 
@@ -99,11 +101,11 @@ public class SheetController : MonoBehaviour
             rb.useGravity = true;
             rb.constraints = 0;
         }
+        onPlace = false;
     }
  
     public void Exit()
     {
-        Debug.Log(startParent);
         rb.isKinematic = true;
         transform.parent = startParent;
         transform.localPosition = startPos;
@@ -111,14 +113,16 @@ public class SheetController : MonoBehaviour
         if (areaLimit != null) areaLimit.SetActive(false);
         canvas.GetComponent<GraphicRaycaster>().enabled = false;
         buttonExit.SetActive(false);
+        onPlace = true;
     }
 
  
     public void Realesee()
     {
+        grab = false;
         if (inHead)
         {
-            modelCollider.layer = 16;
+            //modelCollider.layer = 16;
             rb.isKinematic = true;
             transform.parent = cam.transform;
             canvas.SetActive(true);
@@ -136,8 +140,16 @@ public class SheetController : MonoBehaviour
         }
     }
 
-    
-   
+
+    private void OnTriggerStay(Collider other)
+    {
+
+        if (other.tag == "SheetArea" && !onPlace)
+        {
+            if (grab==false) Exit();
+        }
+    }
+
 
     void Update()
     {
