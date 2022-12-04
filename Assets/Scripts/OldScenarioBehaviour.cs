@@ -18,6 +18,11 @@ public class OldScenarioBehaviour : MonoBehaviour
         Scenario.Activate(_active);
     }
 
+    public void CalculateScoreManually()
+    {
+        Scenario.RecieveScore();
+    }
+
     // Update is called once per frame
     void Update()
     {
