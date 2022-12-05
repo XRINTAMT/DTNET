@@ -31,7 +31,7 @@ public class CheckTutorialSyringe : MonoBehaviour
         {
             if (valueSyringe >= value)
             {
-                Debug.Log(33);
+                Debug.Log(valueSyringe);
                 tutorialEditor.CompleteTask(countCompleteTask);
                 valueReached.Invoke();
                 dial = false;

@@ -48,7 +48,7 @@ public class TutorialEditor : MonoBehaviour
     
     public void CompleteTask(int index)
     {
-        Debug.Log(4);
+        Debug.Log("CompleteTask"+ index);
         if (index >= 0 && index < ListTasks.Count)
         {
             ListTasks[index].CompleteTask();

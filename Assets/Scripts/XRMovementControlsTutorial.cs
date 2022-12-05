@@ -34,7 +34,7 @@ public class XRMovementControlsTutorial : MonoBehaviour
     public void SwitchLocomotionHand()
     {
         autoHandPlayer.teleporterL = teleporterHand;
-        autoHandPlayer.xrTeleporterLink = xRTeleporterLinkHand;
+        autoHandPlayer.xrTeleporterLinkLeft = xRTeleporterLinkHand;
     }
 
     // Update is called once per frame
