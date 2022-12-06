@@ -112,6 +112,13 @@ public class UIController : MonoBehaviour
         Object.FindObjectOfType<XRMovementControls>().SwitchLocomotion(teleport);
         Debug.Log("found one");
     }
+    public void SetHandType(int hand)
+    {
+        if (hand == 0) AutoHandPlayer.movementHand = MovementHand.Left;
+    
+        if (hand == 1) AutoHandPlayer.movementHand = MovementHand.Right;
+      
+    }
 
     public void SetGender(int genderID)
     {

@@ -67,6 +67,8 @@ public class PauseManager : MonoBehaviour
         PauseMenu.transform.rotation = MenuOffset.transform.rotation;
         PauseMenu.transform.rotation = Quaternion.Euler(new Vector3(MenuOffset.transform.rotation.eulerAngles.x, MenuOffset.transform.rotation.eulerAngles.y, 0));
         Controls.SwitchLocomotion(-1);
+        if (Controls!=null) Controls.SwitchLocomotion(-1);
+      
         GetComponent<UnscaleMove>().Pause();
     }
 
@@ -93,7 +95,8 @@ public class PauseManager : MonoBehaviour
         */
 
         PauseMenu.SetActive(false);
-        Controls.SwitchLocomotion(PlayerPrefs.GetInt("MovementType", 0));
+        if (Controls != null) Controls.SwitchLocomotion(PlayerPrefs.GetInt("MovementType", 0));
+
         MainCamera.cullingMask = ~0;
         UICamera.cullingMask = (1 << LayerMask.NameToLayer("Fade"));
         UICamera.gameObject.GetComponent<Camera>().enabled=false;
