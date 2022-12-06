@@ -180,26 +180,43 @@ public class Syringe : MonoBehaviour
         Pomp.transform.parent = InnerPart.transform;
         if (totalSubstance != 0)
         {
-            StartCoroutine(EmptyingAnimation(time));
+            StartCoroutine(EmptyingAnimation(time, 0.3f));
         }
     }
 
-    IEnumerator EmptyingAnimation(float time)
+    IEnumerator EmptyingAnimation(float time, float val)
     {
         ingredients = new Dictionary<string, float>();
         float initValue = totalSubstance;
-        for (; totalSubstance > 0; totalSubstance -= Time.deltaTime / time * initValue)
+        for (; totalSubstance > initValue * (1 - val); totalSubstance -= Time.deltaTime / time * initValue)
         {
             InnerPart.transform.localPosition =
                 new Vector3(innerPartPositionInit.x,
                 Mathf.Lerp(innerPartPositionInit.y, innerPartPositionInit.y - MaxInnerPartDisplacement, totalSubstance / SyringeCapacity),
                 innerPartPositionInit.z);
-
+            Liquid.transform.localPosition =
+             new Vector3(LiquidPositionInit.x,
+             Mathf.Lerp(LiquidPositionInit.y, LiquidPositionInit.y - (MaxInnerPartDisplacement / 2), totalSubstance / SyringeCapacity),
+             LiquidPositionInit.z);
+            Liquid.transform.localScale =
+                new Vector3(Liquid.transform.localScale.x,
+                Mathf.Lerp(0, MaxLiquidScale, totalSubstance / SyringeCapacity),
+                Liquid.transform.localScale.z);
             yield return 0;
         }
-        totalSubstance = 0;
-        InnerPart.transform.localPosition = innerPartPositionInit;
-
+        totalSubstance = initValue * (1 - val);
+        InnerPart.transform.localPosition =
+                new Vector3(innerPartPositionInit.x,
+                Mathf.Lerp(innerPartPositionInit.y, innerPartPositionInit.y - MaxInnerPartDisplacement, totalSubstance / SyringeCapacity),
+                innerPartPositionInit.z);
+        Liquid.transform.localPosition =
+                new Vector3(LiquidPositionInit.x,
+                Mathf.Lerp(LiquidPositionInit.y, LiquidPositionInit.y - (MaxInnerPartDisplacement / 2), totalSubstance / SyringeCapacity),
+                LiquidPositionInit.z);
+        Liquid.transform.localScale =
+            new Vector3(Liquid.transform.localScale.x,
+            Mathf.Lerp(0, MaxLiquidScale, totalSubstance / SyringeCapacity),
+            Liquid.transform.localScale.z);
     }
 
     // Update is called once per frame
