@@ -23,6 +23,7 @@ public class SheetController : MonoBehaviour
     public bool onPlace=true;
 
     Vector3 interpolatePos;
+    bool onTrigger;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -39,15 +40,15 @@ public class SheetController : MonoBehaviour
         if (inHead)
         {
             interpolation = false;
-            GetComponent<Grabbable>().parentOnGrab = false;
+            //GetComponent<Grabbable>().parentOnGrab = false;
             rb.isKinematic = false;
             if (cam == null || !cam.isActiveAndEnabled)
             {
                 cam = Camera.main;
             }
-            transform.parent = cam.transform;
-            transform.localPosition = new Vector3(0, 0, 0.5f);
-            transform.localRotation = Quaternion.Euler(0,0,0);
+            //transform.parent = cam.transform;
+            //transform.localPosition = new Vector3(0, 0, 0.5f);
+            //transform.localRotation = Quaternion.Euler(0,0,0);
             rb.useGravity = true;
             //rb.constraints= RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
             canvas.GetComponent<GraphicRaycaster>().enabled = true;
@@ -58,11 +59,11 @@ public class SheetController : MonoBehaviour
 
             if (areaLimit != null) areaLimit.SetActive(true);
 
-            if (body != null)
-            {
-                transform.parent = body.transform;
-                if (areaLimit != null) areaLimit.SetActive(false);
-            }
+            //if (body != null)
+            //{
+            //    transform.parent = body.transform;
+            //    if (areaLimit != null) areaLimit.SetActive(false);
+            //}
     
         }
         if (interpolation)
@@ -131,6 +132,10 @@ public class SheetController : MonoBehaviour
                 transform.parent = body.transform;
                 if (areaLimit != null) areaLimit.SetActive(false);
             }
+            if (onTrigger)
+            {
+                Exit();
+            }
         }
 
         if (!inHead)
@@ -140,15 +145,34 @@ public class SheetController : MonoBehaviour
         }
     }
 
-
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
 
-        if (other.tag == "SheetArea" && !onPlace)
+        if (other.tag == "SheetArea")
         {
-            if (grab==false) Exit();
+            onTrigger = true;
         }
     }
+    private void OnTriggerExit(Collider other)
+    {
+
+        if (other.tag == "SheetArea")
+        {
+            onTrigger = false;
+        }
+    }
+    //private void OnTriggerStay(Collider other)
+    //{
+
+    //    if (other.tag == "SheetArea" && !onPlace && startDetectArea)
+    //    {
+    //        if (grab == false) 
+    //        {
+    //            Exit();
+    //        }
+
+    //    }
+    //}
 
 
     void Update()
