@@ -9,8 +9,8 @@ public class SheetController : MonoBehaviour
 
     Camera cam;
     [SerializeField] Transform body;
-    Vector3 startPos;
-    Quaternion startRot;
+    [SerializeField] Vector3 startPos;
+    [SerializeField] Quaternion startRot;
     Transform startParent;
     Rigidbody rb;
     [SerializeField] GameObject canvas;
@@ -28,9 +28,15 @@ public class SheetController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         cam = Camera.main;
         startParent = transform.parent;
-        startPos = transform.localPosition;
-        startRot = transform.localRotation;
-      
+        if (startParent.gameObject.name.Contains("AutoHandPlayer"))
+        {
+            startParent = transform.parent.parent.parent;
+        }
+        if (!startParent.gameObject.name.Contains("(Clone)"))
+        {
+            startPos = transform.localPosition;
+            startRot = transform.localRotation;
+        }
     }
 
     public void Grab()
