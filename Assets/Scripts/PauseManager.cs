@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Autohand;
 
 public class PauseManager : MonoBehaviour
 {
@@ -68,7 +69,7 @@ public class PauseManager : MonoBehaviour
         PauseMenu.transform.rotation = Quaternion.Euler(new Vector3(MenuOffset.transform.rotation.eulerAngles.x, MenuOffset.transform.rotation.eulerAngles.y, 0));
 
         if (Controls!=null) Controls.SwitchLocomotion(-1);
-      
+        FindObjectOfType<AutoHandPlayer>().GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<UnscaleMove>().Pause();
     }
 
