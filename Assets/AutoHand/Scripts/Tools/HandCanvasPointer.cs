@@ -165,13 +165,13 @@ namespace Autohand
                 }
             }
 
-            gameObject.layer = 13;
-            hitPointMarker.layer = 13;
+            //gameObject.layer = 13;
+            //hitPointMarker.layer = 13;
 
-            if (hitPointMarker.transform.GetChild(0)!=null)
-            {
-                hitPointMarker.transform.GetChild(0).gameObject.layer = 13;
-            }
+            //if (hitPointMarker.transform.GetChild(0)!=null)
+            //{
+            //    hitPointMarker.transform.GetChild(0).gameObject.layer = 13;
+            //}
     
         }
 

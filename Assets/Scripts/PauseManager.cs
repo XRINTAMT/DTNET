@@ -67,7 +67,7 @@ public class PauseManager : MonoBehaviour
         PauseMenu.transform.position = MenuOffset.transform.position;
         PauseMenu.transform.rotation = MenuOffset.transform.rotation;
         PauseMenu.transform.rotation = Quaternion.Euler(new Vector3(MenuOffset.transform.rotation.eulerAngles.x, MenuOffset.transform.rotation.eulerAngles.y, 0));
-        Controls.SwitchLocomotion(-1);
+
         if (Controls!=null) Controls.SwitchLocomotion(-1);
         FindObjectOfType<AutoHandPlayer>().GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<UnscaleMove>().Pause();
