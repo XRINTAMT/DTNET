@@ -63,12 +63,23 @@ namespace ScenarioTaskSystem
             {
                 if (completedTaskSettings.OnWrongOrder != null)
                     completedTaskSettings.OnWrongOrder.Execute();
+                if (!completedTaskSettings.Secondary)
+                {
+                    FailTasksUpTo(completedTaskSettings);
+                }
             }
             else
             {
-                Restart.Load();
-                Debug.LogWarning("Wrong completion order! Should have loaded the save here!");
+                if (completedTaskSettings.IsCritical)
+                {
+                    Restart.Load();
+                }
             }
+        }
+
+        private void FailTasksUpTo(TaskSettings completedTaskSettings)
+        {
+            //things
         }
 
         int RecalculateScore()
@@ -210,6 +221,8 @@ namespace ScenarioTaskSystem
         [SerializeField] public UniversalOperation OnFailed;
         public int Score;
         public int maxScore;
+        public bool IsCritical = true;
+        public bool Secondary;
     }
 
     [System.Serializable]
