@@ -49,7 +49,7 @@ public struct BulletListItemLink
         return empty;
     }
 
-    public void Cross()
+    public void Cross( Color color)
     {
         if (ID == -1)
         {
@@ -61,7 +61,8 @@ public struct BulletListItemLink
             {
                 Debug.Log("text is NULL at " + Description);
             }
-            Text.color = new Color(0.85f, 0.85f, 0.85f);
+            //Text.color = new Color(0.85f, 0.85f, 0.85f);
+            Text.color = color;
             Text.text = StrikeThrough(Text.text);
             /*
             GameObject temp = UnityEngine.Object.Instantiate(Text.gameObject);
@@ -90,7 +91,7 @@ public class TabletBulletList : MonoBehaviour
     [SerializeField] float totalHeight;
     [SerializeField] float maskedHeight;
     [SerializeField] Scrollbar scrollbar;
-
+    [SerializeField] Color colorCross;
     public void Init(BulletListItemLink[] listItems, float theight, float mheight)
     {
         ListItems = listItems;
@@ -100,7 +101,7 @@ public class TabletBulletList : MonoBehaviour
 
     public void CrossOut(int ID)
     {
-        FindByID(ID).Cross();
+        FindByID(ID).Cross(colorCross);
     }
 
     private BulletListItemLink FindByID(int id)
