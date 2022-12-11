@@ -80,6 +80,20 @@ namespace ScenarioTaskSystem
         private void FailTasksUpTo(TaskSettings completedTaskSettings)
         {
             //things
+            foreach (TaskSettings currentTask in tasks)
+            {
+                if (currentTask == completedTaskSettings)
+                {
+                    Debug.Log(currentTask.Task.gameObject.name + " is our task, let's go!");
+                    currentTask.Task.Complete(completedTaskSettings.Score);
+                    break;
+                }
+                if (currentTask.Completed == false)
+                {
+                    currentTask.Task.Complete(0);
+                }
+                Debug.Log(currentTask.Task.gameObject.name + " is not our task yet, but it is completed");
+            }
         }
 
         int RecalculateScore()
@@ -120,11 +134,13 @@ namespace ScenarioTaskSystem
                 Debug.LogWarning("This task is getting completed multiple times");
                 return;
             }
+            completedTaskSettings.Score = score;
             if (completedTaskSettings.maxScore < score)
             {
                 score = completedTaskSettings.maxScore;
                 Debug.LogWarning(taskCompleted.gameObject.name + " score is too high");
             }
+
             if (completedTaskSettings.Order == null)
             {
                 completedTaskSettings.Completed = true;
@@ -158,7 +174,6 @@ namespace ScenarioTaskSystem
                     Debug.Log("Task completion confirmed!");
                     if (completedTaskSettings.OnCompleted != null)
                         completedTaskSettings.OnCompleted.Execute();
-                    completedTaskSettings.Score = score;
                     allCompleted();
                 }
                 else
