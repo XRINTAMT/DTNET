@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: QDialogue-2
   m_EditorClassIdentifier: 
   DataDB: {fileID: 11400000, guid: cc5bfdb0de70c554da05bd2b74e609f4, type: 2}
-  NextID: 7
+  NextID: 11
   Nodes:
   - ID: 0
     Type: 1
     Window:
       serializedVersion: 2
-      x: 417.5182
-      y: 320.49493
+      x: 454.5182
+      y: 88.494934
       width: 200
       height: 65
     Inputs: []
@@ -44,8 +44,8 @@ MonoBehaviour:
     Type: 3
     Window:
       serializedVersion: 2
-      x: 996.5182
-      y: 219.49493
+      x: 1352.5182
+      y: 356.49493
       width: 200
       height: 175
     Inputs:
@@ -64,7 +64,7 @@ MonoBehaviour:
       Y: 35
       AllowMultipleConnections: 0
       Connections:
-        keys: 06000000
+        keys: 07000000
         values:
         - Array: 01000000
     Outputs:
@@ -82,7 +82,7 @@ MonoBehaviour:
       Y: 35
       AllowMultipleConnections: 0
       Connections:
-        keys: 02000000
+        keys: 0a000000
         values:
         - Array: 01000000
     AllowedInputs:
@@ -139,8 +139,8 @@ MonoBehaviour:
     Type: 3
     Window:
       serializedVersion: 2
-      x: 1515.5182
-      y: 22.494919
+      x: 1788.5182
+      y: 92.49492
       width: 200
       height: 175
     Inputs:
@@ -159,7 +159,7 @@ MonoBehaviour:
       Y: 35
       AllowMultipleConnections: 0
       Connections:
-        keys: 01000000
+        keys: 08000000
         values:
         - Array: 01000000
     Outputs:
@@ -245,8 +245,9 @@ MonoBehaviour:
       Y: 40
       AllowMultipleConnections: 1
       Connections:
-        keys: 02000000
+        keys: 020000000a000000
         values:
+        - Array: 00000000
         - Array: 00000000
     AllowedInputs: []
     AllowedOutputs:
@@ -258,8 +259,8 @@ MonoBehaviour:
     Type: 2
     Window:
       serializedVersion: 2
-      x: 696.71924
-      y: 312
+      x: 718.71924
+      y: 330
       width: 200
       height: 110
     Inputs: []
@@ -270,8 +271,9 @@ MonoBehaviour:
       Y: 40
       AllowMultipleConnections: 1
       Connections:
-        keys: 01000000
+        keys: 0100000008000000
         values:
+        - Array: 00000000
         - Array: 00000000
     AllowedInputs: []
     AllowedOutputs:
@@ -283,8 +285,8 @@ MonoBehaviour:
     Type: 3
     Window:
       serializedVersion: 2
-      x: 781.06866
-      y: -1
+      x: 724.06866
+      y: 120
       width: 200
       height: 175
     Inputs:
@@ -320,9 +322,249 @@ MonoBehaviour:
       Y: 35
       AllowMultipleConnections: 0
       Connections:
+        keys: 07000000
+        values:
+        - Array: 00000000
+    AllowedInputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 2
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 3
+      InputID: 1
+      OutputType: 1
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 0
+    AllowedOutputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 3
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 0
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 2
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 3
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 4
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 5
+      OutputType: 3
+      OutputID: 1
+  - ID: 7
+    Type: 4
+    Window:
+      serializedVersion: 2
+      x: 981.6726
+      y: 173
+      width: 300
+      height: 125
+    Inputs:
+    - ID: 0
+      Name: Previous Messages
+      Type: 0
+      Y: 7.5
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 06000000
+        values:
+        - Array: 01000000
+    Outputs:
+    - ID: 0
+      Name: Choice 1
+      Type: 1
+      Y: 45
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 08000000
+        values:
+        - Array: 01000000
+    - ID: 1
+      Name: Choice 2
+      Type: 1
+      Y: 75
+      AllowMultipleConnections: 0
+      Connections:
         keys: 01000000
         values:
         - Array: 01000000
+    AllowedInputs:
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 0
+    AllowedOutputs:
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 1
+  - ID: 8
+    Type: 3
+    Window:
+      serializedVersion: 2
+      x: 1356.7803
+      y: 156
+      width: 200
+      height: 175
+    Inputs:
+    - ID: 0
+      Name: Speaker
+      Type: 0
+      Y: 7.5
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 04000000
+        values:
+        - Array: 00000000
+    - ID: 1
+      Name: Previous
+      Type: 0
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 07000000
+        values:
+        - Array: 00000000
+    Outputs:
+    - ID: 0
+      Name: Speaker
+      Type: 1
+      Y: 7.5
+      AllowMultipleConnections: 1
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Next
+      Type: 1
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 02000000
+        values:
+        - Array: 01000000
+    AllowedInputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 2
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 3
+      InputID: 1
+      OutputType: 1
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 0
+    AllowedOutputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 3
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 0
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 2
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 3
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 4
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 5
+      OutputType: 3
+      OutputID: 1
+  - ID: 10
+    Type: 3
+    Window:
+      serializedVersion: 2
+      x: 1792.5516
+      y: 295
+      width: 200
+      height: 175
+    Inputs:
+    - ID: 0
+      Name: Speaker
+      Type: 0
+      Y: 7.5
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 03000000
+        values:
+        - Array: 00000000
+    - ID: 1
+      Name: Previous
+      Type: 0
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 01000000
+        values:
+        - Array: 01000000
+    Outputs:
+    - ID: 0
+      Name: Speaker
+      Type: 1
+      Y: 7.5
+      AllowMultipleConnections: 1
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Next
+      Type: 1
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
     AllowedInputs:
     - InputType: 3
       InputID: 0
@@ -527,9 +769,11 @@ MonoBehaviour:
       ID: 1
       Speaker: 4
       SpeakerName: 'You:'
-      PreviousMessage: 6
-      NextMessage: 2
-      MessageText: "How are you, Mr. Edvin?\u201D  "
+      PreviousMessage: 7
+      NextMessage: 10
+      MessageText: 'How are you, Mr. Edvin?
+
+'
       Clip: {fileID: 0}
   - ID: 2
     Type: 3
@@ -627,9 +871,9 @@ MonoBehaviour:
       ID: 2
       Speaker: 3
       SpeakerName: 'Patient Edvin:'
-      PreviousMessage: 1
+      PreviousMessage: 8
       NextMessage: -1
-      MessageText: "I\u2019m very lightheaded and I\u2019m feeling  chest pain"
+      MessageText: "I\u2019m very lightheaded and I\u2019m feeling chest pain\r.\n"
       Clip: {fileID: 0}
   - ID: 6
     Type: 3
@@ -728,8 +972,208 @@ MonoBehaviour:
       Speaker: -1
       SpeakerName: 
       PreviousMessage: -1
-      NextMessage: 1
-      MessageText: 
+      NextMessage: 7
+      MessageText: Next
+      Clip: {fileID: 0}
+  - ID: 8
+    Type: 3
+    Window:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 200
+      height: 175
+    Inputs:
+    - ID: 0
+      Name: Speaker
+      Type: 0
+      Y: 7.5
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Previous
+      Type: 0
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    Outputs:
+    - ID: 0
+      Name: Speaker
+      Type: 1
+      Y: 7.5
+      AllowMultipleConnections: 1
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Next
+      Type: 1
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    AllowedInputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 2
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 3
+      InputID: 1
+      OutputType: 1
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 0
+    AllowedOutputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 3
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 0
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 2
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 3
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 4
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 5
+      OutputType: 3
+      OutputID: 1
+    Data:
+      ID: 8
+      Speaker: 4
+      SpeakerName: 'You:'
+      PreviousMessage: -1
+      NextMessage: 2
+      MessageText: 'How are you feeling now? '
+      Clip: {fileID: 0}
+  - ID: 10
+    Type: 3
+    Window:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 200
+      height: 175
+    Inputs:
+    - ID: 0
+      Name: Speaker
+      Type: 0
+      Y: 7.5
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Previous
+      Type: 0
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    Outputs:
+    - ID: 0
+      Name: Speaker
+      Type: 1
+      Y: 7.5
+      AllowMultipleConnections: 1
+      Connections:
+        keys: 
+        values: []
+    - ID: 1
+      Name: Next
+      Type: 1
+      Y: 35
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    AllowedInputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 2
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 3
+      InputID: 1
+      OutputType: 1
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 0
+    AllowedOutputs:
+    - InputType: 3
+      InputID: 0
+      OutputType: 3
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 0
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 1
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 2
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 3
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 4
+      OutputType: 3
+      OutputID: 1
+    - InputType: 4
+      InputID: 5
+      OutputType: 3
+      OutputID: 1
+    Data:
+      ID: 10
+      Speaker: 3
+      SpeakerName: 'Patient Edvin:'
+      PreviousMessage: 1
+      NextMessage: -1
+      MessageText: "I\u2019m very lightheaded and I\u2019m feeling chest pain\r.\n"
       Clip: {fileID: 0}
   ConversationNodes:
   - ID: 0
@@ -760,4 +1204,42 @@ MonoBehaviour:
       ID: 0
       Name: 2
       FirstMessage: 6
-  ChoiceNodes: []
+  ChoiceNodes:
+  - ID: 7
+    Type: 2
+    Window:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 300
+      height: 65
+    Inputs:
+    - ID: 0
+      Name: Previous Messages
+      Type: 0
+      Y: 7.5
+      AllowMultipleConnections: 0
+      Connections:
+        keys: 
+        values: []
+    Outputs: []
+    AllowedInputs:
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 0
+    AllowedOutputs:
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 0
+    - InputType: 3
+      InputID: 1
+      OutputType: 4
+      OutputID: 1
+    Data:
+      ID: 7
+      Choices:
+      - 'How are you feeling now? '
+      - 'How are you, Mr. Edvin? '
+      NextMessages: 0600000001000000
