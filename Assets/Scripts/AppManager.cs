@@ -13,6 +13,7 @@ public class AppManager : MonoBehaviour
     [SerializeField] private GameObject playerVRRightHandTeleport;
     [SerializeField] private GameObject playerVRLeftHandTeleport;
     [SerializeField] private GameObject GuideCanvas;
+    [SerializeField] private GameObject ExamCanvas;
 
     [SerializeField] private List<AudioSource> audioSourceDialogues;
     [SerializeField] private List<AudioSource> audioSourceSounds;
@@ -52,5 +53,6 @@ public class AppManager : MonoBehaviour
     public void SetGuide(int guide)
     {
         GuideCanvas.SetActive(guide == 1);
+        ExamCanvas.SetActive(guide == 0);
     }
 }
