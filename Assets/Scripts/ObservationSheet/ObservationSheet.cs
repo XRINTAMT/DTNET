@@ -15,6 +15,10 @@ public class ObservationSheet : MonoBehaviour
     void Awake()
     {
         values = new string[RightValues.Length];
+        for (int i = 0; i < RightValues.Length; i++)
+        {
+            values[i] = "Empty";
+        }
     }
 
     public void ChangeValueInspector(string input)
@@ -49,6 +53,7 @@ public class ObservationSheet : MonoBehaviour
             if (values[i] != RightValues[i])
             {
                 correct = false;
+                Debug.Log(values[i] + " is not the same as " + RightValues[i]);
                 break;
             }
         }
@@ -62,7 +67,7 @@ public class ObservationSheet : MonoBehaviour
             if (TryGetComponent<Task>(out Task a))
                 a.Complete(0);
         }
-
+        BakeAndContinue();
     }
 
     public void BakeAndContinue() {
