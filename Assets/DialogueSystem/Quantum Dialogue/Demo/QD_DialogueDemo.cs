@@ -170,7 +170,7 @@ namespace QuantumTek.QuantumDialogue.Demo
                 Task t;
                 if(TryGetComponent<Task>(out t))
                 {
-                    t.Complete();
+                    t.Complete(1);
                 }
                 return;
             }

@@ -8,6 +8,9 @@ public class ScoreGenerator : MonoBehaviour
 {
     [SerializeField] RatingRecord[] Records;
     [SerializeField] Text Total;
+    [SerializeField] GameObject TextPerfect;
+    [SerializeField] GameObject TextAverage;
+    [SerializeField] GameObject TextPoor;
 
     public void Refresh(List<TaskSettings> tasks)
     {
@@ -29,8 +32,11 @@ public class ScoreGenerator : MonoBehaviour
                 i += 1;
             }
         }
-        Total.text = totalScore.ToString() + "/" + totalMax.ToString();
-
+        //for normal ranking
+        //Total.text = totalScore.ToString() + "/" + totalMax.ToString();
+        TextPerfect.SetActive(totalScore == totalMax);
+        TextAverage.SetActive((totalScore != totalMax) && (totalScore > totalMax / 2));
+        TextPoor.SetActive(totalScore <= totalMax / 2);
     }
 
     void Start()

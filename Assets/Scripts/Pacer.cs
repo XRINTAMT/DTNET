@@ -72,7 +72,7 @@ public class Pacer : MonoBehaviour
             Debug.Log("PatientCured");
             if (TryGetComponent<ScenarioTaskSystem.Task>(out ScenarioTaskSystem.Task task))
             {
-                task.Complete();
+                task.Complete(1);
             }
         }
     }

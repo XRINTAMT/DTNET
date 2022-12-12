@@ -14,7 +14,9 @@ public class RatingRecord : MonoBehaviour
 
     public void Refresh(int score, int maxScore)
     {
-        scoreText.text = score.ToString() + "/" + maxScore.ToString();
+        //for normal scores
+        //scoreText.text = score.ToString() + "/" + maxScore.ToString();
+        scoreText.text = (score == maxScore) ? "V" : "X";
     }
 
     // Update is called once per frame
