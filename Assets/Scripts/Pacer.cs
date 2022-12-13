@@ -83,7 +83,7 @@ public class Pacer : MonoBehaviour
         {
             if(currentMilestone < Milestones.Length)
             {
-                if (outputValue == Milestones[currentMilestone].Value)
+                if (Mathf.Abs(outputValue - Milestones[currentMilestone].Value) < 5)
                 {
                     DelayedMilestone = StartCoroutine(IntermilestonePause());
                     Debug.Log("Milestone " + Milestones[currentMilestone].Value + " reached");
