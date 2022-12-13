@@ -48,6 +48,7 @@ public class SheetController : MonoBehaviour
             interpolation = false;
             //GetComponent<Grabbable>().parentOnGrab = false;
             rb.isKinematic = false;
+            GetComponent<Grabbable>().enabled = false;
             if (cam == null || !cam.isActiveAndEnabled)
             {
                 cam = Camera.main;
@@ -133,6 +134,7 @@ public class SheetController : MonoBehaviour
             rb.isKinematic = true;
             transform.parent = cam.transform;
             canvas.SetActive(true);
+            GetComponent<Grabbable>().enabled = true;
             if (body != null)
             {
                 transform.parent = body.transform;
@@ -167,18 +169,7 @@ public class SheetController : MonoBehaviour
             onTrigger = false;
         }
     }
-    //private void OnTriggerStay(Collider other)
-    //{
 
-    //    if (other.tag == "SheetArea" && !onPlace && startDetectArea)
-    //    {
-    //        if (grab == false) 
-    //        {
-    //            Exit();
-    //        }
-
-    //    }
-    //}
 
 
     void Update()
