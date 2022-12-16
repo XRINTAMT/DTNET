@@ -20,27 +20,9 @@ namespace QuestionSystem
                 while ((line = reader.ReadLine()) != null)
                 {
                     Debug.Log(line);
-                    var values = line.Split(',');
+                    string[] values = line.Split(',');
 
-                    Question question = new Question
-                    {
-                        Tag = values[0],
-                        EnglishText = values[1],
-                        GermanText = values[2],
-                        SwedishText = values[3],
-                        LithuanianText = values[4],
-                        LatvianText = values[5],
-                        MoodChanges = int.Parse(values[6]),
-                        AnimationType = values[7],
-                        Prerequisite = null,
-                        IsAsked = false,
-                        EnglishAnswer = values[8],
-                        GermanAnswer = values[9],
-                        SwedishAnswer = values[10],
-                        LithuanianAnswer = values[11],
-                        LatvianAnswer = values[12],
-                        PrerequisiteTag = values[13]
-                    };
+                    Question question = new Question(values);
 
                     _questions.Add(question);
                 }
