@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using Assets.SimpleLocalization;
 
 
@@ -27,6 +28,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject lithuanianChosen;
     [SerializeField] private GameObject latvianChosen;
     [SerializeField] private GameObject swedishChosen;
+    [SerializeField] private AudioMixer AppMixer;
 
     public static float dialogueVolume;
     public static float soundVolume;
@@ -65,6 +67,12 @@ public class UIController : MonoBehaviour
     {
         dialogueVolume = setDialogueVolumeStatus.value;
         PlayerPrefs.SetFloat("dialogueVolume", dialogueVolume);
+        if (dialogueVolume == 0)
+            AppMixer.SetFloat("Dialogues", -80);
+        else
+        {
+            AppMixer.SetFloat("Dialogues", Mathf.Log(dialogueVolume) * 20);
+        }
     }
 
     public void SetSoundVolume()
@@ -72,6 +80,12 @@ public class UIController : MonoBehaviour
         soundVolume = setSoundVolumeStatus.value;
         //appSettings.UpdateSettings();
         PlayerPrefs.SetFloat("soundVolume", soundVolume);
+        if (soundVolume == 0)
+            AppMixer.SetFloat("Sounds", -80);
+        else
+        {
+            AppMixer.SetFloat("Sounds", Mathf.Log(soundVolume) * 20);
+        }
     }
 
     public void SetMusicVolume()
@@ -79,6 +93,12 @@ public class UIController : MonoBehaviour
         musicVolume = setMusicVolumeStatus.value;
         //appSettings.UpdateSettings();
         PlayerPrefs.SetFloat("musicVolume", musicVolume);
+        if (musicVolume == 0)
+            AppMixer.SetFloat("Music", -80);
+        else
+        {
+            AppMixer.SetFloat("Music", Mathf.Log(musicVolume) * 20);
+        }
     }
 
     public void SetWalkingSpeed()
