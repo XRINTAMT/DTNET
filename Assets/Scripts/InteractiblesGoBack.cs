@@ -33,7 +33,15 @@ public class InteractiblesGoBack : MonoBehaviour
     {
         if (goingBack == null)
         {
-            goingBack = StartCoroutine(GoToInitPosition());
+            goingBack = StartCoroutine(GoToInitPosition(TemporalOffset));
+        }
+    }
+
+    public void InstantlyGoBack()
+    {
+        if (goingBack == null)
+        {
+            goingBack = StartCoroutine(GoToInitPosition(0));
         }
     }
 
@@ -46,9 +54,9 @@ public class InteractiblesGoBack : MonoBehaviour
         }
     }
 
-    IEnumerator GoToInitPosition()
+    IEnumerator GoToInitPosition(float _temporalOffset)
     {
-        for(float i = 0; i < 1; i += Time.deltaTime / TemporalOffset)
+        for(float i = 0; i < 1; i += Time.deltaTime / _temporalOffset)
         {
             yield return 0;
         }
