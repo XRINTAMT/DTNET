@@ -4615,6 +4615,7 @@ GameObject:
   m_Component:
   - component: {fileID: 524438702}
   - component: {fileID: 524438703}
+  - component: {fileID: 524438704}
   m_Layer: 0
   m_Name: CHANGABLE ITEMS
   m_TagString: Untagged
@@ -4681,6 +4682,33 @@ MonoBehaviour:
   Speakers: []
   Messages: []
   Choices: []
+--- !u!114 &524438704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524438701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e995c0c6e1461245bb0b357ab2f4f3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setDialogueVolumeStatus: {fileID: 0}
+  setSoundVolumeStatus: {fileID: 0}
+  setMusicVolumeStatus: {fileID: 0}
+  setWalkingSpeed: {fileID: 0}
+  setSubstitlesStatus: {fileID: 0}
+  setGuidesStatus: {fileID: 0}
+  teleportChosen: {fileID: 0}
+  smoothChosen: {fileID: 0}
+  mixedChosen: {fileID: 0}
+  englishChosen: {fileID: 0}
+  germanChosen: {fileID: 0}
+  lithuanianChosen: {fileID: 0}
+  latvianChosen: {fileID: 0}
+  swedishChosen: {fileID: 0}
+  AppMixer: {fileID: 0}
 --- !u!1 &531029533
 GameObject:
   m_ObjectHideFlags: 0
@@ -50129,7 +50157,7 @@ PrefabInstance:
     - target: {fileID: 6267310506851494161, guid: 0174bf02af0a86d44b00d7ccfac6a1de,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6300001829926745723, guid: 0174bf02af0a86d44b00d7ccfac6a1de,
         type: 3}
@@ -73831,6 +73859,36 @@ PrefabInstance:
       propertyPath: CollidersToIgnore.Array.data[23]
       value: 
       objectReference: {fileID: 1582617154}
+    - target: {fileID: 188286582215974690, guid: 3c2109583f0d25d49baaac5499d96e0a,
+        type: 3}
+      propertyPath: button
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 188286582215974690, guid: 3c2109583f0d25d49baaac5499d96e0a,
+        type: 3}
+      propertyPath: Pressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 188286582215974690, guid: 3c2109583f0d25d49baaac5499d96e0a,
+        type: 3}
+      propertyPath: Pressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 524438704}
+    - target: {fileID: 188286582215974690, guid: 3c2109583f0d25d49baaac5499d96e0a,
+        type: 3}
+      propertyPath: Pressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 188286582215974690, guid: 3c2109583f0d25d49baaac5499d96e0a,
+        type: 3}
+      propertyPath: Pressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 188286582215974690, guid: 3c2109583f0d25d49baaac5499d96e0a,
+        type: 3}
+      propertyPath: Pressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: ChooseVariants
+      objectReference: {fileID: 0}
     - target: {fileID: 188286582215974719, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
       propertyPath: highlightLayers.m_Bits
