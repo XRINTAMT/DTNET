@@ -5,11 +5,29 @@ using UnityEngine;
 namespace QuestionSystem
 {
     [ExecuteInEditMode]
-    public class QuestionLoader : MonoBehaviour
+    public class QuestionDialogueManager : MonoBehaviour
     {
         [SerializeField] string DialogueName;
+        [SerializeField] List<string> unlockedTopics;
         [field: SerializeField] public List<Question> Dialogue { get; private set; }
         public bool Sync;
+
+        void Start()
+        {
+
+        }
+
+        private void Refresh()
+        {
+            foreach (Question question in Dialogue)
+            {
+                if (!question.PrerequisiteMet())
+                    continue;
+                if (!unlockedTopics.Contains(question.Topic))
+                    unlockedTopics.Add(question.Topic);
+            }
+        }
+
 
         #if UNITY_EDITOR
 
@@ -28,7 +46,7 @@ namespace QuestionSystem
             }
         }
 
-#endif
+        #endif
     }
 
 }
