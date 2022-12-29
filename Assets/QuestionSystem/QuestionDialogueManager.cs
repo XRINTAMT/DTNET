@@ -9,12 +9,14 @@ namespace QuestionSystem
     {
         [SerializeField] string DialogueName;
         [SerializeField] List<string> unlockedTopics;
+        [SerializeField] TopicTabsManager Tabs;
+        [SerializeField] ChoiceMenu CMenu;
         [field: SerializeField] public List<Question> Dialogue { get; private set; }
         public bool Sync;
 
         void Start()
         {
-
+            Refresh();
         }
 
         private void Refresh()
@@ -26,6 +28,20 @@ namespace QuestionSystem
                 if (!unlockedTopics.Contains(question.Topic))
                     unlockedTopics.Add(question.Topic);
             }
+            Tabs.Refresh(unlockedTopics);
+        }
+
+        public void ChangeTopic(string _topic)
+        {
+            List<Question> _questionsInTheTopic = new List<Question>();
+            foreach (Question question in Dialogue)
+            {
+                if (question.Topic == _topic)
+                {
+                    _questionsInTheTopic.Add(question);
+                }
+            }
+            CMenu.RefreshTopic(_questionsInTheTopic);
         }
 
 

@@ -2,21 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TopicTabsManager : MonoBehaviour
+namespace QuestionSystem
 {
-    public void Refresh()
+    public class TopicTabsManager : MonoBehaviour
     {
+        [SerializeField] TabButtonBehaviour[] TabButtons;
 
-    }
 
-    void Start()
-    {
-        
-    }
+        public void Refresh(List<string> unlockedTopics)
+        {
+            int i = 0;
+            foreach (string topic in unlockedTopics)
+            {
+                TabButtons[i].Refresh(topic);
+                i++;
+            }
+            for (; i < TabButtons.Length; i++)
+            {
+                TabButtons[i].Refresh(null);
+            }
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        void Start()
+        {
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
     }
 }

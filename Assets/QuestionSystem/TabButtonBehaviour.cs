@@ -3,35 +3,50 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TabButtonBehaviour : MonoBehaviour
+namespace QuestionSystem
 {
-    [SerializeField] Image[] Icon;
-    // Start is called before the first frame update
-    void Start()
+    public class TabButtonBehaviour : MonoBehaviour
     {
-        
-    }
-
-    public void Refresh(string topic)
-    {
-        if(topic == null)
+        [SerializeField] Image[] Icon;
+        [SerializeField] QuestionDialogueManager QDManager;
+        string buttonTopic;
+        // Start is called before the first frame update
+        void Awake()
         {
-            foreach(Image image in Icon){
-                image.enabled = false;
+            buttonTopic = null;
+        }
+
+        public void Refresh(string _topic)
+        {
+            buttonTopic = _topic; 
+            if (_topic == null)
+            {
+                foreach (Image image in Icon)
+                {
+                    image.enabled = false;
+                }
+                return;
             }
-            return;
+            Sprite currentSprite = Resources.Load<Sprite>("TopicIcons/" + _topic);
+            foreach (Image image in Icon)
+            {
+                image.enabled = true;
+                image.sprite = currentSprite;
+            }
         }
-        Sprite currentSprite = Resources.Load<Sprite>("TopicIcons/" + topic);
-        foreach (Image image in Icon)
-        {
-            image.enabled = true;
-            image.sprite = currentSprite;
-        }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void Submit()
+        {
+            if(buttonTopic != null)
+            {
+                QDManager.ChangeTopic(buttonTopic);
+            }
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
     }
 }
