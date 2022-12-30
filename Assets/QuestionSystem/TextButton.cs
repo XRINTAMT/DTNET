@@ -18,11 +18,22 @@ namespace QuestionSystem
 
         public void Refresh(Question _question)
         {
-            string Language = PlayerPrefs.GetString("Language", "English");
-            NormalText.text = _question.Text[Language];
-            SelectedText.text = _question.Text[Language];
-            PressedText.text = _question.Text[Language];
-
+            if(_question == null)
+            {
+                Debug.Log("im null");
+                NormalText.text = "";
+                SelectedText.text = "";
+                PressedText.text = "";
+                return;
+            }
+            else
+            {
+                Debug.Log("im not null");
+                string Language = PlayerPrefs.GetString("Language", "English");
+                NormalText.text = _question.Text[Language];
+                SelectedText.text = _question.Text[Language];
+                PressedText.text = _question.Text[Language];
+            }
         }
 
         // Update is called once per frame

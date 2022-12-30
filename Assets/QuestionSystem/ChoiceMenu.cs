@@ -24,16 +24,17 @@ namespace QuestionSystem
             Questions = _questions;
             currentPage = 0;
             totalPages = (int)Mathf.Ceil(((float)Questions.Count / 3)) - 1;
-            
+            RefreshPage();
         }
 
         private void RefreshPage()
         {
             for (int i = 0; i < textButton.Length; i++)
             {
-                if (currentPage * 3 + i > Questions.Count)
+                if (currentPage * 3 + i >= Questions.Count)
                     textButton[i].Refresh(null);
-                textButton[i].Refresh(Questions[currentPage * 3 + i]);
+                //textButton[i].Refresh(Questions[currentPage * 3 + i]);
+                textButton[i].Refresh(Questions[0]);
             }
             ArrowLeft.SetActive(currentPage == 0);
             ArrowRight.SetActive(currentPage < totalPages);

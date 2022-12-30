@@ -28,10 +28,6 @@ namespace QuestionSystem
                 }
             }
 
-            // Now we need to link the questions with their prerequisites.
-            // We do this by iterating over the list of questions again and
-            // setting the Prerequisite property of each question to the
-            // corresponding question with the tag specified in the CSV file.
             foreach (var question in _questions)
             {
                 if (question.PrerequisiteTag != string.Empty)

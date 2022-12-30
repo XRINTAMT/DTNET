@@ -16,6 +16,10 @@ namespace QuestionSystem
 
         void Start()
         {
+            foreach(Question q in Dialogue)
+            {
+                q.GetReady();
+            }
             Refresh();
         }
 
