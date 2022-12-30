@@ -486,6 +486,7 @@ MonoBehaviour:
   unlockedTopics:
   - Introduction
   - Anamnesis
+  - Heart
   Tabs: {fileID: 7424467243661182850}
   CMenu: {fileID: 3764262969228055300}
   <Dialogue>k__BackingField:
@@ -493,14 +494,138 @@ MonoBehaviour:
     <Topic>k__BackingField: Introduction
     <Prerequisite>k__BackingField:
       id: 0
+    <IsAsked>k__BackingField: 0
+    <PrerequisiteTag>k__BackingField: 
+    valuesText:
+    - Hello
+    - Hallo
+    - Hej
+    - Sveiki
+    - Sveiki
+    - Hello
+    - Hallo
+    - Hej
+    - Sveiki
+    - Sveiki
+  - <Tag>k__BackingField: IAmYourNurse
+    <Topic>k__BackingField: Introduction
+    <Prerequisite>k__BackingField:
+      id: 0
+    <IsAsked>k__BackingField: 0
+    <PrerequisiteTag>k__BackingField: 
+    valuesText:
+    - I am your nurse
+    - "Ich bin die f\xFCr sie zust\xE4ndige Krankenschwester"
+    - "Jag \xE4r din sjuksk\xF6terska"
+    - "A\u0161 esu tavo slaugytoja"
+    - "Es esmu j\u016Bsu medm\u0101sa"
+    - its nice to meet you
+    - Sie kennen zu lernen
+    - "det \xE4r trevligt att tr\xE4ffa dig"
+    - "malonu susipa\u017Einti"
+    - "Ir pat\u012Bkami ar tevi iepaz\u012Bties"
   - <Tag>k__BackingField: Bye
     <Topic>k__BackingField: Ending
     <Prerequisite>k__BackingField:
       id: 1
+    <IsAsked>k__BackingField: 0
+    <PrerequisiteTag>k__BackingField: Hi
+    valuesText:
+    - Goodbye
+    - Auf Wiedersehen
+    - "Adj\xF6"
+    - Sudie
+    - Visu labu
+    - Bye
+    - "Tsch\xFCss"
+    - "Hejd\xE5"
+    - Ate
+    - "Uz redz\u0113\u0161anos"
   - <Tag>k__BackingField: HowAreYou
     <Topic>k__BackingField: Anamnesis
     <Prerequisite>k__BackingField:
       id: 0
+    <IsAsked>k__BackingField: 0
+    <PrerequisiteTag>k__BackingField: 
+    valuesText:
+    - How are you?
+    - Wie geht es ihnen?
+    - "Hur m\xE5r du?"
+    - Kaip laikaisi?
+    - "K\u0101 iet?"
+    - Overall I'm okay
+    - Insgesamt geht es mir gut
+    - "Sammantaget \xE4r jag okej"
+    - Apskritai man viskas gerai
+    - "Kopum\u0101 man viss ir k\u0101rt\u012Bb\u0101"
+  - <Tag>k__BackingField: Dyspnea
+    <Topic>k__BackingField: Heart
+    <Prerequisite>k__BackingField:
+      id: 0
+    <IsAsked>k__BackingField: 0
+    <PrerequisiteTag>k__BackingField: 
+    valuesText:
+    - Do you have dyspnea at times?
+    - Haben sie manchmal Atemnot?
+    - "Har du ibland dyspn\xE9?"
+    - Ar kartais turite dusulio?
+    - "Vai jums reiz\u0113m ir aizdusa?"
+    - Sometimes yes
+    - Loading...
+    - Loading...
+    - Kartais taip
+    - Loading...
+  - <Tag>k__BackingField: HeartQuestion2
+    <Topic>k__BackingField: Heart
+    <Prerequisite>k__BackingField:
+      id: 0
+    <IsAsked>k__BackingField: 0
+    <PrerequisiteTag>k__BackingField: 
+    valuesText:
+    - HeartQuestion2
+    - HeartQuestion3
+    - HeartQuestion4
+    - HeartQuestion5
+    - HeartQuestion6
+    - HeartAnswer2
+    - Heartanswer0
+    - Heartanswer1
+    - Heartanswer2
+    - Heartanswer2
+  - <Tag>k__BackingField: HeartQuestion3
+    <Topic>k__BackingField: Heart
+    <Prerequisite>k__BackingField:
+      id: 0
+    <IsAsked>k__BackingField: 0
+    <PrerequisiteTag>k__BackingField: 
+    valuesText:
+    - HeartQuestion3
+    - HeartQuestion4
+    - HeartQuestion5
+    - HeartQuestion6
+    - HeartQuestion7
+    - HeartAnswer3
+    - Heartanswer1
+    - Heartanswer2
+    - Heartanswer3
+    - Heartanswer3
+  - <Tag>k__BackingField: HeartQuestion4
+    <Topic>k__BackingField: Heart
+    <Prerequisite>k__BackingField:
+      id: 0
+    <IsAsked>k__BackingField: 0
+    <PrerequisiteTag>k__BackingField: 
+    valuesText:
+    - HeartQuestion4
+    - HeartQuestion5
+    - HeartQuestion6
+    - HeartQuestion7
+    - HeartQuestion8
+    - HeartAnswer4
+    - Heartanswer2
+    - Heartanswer3
+    - Heartanswer4
+    - Heartanswer4
   Sync: 0
   references:
     version: 1
@@ -513,6 +638,19 @@ MonoBehaviour:
         <Topic>k__BackingField: Introduction
         <Prerequisite>k__BackingField:
           id: 0
+        <IsAsked>k__BackingField: 0
+        <PrerequisiteTag>k__BackingField: 
+        valuesText:
+        - Hello
+        - Hallo
+        - Hej
+        - Sveiki
+        - Sveiki
+        - Hello
+        - Hallo
+        - Hej
+        - Sveiki
+        - Sveiki
 --- !u!1 &1471230688497632354
 GameObject:
   m_ObjectHideFlags: 0
@@ -662,6 +800,30 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1471230688147094616}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 3764262969228055300}
+          m_TargetAssemblyTypeName: QuestionSystem.ChoiceMenu, Assembly-CSharp
+          m_MethodName: FlipPage
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1471230689517826989}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -897,6 +1059,30 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1471230688931578471}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 3764262969228055300}
+          m_TargetAssemblyTypeName: QuestionSystem.ChoiceMenu, Assembly-CSharp
+          m_MethodName: FlipPage
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: -1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1471230689345499327}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -1879,6 +2065,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2508275648392187546, guid: a58bc31337857654d9d3db74f91f77b3,
         type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7d31b84c92329854bbcc7a5c8c4b2248,
+        type: 3}
+    - target: {fileID: 2508275648392187546, guid: a58bc31337857654d9d3db74f91f77b3,
+        type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -1889,6 +2081,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2781199665876152091, guid: a58bc31337857654d9d3db74f91f77b3,
         type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7d31b84c92329854bbcc7a5c8c4b2248,
+        type: 3}
+    - target: {fileID: 2781199665876152091, guid: a58bc31337857654d9d3db74f91f77b3,
+        type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -1897,6 +2095,12 @@ PrefabInstance:
       propertyPath: QDManager
       value: 
       objectReference: {fileID: 2207374274031419027}
+    - target: {fileID: 4280721527422722914, guid: a58bc31337857654d9d3db74f91f77b3,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7d31b84c92329854bbcc7a5c8c4b2248,
+        type: 3}
     - target: {fileID: 4280721527422722914, guid: a58bc31337857654d9d3db74f91f77b3,
         type: 3}
       propertyPath: m_Enabled
@@ -2319,6 +2523,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1471230689295457449}
     m_Modifications:
+    - target: {fileID: 470977691193138423, guid: b0ff0ff298a87a1458db41066fcca2ed,
+        type: 3}
+      propertyPath: QDManager
+      value: 
+      objectReference: {fileID: 2207374274031419027}
     - target: {fileID: 973613612253856228, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2594,6 +2803,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1471230689295457449}
     m_Modifications:
+    - target: {fileID: 470977691193138423, guid: b0ff0ff298a87a1458db41066fcca2ed,
+        type: 3}
+      propertyPath: QDManager
+      value: 
+      objectReference: {fileID: 2207374274031419027}
     - target: {fileID: 1434533416286381768, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
       propertyPath: m_Name
@@ -2851,6 +3065,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1471230689295457449}
     m_Modifications:
+    - target: {fileID: 470977691193138423, guid: b0ff0ff298a87a1458db41066fcca2ed,
+        type: 3}
+      propertyPath: QDManager
+      value: 
+      objectReference: {fileID: 2207374274031419027}
     - target: {fileID: 973613612253856228, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -3283,18 +3502,36 @@ PrefabInstance:
       objectReference: {fileID: 2207374274031419027}
     - target: {fileID: 8014210332307307603, guid: a58bc31337857654d9d3db74f91f77b3,
         type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 205dca210e8822b41a7a93baed76f44b,
+        type: 3}
+    - target: {fileID: 8014210332307307603, guid: a58bc31337857654d9d3db74f91f77b3,
+        type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8271091642399502378, guid: a58bc31337857654d9d3db74f91f77b3,
         type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 205dca210e8822b41a7a93baed76f44b,
+        type: 3}
+    - target: {fileID: 8271091642399502378, guid: a58bc31337857654d9d3db74f91f77b3,
+        type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8547606912600560043, guid: a58bc31337857654d9d3db74f91f77b3,
         type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 205dca210e8822b41a7a93baed76f44b,
+        type: 3}
+    - target: {fileID: 8547606912600560043, guid: a58bc31337857654d9d3db74f91f77b3,
+        type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a58bc31337857654d9d3db74f91f77b3, type: 3}

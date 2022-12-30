@@ -33,9 +33,9 @@ namespace QuestionSystem
         public int MoodChanges { get; set; }
         public string AnimationType { get; set; }
         [field: SerializeReference] public Question Prerequisite { get; set; }
-        public bool IsAsked { get; set; }
+        [field: SerializeField] public bool IsAsked { get; set; }
         [field: SerializeField] public Dictionary<string, string> Answer { get; set; }
-        public string PrerequisiteTag { get; set; }
+        [field: SerializeField] public string PrerequisiteTag { get; set; }
         public bool PrerequisiteMet()
         {
             return Prerequisite == null || Prerequisite.IsAsked;

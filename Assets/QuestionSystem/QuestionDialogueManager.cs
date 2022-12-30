@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace QuestionSystem
 {
@@ -16,9 +17,21 @@ namespace QuestionSystem
 
         void Start()
         {
-            foreach(Question q in Dialogue)
+            foreach (Question q in Dialogue)
             {
                 q.GetReady();
+            }
+            foreach (Question q in Dialogue)
+            {
+                if (q.PrerequisiteTag != string.Empty)
+                {
+                    int index = Dialogue.IndexOf(Dialogue.FirstOrDefault(question => (string.Compare(question.Tag, q.PrerequisiteTag) == 0)));
+                    q.Prerequisite = Dialogue[index];
+                }
+                else
+                {
+                    q.Prerequisite = null;
+                }
             }
             Refresh();
         }
@@ -46,6 +59,12 @@ namespace QuestionSystem
                 }
             }
             CMenu.RefreshTopic(_questionsInTheTopic);
+        }
+
+        public void Ask(Question q)
+        {
+            q.IsAsked = true;
+            Refresh();
         }
 
 

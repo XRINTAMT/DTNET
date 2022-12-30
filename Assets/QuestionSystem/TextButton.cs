@@ -10,6 +10,8 @@ namespace QuestionSystem
         [SerializeField] Text NormalText;
         [SerializeField] Text SelectedText;
         [SerializeField] Text PressedText;
+        [SerializeField] QuestionDialogueManager QDManager;
+        Question question;
 
         void Start()
         {
@@ -18,6 +20,7 @@ namespace QuestionSystem
 
         public void Refresh(Question _question)
         {
+            question = _question;
             if(_question == null)
             {
                 Debug.Log("im null");
@@ -34,6 +37,12 @@ namespace QuestionSystem
                 SelectedText.text = _question.Text[Language];
                 PressedText.text = _question.Text[Language];
             }
+        }
+
+        public void Submit()
+        {
+            if(question != null)
+                QDManager.Ask(question);
         }
 
         // Update is called once per frame

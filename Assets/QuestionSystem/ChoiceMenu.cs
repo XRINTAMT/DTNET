@@ -31,12 +31,13 @@ namespace QuestionSystem
         {
             for (int i = 0; i < textButton.Length; i++)
             {
-                if (currentPage * 3 + i >= Questions.Count)
+                int currentText = currentPage * 3 + i;
+                if (currentText >= Questions.Count)
                     textButton[i].Refresh(null);
-                //textButton[i].Refresh(Questions[currentPage * 3 + i]);
-                textButton[i].Refresh(Questions[0]);
+                else
+                    textButton[i].Refresh(Questions[currentText]);
             }
-            ArrowLeft.SetActive(currentPage == 0);
+            ArrowLeft.SetActive(currentPage != 0);
             ArrowRight.SetActive(currentPage < totalPages);
         }
 

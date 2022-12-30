@@ -23,7 +23,9 @@ namespace QuestionSystem
             {
                 TabButtons[i].Refresh(null);
             }
-            totalPages = (int)Mathf.Ceil(unlockedTopics.Count / 3);
+            totalPages = (int)Mathf.Ceil((float)unlockedTopics.Count / 3);
+            Debug.Log("Tabs: " + unlockedTopics.Count);
+            Debug.Log("Pages: " + totalPages);
         }
 
         public void Rotate()

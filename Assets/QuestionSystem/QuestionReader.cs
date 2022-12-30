@@ -28,18 +28,6 @@ namespace QuestionSystem
                 }
             }
 
-            foreach (var question in _questions)
-            {
-                if (question.PrerequisiteTag != string.Empty)
-                {
-                    question.Prerequisite = _questions.Single(q => q.Tag == question.PrerequisiteTag);
-                }
-                else
-                {
-                    question.Prerequisite = null;
-                }
-            }
-
             return _questions;
         }
     }
