@@ -18,7 +18,7 @@ namespace QuestionSystem
             MoodChanges = int.Parse(values[6]);
             AnimationType = values[7];
             Prerequisite = null;
-            IsAsked = false;
+            IsAsked = 0;
             valuesText[5] = values[8];
             valuesText[6] = values[9];
             valuesText[7] = values[10];
@@ -33,12 +33,12 @@ namespace QuestionSystem
         public int MoodChanges { get; set; }
         public string AnimationType { get; set; }
         [field: SerializeReference] public Question Prerequisite { get; set; }
-        [field: SerializeField] public bool IsAsked { get; set; }
+        [field: SerializeField] public int IsAsked { get; set; }
         [field: SerializeField] public Dictionary<string, string> Answer { get; set; }
         [field: SerializeField] public string PrerequisiteTag { get; set; }
         public bool PrerequisiteMet()
         {
-            return Prerequisite == null || Prerequisite.IsAsked;
+            return Prerequisite == null || (Prerequisite.IsAsked > 0);
         }
 
         [field: SerializeField] private string[] valuesText;

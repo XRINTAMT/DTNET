@@ -12,8 +12,13 @@ namespace QuestionSystem
         [SerializeField] List<string> unlockedTopics;
         [SerializeField] TopicTabsManager Tabs;
         [SerializeField] ChoiceMenu CMenu;
+        [SerializeField] DialogueLines DLines;
+        [SerializeField] int mood = 0;
         [field: SerializeField] public List<Question> Dialogue { get; private set; }
+        [SerializeField] float TimeForAsking = 20;
+        Coroutine QuestionTimeout;
         public bool Sync;
+        
 
         void Start()
         {
@@ -34,6 +39,7 @@ namespace QuestionSystem
                 }
             }
             Refresh();
+            QuestionTimeout = StartCoroutine(WaitingForTooLong());
         }
 
         private void Refresh()
@@ -61,12 +67,40 @@ namespace QuestionSystem
             CMenu.RefreshTopic(_questionsInTheTopic);
         }
 
-        public void Ask(Question q)
+        public void Ask(Question _q)
         {
-            q.IsAsked = true;
+            StopCoroutine(QuestionTimeout);
+            CMenu.gameObject.SetActive(false);
+            DLines.gameObject.SetActive(true);
+            DLines.RenderQuestion(_q);
             Refresh();
         }
 
+        public void LineCompleted(Question _q)
+        {
+            CMenu.gameObject.SetActive(true);
+            DLines.gameObject.SetActive(false);
+            QuestionTimeout = StartCoroutine(WaitingForTooLong());
+            if (_q != null)
+            {
+                if (_q.IsAsked > 0)
+                    mood -= _q.IsAsked;
+                _q.IsAsked++;
+                mood += _q.MoodChanges;
+            }            
+        }
+
+        IEnumerator WaitingForTooLong()
+        {
+            for (float i = 0; i < TimeForAsking; i += Time.deltaTime)
+            {
+                yield return 0;
+            }
+            CMenu.gameObject.SetActive(false);
+            DLines.gameObject.SetActive(true);
+            DLines.TimeoutNotice();
+            mood -= 1;
+        }
 
         #if UNITY_EDITOR
 
