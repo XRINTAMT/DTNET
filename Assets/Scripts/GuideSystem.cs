@@ -5,10 +5,15 @@ using UnityEngine;
 public class GuideSystem : MonoBehaviour
 {
     [SerializeField] private List <GameObject> guidePanel;
+    [SerializeField] GameObject canvas;
+    [SerializeField] GameObject dialogueGuide;
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (canvas.activeInHierarchy)
+        {
+            dialogueGuide.SetActive(true);
+        }
     }
 
     public void GuidePanelActivate(int numberTask) 
