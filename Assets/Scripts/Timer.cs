@@ -7,7 +7,8 @@ public class Timer : MonoBehaviour
 {   
     [SerializeField] Text timerText;
     [SerializeField] Text timerTextCurrent;
-
+    [SerializeField] Text timerTextExamMode;
+    [SerializeField] GameObject endPanel;
     float secTimer = 0;
     float minTimer = 0;
     float hourTimer = 0;
@@ -19,6 +20,7 @@ public class Timer : MonoBehaviour
 
     bool flashSecond;
     bool pause;
+    public bool setTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -106,6 +108,11 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (endPanel.activeSelf && !setTime)
+        {
+            TimePassed(timerTextExamMode);
+            setTime = true;
+        }
+     
     }
 }
