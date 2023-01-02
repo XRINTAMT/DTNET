@@ -490,6 +490,15 @@ MonoBehaviour:
   - Introduction
   - Anamnesis
   - Heart
+  totalInformation:
+  - Hi
+  - Bye
+  - OverallCondition
+  - Dyspnea
+  - Heart2
+  - Heart3
+  - Heart4
+  unlockedInformation: []
   Tabs: {fileID: 7424467243661182850}
   CMenu: {fileID: 3764262969228055300}
   DLines: {fileID: 14034394145877336}
@@ -501,15 +510,16 @@ MonoBehaviour:
       id: 0
     <IsAsked>k__BackingField: 0
     <PrerequisiteTag>k__BackingField: 
+    <InformationTag>k__BackingField: Hi
     valuesText:
     - Hello
-    - Hallo
-    - Hej
-    - Sveiki
-    - Sveiki
     - Hello
     - Hallo
+    - Hallo
     - Hej
+    - Hej
+    - Sveiki
+    - Sveiki
     - Sveiki
     - Sveiki
   - <Tag>k__BackingField: IAmYourNurse
@@ -518,33 +528,35 @@ MonoBehaviour:
       id: 0
     <IsAsked>k__BackingField: 0
     <PrerequisiteTag>k__BackingField: 
+    <InformationTag>k__BackingField: Hi
     valuesText:
     - I am your nurse
-    - "Ich bin die f\xFCr sie zust\xE4ndige Krankenschwester"
-    - "Jag \xE4r din sjuksk\xF6terska"
-    - "A\u0161 esu tavo slaugytoja"
-    - "Es esmu j\u016Bsu medm\u0101sa"
     - its nice to meet you
+    - "Ich bin die f\xFCr sie zust\xE4ndige Krankenschwester"
     - Sie kennen zu lernen
+    - "Jag \xE4r din sjuksk\xF6terska"
     - "det \xE4r trevligt att tr\xE4ffa dig"
+    - "A\u0161 esu tavo slaugytoja"
     - "malonu susipa\u017Einti"
-    - "Ir pat\u012Bkami ar tevi iepaz\u012Bties"
+    - "Es esmu j\u016Bsu medm\u0101sa"
+    - "Ir pat\u012Bkami ar Jums iepaz\u012Bties"
   - <Tag>k__BackingField: Bye
     <Topic>k__BackingField: Ending
     <Prerequisite>k__BackingField:
-      id: 1
+      id: 0
     <IsAsked>k__BackingField: 0
     <PrerequisiteTag>k__BackingField: Hi
+    <InformationTag>k__BackingField: Bye
     valuesText:
     - Goodbye
-    - Auf Wiedersehen
-    - "Adj\xF6"
-    - Sudie
-    - Visu labu
     - Bye
+    - Auf Wiedersehen
     - "Tsch\xFCss"
+    - "Adj\xF6"
     - "Hejd\xE5"
+    - Sudie
     - Ate
+    - Visu labu
     - "Uz redz\u0113\u0161anos"
   - <Tag>k__BackingField: HowAreYou
     <Topic>k__BackingField: Anamnesis
@@ -552,16 +564,17 @@ MonoBehaviour:
       id: 0
     <IsAsked>k__BackingField: 0
     <PrerequisiteTag>k__BackingField: 
+    <InformationTag>k__BackingField: OverallCondition
     valuesText:
     - How are you?
-    - Wie geht es ihnen?
-    - "Hur m\xE5r du?"
-    - Kaip laikaisi?
-    - "K\u0101 iet?"
     - Overall I'm okay
+    - Wie geht es ihnen?
     - Insgesamt geht es mir gut
+    - "Hur m\xE5r du?"
     - "Sammantaget \xE4r jag okej"
+    - Kaip laikaisi?
     - Apskritai man viskas gerai
+    - "K\u0101 iet?"
     - "Kopum\u0101 man viss ir k\u0101rt\u012Bb\u0101"
   - <Tag>k__BackingField: Dyspnea
     <Topic>k__BackingField: Heart
@@ -569,33 +582,35 @@ MonoBehaviour:
       id: 0
     <IsAsked>k__BackingField: 0
     <PrerequisiteTag>k__BackingField: 
+    <InformationTag>k__BackingField: Dyspnea
     valuesText:
     - Do you have dyspnea at times?
-    - Haben sie manchmal Atemnot?
-    - "Har du ibland dyspn\xE9?"
-    - Ar kartais turite dusulio?
-    - "Vai jums reiz\u0113m ir aizdusa?"
     - Sometimes yes
-    - Loading...
-    - Loading...
+    - Haben sie manchmal Atemnot?
+    - Manchmal ja
+    - "Har du ibland dyspn\xE9?"
+    - Ibland ja
+    - Ar kartais turite dusulio?
     - Kartais taip
-    - Loading...
+    - "Vai Jums reiz\u0113m ir aizdusa?"
+    - "Da\u017Ereiz j\u0101"
   - <Tag>k__BackingField: HeartQuestion2
     <Topic>k__BackingField: Heart
     <Prerequisite>k__BackingField:
       id: 0
     <IsAsked>k__BackingField: 0
     <PrerequisiteTag>k__BackingField: 
+    <InformationTag>k__BackingField: Heart2
     valuesText:
     - HeartQuestion2
-    - HeartQuestion3
-    - HeartQuestion4
-    - HeartQuestion5
-    - HeartQuestion6
     - HeartAnswer2
+    - HeartQuestion3
     - Heartanswer0
+    - HeartQuestion4
     - Heartanswer1
+    - HeartQuestion5
     - Heartanswer2
+    - HeartQuestion6
     - Heartanswer2
   - <Tag>k__BackingField: HeartQuestion3
     <Topic>k__BackingField: Heart
@@ -603,16 +618,17 @@ MonoBehaviour:
       id: 0
     <IsAsked>k__BackingField: 0
     <PrerequisiteTag>k__BackingField: 
+    <InformationTag>k__BackingField: Heart3
     valuesText:
     - HeartQuestion3
-    - HeartQuestion4
-    - HeartQuestion5
-    - HeartQuestion6
-    - HeartQuestion7
     - HeartAnswer3
+    - HeartQuestion4
     - Heartanswer1
+    - HeartQuestion5
     - Heartanswer2
+    - HeartQuestion6
     - Heartanswer3
+    - HeartQuestion7
     - Heartanswer3
   - <Tag>k__BackingField: HeartQuestion4
     <Topic>k__BackingField: Heart
@@ -620,16 +636,17 @@ MonoBehaviour:
       id: 0
     <IsAsked>k__BackingField: 0
     <PrerequisiteTag>k__BackingField: 
+    <InformationTag>k__BackingField: Heart4
     valuesText:
     - HeartQuestion4
-    - HeartQuestion5
-    - HeartQuestion6
-    - HeartQuestion7
-    - HeartQuestion8
     - HeartAnswer4
+    - HeartQuestion5
     - Heartanswer2
+    - HeartQuestion6
     - Heartanswer3
+    - HeartQuestion7
     - Heartanswer4
+    - HeartQuestion8
     - Heartanswer4
   TimeForAsking: 20
   Sync: 0
@@ -637,26 +654,6 @@ MonoBehaviour:
     version: 1
     00000000:
       type: {class: , ns: , asm: }
-    00000001:
-      type: {class: Question, ns: QuestionSystem, asm: Assembly-CSharp}
-      data:
-        <Tag>k__BackingField: Hi
-        <Topic>k__BackingField: Introduction
-        <Prerequisite>k__BackingField:
-          id: 0
-        <IsAsked>k__BackingField: 0
-        <PrerequisiteTag>k__BackingField: 
-        valuesText:
-        - Hello
-        - Hallo
-        - Hej
-        - Sveiki
-        - Sveiki
-        - Hello
-        - Hallo
-        - Hej
-        - Sveiki
-        - Sveiki
 --- !u!1 &1471230688497632354
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,7 +672,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1471230688497632365
 RectTransform:
   m_ObjectHideFlags: 0
@@ -934,7 +931,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1471230688853955091
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2591,11 +2588,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4600572861674647153, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
-      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[3].m_Target
-      value: 
-      objectReference: {fileID: 1361181318971572628}
-    - target: {fileID: 4600572861674647153, guid: b0ff0ff298a87a1458db41066fcca2ed,
-        type: 3}
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
       objectReference: {fileID: 1471230687833413143}
@@ -2603,11 +2595,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4600572861674647153, guid: b0ff0ff298a87a1458db41066fcca2ed,
-        type: 3}
-      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: Submit
       objectReference: {fileID: 0}
     - target: {fileID: 4600572861674647153, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
@@ -2886,11 +2873,6 @@ PrefabInstance:
       objectReference: {fileID: 9111524021518153951}
     - target: {fileID: 4600572861674647153, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
-      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[3].m_Target
-      value: 
-      objectReference: {fileID: 1361181318971572628}
-    - target: {fileID: 4600572861674647153, guid: b0ff0ff298a87a1458db41066fcca2ed,
-        type: 3}
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
       objectReference: {fileID: 1471230687833413143}
@@ -2898,11 +2880,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4600572861674647153, guid: b0ff0ff298a87a1458db41066fcca2ed,
-        type: 3}
-      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: Submit
       objectReference: {fileID: 0}
     - target: {fileID: 4600572861674647153, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}

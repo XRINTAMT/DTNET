@@ -10,6 +10,8 @@ namespace QuestionSystem
     {
         [SerializeField] string DialogueName;
         [SerializeField] List<string> unlockedTopics;
+        [SerializeField] List<string> totalInformation;
+        [SerializeField] List<string> unlockedInformation;
         [SerializeField] TopicTabsManager Tabs;
         [SerializeField] ChoiceMenu CMenu;
         [SerializeField] DialogueLines DLines;
@@ -22,23 +24,30 @@ namespace QuestionSystem
 
         void Start()
         {
-            foreach (Question q in Dialogue)
+            totalInformation = new List<string>();
+            unlockedInformation = new List<string>();
+            foreach (Question _q in Dialogue)
             {
-                q.GetReady();
-            }
-            foreach (Question q in Dialogue)
-            {
-                if (q.PrerequisiteTag != string.Empty)
+                _q.GetReady();
+                if (!totalInformation.Contains(_q.InformationTag))
                 {
-                    int index = Dialogue.IndexOf(Dialogue.FirstOrDefault(question => (string.Compare(question.Tag, q.PrerequisiteTag) == 0)));
-                    q.Prerequisite = Dialogue[index];
+                    totalInformation.Add(_q.InformationTag);
+                }
+            }
+            foreach (Question _q in Dialogue)
+            {
+                if (_q.PrerequisiteTag != string.Empty)
+                {
+                    int index = Dialogue.IndexOf(Dialogue.FirstOrDefault(question => (string.Compare(question.Tag, _q.PrerequisiteTag) == 0)));
+                    _q.Prerequisite = Dialogue[index];
                 }
                 else
                 {
-                    q.Prerequisite = null;
+                    _q.Prerequisite = null;
                 }
             }
             Refresh();
+            ChangeTopic("Introduction");
             QuestionTimeout = StartCoroutine(WaitingForTooLong());
         }
 
@@ -65,6 +74,7 @@ namespace QuestionSystem
                 }
             }
             CMenu.RefreshTopic(_questionsInTheTopic);
+            Tabs.RefreshTopic(_topic);
         }
 
         public void Ask(Question _q)
@@ -83,6 +93,11 @@ namespace QuestionSystem
             QuestionTimeout = StartCoroutine(WaitingForTooLong());
             if (_q != null)
             {
+                if (!unlockedInformation.Contains(_q.InformationTag))
+                {
+                    unlockedInformation.Add(_q.InformationTag);
+                    Debug.Log("Information discovered: " + unlockedInformation.Count + "/" + totalInformation.Count());
+                }
                 if (_q.IsAsked > 0)
                     mood -= _q.IsAsked;
                 _q.IsAsked++;

@@ -9,7 +9,7 @@ namespace QuestionSystem
     {
         [SerializeField] Image[] Icon;
         [SerializeField] QuestionDialogueManager QDManager;
-        string buttonTopic;
+        public string buttonTopic { get; private set; }
         // Start is called before the first frame update
         void Awake()
         {
@@ -41,6 +41,11 @@ namespace QuestionSystem
             {
                 QDManager.ChangeTopic(buttonTopic);
             }
+        }
+
+        public void Activate(bool _active)
+        {
+            Icon[2].gameObject.SetActive(_active);
         }
 
         // Update is called once per frame

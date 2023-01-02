@@ -21,9 +21,8 @@ namespace QuestionSystem
         public void Refresh(Question _question)
         {
             question = _question;
-            if(_question == null)
+            if(question == null)
             {
-                Debug.Log("im null");
                 NormalText.text = "";
                 SelectedText.text = "";
                 PressedText.text = "";
@@ -31,18 +30,20 @@ namespace QuestionSystem
             }
             else
             {
-                Debug.Log("im not null");
                 string Language = PlayerPrefs.GetString("Language", "English");
-                NormalText.text = _question.Text[Language];
-                SelectedText.text = _question.Text[Language];
-                PressedText.text = _question.Text[Language];
+                NormalText.text = question.Text[Language];
+                SelectedText.text = question.Text[Language];
+                PressedText.text = question.Text[Language];
             }
         }
 
         public void Submit()
         {
             if(question != null)
+            {
                 QDManager.Ask(question);
+            }
+                
         }
 
         // Update is called once per frame

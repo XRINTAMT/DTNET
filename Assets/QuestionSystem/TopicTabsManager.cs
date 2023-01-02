@@ -11,10 +11,10 @@ namespace QuestionSystem
         int totalPages = 1;
 
 
-        public void Refresh(List<string> unlockedTopics)
+        public void Refresh(List<string> _unlockedTopics)
         {
             int i = 0;
-            foreach (string topic in unlockedTopics)
+            foreach (string topic in _unlockedTopics)
             {
                 TabButtons[i].Refresh(topic);
                 i++;
@@ -23,9 +23,15 @@ namespace QuestionSystem
             {
                 TabButtons[i].Refresh(null);
             }
-            totalPages = (int)Mathf.Ceil((float)unlockedTopics.Count / 3);
-            Debug.Log("Tabs: " + unlockedTopics.Count);
-            Debug.Log("Pages: " + totalPages);
+            totalPages = (int)Mathf.Ceil((float)_unlockedTopics.Count / 3);
+        }
+
+        public void RefreshTopic(string _topic)
+        {
+            foreach(TabButtonBehaviour _tab in TabButtons)
+            {
+                _tab.Activate(_tab.buttonTopic == _topic);
+            }
         }
 
         public void Rotate()
