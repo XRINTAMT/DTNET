@@ -10,7 +10,7 @@ namespace QuestionSystem
         [SerializeField] Image[] Icon;
         [SerializeField] QuestionDialogueManager QDManager;
         public string buttonTopic { get; private set; }
-        // Start is called before the first frame update
+        
         void Awake()
         {
             buttonTopic = null;

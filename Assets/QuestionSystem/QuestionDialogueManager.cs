@@ -12,18 +12,28 @@ namespace QuestionSystem
         [SerializeField] List<string> unlockedTopics;
         [SerializeField] List<string> totalInformation;
         [SerializeField] List<string> unlockedInformation;
+        [SerializeField] GameObject PatientObject;
         [SerializeField] TopicTabsManager Tabs;
         [SerializeField] ChoiceMenu CMenu;
         [SerializeField] DialogueLines DLines;
         [SerializeField] int mood = 0;
+        [SerializeField] int questionsLimit = 20;
+        [SerializeField] AudioSource NurseSource;
+        
+        AudioSource PatientSource;
+        FaceAnimationController FAController;
+
         [field: SerializeField] public List<Question> Dialogue { get; private set; }
         [SerializeField] float TimeForAsking = 20;
         Coroutine QuestionTimeout;
         public bool Sync;
-        
+        int questionsCount = 0;
+
 
         void Start()
         {
+            PatientSource = PatientObject.GetComponent<AudioSource>();
+            FAController = PatientObject.GetComponent<FaceAnimationController>();
             totalInformation = new List<string>();
             unlockedInformation = new List<string>();
             foreach (Question _q in Dialogue)
@@ -86,11 +96,8 @@ namespace QuestionSystem
             Refresh();
         }
 
-        public void LineCompleted(Question _q)
+        public void ProcessAnswer(Question _q)
         {
-            CMenu.gameObject.SetActive(true);
-            DLines.gameObject.SetActive(false);
-            QuestionTimeout = StartCoroutine(WaitingForTooLong());
             if (_q != null)
             {
                 if (!unlockedInformation.Contains(_q.InformationTag))
@@ -102,7 +109,28 @@ namespace QuestionSystem
                     mood -= _q.IsAsked;
                 _q.IsAsked++;
                 mood += _q.MoodChanges;
-            }            
+                //FAController.SetMood(mood);
+                //need a method SetMood(mood) in FaceAnimationController that would
+                //set the mood to this value (optionally with an overshoot)
+
+                //load the audio for the patient here
+                PatientSource.Play();
+            }
+
+        }
+
+        public void LineCompleted(Question _q)
+        {
+            CMenu.gameObject.SetActive(true);
+            DLines.gameObject.SetActive(false);
+            QuestionTimeout = StartCoroutine(WaitingForTooLong());
+            
+            questionsCount++;
+            if(questionsCount == questionsLimit)
+            {
+                Debug.Log("Call a method on a results screen object");
+                //Call a method on a results screen object
+            }
         }
 
         IEnumerator WaitingForTooLong()

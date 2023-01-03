@@ -503,6 +503,10 @@ MonoBehaviour:
   CMenu: {fileID: 3764262969228055300}
   DLines: {fileID: 14034394145877336}
   mood: 0
+  questionsLimit: 20
+  FAController: {fileID: 0}
+  NurseSource: {fileID: 0}
+  PatientSource: {fileID: 0}
   <Dialogue>k__BackingField:
   - <Tag>k__BackingField: Hi
     <Topic>k__BackingField: Introduction
@@ -543,7 +547,7 @@ MonoBehaviour:
   - <Tag>k__BackingField: Bye
     <Topic>k__BackingField: Ending
     <Prerequisite>k__BackingField:
-      id: 0
+      id: 1
     <IsAsked>k__BackingField: 0
     <PrerequisiteTag>k__BackingField: Hi
     <InformationTag>k__BackingField: Bye
@@ -654,6 +658,27 @@ MonoBehaviour:
     version: 1
     00000000:
       type: {class: , ns: , asm: }
+    00000001:
+      type: {class: Question, ns: QuestionSystem, asm: Assembly-CSharp}
+      data:
+        <Tag>k__BackingField: Hi
+        <Topic>k__BackingField: Introduction
+        <Prerequisite>k__BackingField:
+          id: 0
+        <IsAsked>k__BackingField: 0
+        <PrerequisiteTag>k__BackingField: 
+        <InformationTag>k__BackingField: Hi
+        valuesText:
+        - Hello
+        - Hello
+        - Hallo
+        - Hallo
+        - Hej
+        - Hej
+        - Sveiki
+        - Sveiki
+        - Sveiki
+        - Sveiki
 --- !u!1 &1471230688497632354
 GameObject:
   m_ObjectHideFlags: 0
@@ -1828,9 +1853,9 @@ MonoBehaviour:
   ArrowLeft: {fileID: 1471230688853955088}
   ArrowRight: {fileID: 1471230688497632354}
   textButton:
-  - {fileID: 1361181318971572628}
-  - {fileID: 1361181319884528261}
-  - {fileID: 1361181320490375308}
+  - {fileID: 4438833856347837513}
+  - {fileID: 4438833855637000024}
+  - {fileID: 4438833854896934225}
 --- !u!1 &2830327128451807464
 GameObject:
   m_ObjectHideFlags: 0
@@ -2544,7 +2569,7 @@ PrefabInstance:
     - target: {fileID: 1911652367229955988, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
       propertyPath: m_Text
-      value: What are you doing here
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1911652367229955988, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
@@ -2556,10 +2581,15 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3022825039139866922, guid: b0ff0ff298a87a1458db41066fcca2ed,
+        type: 3}
+      propertyPath: QDManager
+      value: 
+      objectReference: {fileID: 2207374274031419027}
     - target: {fileID: 4441633371408057141, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
       propertyPath: m_Text
-      value: What are you doing here
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4441633371408057141, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
@@ -2739,7 +2769,7 @@ PrefabInstance:
     - target: {fileID: 5100463083171964281, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
       propertyPath: m_Text
-      value: What are you doing here
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5100463083171964281, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
@@ -2782,9 +2812,9 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1471230687885034619}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1361181320490375308 stripped
+--- !u!114 &4438833854896934225 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 470977691193138423, guid: b0ff0ff298a87a1458db41066fcca2ed,
+  m_CorrespondingSourceObject: {fileID: 3022825039139866922, guid: b0ff0ff298a87a1458db41066fcca2ed,
     type: 3}
   m_PrefabInstance: {fileID: 1471230687885034619}
   m_PrefabAsset: {fileID: 0}
@@ -2814,7 +2844,7 @@ PrefabInstance:
     - target: {fileID: 1911652367229955988, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
       propertyPath: m_Text
-      value: Hi, what is your name?
+      value: I am your nurse
       objectReference: {fileID: 0}
     - target: {fileID: 1911652367229955988, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
@@ -2826,10 +2856,15 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3022825039139866922, guid: b0ff0ff298a87a1458db41066fcca2ed,
+        type: 3}
+      propertyPath: QDManager
+      value: 
+      objectReference: {fileID: 2207374274031419027}
     - target: {fileID: 4441633371408057141, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
       propertyPath: m_Text
-      value: Hi, what is your name?
+      value: I am your nurse
       objectReference: {fileID: 0}
     - target: {fileID: 4441633371408057141, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
@@ -3024,7 +3059,7 @@ PrefabInstance:
     - target: {fileID: 5100463083171964281, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
       propertyPath: m_Text
-      value: Hi, what is your name?
+      value: I am your nurse
       objectReference: {fileID: 0}
     - target: {fileID: 5100463083171964281, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
@@ -3033,9 +3068,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0ff0ff298a87a1458db41066fcca2ed, type: 3}
---- !u!114 &1361181319884528261 stripped
+--- !u!114 &4438833855637000024 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 470977691193138423, guid: b0ff0ff298a87a1458db41066fcca2ed,
+  m_CorrespondingSourceObject: {fileID: 3022825039139866922, guid: b0ff0ff298a87a1458db41066fcca2ed,
     type: 3}
   m_PrefabInstance: {fileID: 1471230688491341426}
   m_PrefabAsset: {fileID: 0}
@@ -3076,7 +3111,7 @@ PrefabInstance:
     - target: {fileID: 1911652367229955988, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
       propertyPath: m_Text
-      value: Hello, I am your nurse
+      value: Hello
       objectReference: {fileID: 0}
     - target: {fileID: 1911652367229955988, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
@@ -3088,6 +3123,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3022825039139866922, guid: b0ff0ff298a87a1458db41066fcca2ed,
+        type: 3}
+      propertyPath: QDManager
+      value: 
+      objectReference: {fileID: 2207374274031419027}
     - target: {fileID: 3656759046424453319, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
       propertyPath: m_IsActive
@@ -3096,7 +3136,7 @@ PrefabInstance:
     - target: {fileID: 4441633371408057141, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
       propertyPath: m_Text
-      value: Hello, I am your nurse
+      value: Hello
       objectReference: {fileID: 0}
     - target: {fileID: 4441633371408057141, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
@@ -3142,7 +3182,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 1361181318971572628}
+      objectReference: {fileID: 4438833856347837513}
     - target: {fileID: 4600572861674647153, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[4].m_Target
@@ -3301,7 +3341,7 @@ PrefabInstance:
     - target: {fileID: 5100463083171964281, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
       propertyPath: m_Text
-      value: Hello, I am your nurse
+      value: Hello
       objectReference: {fileID: 0}
     - target: {fileID: 5100463083171964281, guid: b0ff0ff298a87a1458db41066fcca2ed,
         type: 3}
@@ -3326,9 +3366,9 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1471230689335680355}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1361181318971572628 stripped
+--- !u!114 &4438833856347837513 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 470977691193138423, guid: b0ff0ff298a87a1458db41066fcca2ed,
+  m_CorrespondingSourceObject: {fileID: 3022825039139866922, guid: b0ff0ff298a87a1458db41066fcca2ed,
     type: 3}
   m_PrefabInstance: {fileID: 1471230689335680355}
   m_PrefabAsset: {fileID: 0}
@@ -3345,11 +3385,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1471230687932192972}
     m_Modifications:
+    - target: {fileID: 359859495841671395, guid: a58bc31337857654d9d3db74f91f77b3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 551545626225387272, guid: a58bc31337857654d9d3db74f91f77b3,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0ba76df6e33e4b14cac7c0df391bdc13,
+      objectReference: {fileID: 21300000, guid: 9591cdec976f957498a21f3f9f9b38cd,
         type: 3}
     - target: {fileID: 1096768672891283922, guid: a58bc31337857654d9d3db74f91f77b3,
         type: 3}
@@ -3360,24 +3405,42 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0ba76df6e33e4b14cac7c0df391bdc13,
+      objectReference: {fileID: 21300000, guid: 9591cdec976f957498a21f3f9f9b38cd,
         type: 3}
     - target: {fileID: 2161861094205704944, guid: a58bc31337857654d9d3db74f91f77b3,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0ba76df6e33e4b14cac7c0df391bdc13,
+      objectReference: {fileID: 21300000, guid: 9591cdec976f957498a21f3f9f9b38cd,
+        type: 3}
+    - target: {fileID: 2508275648392187546, guid: a58bc31337857654d9d3db74f91f77b3,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0a4751739c93bc04381d6aa1fb0b5899,
         type: 3}
     - target: {fileID: 2701678911370532701, guid: a58bc31337857654d9d3db74f91f77b3,
         type: 3}
       propertyPath: m_Name
       value: Panel1
       objectReference: {fileID: 0}
+    - target: {fileID: 2781199665876152091, guid: a58bc31337857654d9d3db74f91f77b3,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0a4751739c93bc04381d6aa1fb0b5899,
+        type: 3}
     - target: {fileID: 3744698094680649144, guid: a58bc31337857654d9d3db74f91f77b3,
         type: 3}
       propertyPath: QDManager
       value: 
       objectReference: {fileID: 2207374274031419027}
+    - target: {fileID: 4280721527422722914, guid: a58bc31337857654d9d3db74f91f77b3,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0a4751739c93bc04381d6aa1fb0b5899,
+        type: 3}
     - target: {fileID: 5341119833024550206, guid: a58bc31337857654d9d3db74f91f77b3,
         type: 3}
       propertyPath: m_Pivot.x
@@ -3502,7 +3565,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 205dca210e8822b41a7a93baed76f44b,
+      objectReference: {fileID: 21300000, guid: dcc171263709bfa41989480e2c0155e2,
         type: 3}
     - target: {fileID: 8014210332307307603, guid: a58bc31337857654d9d3db74f91f77b3,
         type: 3}
@@ -3513,7 +3576,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 205dca210e8822b41a7a93baed76f44b,
+      objectReference: {fileID: 21300000, guid: dcc171263709bfa41989480e2c0155e2,
         type: 3}
     - target: {fileID: 8271091642399502378, guid: a58bc31337857654d9d3db74f91f77b3,
         type: 3}
@@ -3524,7 +3587,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 205dca210e8822b41a7a93baed76f44b,
+      objectReference: {fileID: 21300000, guid: dcc171263709bfa41989480e2c0155e2,
         type: 3}
     - target: {fileID: 8547606912600560043, guid: a58bc31337857654d9d3db74f91f77b3,
         type: 3}

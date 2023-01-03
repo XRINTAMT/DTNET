@@ -30,6 +30,7 @@ namespace QuestionSystem
             if (answer == true)
             {
                 answer = false;
+                QDManager.ProcessAnswer(q);
                 string Language = PlayerPrefs.GetString("Language", "English");
                 if (q.IsAsked < 2)
                 {
