@@ -58,7 +58,7 @@ namespace QuestionSystem
             }
             Refresh();
             ChangeTopic("Introduction");
-            QuestionTimeout = StartCoroutine(WaitingForTooLong());
+            //QuestionTimeout = StartCoroutine(WaitingForTooLong());
         }
 
         private void Refresh()
@@ -89,7 +89,8 @@ namespace QuestionSystem
 
         public void Ask(Question _q)
         {
-            StopCoroutine(QuestionTimeout);
+            if(QuestionTimeout != null)
+                StopCoroutine(QuestionTimeout);
             CMenu.gameObject.SetActive(false);
             DLines.gameObject.SetActive(true);
             DLines.RenderQuestion(_q);
@@ -109,6 +110,7 @@ namespace QuestionSystem
                     mood -= _q.IsAsked;
                 _q.IsAsked++;
                 mood += _q.MoodChanges;
+                FAController.SetMoodIndex(100 + (mood * 2));
                 //FAController.SetMood(mood);
                 //need a method SetMood(mood) in FaceAnimationController that would
                 //set the mood to this value (optionally with an overshoot)
