@@ -33,7 +33,7 @@ public class BodyAnimation : MonoBehaviour
             }
         }
     }
-    public void SetBadGoodAnimation(string triggerName)
+    public void SetGoodMoodAnimation(string triggerName)
     {
         animator.SetTrigger(triggerName);
 
