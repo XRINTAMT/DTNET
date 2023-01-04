@@ -24,92 +24,35 @@ public class FaceAnimationController : MonoBehaviour
     bool updateMood;
     float nextCountSetMood;
 
-    public int setIndexMood;
-    public bool startUpdateIndexMood;
+    int IndexMood;
+    bool startUpdateIndexMood;
 
     // Start is called before the first frame update
     void Start()
     {
         nextCountSetMood = setMood;
-        
+    }
+    
+    public void SetMoodIndex(int indexMood)
+    {
+        IndexMood = indexMood;
+        if (setMood > IndexMood) InvokeRepeating("MoodChangeDown", 0f, 100 / speedChangeMood * Time.deltaTime);
+        if (setMood < IndexMood) InvokeRepeating("MoodChangeUp", 0f, 100 / speedChangeMood * Time.deltaTime);
     }
 
-    public void SetMoodFromIndex(int indexMood)
+    void MoodChangeDown()
     {
-        mouseFrown = skinnedMeshRenderer.GetBlendShapeWeight(36);
-        mouseSmile = skinnedMeshRenderer.GetBlendShapeWeight(33);
-        browDropL = skinnedMeshRenderer.GetBlendShapeWeight(12);
-        browDropR = skinnedMeshRenderer.GetBlendShapeWeight(13);
-
-        if (indexMood > 100)
-        {
-
-            if (mouseFrown > 0) skinnedMeshRenderer.SetBlendShapeWeight(36, mouseFrown - speedChangeMood * Time.deltaTime);
-            if (browDropL > 0) skinnedMeshRenderer.SetBlendShapeWeight(12, browDropL - speedChangeMood * Time.deltaTime);
-            if (browDropR > 0) skinnedMeshRenderer.SetBlendShapeWeight(13, browDropR - speedChangeMood * Time.deltaTime);
-            if (mouseSmile < indexMood - 100)
-            {
-                skinnedMeshRenderer.SetBlendShapeWeight(33, mouseSmile + speedChangeMood * Time.deltaTime);
-                setMood = (int)Math.Round(mouseSmile) + 100;
-            }
-            if (mouseFrown <= 0 && mouseSmile >= indexMood && browDropL <= 0 && browDropR <= 0)
-            {
-                delta = 0;
-                startUpdateIndexMood = false;
-                setMood = indexMood;
-                nextCountSetMood = setMood;
-            }
-        }
-        if (indexMood < 100 && mouseFrown > indexMood)
-        {
-
-            if (mouseFrown > indexMood)
-            {
-                skinnedMeshRenderer.SetBlendShapeWeight(36, mouseFrown - speedChangeMood * Time.deltaTime);
-                skinnedMeshRenderer.SetBlendShapeWeight(12, mouseFrown);
-                skinnedMeshRenderer.SetBlendShapeWeight(13, mouseFrown);
-                setMood = 100 - (int)Math.Round(mouseFrown);
-            }
-
-            if (mouseSmile > 0) skinnedMeshRenderer.SetBlendShapeWeight(33, mouseSmile - speedChangeMood * Time.deltaTime);
-
-            if (mouseFrown <= indexMood && mouseSmile >= 0 && browDropL <= indexMood && browDropR <= indexMood)
-            {
-                delta = 0;
-                startUpdateIndexMood = false;
-                setMood = 0;
-                nextCountSetMood = setMood;
-            }
-
-        }
-        if (indexMood < 100 && mouseFrown < indexMood)
-        {
-            skinnedMeshRenderer.SetBlendShapeWeight(36, mouseFrown + speedChangeMood * Time.deltaTime);
-            skinnedMeshRenderer.SetBlendShapeWeight(12, mouseFrown);
-            skinnedMeshRenderer.SetBlendShapeWeight(13, mouseFrown);
-            setMood = 100 - (int)Math.Round(mouseFrown);
-
-            if (mouseSmile > 0) skinnedMeshRenderer.SetBlendShapeWeight(33, mouseSmile - speedChangeMood * Time.deltaTime);
-            if ((int)Math.Round (mouseFrown) >= indexMood && (int)Math.Round (mouseSmile) >= 0 && (int)Math.Round (browDropL) >= indexMood && (int)Math.Round(browDropR) >= indexMood)
-            {
-                delta = 0;
-                startUpdateIndexMood = false;
-                setMood = 0;
-                nextCountSetMood = setMood;
-            }
-        }
-
-
+        setMood -= 1;
+        if (setMood <= IndexMood) CancelInvoke();
+    }
+    void MoodChangeUp()
+    {
+        setMood += 1;
+        if (setMood >= IndexMood) CancelInvoke();
     }
     // Update is called once per frame
     void Update()
     {
-
-        if (startUpdateIndexMood)
-        {
-                SetMoodFromIndex(setIndexMood);
-        }
-
         if (setMood!= nextCountSetMood && !setBadMood && !setGoodMood && !setNeutralMood)
         {
             updateMood = true;
