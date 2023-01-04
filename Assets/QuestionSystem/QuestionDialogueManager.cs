@@ -109,6 +109,7 @@ namespace QuestionSystem
                     mood -= _q.IsAsked;
                 _q.IsAsked++;
                 mood += _q.MoodChanges;
+                FAController.SetMoodIndex(100 + (mood * 2));
                 //FAController.SetMood(mood);
                 //need a method SetMood(mood) in FaceAnimationController that would
                 //set the mood to this value (optionally with an overshoot)
