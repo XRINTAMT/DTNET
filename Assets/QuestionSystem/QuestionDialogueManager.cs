@@ -58,7 +58,7 @@ namespace QuestionSystem
             }
             Refresh();
             ChangeTopic("Introduction");
-            QuestionTimeout = StartCoroutine(WaitingForTooLong());
+            //QuestionTimeout = StartCoroutine(WaitingForTooLong());
         }
 
         private void Refresh()
@@ -89,7 +89,8 @@ namespace QuestionSystem
 
         public void Ask(Question _q)
         {
-            StopCoroutine(QuestionTimeout);
+            if(QuestionTimeout != null)
+                StopCoroutine(QuestionTimeout);
             CMenu.gameObject.SetActive(false);
             DLines.gameObject.SetActive(true);
             DLines.RenderQuestion(_q);

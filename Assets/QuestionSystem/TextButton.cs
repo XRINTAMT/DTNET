@@ -42,6 +42,8 @@ namespace QuestionSystem
 
         public void OnHover()
         {
+            if (question == null)
+                return;
             string Language = PlayerPrefs.GetString("Language", "English");
             if (question.Text[Language] != question.Short[Language])
             {
