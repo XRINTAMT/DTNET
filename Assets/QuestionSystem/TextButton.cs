@@ -10,6 +10,8 @@ namespace QuestionSystem
         [SerializeField] Text NormalText;
         [SerializeField] Text SelectedText;
         [SerializeField] Text PressedText;
+        [SerializeField] GameObject FullTextWindow;
+        [SerializeField] Text FullText;
         [SerializeField] QuestionDialogueManager QDManager;
         Question question;
 
@@ -31,15 +33,26 @@ namespace QuestionSystem
             else
             {
                 string Language = PlayerPrefs.GetString("Language", "English");
-                NormalText.text = question.Text[Language];
-                SelectedText.text = question.Text[Language];
-                PressedText.text = question.Text[Language];
+                NormalText.text = question.Short[Language];
+                SelectedText.text = question.Short[Language];
+                PressedText.text = question.Short[Language];
+                FullText.text = question.Text[Language];
+            }
+        }
+
+        public void OnHover()
+        {
+            string Language = PlayerPrefs.GetString("Language", "English");
+            if (question.Text[Language] != question.Short[Language])
+            {
+                FullTextWindow.SetActive(true);
             }
         }
 
         public void Submit()
         {
-            if(question != null)
+            FullTextWindow.SetActive(false);
+            if (question != null)
             {
                 QDManager.Ask(question);
             }
