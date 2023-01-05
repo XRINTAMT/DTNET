@@ -40,7 +40,7 @@ namespace QuestionSystem
         [field: SerializeField] public string Topic { get; set; }
         [field: SerializeField] public Dictionary<string, string> Text { get; set; }
         public int MoodChanges { get; set; }
-        public string AnimationType { get; set; }
+        [field: SerializeField] public string AnimationType { get; set; }
         [field: SerializeReference] public Question Prerequisite { get; set; }
         [field: SerializeField] public int IsAsked { get; set; }
         [field: SerializeField] public Dictionary<string, string> Answer { get; set; }
