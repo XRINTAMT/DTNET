@@ -19,7 +19,7 @@ public class CompletedScenario : MonoBehaviour
     {
         panelCompletedScenario.SetActive(true);
         moodStatus.sprite = moodList[indexMoodList];
-        answersProgress.text = "" + totlaInformation + "/" + totlaFound /*+ "%"*/;
+        answersProgress.text = "" + totlaFound  + "/" + totlaInformation /*+ "%"*/;
     }
 
     // Update is called once per frame
