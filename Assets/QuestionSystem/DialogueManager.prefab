@@ -503,12 +503,14 @@ MonoBehaviour:
   Tabs: {fileID: 7424467243661182850}
   CMenu: {fileID: 3764262969228055300}
   DLines: {fileID: 14034394145877336}
+  OutroScreen: {fileID: 0}
   mood: 0
   questionsLimit: 20
   NurseSource: {fileID: 0}
   <Dialogue>k__BackingField:
   - <Tag>k__BackingField: Hi
     <Topic>k__BackingField: Introduction
+    <AnimationType>k__BackingField: NeutralThinking
     <Prerequisite>k__BackingField:
       id: 0
     <IsAsked>k__BackingField: 0
@@ -532,6 +534,7 @@ MonoBehaviour:
     - Sveiki
   - <Tag>k__BackingField: IAmYourNurse
     <Topic>k__BackingField: Introduction
+    <AnimationType>k__BackingField: HappyThumbsUp
     <Prerequisite>k__BackingField:
       id: 0
     <IsAsked>k__BackingField: 0
@@ -555,6 +558,7 @@ MonoBehaviour:
     - "Ir pat\u012Bkami ar Jums iepaz\u012Bties"
   - <Tag>k__BackingField: Bye
     <Topic>k__BackingField: Ending
+    <AnimationType>k__BackingField: HappyFistToChest
     <Prerequisite>k__BackingField:
       id: 0
     <IsAsked>k__BackingField: 0
@@ -578,6 +582,7 @@ MonoBehaviour:
     - "Uz redz\u0113\u0161anos"
   - <Tag>k__BackingField: HowAreYou
     <Topic>k__BackingField: Anamnesis
+    <AnimationType>k__BackingField: NeutralThinking
     <Prerequisite>k__BackingField:
       id: 0
     <IsAsked>k__BackingField: 0
@@ -601,6 +606,7 @@ MonoBehaviour:
     - "Kopum\u0101 man viss ir k\u0101rt\u012Bb\u0101"
   - <Tag>k__BackingField: Dyspnea
     <Topic>k__BackingField: Heart
+    <AnimationType>k__BackingField: NeutralThinking
     <Prerequisite>k__BackingField:
       id: 0
     <IsAsked>k__BackingField: 0
@@ -624,6 +630,7 @@ MonoBehaviour:
     - "Da\u017Ereiz j\u0101"
   - <Tag>k__BackingField: HeartQuestion2
     <Topic>k__BackingField: Heart
+    <AnimationType>k__BackingField: NeutralLegBehind
     <Prerequisite>k__BackingField:
       id: 0
     <IsAsked>k__BackingField: 0
@@ -647,6 +654,7 @@ MonoBehaviour:
     - Heartanswer2
   - <Tag>k__BackingField: HeartQuestion3
     <Topic>k__BackingField: Heart
+    <AnimationType>k__BackingField: NeutralThinking
     <Prerequisite>k__BackingField:
       id: 0
     <IsAsked>k__BackingField: 0
@@ -670,6 +678,7 @@ MonoBehaviour:
     - Heartanswer3
   - <Tag>k__BackingField: HeartQuestion4
     <Topic>k__BackingField: Heart
+    <AnimationType>k__BackingField: NeutralLegBehind
     <Prerequisite>k__BackingField:
       id: 0
     <IsAsked>k__BackingField: 0
@@ -691,6 +700,30 @@ MonoBehaviour:
     - Heartquestion4Heartquestion4Heartquestion4Heartquestion4
     - Heartquestion4
     - Heartanswer4
+  - <Tag>k__BackingField: HeartQuestion5
+    <Topic>k__BackingField: Heart
+    <AnimationType>k__BackingField: NeutralLegBehind
+    <Prerequisite>k__BackingField:
+      id: 0
+    <IsAsked>k__BackingField: 0
+    <PrerequisiteTag>k__BackingField: 
+    <InformationTag>k__BackingField: Heart5
+    valuesText:
+    - HeartQuestion5HeartQuestion5HeartQuestion5HeartQuestion5
+    - HeartQuestion5
+    - EMPTY
+    - HeartQuestion5Heartquestion5Heartquestion5Heartquestion5
+    - HeartQuestion5
+    - EMPTY
+    - Heartquestion5heartQuestion5heartQuestion5heartQuestion5
+    - Heartquestion5
+    - EMPTY
+    - HeartQuestion7
+    - "\u0160irdies klausimai5"
+    - EMPTY
+    - Heartquestion5Heartquestion5Heartquestion5heartquestion5
+    - Heartquestion5
+    - EMPTY
   TimeForAsking: 20
   Sync: 0
   references:
@@ -2123,7 +2156,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Dialogue option
+  m_Text: Hello
 --- !u!114 &4452940120882263796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2438,7 +2471,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Dialogue option
+  m_Text: I am your nurse
 --- !u!114 &5585782849012765822
 MonoBehaviour:
   m_ObjectHideFlags: 0
