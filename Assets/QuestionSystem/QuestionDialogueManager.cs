@@ -16,12 +16,14 @@ namespace QuestionSystem
         [SerializeField] TopicTabsManager Tabs;
         [SerializeField] ChoiceMenu CMenu;
         [SerializeField] DialogueLines DLines;
+        [SerializeField] CompletedScenario OutroScreen;
         [SerializeField] int mood = 0;
         [SerializeField] int questionsLimit = 20;
         [SerializeField] AudioSource NurseSource;
         
         AudioSource PatientSource;
         FaceAnimationController FAController;
+        Animator BodyAnimator;
 
         [field: SerializeField] public List<Question> Dialogue { get; private set; }
         [SerializeField] float TimeForAsking = 20;
@@ -34,14 +36,23 @@ namespace QuestionSystem
         {
             PatientSource = PatientObject.GetComponent<AudioSource>();
             FAController = PatientObject.GetComponent<FaceAnimationController>();
+            BodyAnimator = PatientObject.GetComponent<Animator>();
             totalInformation = new List<string>();
             unlockedInformation = new List<string>();
-            foreach (Question _q in Dialogue)
+            for(int i = 0; i < Dialogue.Count;)
             {
-                _q.GetReady();
-                if (!totalInformation.Contains(_q.InformationTag))
+                Dialogue[i].GetReady();
+                if (Dialogue[i].Answer["English"] == "EMPTY")
                 {
-                    totalInformation.Add(_q.InformationTag);
+                    Dialogue.RemoveAt(i);
+                }
+                else
+                {
+                    if (!totalInformation.Contains(Dialogue[i].InformationTag))
+                    {
+                        totalInformation.Add(Dialogue[i].InformationTag);
+                    }
+                    i++;
                 }
             }
             foreach (Question _q in Dialogue)
@@ -101,6 +112,11 @@ namespace QuestionSystem
         {
             if (_q != null)
             {
+                if(_q.Topic == "Ending")
+                {
+                    OutroScreen.SetData((mood-mood),totalInformation.Count, unlockedInformation.Count); 
+                    //shove in a normal mood-based thing to output the mood on the ending screen
+                }
                 if (!unlockedInformation.Contains(_q.InformationTag))
                 {
                     unlockedInformation.Add(_q.InformationTag);
@@ -111,6 +127,7 @@ namespace QuestionSystem
                 _q.IsAsked++;
                 mood += _q.MoodChanges;
                 FAController.SetMoodIndex(100 + (mood * 2));
+                BodyAnimator.SetTrigger(_q.AnimationType);
                 //FAController.SetMood(mood);
                 //need a method SetMood(mood) in FaceAnimationController that would
                 //set the mood to this value (optionally with an overshoot)
@@ -130,7 +147,7 @@ namespace QuestionSystem
             questionsCount++;
             if(questionsCount == questionsLimit)
             {
-                Debug.Log("Call a method on a results screen object");
+                OutroScreen.SetData((mood - mood), totalInformation.Count, unlockedInformation.Count);
                 //Call a method on a results screen object
             }
         }
