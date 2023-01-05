@@ -15,11 +15,11 @@ public class CompletedScenario : MonoBehaviour
     {
         
     }
-    public void SetData(int indexMoodList, Text textProgress) 
+    public void SetData(int indexMoodList, int totlaInformation, int totlaFound) 
     {
         panelCompletedScenario.SetActive(true);
         moodStatus.sprite = moodList[indexMoodList];
-        answersProgress.text = textProgress + "%";
+        answersProgress.text = "" + totlaInformation + "/" + totlaFound /*+ "%"*/;
     }
 
     // Update is called once per frame
