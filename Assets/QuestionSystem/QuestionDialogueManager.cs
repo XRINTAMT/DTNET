@@ -20,7 +20,8 @@ namespace QuestionSystem
         [SerializeField] int mood = 0;
         [SerializeField] int questionsLimit = 20;
         [SerializeField] AudioSource NurseSource;
-        
+
+        string NurseGender = "Female";        
         AudioSource PatientSource;
         FaceAnimationController FAController;
         Animator BodyAnimator;
@@ -39,7 +40,7 @@ namespace QuestionSystem
             BodyAnimator = PatientObject.GetComponent<Animator>();
             totalInformation = new List<string>();
             unlockedInformation = new List<string>();
-            for(int i = 0; i < Dialogue.Count;)
+            for (int i = 0; i < Dialogue.Count;)
             {
                 Dialogue[i].GetReady();
                 if (Dialogue[i].Answer["English"] == "EMPTY")
@@ -67,9 +68,22 @@ namespace QuestionSystem
                     _q.Prerequisite = null;
                 }
             }
+            NurseGender = PlayerPrefs.GetInt("Gender") == 0 ? "Female" : "Male";
+            if (NurseGender == "Male")
+            {
+                Debug.Log("Male detected");
+                Dialogue[0].Text["English"] = Dialogue[0].Text["English"].Replace("Marite", "Alexander");
+                Dialogue[0].Text["German"] = Dialogue[0].Text["German"].Replace("Marite", "Alexander");
+                Dialogue[0].Text["Swedish"] = Dialogue[0].Text["Swedish"].Replace("Marite", "Alexander");
+                Dialogue[0].Text["Latvian"] = Dialogue[0].Text["Latvian"].Replace("Marite", "Alexander");
+                Dialogue[0].Text["Lithuanian"] = Dialogue[0].Text["Lithuanian"].Replace("Marite", "Alexander");
+            }
+
+
             Refresh();
             ChangeTopic("Introduction");
             //QuestionTimeout = StartCoroutine(WaitingForTooLong());
+            
         }
 
         private void Refresh()
@@ -105,6 +119,9 @@ namespace QuestionSystem
             CMenu.gameObject.SetActive(false);
             DLines.gameObject.SetActive(true);
             DLines.RenderQuestion(_q);
+            Debug.Log("DialogueAudios/" + PlayerPrefs.GetString("Language", "English") + "/" + NurseGender + "Nurse/" + _q.Tag + ".mp3");
+            NurseSource.clip = Resources.Load<AudioClip>("DialogueAudios/"+PlayerPrefs.GetString("Language","English")+"/"+NurseGender+ "Nurse/" + _q.Tag) as AudioClip;
+            NurseSource.Play();
             Refresh();
         }
 
