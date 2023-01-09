@@ -59,6 +59,14 @@ namespace QuestionSystem
             Text = new Dictionary<string, string>();
             Answer = new Dictionary<string, string>();
             Short = new Dictionary<string, string>();
+
+            for(int i = 0; i < valuesText.Length; i++)
+            {
+                if(valuesText[i][0] == '"')
+                {
+                    valuesText[i] = valuesText[i].Trim('"');
+                }
+            }
             //populate dictionaries from arrays because Unity can't serialize dictionaries
             Text["English"] = valuesText[0];
             Short["English"] = valuesText[1];

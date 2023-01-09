@@ -79,7 +79,6 @@ namespace QuestionSystem
                 Dialogue[0].Text["Lithuanian"] = Dialogue[0].Text["Lithuanian"].Replace("Marite", "Alexander");
             }
 
-
             Refresh();
             ChangeTopic("Introduction");
             //QuestionTimeout = StartCoroutine(WaitingForTooLong());

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using System.Text.RegularExpressions;
 
 namespace QuestionSystem
 {
@@ -20,7 +21,7 @@ namespace QuestionSystem
                 while ((line = reader.ReadLine()) != null)
                 {
                     Debug.Log(line);
-                    string[] values = line.Split(',');
+                    string[] values = Regex.Split(line, ",(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))");
 
                     Question question = new Question(values);
 
