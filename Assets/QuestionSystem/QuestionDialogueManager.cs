@@ -71,7 +71,6 @@ namespace QuestionSystem
             NurseGender = PlayerPrefs.GetInt("Gender") == 0 ? "Female" : "Male";
             if (NurseGender == "Male")
             {
-                Debug.Log("Male detected");
                 Dialogue[0].Text["English"] = Dialogue[0].Text["English"].Replace("Marite", "Alexander");
                 Dialogue[0].Text["German"] = Dialogue[0].Text["German"].Replace("Marite", "Alexander");
                 Dialogue[0].Text["Swedish"] = Dialogue[0].Text["Swedish"].Replace("Marite", "Alexander");
@@ -184,6 +183,7 @@ namespace QuestionSystem
 
         public void SyncDialogues()
         {
+            Dialogue.Clear();
             string Path = Application.dataPath + "/Resources/Localization/"+ DialogueName +".csv";
             Dialogue = QuestionReader.ReadQuestionsFromCsv(Path);
         }

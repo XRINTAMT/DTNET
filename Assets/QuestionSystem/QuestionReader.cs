@@ -23,6 +23,7 @@ namespace QuestionSystem
                     Debug.Log(line);
                     string[] values = Regex.Split(line, ",(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))");
 
+
                     Question question = new Question(values);
 
                     _questions.Add(question);
