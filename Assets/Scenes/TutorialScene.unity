@@ -5230,6 +5230,7 @@ MonoBehaviour:
   demo: {fileID: 2075032758}
   text: 
   dialogue: {fileID: 2075032756}
+  guideDialogieUI: {fileID: 0}
 --- !u!222 &293847246
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20358,7 +20359,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a4c1f8e48705f1f489fec6581e7c7350,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1092408308860062549, guid: a4c1f8e48705f1f489fec6581e7c7350,
         type: 3}
@@ -33914,13 +33915,14 @@ GameObject:
   - component: {fileID: 2075032762}
   - component: {fileID: 2075032761}
   - component: {fileID: 2075032760}
+  - component: {fileID: 2075032766}
   m_Layer: 0
   m_Name: Dialoge1Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2075032757
 Transform:
   m_ObjectHideFlags: 0
@@ -34226,6 +34228,52 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2075032766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075032756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcfac9df37f3ebf4eacf36c3f3d20584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Phrases:
+  - DialogueID: 6
+    started: 0
+    completed: 0
+  OnStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1455025366}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 396270410}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  OnComplete:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2098968674
 GameObject:
   m_ObjectHideFlags: 0
@@ -40744,6 +40792,8 @@ MonoBehaviour:
   - {fileID: 1536422285}
   - {fileID: 79493104}
   - {fileID: 1835992677}
+  canvas: {fileID: 0}
+  dialogueGuide: {fileID: 0}
 --- !u!4 &2472646869925075393
 Transform:
   m_ObjectHideFlags: 0
@@ -40897,7 +40947,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2556047482856085357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53792,7 +53842,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 1
-          m_CallState: 2
+          m_CallState: 0
         - m_Target: {fileID: 1455025366}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
@@ -53804,7 +53854,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 1
-          m_CallState: 2
+          m_CallState: 0
         - m_Target: {fileID: 298344147}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
