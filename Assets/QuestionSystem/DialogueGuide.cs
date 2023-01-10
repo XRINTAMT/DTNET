@@ -6,15 +6,21 @@ public class DialogueGuide : MonoBehaviour
 {
     [SerializeField] GameObject[] GuidePanels;
     int currentIndex = 0;
+    [SerializeField] bool active = false;
     // Start is called before the first frame update
     void Start()
     {
-        GuidePanels[0].SetActive(true);
+        if(active)
+            GuidePanels[0].SetActive(true);
     }
 
     public void SetState(int stateID)
     {
-        if(Mathf.Abs(stateID - currentIndex) != 1)
+        if (!active)
+        {
+            return;
+        }
+        if (Mathf.Abs(stateID - currentIndex) != 1)
         {
             return;
         }

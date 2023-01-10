@@ -1,7 +1,7 @@
 @echo off
 setlocal enabledelayedexpansion
 
-set csvpath=C:\Users\Fedol\OneDrive\Documents\Tags.csv
+set csvpath=C:\Users\Fedol\OneDrive\Documents\FemaleNurse.csv
 
 FOR /F "usebackq tokens=1,2 delims=," %%g IN (!csvpath!) do (
     set person=%%g

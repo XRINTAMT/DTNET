@@ -117,7 +117,6 @@ namespace QuestionSystem
             CMenu.gameObject.SetActive(false);
             DLines.gameObject.SetActive(true);
             DLines.RenderQuestion(_q);
-            Debug.Log("DialogueAudios/" + PlayerPrefs.GetString("Language", "English") + "/" + NurseGender + "Nurse/" + _q.Tag + ".mp3");
             NurseSource.clip = Resources.Load<AudioClip>("DialogueAudios/"+PlayerPrefs.GetString("Language","English")+"/"+NurseGender+ "Nurse/" + _q.Tag) as AudioClip;
             NurseSource.Play();
             Refresh();
@@ -148,6 +147,7 @@ namespace QuestionSystem
                 //set the mood to this value (optionally with an overshoot)
 
                 //load the audio for the patient here
+                PatientSource.clip = Resources.Load<AudioClip>("DialogueAudios/" + PlayerPrefs.GetString("Language", "English") + "/" + DialogueName + "/" + _q.Tag) as AudioClip;
                 PatientSource.Play();
             }
 
