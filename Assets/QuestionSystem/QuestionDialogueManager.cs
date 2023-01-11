@@ -126,9 +126,9 @@ namespace QuestionSystem
         {
             if (_q != null)
             {
-                if(_q.Topic == "Ending")
+                if(_q.Tag == "end_scenario")
                 {
-                    OutroScreen.SetData((mood-mood),totalInformation.Count, unlockedInformation.Count); 
+                    OutroScreen.SetData((mood-mood),totalInformation.Count, unlockedInformation.Count, DialogueName); 
                     //shove in a normal mood-based thing to output the mood on the ending screen
                 }
                 if (!unlockedInformation.Contains(_q.InformationTag))
@@ -162,7 +162,7 @@ namespace QuestionSystem
             questionsCount++;
             if(questionsCount == questionsLimit)
             {
-                OutroScreen.SetData((mood - mood), totalInformation.Count, unlockedInformation.Count);
+                OutroScreen.SetData((mood - mood), totalInformation.Count, unlockedInformation.Count, DialogueName);
                 //Call a method on a results screen object
             }
         }
