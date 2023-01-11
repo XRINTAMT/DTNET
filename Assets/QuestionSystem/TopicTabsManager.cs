@@ -56,13 +56,13 @@ namespace QuestionSystem
 
         IEnumerator IERotationAnimation(float endAngle)
         {
-            float startAngle = transform.rotation.eulerAngles.y;   
+            float startAngle = transform.localRotation.eulerAngles.y;   
             for(float i = 0; i < 1; i += Time.deltaTime*2)
             {
-                transform.rotation = Quaternion.Euler(0,Mathf.LerpAngle(startAngle, endAngle, i),0);
+                transform.localRotation = Quaternion.Euler(0,Mathf.LerpAngle(startAngle, endAngle, i),0);
                 yield return 0;
             }
-            transform.rotation = Quaternion.Euler(0, endAngle, 0);
+            transform.localRotation = Quaternion.Euler(0, endAngle, 0);
         }
 
         void Start()
