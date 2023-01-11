@@ -15,8 +15,9 @@ public class CompletedScenario : MonoBehaviour
     {
         
     }
-    public void SetData(int indexMoodList, int totlaInformation, int totlaFound) 
+    public void SetData(int indexMoodList, int totlaInformation, int totlaFound, string scenarioName) 
     {
+
         panelCompletedScenario.SetActive(true);
         moodStatus.sprite = moodList[indexMoodList];
         answersProgress.text = "" + totlaFound  + "/" + totlaInformation /*+ "%"*/;

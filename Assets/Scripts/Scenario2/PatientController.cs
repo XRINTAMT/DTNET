@@ -4,35 +4,22 @@ using UnityEngine;
 
 public class PatientController : MonoBehaviour
 {
-    [SerializeField] List<GameObject> patient;
+    [System.Serializable]
+    class PatientDialoguePair
+    {
+        public GameObject patient;
+        public GameObject dialogue;
+    }
+    [SerializeField] List<PatientDialoguePair> patient;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        int id = Random.Range(0, patient.Count);
+        patient[id].patient.SetActive(true);
+        patient[id].dialogue.SetActive(true);
     }
 
-    public void SetPatient(int indexPatient) 
-    {
-        switch (indexPatient)
-        {
-            case 1:
-                patient[0].SetActive(true);
-                break;
-            case 2:
-                patient[1].SetActive(true);
-                break;
-            case 3:
-                patient[2].SetActive(true);
-                break;
-            case 4:
-                patient[3].SetActive(true);
-                break;
-            default:
-                break;
-        }
-
-    }
     // Update is called once per frame
     void Update()
     {
