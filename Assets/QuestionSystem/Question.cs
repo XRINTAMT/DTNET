@@ -6,6 +6,8 @@ namespace QuestionSystem
     [System.Serializable]
     public class Question
     {
+
+        static string[] Languages = { "English", "German", "Swedish", "Lithuanian", "Latvian" };
         public Question(string[] values)
         {
             valuesText = new string[15];
@@ -60,33 +62,28 @@ namespace QuestionSystem
             Answer = new Dictionary<string, string>();
             Short = new Dictionary<string, string>();
 
-            for(int i = 0; i < valuesText.Length; i++)
+            for (int i = 0; i < valuesText.Length; i++)
             {
-                if(valuesText[i][0] == '"')
+                if (valuesText[i].Length > 0)
                 {
-                    valuesText[i] = valuesText[i].Trim('"');
+                    if (valuesText[i][0] == '"')
+                    {
+                        valuesText[i] = valuesText[i].Trim('"');
+                    }
                 }
             }
             //populate dictionaries from arrays because Unity can't serialize dictionaries
-            Text["English"] = valuesText[0];
-            Short["English"] = valuesText[1];
-            Answer["English"] = valuesText[2];
-
-            Text["German"] = valuesText[3];
-            Short["German"] = valuesText[4];
-            Answer["German"] = valuesText[5];
-
-            Text["Swedish"] = valuesText[6];
-            Short["Swedish"] = valuesText[7];
-            Answer["Swedish"] = valuesText[8];
-
-            Text["Lithuanian"] = valuesText[9];
-            Short["Lithuanian"] = valuesText[10];
-            Answer["Lithuanian"] = valuesText[11];
-
-            Text["Latvian"] = valuesText[12];
-            Short["Latvian"] = valuesText[13];
-            Answer["Latvian"] = valuesText[14];
+            for (int i = 0; i < 5; i++)
+            {
+                int n = i * 3;
+                Text[Languages[i]] = valuesText[n];
+                Short[Languages[i]] = valuesText[n + 1];
+                Answer[Languages[i]] = valuesText[n + 2];
+                if (Short[Languages[i]] == "" || Short[Languages[i]] == "#VALUE!")
+                {
+                    Short[Languages[i]] = Text[Languages[i]];
+                }
+            }
         }
     }
 

@@ -79,7 +79,7 @@ namespace QuestionSystem
             }
 
             Refresh();
-            ChangeTopic("Introduction");
+            ChangeTopic("introduction");
             //QuestionTimeout = StartCoroutine(WaitingForTooLong());
             
         }

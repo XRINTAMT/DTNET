@@ -17,7 +17,8 @@ namespace QuestionSystem
             foreach (string topic in _unlockedTopics)
             {
                 TabButtons[i].Refresh(topic);
-                i++;
+                if(i<8)
+                    i++;
             }
             for (; i < TabButtons.Length; i++)
             {
