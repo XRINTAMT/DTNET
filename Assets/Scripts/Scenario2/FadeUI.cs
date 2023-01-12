@@ -26,6 +26,7 @@ public class FadeUI : MonoBehaviour
     {
         if (fadeIn)
         {
+            fadeOut = false;
             for (int i = 0; i < canvasGroups.Count; i++)
             {
                 if (canvasGroups[i].alpha > 0)
@@ -41,6 +42,7 @@ public class FadeUI : MonoBehaviour
 
         if (fadeOut)
         {
+            fadeIn = false;
             for (int i = 0; i < canvasGroups.Count; i++)
             {
                 if (canvasGroups[i].alpha < 1)
