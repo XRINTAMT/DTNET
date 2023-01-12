@@ -77,6 +77,7 @@ namespace QuestionSystem
                 Dialogue[0].Text["Latvian"] = Dialogue[0].Text["Latvian"].Replace("Marite", "Alexander");
                 Dialogue[0].Text["Lithuanian"] = Dialogue[0].Text["Lithuanian"].Replace("Marite", "Alexander");
             }
+            CMenu.InjectDialogue(this);
 
             Refresh();
             ChangeTopic("introduction");
@@ -96,7 +97,7 @@ namespace QuestionSystem
             Tabs.Refresh(unlockedTopics);
         }
 
-        public void ChangeTopic(string _topic)
+        public void ChangeTopic(string _topic, bool _newTopic = true)
         {
             List<Question> _questionsInTheTopic = new List<Question>();
             foreach (Question question in Dialogue)
@@ -106,8 +107,21 @@ namespace QuestionSystem
                     _questionsInTheTopic.Add(question);
                 }
             }
-            CMenu.RefreshTopic(_questionsInTheTopic);
+            CMenu.RefreshTopic(FilterQuestions(_questionsInTheTopic), _newTopic);
             Tabs.RefreshTopic(_topic);
+        }
+
+        private List<Question> FilterQuestions(List<Question> _questions)
+        {
+            List<Question> _result = new List<Question>();
+            foreach (Question _question in _questions)
+            {
+                if (unlockedInformation.Contains(_question.PrerequisiteTag) || _question.PrerequisiteTag == "")
+                {
+                    _result.Add(_question);
+                }
+            }
+            return _result;
         }
 
         public void Ask(Question _q)
@@ -165,6 +179,7 @@ namespace QuestionSystem
                 OutroScreen.SetData((mood - mood), totalInformation.Count, unlockedInformation.Count, DialogueName);
                 //Call a method on a results screen object
             }
+            ChangeTopic(_q.Topic, false);
         }
 
         IEnumerator WaitingForTooLong()
