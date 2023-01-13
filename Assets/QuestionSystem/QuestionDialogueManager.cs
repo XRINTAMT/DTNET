@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 
 namespace QuestionSystem
 {
@@ -17,9 +18,13 @@ namespace QuestionSystem
         [SerializeField] ChoiceMenu CMenu;
         [SerializeField] DialogueLines DLines;
         [SerializeField] CompletedScenario OutroScreen;
+        [SerializeField] Text NameText;
+        [SerializeField] Text DateOfBirthText;
         [SerializeField] int mood = 0;
         [SerializeField] int questionsLimit = 20;
         [SerializeField] AudioSource NurseSource;
+        [SerializeField] string Name;
+        [SerializeField] string DateOfBirth;
 
         string NurseGender = "Female";        
         AudioSource PatientSource;
@@ -144,6 +149,14 @@ namespace QuestionSystem
                 {
                     OutroScreen.SetData((mood-mood),totalInformation.Count, unlockedInformation.Count, DialogueName); 
                     //shove in a normal mood-based thing to output the mood on the ending screen
+                }
+                if(_q.Tag == "introduction")
+                {
+                    NameText.text = Name;
+                }
+                if (_q.Tag == "date_of_birth")
+                {
+                    DateOfBirthText.text = DateOfBirth;
                 }
                 if (!unlockedInformation.Contains(_q.InformationTag))
                 {
