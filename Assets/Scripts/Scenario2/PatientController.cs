@@ -9,6 +9,7 @@ public class PatientController : MonoBehaviour
     {
         public GameObject patient;
         public GameObject dialogue;
+        public GameObject offset;
     }
     [SerializeField] List<PatientDialoguePair> patient;
 
@@ -18,6 +19,7 @@ public class PatientController : MonoBehaviour
         int id = Random.Range(0, patient.Count);
         patient[id].patient.SetActive(true);
         patient[id].dialogue.SetActive(true);
+        patient[id].patient.GetComponent<HeadCharacterFollow>().player=patient[id].offset.transform;
     }
 
     // Update is called once per frame

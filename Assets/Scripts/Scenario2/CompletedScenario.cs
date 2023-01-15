@@ -9,6 +9,10 @@ public class CompletedScenario : MonoBehaviour
     [SerializeField] Image moodStatus;
     [SerializeField] List<Sprite> moodList;
     [SerializeField] Text answersProgress;
+    [SerializeField] Text countMood;
+    [SerializeField] Text informationUncovered;
+    [SerializeField] Text nextStepsWithPatient;
+
     public bool activatePanel;
     PauseManager pauseManager;
     // Start is called before the first frame update
@@ -16,21 +20,20 @@ public class CompletedScenario : MonoBehaviour
     {
         pauseManager=GetComponent<PauseManager>();
     }
-    public void SetData(int indexMoodList, int totlaInformation, int totlaFound, string scenarioName) 
+    public void SetData(int indexMoodList, int totlaInformation, int totlaFound, string scenarioName , int countMood, string informationUncovered, string nextStepsWithPatient) 
     {
         pauseManager.ShowOutroMessage();
         panelCompletedScenario.SetActive(true);
         moodStatus.sprite = moodList[indexMoodList];
         answersProgress.text = "" + totlaFound  + "/" + totlaInformation /*+ "%"*/;
+        this.countMood.text = "" + countMood;
+        this.informationUncovered.text = "" + informationUncovered;
+        this.nextStepsWithPatient.text = "" + nextStepsWithPatient;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (activatePanel && !panelCompletedScenario.activeSelf)
-        {
-            SetData(0, 0, 0, "test");
-            activatePanel=true;
-        }
+        
     }
 }
