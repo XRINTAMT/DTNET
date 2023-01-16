@@ -51,7 +51,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BackgroundImage: {fileID: 4357365714794599876}
-  IsCorrect: 0
   OnShownAnswer:
     m_PersistentCalls:
       m_Calls:
@@ -80,9 +79,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ScoreColors:
-  - {r: 0.6509434, g: 0, b: 0, a: 1}
-  - {r: 0.7830189, g: 0.75538296, b: 0, a: 1}
-  - {r: 0, g: 0.754717, b: 0.047354788, a: 1}
+  - {r: 0.3496351, g: 0.81351477, b: 0.9150943, a: 1}
+  - {r: 0.34901962, g: 0.8117647, b: 0.9137255, a: 1}
+  - {r: 0.34901962, g: 0.8117647, b: 0.9137255, a: 1}
+  Question: {fileID: 3283462652079162735}
+  Result: {fileID: 0}
 --- !u!114 &3860505655873523089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +156,7 @@ GameObject:
   - component: {fileID: 3172000076193095201}
   - component: {fileID: 3873396439491528688}
   - component: {fileID: 7348547719912373458}
+  - component: {fileID: 3283462652079162735}
   m_Layer: 14
   m_Name: Text
   m_TagString: Untagged
@@ -231,6 +233,19 @@ MonoBehaviour:
 
     Observed for one hour, cannot go home.
     If the glucose level has stabilised, the patient will be fine.'
+--- !u!114 &3283462652079162735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473041038288414209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2404a37f3bd75444aa4ad05d0f228347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizationKey: S2P1_0
 --- !u!1 &1575446031111933565
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,7 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.23921569}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.23529412}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

@@ -147,7 +147,8 @@ namespace QuestionSystem
             {
                 if(_q.Tag == "end_scenario")
                 {
-                    OutroScreen.SetData((mood-mood),totalInformation.Count, unlockedInformation.Count, DialogueName,0,"",""); 
+                    OutroScreen.SetData((mood-mood),totalInformation.Count, unlockedInformation.Count, DialogueName,0,"","");
+                    gameObject.SetActive(false);
                     //shove in a normal mood-based thing to output the mood on the ending screen
                 }
                 if(_q.Tag == "introduction")
@@ -190,6 +191,7 @@ namespace QuestionSystem
             if(questionsCount == questionsLimit)
             {
                 OutroScreen.SetData((mood - mood), totalInformation.Count, unlockedInformation.Count, DialogueName,0,"","");
+                gameObject.SetActive(false);
                 //Call a method on a results screen object
             }
             ChangeTopic(_q.Topic, false);
