@@ -17,7 +17,7 @@ public class CompletedScenario : MonoBehaviour
     [SerializeField] GameObject Quiz;
     [SerializeField] GameObject Menu;
     [SerializeField] GameObject QuizResult;
-     
+
     string scenario;
     public bool activatePanel;
     PauseManager pauseManager;
@@ -26,13 +26,13 @@ public class CompletedScenario : MonoBehaviour
     {
         pauseManager=GetComponent<PauseManager>();
     }
-    public void SetData(int indexMoodList, int totlaInformation, int totlaFound, string scenarioName , int countMood, string informationUncovered, string nextStepsWithPatient) 
+    public void SetData(Sprite mood, int totlaInformation, int totlaFound, string scenarioName , string informationUncovered, string nextStepsWithPatient) 
     {
         pauseManager.ShowOutroMessage();
         panelCompletedScenario.SetActive(true);
-        moodStatus.sprite = moodList[indexMoodList];
+        moodStatus.sprite = mood;
+        
         answersProgress.text = "" + totlaFound  + "/" + totlaInformation /*+ "%"*/;
-        this.countMood.text = "" + countMood;
         this.informationUncovered.text = "" + informationUncovered;
         this.nextStepsWithPatient.text = "" + nextStepsWithPatient;
         scenario = scenarioName;

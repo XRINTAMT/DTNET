@@ -514,9 +514,17 @@ MonoBehaviour:
   NurseSource: {fileID: 0}
   Name: Emily
   DateOfBirth: March 1, 1983
+  moodList:
+  - {fileID: 21300000, guid: 91289600dfd053d4bbb8b2686487365d, type: 3}
+  - {fileID: 21300000, guid: 5e62dfbf55aaecc4ebae30a190efa090, type: 3}
+  - {fileID: 21300000, guid: 1d8f1af72019970449b200a0530c7ab4, type: 3}
+  HappyThreshold: 0
+  SadThreshold: -5
+  MoodIndicator: {fileID: 8327206355842883882}
   <Dialogue>k__BackingField:
   - <Tag>k__BackingField: introduction
     <Topic>k__BackingField: Introduction
+    <MoodChanges>k__BackingField: 0
     <AnimationType>k__BackingField: HappyFistToChest
     <Prerequisite>k__BackingField:
       id: 0
@@ -544,6 +552,7 @@ MonoBehaviour:
     - "Sveiki. Es esmu D\u017Eonsona kundze. Elisa D\u017Eonsone. Sauc mani par ELISA."
   - <Tag>k__BackingField: condition
     <Topic>k__BackingField: Anamnesis
+    <MoodChanges>k__BackingField: 0
     <AnimationType>k__BackingField: NeutralThinking
     <Prerequisite>k__BackingField:
       id: 0
@@ -568,6 +577,7 @@ MonoBehaviour:
     - "Es esmu t\u0101."
   - <Tag>k__BackingField: condition_specific
     <Topic>k__BackingField: Anamnesis
+    <MoodChanges>k__BackingField: 0
     <AnimationType>k__BackingField: NeutralThinking
     <Prerequisite>k__BackingField:
       id: 0
@@ -2730,7 +2740,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9591cdec976f957498a21f3f9f9b38cd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5e62dfbf55aaecc4ebae30a190efa090, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

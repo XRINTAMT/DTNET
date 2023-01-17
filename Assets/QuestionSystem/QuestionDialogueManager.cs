@@ -25,6 +25,11 @@ namespace QuestionSystem
         [SerializeField] AudioSource NurseSource;
         [SerializeField] string Name;
         [SerializeField] string DateOfBirth;
+        [SerializeField] List<Sprite> moodList;
+        [SerializeField] int HappyThreshold = 0;
+        [SerializeField] int SadThreshold = -5;
+        [SerializeField] Image MoodIndicator;
+
 
         string NurseGender = "Female";        
         AudioSource PatientSource;
@@ -37,6 +42,19 @@ namespace QuestionSystem
         public bool Sync;
         int questionsCount = 0;
 
+
+        private Sprite MoodSprite(int _mood)
+        {
+            if (_mood > HappyThreshold)
+            {
+                return moodList[2];
+            }
+            if (mood >= SadThreshold)
+            {
+                return moodList[1];
+            }
+            return moodList[0];
+        }
 
         void Start()
         {
@@ -155,7 +173,7 @@ namespace QuestionSystem
             {
                 if(_q.Tag == "end_scenario")
                 {
-                    OutroScreen.SetData((mood-mood),totalInformation.Count, unlockedInformation.Count, DialogueName,0,"","");
+                    OutroScreen.SetData(MoodSprite(mood),totalInformation.Count, unlockedInformation.Count, DialogueName,"","");
                     gameObject.SetActive(false);
                     //shove in a normal mood-based thing to output the mood on the ending screen
                 }
@@ -176,6 +194,8 @@ namespace QuestionSystem
                     mood -= _q.IsAsked;
                 _q.IsAsked++;
                 mood += _q.MoodChanges;
+
+                MoodIndicator.sprite = MoodSprite(mood);
                 FAController.SetMoodIndex(100 + (mood * 2));
                 BodyAnimator.SetTrigger(_q.AnimationType);
                 //FAController.SetMood(mood);
@@ -198,9 +218,8 @@ namespace QuestionSystem
             questionsCount++;
             if(questionsCount == questionsLimit)
             {
-                OutroScreen.SetData((mood - mood), totalInformation.Count, unlockedInformation.Count, DialogueName,0,"","");
+                OutroScreen.SetData(MoodSprite(mood), totalInformation.Count, unlockedInformation.Count, DialogueName,"","");
                 gameObject.SetActive(false);
-                //Call a method on a results screen object
             }
             ChangeTopic(_q.Topic, false);
         }
