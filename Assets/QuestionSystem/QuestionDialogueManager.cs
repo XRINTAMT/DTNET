@@ -76,11 +76,19 @@ namespace QuestionSystem
             NurseGender = PlayerPrefs.GetInt("Gender") == 0 ? "Female" : "Male";
             if (NurseGender == "Male")
             {
+                //could iterate through languages but ok whatever
+
                 Dialogue[0].Text["English"] = Dialogue[0].Text["English"].Replace("Marite", "Alexander");
                 Dialogue[0].Text["German"] = Dialogue[0].Text["German"].Replace("Marite", "Alexander");
                 Dialogue[0].Text["Swedish"] = Dialogue[0].Text["Swedish"].Replace("Marite", "Alexander");
                 Dialogue[0].Text["Latvian"] = Dialogue[0].Text["Latvian"].Replace("Marite", "Alexander");
                 Dialogue[0].Text["Lithuanian"] = Dialogue[0].Text["Lithuanian"].Replace("Marite", "Alexander");
+
+                Dialogue[0].Short["English"] = Dialogue[0].Short["English"].Replace("Marite", "Alexander");
+                Dialogue[0].Short["German"] = Dialogue[0].Short["German"].Replace("Marite", "Alexander");
+                Dialogue[0].Short["Swedish"] = Dialogue[0].Short["Swedish"].Replace("Marite", "Alexander");
+                Dialogue[0].Short["Latvian"] = Dialogue[0].Short["Latvian"].Replace("Marite", "Alexander");
+                Dialogue[0].Short["Lithuanian"] = Dialogue[0].Short["Lithuanian"].Replace("Marite", "Alexander");
             }
             CMenu.InjectDialogue(this);
 
