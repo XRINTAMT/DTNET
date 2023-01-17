@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.SimpleLocalization;
 
 namespace QuestionSystem
 {
     public class TabButtonBehaviour : MonoBehaviour
     {
         [SerializeField] Image[] Icon;
+        [SerializeField] LocalizedText TextClarification;
         [SerializeField] QuestionDialogueManager QDManager;
+        [SerializeField] GameObject TextContainer;
         public string buttonTopic { get; private set; }
         
         void Awake()
@@ -25,9 +28,13 @@ namespace QuestionSystem
                 {
                     image.enabled = false;
                 }
+                TextContainer.SetActive(false);
                 return;
             }
             Sprite currentSprite = Resources.Load<Sprite>("TopicIcons/" + _topic);
+            TextContainer.SetActive(true);
+            TextClarification.LocalizationKey = _topic;
+            TextClarification.Localize();
             foreach (Image image in Icon)
             {
                 image.enabled = true;
