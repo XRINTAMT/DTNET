@@ -25,8 +25,8 @@ public class FaceAnimationController : MonoBehaviour
     float nextCountSetMood;
 
     int IndexMood;
-    bool startUpdateIndexMood;
-
+    bool endPos;
+    public bool test;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,17 +42,42 @@ public class FaceAnimationController : MonoBehaviour
 
     void MoodChangeDown()
     {
-        setMood -= 1;
-        if (setMood <= IndexMood) CancelInvoke();
+
+        if (!interpolate)
+        {
+            setMood -= 1;
+            if (setMood <= IndexMood) CancelInvoke();
+        }
+        if (interpolate)
+        {
+            if (setMood > 0 && !endPos) setMood -= 1;
+            if (setMood <= 0)
+            {
+                setMood += 1;
+                endPos = true;
+            }
+            if (setMood > 0 && endPos)
+            {
+                setMood += 1;
+            }
+            if (setMood >= IndexMood && endPos) CancelInvoke();
+        }
+        if (setMood <= 0) CancelInvoke();
     }
     void MoodChangeUp()
     {
         setMood += 1;
         if (setMood >= IndexMood) CancelInvoke();
+
     }
     // Update is called once per frame
     void Update()
     {
+        if (test)
+        {
+            SetMoodIndex(50);
+            test = false;
+        }
         if (setMood!= nextCountSetMood && !setBadMood && !setGoodMood && !setNeutralMood)
         {
             updateMood = true;
