@@ -129,6 +129,10 @@ namespace QuestionSystem
             {
                 if (!(unlockedInformation.Contains(question.PrerequisiteTag) || question.PrerequisiteTag == ""))
                     continue;
+                
+                if ((question.Topic == "diabetes" || question.Topic == "insulin") && !(unlockedInformation.Contains("has_diabetes")))
+                    continue;
+                
                 if (!unlockedTopics.Contains(question.Topic))
                     unlockedTopics.Add(question.Topic);
             }
