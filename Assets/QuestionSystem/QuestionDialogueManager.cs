@@ -29,7 +29,12 @@ namespace QuestionSystem
         [SerializeField] int HappyThreshold = 0;
         [SerializeField] int SadThreshold = -5;
         [SerializeField] Image MoodIndicator;
-
+        [SerializeField] List<Question> IrrelevantQuestions;
+        [SerializeField] List<Question> GoodQuestionsAsked;
+        [SerializeField] List<Question> GoodQuestionsMissed;
+        [SerializeField] ReportListHandler IrrelevantQuestionsHandler;
+        [SerializeField] ReportListHandler GoodQuestionsAskedHandler;
+        [SerializeField] ReportListHandler GoodQuestionsMissedHandler;
 
         string NurseGender = "Female";        
         AudioSource PatientSource;
@@ -72,13 +77,14 @@ namespace QuestionSystem
                 }
                 else
                 {
-                    if (!totalInformation.Contains(Dialogue[i].InformationTag))
+                    if (!totalInformation.Contains(Dialogue[i].InformationTag) && Dialogue[i].InformationTag != "")
                     {
                         totalInformation.Add(Dialogue[i].InformationTag);
                     }
                     i++;
                 }
             }
+            /*
             foreach (Question _q in Dialogue)
             {
                 if (_q.PrerequisiteTag != string.Empty)
@@ -91,6 +97,7 @@ namespace QuestionSystem
                     _q.Prerequisite = null;
                 }
             }
+            */
             NurseGender = PlayerPrefs.GetInt("Gender") == 0 ? "Female" : "Male";
             if (NurseGender == "Male")
             {
@@ -173,8 +180,7 @@ namespace QuestionSystem
             {
                 if(_q.Tag == "end_scenario")
                 {
-                    OutroScreen.SetData(MoodSprite(mood),totalInformation.Count, unlockedInformation.Count, DialogueName,"","");
-                    gameObject.SetActive(false);
+                    EndScenario();
                     //shove in a normal mood-based thing to output the mood on the ending screen
                 }
                 if(_q.Tag == "introduction")
@@ -185,11 +191,24 @@ namespace QuestionSystem
                 {
                     DateOfBirthText.text = DateOfBirth;
                 }
-                if (!unlockedInformation.Contains(_q.InformationTag))
+                if(_q.InformationTag != "")
                 {
-                    unlockedInformation.Add(_q.InformationTag);
-                    Debug.Log("Information discovered: " + unlockedInformation.Count + "/" + totalInformation.Count());
+                    if (!unlockedInformation.Contains(_q.InformationTag))
+                    {
+                        unlockedInformation.Add(_q.InformationTag);
+                        GoodQuestionsAsked.Add(_q);
+                        Debug.Log("Information discovered: " + unlockedInformation.Count + "/" + totalInformation.Count());
+                    }
                 }
+                else
+                {
+                    if (!IrrelevantQuestions.Contains(_q))
+                    {
+                        IrrelevantQuestions.Add(_q);
+                        Debug.Log("Information discovered: " + unlockedInformation.Count + "/" + totalInformation.Count());
+                    }
+                }
+
                 if (_q.IsAsked > 0)
                     mood -= _q.IsAsked;
                 _q.IsAsked++;
@@ -218,10 +237,29 @@ namespace QuestionSystem
             questionsCount++;
             if(questionsCount == questionsLimit)
             {
-                OutroScreen.SetData(MoodSprite(mood), totalInformation.Count, unlockedInformation.Count, DialogueName,"","");
-                gameObject.SetActive(false);
+                EndScenario();
             }
             ChangeTopic(_q.Topic, false);
+        }
+
+        public void EndScenario()
+        {
+            OutroScreen.SetData(MoodSprite(mood), totalInformation.Count, unlockedInformation.Count, DialogueName, "", "");
+            gameObject.SetActive(false);
+            IrrelevantQuestionsHandler.Initialize(IrrelevantQuestions);
+            GoodQuestionsAskedHandler.Initialize(GoodQuestionsAsked);
+            GoodQuestionsMissed = new List<Question>();
+            foreach (Question _q in Dialogue)
+            {
+                if(_q.InformationTag != "")
+                {
+                    if (!GoodQuestionsAsked.Contains(_q))
+                    {
+                        GoodQuestionsMissed.Add(_q);
+                    }
+                }
+            }
+            GoodQuestionsMissedHandler.Initialize(GoodQuestionsMissed);
         }
 
         IEnumerator WaitingForTooLong()
