@@ -35,7 +35,6 @@ public class FinalQuestionButton : MonoBehaviour
         Result.LocalizationKey = "QuizAnswer_" + isCorrect;
         Result.Localize();
         OnShownAnswer.Invoke();
-        
     }
 
     public void Deselect()

@@ -10,33 +10,26 @@ namespace QuestionSystem
         static string[] Languages = { "English", "German", "Swedish", "Lithuanian", "Latvian" };
         public Question(string[] values)
         {
-            valuesText = new string[15];
+            valuesText = new string[25];
             Tag = values[0];
             valuesText[0] = values[1];
             valuesText[1] = values[2];
             valuesText[2] = values[3];
+            valuesText[3] = values[4];
+            valuesText[4] = values[5];
 
-            MoodChanges = int.Parse(values[4]);
-            AnimationType = values[5];
+            MoodChanges = int.Parse(values[6]);
+            AnimationType = values[7];
             Prerequisite = null;
             IsAsked = 0;
-            PrerequisiteTag = values[6];
-            Topic = values[7];
-            InformationTag = values[8];
+            PrerequisiteTag = values[8];
+            Topic = values[9];
+            InformationTag = values[10];
 
-            valuesText[3] = values[9];
-            valuesText[4] = values[10];
-            valuesText[5] = values[11];
-            valuesText[6] = values[12];
-            valuesText[7] = values[13];
-            valuesText[8] = values[14];
-            valuesText[9] = values[15];
-            valuesText[10] = values[16];
-            valuesText[11] = values[17];
-            valuesText[12] = values[18];
-            valuesText[13] = values[19];
-            valuesText[14] = values[20];
-
+            for(int i = 5; i < valuesText.Length; i++)
+            {
+                valuesText[i] = values[i + 6];
+            }
         }
         [field: SerializeField] public string Tag { get; set; }
         [field: SerializeField] public string Topic { get; set; }
@@ -47,6 +40,8 @@ namespace QuestionSystem
         [field: SerializeField] public int IsAsked { get; set; }
         [field: SerializeField] public Dictionary<string, string> Answer { get; set; }
         [field: SerializeField] public Dictionary<string, string> Short { get; set; }
+        [field: SerializeField] public Dictionary<string, string> Asked { get; set; }
+        [field: SerializeField] public Dictionary<string, string> Missed { get; set; }
         [field: SerializeField] public string PrerequisiteTag { get; set; }
         [field: SerializeField] public string InformationTag { get; set; }
         public bool PrerequisiteMet()
@@ -61,6 +56,8 @@ namespace QuestionSystem
             Text = new Dictionary<string, string>();
             Answer = new Dictionary<string, string>();
             Short = new Dictionary<string, string>();
+            Asked = new Dictionary<string, string>();
+            Missed = new Dictionary<string, string>();
 
             for (int i = 0; i < valuesText.Length; i++)
             {
@@ -75,10 +72,12 @@ namespace QuestionSystem
             //populate dictionaries from arrays because Unity can't serialize dictionaries
             for (int i = 0; i < 5; i++)
             {
-                int n = i * 3;
+                int n = i * 5;
                 Text[Languages[i]] = valuesText[n];
                 Short[Languages[i]] = valuesText[n + 1];
                 Answer[Languages[i]] = valuesText[n + 2];
+                Asked[Languages[i]] = valuesText[n + 3];
+                Missed[Languages[i]] = valuesText[n + 4];
                 if (Short[Languages[i]] == "" || Short[Languages[i]] == "#VALUE!")
                 {
                     Short[Languages[i]] = Text[Languages[i]];
