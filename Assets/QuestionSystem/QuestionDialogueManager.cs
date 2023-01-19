@@ -127,7 +127,7 @@ namespace QuestionSystem
         {
             foreach (Question question in Dialogue)
             {
-                if (!question.PrerequisiteMet())
+                if (!(unlockedInformation.Contains(question.PrerequisiteTag) || question.PrerequisiteTag == ""))
                     continue;
                 if (!unlockedTopics.Contains(question.Topic))
                     unlockedTopics.Add(question.Topic);
