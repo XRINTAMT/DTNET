@@ -28,6 +28,8 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject lithuanianChosen;
     [SerializeField] private GameObject latvianChosen;
     [SerializeField] private GameObject swedishChosen;
+    [SerializeField] private GameObject assistantChosen;
+    [SerializeField] private GameObject nurseChosen;
     [SerializeField] private AudioMixer AppMixer;
 
     public static float dialogueVolume;
@@ -35,6 +37,7 @@ public class UIController : MonoBehaviour
     public static float musicVolume;
     public static float walkingSpeed;
     public static string language;
+    public static string role;
     public static int teleport;
     public static int subtitles;
     public static int guides;
@@ -50,9 +53,11 @@ public class UIController : MonoBehaviour
         setSoundVolumeStatus.value = PlayerPrefs.GetFloat("soundVolume", 0.5f);
         setMusicVolumeStatus.value = PlayerPrefs.GetFloat("musicVolume", 0.5f);
         setWalkingSpeed.value = PlayerPrefs.GetFloat("walkingSpeed", 1.5f);
+        
         setSubstitlesStatus.isOn = PlayerPrefs.GetInt("Subtitles", 0) == 0;
         teleport = PlayerPrefs.GetInt("MovementType", 0);
         language = PlayerPrefs.GetString("Language", "English");
+        role = PlayerPrefs.GetString("Role", "Assistant");
         LocalizationManager.Language = language;
         teleportChosen.SetActive(teleport == 0);
         smoothChosen.SetActive(teleport == 1);
@@ -62,6 +67,8 @@ public class UIController : MonoBehaviour
         lithuanianChosen.SetActive(language == "Lithuanian");
         latvianChosen.SetActive(language == "Latvian");
         swedishChosen.SetActive(language == "Swedish");
+        assistantChosen.SetActive(role == "Assistant");
+        nurseChosen.SetActive(role == "Nurse");
     }
     public void SetDialogueVolume() 
     {
@@ -144,6 +151,12 @@ public class UIController : MonoBehaviour
     {
         //teleportLeftHand = setTeleportHandStatus.value;
         PlayerPrefs.SetInt("Gender", genderID);
+    }
+
+    public void SetRole(string _role)
+    {
+        //teleportLeftHand = setTeleportHandStatus.value;
+        PlayerPrefs.SetString("Role", _role);
     }
 
     public void SetSubtitles()

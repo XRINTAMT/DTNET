@@ -383,6 +383,9 @@ namespace Autohand {
 
                     if (movementHand==MovementHand.Left)
                     {
+                        if (moveDirection.x > 0) moveDirection.x = 0;
+                        if (moveDirection.z > 0) moveDirection.z = 0;
+                     
                         if (xrTeleporterLinkLeft.enabled)
                             xrTeleporterLinkLeft.enabled = false;
                         if (axis != Vector2.zero && !teleportEnable)
@@ -398,6 +401,9 @@ namespace Autohand {
                     }
                     if (movementHand == MovementHand.Right)
                     {
+                        if (moveDirection.x > 0) moveDirection.x = 0;
+                        if (moveDirection.z > 0) moveDirection.z = 0;
+
                         if (xrTeleporterLinkRight.enabled)
                             xrTeleporterLinkRight.enabled = false;
                         if (axis != Vector2.zero && !teleportEnable)

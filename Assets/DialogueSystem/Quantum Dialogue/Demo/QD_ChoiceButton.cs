@@ -9,6 +9,7 @@ namespace QuantumTek.QuantumDialogue.Demo
         public QD_DialogueDemo demo;
         public string text;
         public GameObject dialogue;
+        [SerializeField] GameObject guideDialogieUI;
         private void Start()
         {
             text = GetComponent<Text>().text;
@@ -23,6 +24,7 @@ namespace QuantumTek.QuantumDialogue.Demo
             if (text == "Close")
             {
                 dialogue.SetActive(false);
+                if (guideDialogieUI != null) guideDialogieUI.SetActive(true);               
             }
             if (text == "Give the observation data to doctor")
             {

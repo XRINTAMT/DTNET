@@ -13,10 +13,12 @@ public class DialogueEvent : MonoBehaviour
     struct DialogueTask
     {
         public int DialogueID;
+        public bool started;
         public bool completed;
     }
 
     [SerializeField] DialogueTask[] Phrases;
+    [SerializeField] UnityEvent OnStart;
     [SerializeField] UnityEvent OnComplete;
 
     void Start()
@@ -37,9 +39,27 @@ public class DialogueEvent : MonoBehaviour
                 Phrases[i].completed = true;
                 continue;
             }
+
             completed = false;
         }
         if(completed)
             OnComplete.Invoke();
+
+        for (int i = 0; i < Phrases.Length; i++)
+        {
+            if (GetComponent<QD_DialogueDemo>().handler.currentMessageInfo.ID == Phrases[i].DialogueID && !Phrases[i].started)
+            {
+                Phrases[i].started = true;
+                OnStart.Invoke();
+            }
+            else if (GetComponent<QD_DialogueDemo>().handler.currentMessageInfo.ID != Phrases[i].DialogueID && Phrases[i].started)
+            {
+                Phrases[i].started = false;
+            }
+
+          
+        }
     }
+
+    
 }
