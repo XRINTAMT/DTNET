@@ -47,7 +47,8 @@ namespace QuestionSystem
             string Language = PlayerPrefs.GetString("Language", "English");
             if (question.Text[Language] != question.Short[Language])
             {
-                FullTextWindow.SetActive(true);
+                //Not showing that for now
+                //FullTextWindow.SetActive(true);
             }
         }
 
