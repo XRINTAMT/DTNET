@@ -6,6 +6,7 @@ public class HeadCharacterFollow : MonoBehaviour
 {
 
     public Transform player;
+    public Transform defaultPos;
     Transform m_trLookAt = null;
     Transform m_Transform;
     Vector3 m_vecInitPosition;
@@ -20,6 +21,14 @@ public class HeadCharacterFollow : MonoBehaviour
         m_Transform = transform;
         m_vecInitEuler = m_Transform.localEulerAngles;
         m_vecInitPosition = m_Transform.localPosition;
+        m_trLookAt = defaultPos;
+    }
+    public void ExitArea() 
+    {
+        m_trLookAt = defaultPos;
+    }
+    public void EnterArea()
+    {
         m_trLookAt = player;
     }
     public Animator Animator
