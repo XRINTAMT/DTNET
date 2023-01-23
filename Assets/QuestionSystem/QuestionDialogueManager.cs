@@ -36,7 +36,7 @@ namespace QuestionSystem
         [SerializeField] ReportListHandler GoodQuestionsAskedHandler;
         [SerializeField] ReportListHandler GoodQuestionsMissedHandler;
 
-        string NurseGender = "Female";        
+        string NurseGender = "Female";
         AudioSource PatientSource;
         FaceAnimationController FAController;
         Animator BodyAnimator;
@@ -120,7 +120,7 @@ namespace QuestionSystem
             Refresh();
             ChangeTopic("introduction");
             //QuestionTimeout = StartCoroutine(WaitingForTooLong());
-            
+
         }
 
         private void Refresh()
@@ -164,12 +164,12 @@ namespace QuestionSystem
 
         public void Ask(Question _q)
         {
-            if(QuestionTimeout != null)
+            if (QuestionTimeout != null)
                 StopCoroutine(QuestionTimeout);
             CMenu.gameObject.SetActive(false);
             DLines.gameObject.SetActive(true);
             DLines.RenderQuestion(_q);
-            NurseSource.clip = Resources.Load<AudioClip>("DialogueAudios/"+PlayerPrefs.GetString("Language","English")+"/"+NurseGender+ "Nurse/" + _q.Tag) as AudioClip;
+            NurseSource.clip = Resources.Load<AudioClip>("DialogueAudios/" + PlayerPrefs.GetString("Language", "English") + "/" + NurseGender + "Nurse/" + _q.Tag) as AudioClip;
             NurseSource.Play();
             Refresh();
         }
@@ -178,7 +178,7 @@ namespace QuestionSystem
         {
             if (_q != null)
             {
-                if(_q.Tag == "introduction")
+                if (_q.Tag == "introduction")
                 {
                     NameText.text = Name;
                 }
@@ -186,7 +186,7 @@ namespace QuestionSystem
                 {
                     DateOfBirthText.text = DateOfBirth;
                 }
-                if(_q.Relevance == 1)
+                if (_q.Relevance == 1)
                 {
                     if (!unlockedInformation.Contains(_q.InformationTag))
                     {
@@ -228,16 +228,10 @@ namespace QuestionSystem
             CMenu.gameObject.SetActive(true);
             DLines.gameObject.SetActive(false);
             QuestionTimeout = StartCoroutine(WaitingForTooLong());
-            
+
             questionsCount++;
-            if(questionsCount == questionsLimit)
+            if (questionsCount == questionsLimit || _q.Tag == "end_scenario")
             {
-                EndScenario();
-            }
-            if (_q.Tag == "end_scenario")
-            {
-                //unlockedInformation.Add("end_scenario");
-                //GoodQuestionsAsked.Add(_q);
                 EndScenario();
             }
             ChangeTopic(_q.Topic, false);
