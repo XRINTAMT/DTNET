@@ -77,7 +77,7 @@ namespace QuestionSystem
                 }
                 else
                 {
-                    if (!totalInformation.Contains(Dialogue[i].InformationTag) && Dialogue[i].InformationTag != "")
+                    if (!totalInformation.Contains(Dialogue[i].InformationTag) && Dialogue[i].Relevance == 1)
                     {
                         totalInformation.Add(Dialogue[i].InformationTag);
                     }
@@ -178,11 +178,6 @@ namespace QuestionSystem
         {
             if (_q != null)
             {
-                if(_q.Tag == "end_scenario")
-                {
-                    EndScenario();
-                    //shove in a normal mood-based thing to output the mood on the ending screen
-                }
                 if(_q.Tag == "introduction")
                 {
                     NameText.text = Name;
@@ -191,7 +186,7 @@ namespace QuestionSystem
                 {
                     DateOfBirthText.text = DateOfBirth;
                 }
-                if(_q.InformationTag != "")
+                if(_q.Relevance == 1)
                 {
                     if (!unlockedInformation.Contains(_q.InformationTag))
                     {
@@ -239,6 +234,12 @@ namespace QuestionSystem
             {
                 EndScenario();
             }
+            if (_q.Tag == "end_scenario")
+            {
+                //unlockedInformation.Add("end_scenario");
+                //GoodQuestionsAsked.Add(_q);
+                EndScenario();
+            }
             ChangeTopic(_q.Topic, false);
         }
 
@@ -251,7 +252,7 @@ namespace QuestionSystem
             GoodQuestionsMissed = new List<Question>();
             foreach (Question _q in Dialogue)
             {
-                if(_q.InformationTag != "")
+                if(_q.Relevance == 1)
                 {
                     if (!GoodQuestionsAsked.Contains(_q))
                     {
