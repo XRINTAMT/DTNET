@@ -7,12 +7,16 @@ public class HeadCharacterFollow : MonoBehaviour
 
     public Transform player;
     public Transform defaultPos;
-    Transform m_trLookAt = null;
+    public Transform m_trLookAt = null;
     Transform m_Transform;
     Vector3 m_vecInitPosition;
     Vector3 m_vecInitEuler;
-    float m_LookAtWeight = 0;
+    public float m_LookAtWeight = 0;
     [SerializeField] protected Animator m_Animator;
+    public bool inArea;
+    public float interpolationSpeed;
+    Vector3 startPos;
+    Quaternion startRot;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,14 +26,35 @@ public class HeadCharacterFollow : MonoBehaviour
         m_vecInitEuler = m_Transform.localEulerAngles;
         m_vecInitPosition = m_Transform.localPosition;
         m_trLookAt = defaultPos;
+        inArea = false;
+
+        startPos = defaultPos.position;
+        startRot = defaultPos.rotation;
+    }
+    private void Update()
+    {
+
+        if (defaultPos.position != startPos)
+        {
+            defaultPos.position = Vector3.MoveTowards(defaultPos.position, startPos, interpolationSpeed * Time.deltaTime);
+        }
+        if (defaultPos.rotation != startRot)
+        {
+            defaultPos.rotation = Quaternion.RotateTowards(defaultPos.rotation, startRot, 10*interpolationSpeed * Time.deltaTime);
+        }
+
     }
     public void ExitArea() 
     {
-        m_trLookAt = defaultPos;
+        defaultPos.position = player.position;
+        defaultPos.rotation = player.rotation;
+        inArea = false;
     }
     public void EnterArea()
     {
-        m_trLookAt = player;
+        m_LookAtWeight = 0;
+        inArea = true;
+      
     }
     public Animator Animator
     {
@@ -38,7 +63,11 @@ public class HeadCharacterFollow : MonoBehaviour
     }
     void OnAnimatorIK(int layerIndex)
     {
-        m_trLookAt = player;
+        if (inArea) m_trLookAt = player;
+
+        if (!inArea) m_trLookAt = defaultPos;
+        
+      
         if (!Animator)
             return;
         if (m_trLookAt == null)
@@ -48,6 +77,7 @@ public class HeadCharacterFollow : MonoBehaviour
         }
         _StartLookAt(m_trLookAt.position);
     }
+   
     void _StartLookAt(Vector3 lookPos)
     {
         m_LookAtWeight = Mathf.Clamp(m_LookAtWeight + 0.01f, 0, 1);
