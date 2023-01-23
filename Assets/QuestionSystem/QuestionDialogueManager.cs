@@ -36,7 +36,7 @@ namespace QuestionSystem
         [SerializeField] ReportListHandler GoodQuestionsAskedHandler;
         [SerializeField] ReportListHandler GoodQuestionsMissedHandler;
 
-        string NurseGender = "Female";        
+        string NurseGender = "Female";
         AudioSource PatientSource;
         FaceAnimationController FAController;
         Animator BodyAnimator;
@@ -77,7 +77,7 @@ namespace QuestionSystem
                 }
                 else
                 {
-                    if (!totalInformation.Contains(Dialogue[i].InformationTag) && Dialogue[i].InformationTag != "")
+                    if (!totalInformation.Contains(Dialogue[i].InformationTag) && Dialogue[i].Relevance == 1)
                     {
                         totalInformation.Add(Dialogue[i].InformationTag);
                     }
@@ -120,7 +120,7 @@ namespace QuestionSystem
             Refresh();
             ChangeTopic("introduction");
             //QuestionTimeout = StartCoroutine(WaitingForTooLong());
-            
+
         }
 
         private void Refresh()
@@ -164,12 +164,12 @@ namespace QuestionSystem
 
         public void Ask(Question _q)
         {
-            if(QuestionTimeout != null)
+            if (QuestionTimeout != null)
                 StopCoroutine(QuestionTimeout);
             CMenu.gameObject.SetActive(false);
             DLines.gameObject.SetActive(true);
             DLines.RenderQuestion(_q);
-            NurseSource.clip = Resources.Load<AudioClip>("DialogueAudios/"+PlayerPrefs.GetString("Language","English")+"/"+NurseGender+ "Nurse/" + _q.Tag) as AudioClip;
+            NurseSource.clip = Resources.Load<AudioClip>("DialogueAudios/" + PlayerPrefs.GetString("Language", "English") + "/" + NurseGender + "Nurse/" + _q.Tag) as AudioClip;
             NurseSource.Play();
             Refresh();
         }
@@ -178,12 +178,7 @@ namespace QuestionSystem
         {
             if (_q != null)
             {
-                if(_q.Tag == "end_scenario")
-                {
-                    EndScenario();
-                    //shove in a normal mood-based thing to output the mood on the ending screen
-                }
-                if(_q.Tag == "introduction")
+                if (_q.Tag == "introduction")
                 {
                     NameText.text = Name;
                 }
@@ -191,7 +186,7 @@ namespace QuestionSystem
                 {
                     DateOfBirthText.text = DateOfBirth;
                 }
-                if(_q.InformationTag != "")
+                if (_q.Relevance == 1)
                 {
                     if (!unlockedInformation.Contains(_q.InformationTag))
                     {
@@ -233,9 +228,9 @@ namespace QuestionSystem
             CMenu.gameObject.SetActive(true);
             DLines.gameObject.SetActive(false);
             QuestionTimeout = StartCoroutine(WaitingForTooLong());
-            
+
             questionsCount++;
-            if(questionsCount == questionsLimit)
+            if (questionsCount == questionsLimit || _q.Tag == "end_scenario")
             {
                 EndScenario();
             }
@@ -251,7 +246,7 @@ namespace QuestionSystem
             GoodQuestionsMissed = new List<Question>();
             foreach (Question _q in Dialogue)
             {
-                if(_q.InformationTag != "")
+                if(_q.Relevance == 1)
                 {
                     if (!GoodQuestionsAsked.Contains(_q))
                     {
