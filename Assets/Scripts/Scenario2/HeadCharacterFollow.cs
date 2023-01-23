@@ -7,13 +7,14 @@ public class HeadCharacterFollow : MonoBehaviour
 
     public Transform player;
     public Transform defaultPos;
-    public Transform m_trLookAt = null;
+    public Transform playerPos;
+    Transform m_trLookAt = null;
     Transform m_Transform;
     Vector3 m_vecInitPosition;
     Vector3 m_vecInitEuler;
-    public float m_LookAtWeight = 0;
+    float m_LookAtWeight = 0;
     [SerializeField] protected Animator m_Animator;
-    public bool inArea;
+    bool inArea;
     public float interpolationSpeed;
     Vector3 startPos;
     Quaternion startRot;
@@ -43,16 +44,27 @@ public class HeadCharacterFollow : MonoBehaviour
             defaultPos.rotation = Quaternion.RotateTowards(defaultPos.rotation, startRot, 10*interpolationSpeed * Time.deltaTime);
         }
 
+        if (playerPos.position != player.position)
+        {
+            playerPos.position = Vector3.MoveTowards(playerPos.position, player.position, interpolationSpeed * Time.deltaTime);
+        }
+        if (defaultPos.rotation != player.rotation)
+        {
+            playerPos.rotation = Quaternion.RotateTowards(playerPos.rotation, player.rotation, 10 * interpolationSpeed * Time.deltaTime);
+        }
+
     }
     public void ExitArea() 
     {
-        defaultPos.position = player.position;
-        defaultPos.rotation = player.rotation;
+        defaultPos.position = playerPos.position;
+        defaultPos.rotation = playerPos.rotation;
         inArea = false;
     }
     public void EnterArea()
     {
-        m_LookAtWeight = 0;
+        playerPos.position = defaultPos.position;
+        playerPos.rotation = defaultPos.rotation;
+        //m_LookAtWeight = 0;
         inArea = true;
       
     }
@@ -63,7 +75,7 @@ public class HeadCharacterFollow : MonoBehaviour
     }
     void OnAnimatorIK(int layerIndex)
     {
-        if (inArea) m_trLookAt = player;
+        if (inArea) m_trLookAt = playerPos;
 
         if (!inArea) m_trLookAt = defaultPos;
         

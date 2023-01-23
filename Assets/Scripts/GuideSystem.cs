@@ -12,7 +12,10 @@ public class GuideSystem : MonoBehaviour
     {
         if (canvas.activeInHierarchy)
         {
-            dialogueGuide.SetActive(true);
+            if (dialogueGuide!=null)
+            {
+                dialogueGuide.SetActive(true);
+            }
         }
     }
 
