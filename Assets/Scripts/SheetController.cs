@@ -24,6 +24,7 @@ public class SheetController : MonoBehaviour
 
     Vector3 interpolatePos;
     bool onTrigger;
+    GameObject objChangeScale;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -40,6 +41,11 @@ public class SheetController : MonoBehaviour
         }
     }
 
+    public void ChangeScale(GameObject obj) 
+    {
+        objChangeScale = obj;
+
+    }
     public void Grab()
     {
         grab = true;
@@ -122,6 +128,7 @@ public class SheetController : MonoBehaviour
         canvas.GetComponent<GraphicRaycaster>().enabled = false;
         buttonExit.SetActive(false);
         onPlace = true;
+        gameObject.transform.localScale = new Vector3(1, 1, 1);
     }
 
  
@@ -150,7 +157,12 @@ public class SheetController : MonoBehaviour
         {
             modelCollider.layer = 10;
             rb.isKinematic = true;
+            if (objChangeScale!=null)
+            {
+                objChangeScale.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            }
         }
+
     }
 
     private void OnTriggerEnter(Collider other)
