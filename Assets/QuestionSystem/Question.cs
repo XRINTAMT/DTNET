@@ -25,10 +25,11 @@ namespace QuestionSystem
             PrerequisiteTag = values[8];
             Topic = values[9];
             InformationTag = values[10];
+            Relevance = int.Parse(values[11]);
 
             for(int i = 5; i < valuesText.Length; i++)
             {
-                valuesText[i] = values[i + 6];
+                valuesText[i] = values[i + 7];
             }
         }
         [field: SerializeField] public string Tag { get; set; }
@@ -38,6 +39,7 @@ namespace QuestionSystem
         [field: SerializeField] public string AnimationType { get; set; }
         [field: SerializeReference] public Question Prerequisite { get; set; }
         [field: SerializeField] public int IsAsked { get; set; }
+        [field: SerializeField] public int Relevance { get; set; }
         [field: SerializeField] public Dictionary<string, string> Answer { get; set; }
         [field: SerializeField] public Dictionary<string, string> Short { get; set; }
         [field: SerializeField] public Dictionary<string, string> Asked { get; set; }

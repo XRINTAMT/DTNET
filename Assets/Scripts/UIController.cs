@@ -52,8 +52,7 @@ public class UIController : MonoBehaviour
         setDialogueVolumeStatus.value = PlayerPrefs.GetFloat("dialogueVolume", 0.5f);
         setSoundVolumeStatus.value = PlayerPrefs.GetFloat("soundVolume", 0.5f);
         setMusicVolumeStatus.value = PlayerPrefs.GetFloat("musicVolume", 0.5f);
-        setWalkingSpeed.value = PlayerPrefs.GetFloat("walkingSpeed", 1.5f);
-        
+        //setWalkingSpeed.value = PlayerPrefs.GetFloat("walkingSpeed", 1.5f);
         setSubstitlesStatus.isOn = PlayerPrefs.GetInt("Subtitles", 0) == 0;
         teleport = PlayerPrefs.GetInt("MovementType", 0);
         language = PlayerPrefs.GetString("Language", "English");
