@@ -2048,6 +2048,46 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3184878397798626245}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &551461755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551461750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4c2ae21dabbacc449007a18b702fc8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Phrases:
+  - DialogueID: 3d00000038000000
+    started: 0
+    completed: 0
+  - DialogueID: 010000003000000034000000
+    started: 0
+    completed: 0
+  - DialogueID: 0600000015000000
+    started: 0
+    completed: 0
+  OnStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 551461757}
+        m_TargetAssemblyTypeName: ScenarioTaskSystem.Task, Assembly-CSharp
+        m_MethodName: Complete
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &551461757 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3184878398329884856, guid: e4ee99523d710af4397e71218063f89d,
@@ -59835,7 +59875,8 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 7942002211254752804}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7979484508865952173, guid: e4ee99523d710af4397e71218063f89d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e4ee99523d710af4397e71218063f89d, type: 3}
 --- !u!114 &3184878397798626246 stripped
 MonoBehaviour:
@@ -67414,6 +67455,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.10176371
+      objectReference: {fileID: 0}
+    - target: {fileID: 7042733557715921067, guid: de94735e8202efd49bcfb8a7a0721fef,
+        type: 3}
+      propertyPath: editorData.vertexPathUpToDate
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7128306998621237283, guid: de94735e8202efd49bcfb8a7a0721fef,
         type: 3}
