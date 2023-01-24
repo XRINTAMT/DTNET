@@ -17,6 +17,7 @@ public class CompletedScenario : MonoBehaviour
     [SerializeField] GameObject Quiz;
     [SerializeField] GameObject Menu;
     [SerializeField] GameObject QuizResult;
+    [SerializeField] Text ScenarioTime;
 
     string scenario;
     public bool activatePanel;
@@ -26,15 +27,17 @@ public class CompletedScenario : MonoBehaviour
     {
         pauseManager=GetComponent<PauseManager>();
     }
-    public void SetData(Sprite mood, int totlaInformation, int totlaFound, string scenarioName , string informationUncovered, string nextStepsWithPatient) 
+    public void SetData(Sprite mood, int totalInformation, int totlaFound, string scenarioName , string informationUncovered, string nextStepsWithPatient, double scenarioTime) 
     {
         pauseManager.ShowOutroMessage();
         panelCompletedScenario.SetActive(true);
         moodStatus.sprite = mood;
         
-        answersProgress.text = "" + totlaFound  + "/" + totlaInformation /*+ "%"*/;
+        answersProgress.text = "" + totlaFound  + "/" + totalInformation /*+ "%"*/;
         this.informationUncovered.text = "" + informationUncovered;
         this.nextStepsWithPatient.text = "" + nextStepsWithPatient;
+
+        this.ScenarioTime.text = "Your time: " + ((int)(scenarioTime)) + " minutes";
         scenario = scenarioName;
         GiveQuestionsAway();
 

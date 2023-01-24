@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +37,8 @@ namespace QuestionSystem
         [SerializeField] ReportListHandler GoodQuestionsAskedHandler;
         [SerializeField] ReportListHandler GoodQuestionsMissedHandler;
 
+        private DateTime scenarioStartTime;
+        
         string NurseGender = "Female";
         AudioSource PatientSource;
         FaceAnimationController FAController;
@@ -68,6 +71,7 @@ namespace QuestionSystem
             BodyAnimator = PatientObject.GetComponent<Animator>();
             totalInformation = new List<string>();
             unlockedInformation = new List<string>();
+            scenarioStartTime = System.DateTime.Now;
             for (int i = 0; i < Dialogue.Count;)
             {
                 Dialogue[i].GetReady();
@@ -243,7 +247,9 @@ namespace QuestionSystem
 
         public void EndScenario()
         {
-            OutroScreen.SetData(MoodSprite(mood), totalInformation.Count, unlockedInformation.Count, DialogueName, "", "");
+            DateTime endTime = DateTime.Now;
+            var timeDiff = endTime.Subtract(scenarioStartTime);
+            OutroScreen.SetData(MoodSprite(mood), totalInformation.Count, unlockedInformation.Count, DialogueName, "", "", timeDiff.TotalMinutes);
             gameObject.SetActive(false);
             IrrelevantQuestionsHandler.Initialize(IrrelevantQuestions);
             GoodQuestionsAskedHandler.Initialize(GoodQuestionsAsked);
