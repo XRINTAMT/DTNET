@@ -7,15 +7,14 @@ public class GuideSystem : MonoBehaviour
     [SerializeField] private List <GameObject> guidePanel;
     [SerializeField] GameObject canvas;
     [SerializeField] GameObject dialogueGuide;
+    [SerializeField] GameObject arrowObservationSheet;
     // Start is called before the first frame update
     void Start()
     {
-        if (canvas.activeInHierarchy)
+        if (PlayerPrefs.GetInt("GuidedMode") == 1)
         {
-            if (dialogueGuide!=null)
-            {
-                dialogueGuide.SetActive(true);
-            }
+            if (dialogueGuide != null) dialogueGuide.SetActive(true);
+            if (arrowObservationSheet != null) arrowObservationSheet.SetActive(true);
         }
     }
 

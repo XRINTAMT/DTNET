@@ -48,6 +48,7 @@ public class SheetController : MonoBehaviour
     }
     public void Grab()
     {
+        if (objChangeScale != null) objChangeScale.transform.localScale = new Vector3(1, 1f, 1f);
         grab = true;
         if (inHead)
         {
@@ -115,6 +116,7 @@ public class SheetController : MonoBehaviour
             rb.useGravity = true;
             rb.constraints = 0;
         }
+  
         onPlace = false;
     }
  
@@ -128,7 +130,8 @@ public class SheetController : MonoBehaviour
         canvas.GetComponent<GraphicRaycaster>().enabled = false;
         buttonExit.SetActive(false);
         onPlace = true;
-        gameObject.transform.localScale = new Vector3(1, 1, 1);
+        if (objChangeScale != null) objChangeScale.transform.localScale = new Vector3(1, 1f, 1f);
+       
     }
 
  
@@ -142,6 +145,8 @@ public class SheetController : MonoBehaviour
             transform.parent = cam.transform;
             canvas.SetActive(true);
             GetComponent<Grabbable>().enabled = true;
+            if (objChangeScale != null) objChangeScale.transform.localScale = new Vector3(1, 1.5f, 1.5f);
+         
             if (body != null)
             {
                 transform.parent = body.transform;
@@ -157,10 +162,8 @@ public class SheetController : MonoBehaviour
         {
             modelCollider.layer = 10;
             rb.isKinematic = true;
-            if (objChangeScale!=null)
-            {
-                objChangeScale.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-            }
+            if (objChangeScale!=null) objChangeScale.transform.localScale = new Vector3(1, 1.5f, 1.5f);
+          
         }
 
     }
