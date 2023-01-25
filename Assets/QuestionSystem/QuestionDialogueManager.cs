@@ -206,7 +206,6 @@ namespace QuestionSystem
 
                 if (_q.IsAsked > 0)
                     mood -= _q.IsAsked;
-                _q.IsAsked++;
                 mood += _q.MoodChanges;
 
                 MoodIndicator.sprite = MoodSprite(mood);
@@ -218,7 +217,16 @@ namespace QuestionSystem
 
                 //load the audio for the patient here
                 PatientSource.clip = Resources.Load<AudioClip>("DialogueAudios/" + PlayerPrefs.GetString("Language", "English") + "/" + DialogueName + "/" + _q.Tag) as AudioClip;
-                PatientSource.Play();
+
+                if (_q.IsAsked > 0)
+                {
+                    StartCoroutine(AnswerRepeated(PatientSource.clip));
+                }
+                else
+                {
+                    PatientSource.Play();
+                }
+                _q.IsAsked++;
             }
 
         }
@@ -267,6 +275,20 @@ namespace QuestionSystem
             DLines.gameObject.SetActive(true);
             DLines.TimeoutNotice();
             mood -= 1;
+            PatientSource.clip = Resources.Load<AudioClip>("DialogueAudios/" + PlayerPrefs.GetString("Language", "English") + "/" + DialogueName + "/waiting_for_too_long") as AudioClip;
+            PatientSource.Play();
+        }
+
+        IEnumerator AnswerRepeated(AudioClip _ac)
+        {
+            PatientSource.clip = Resources.Load<AudioClip>("DialogueAudios/" + PlayerPrefs.GetString("Language", "English") + "/" + DialogueName + "/repeated_question") as AudioClip;
+            PatientSource.Play();
+            while (PatientSource.isPlaying)
+            {
+                yield return 0;
+            }
+            PatientSource.clip = _ac;
+            PatientSource.Play();
         }
 
         #if UNITY_EDITOR
