@@ -330,7 +330,6 @@ GameObject:
   - component: {fileID: 3772312958659006575}
   - component: {fileID: 5456947127433589321}
   - component: {fileID: 5839741580292810278}
-  - component: {fileID: 9005921756797473083}
   m_Layer: 0
   m_Name: aussen
   m_TagString: Untagged
@@ -413,25 +412,11 @@ MeshCollider:
   m_GameObject: {fileID: 5839741580292810273}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3490774451810921041, guid: 302bfa9083bb7cd4bb7518cca4a571ef, type: 3}
---- !u!114 &9005921756797473083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5839741580292810273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdede635c6680904c94321c539aa4d2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  storeInTexcoordChannel: 1
-  cospatialVertexDistance: 0.01
 --- !u!1 &8512265354180483939
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,6 +585,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8512265354180483942}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onRelease:
     m_PersistentCalls:
       m_Calls:
@@ -616,6 +625,18 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 7861938171616032520}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 8512265354180483942}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
@@ -668,9 +689,9 @@ MonoBehaviour:
   poseScriptable: {fileID: 0}
   editorHand: {fileID: 0}
   rightPose:
-    handOffset: {x: 0.44799802, y: -1.2259996, z: 0.16600016}
+    handOffset: {x: 0.51833, y: 0.47833526, z: -0.07499902}
     rotationOffset: {x: 0, y: 0, z: 0}
-    localQuaternionOffset: {x: 0.70970356, y: 0.16773511, z: 0.056104194, w: -0.6819371}
+    localQuaternionOffset: {x: 0.6993307, y: 0.10457814, z: -0.10457814, w: -0.6993307}
     posePositions:
     - {x: 0.12070954, y: -0.01766678, z: 0.021100923}
     - {x: 0.042893447, y: -0.0000084609355, z: 0.0000017032212}
@@ -688,18 +709,18 @@ MonoBehaviour:
     - {x: 0.03575829, y: 0.0000012743292, z: 0.0000049409896}
     - {x: 0.029866012, y: 0.000013231267, z: 0.0000070348688}
     - {x: 0.0278, y: -0.0051, z: -0.0043}
-    - {x: 0.0434, y: -0.0092, z: 0.03}
-    - {x: 0.038290836, y: -0.000010580448, z: 0.0046414235}
+    - {x: 0.039431002, y: -0.007828, z: 0.025884}
+    - {x: 0.038736325, y: -0.001230396, z: 0.003151126}
     - {x: 0.040632855, y: -0.000003362748, z: -0.0000025826553}
     - {x: 0.02917411, y: -0.0067583295, z: -0.0035}
     poseRotations:
-    - {x: 0.048839264, y: -0.048004583, z: -0.17720239, w: 0.981789}
-    - {x: 0.012964155, y: 0.0076526077, z: -0.18162045, w: 0.9832535}
-    - {x: 0.0110589955, y: -0.0072063063, z: 0.02342868, w: 0.9996384}
+    - {x: 0.03762016, y: -0.04697502, z: -0.22690299, w: 0.97205615}
+    - {x: 0.012090334, y: 0.008426229, z: -0.23415653, w: 0.97208726}
+    - {x: 0.011470773, y: -0.006530385, z: -0.036523085, w: 0.99924564}
     - {x: 0, y: 0, z: 0, w: 1}
-    - {x: -0.018197786, y: 0.033973724, z: -0.17901525, w: 0.9830911}
-    - {x: 0.008225996, y: -0.0021535852, z: -0.20985511, w: 0.9776956}
-    - {x: -0.0008548442, y: 0.038891677, z: 0.07040791, w: 0.9967595}
+    - {x: -0.008035168, y: 0.034045096, z: -0.12858711, w: 0.9910811}
+    - {x: 0.008592639, y: -0.0028036223, z: -0.14259823, w: 0.9897394}
+    - {x: 0.0018915635, y: 0.038855124, z: 0.14055783, w: 0.98930794}
     - {x: 0, y: 0, z: 0, w: 1}
     - {x: -0.18063821, y: 0.08768989, z: -0.5383101, w: 0.81847584}
     - {x: 0.021067271, y: 0.10005972, z: -0.76825476, w: 0.6319248}
@@ -709,15 +730,15 @@ MonoBehaviour:
     - {x: 0.0047046626, y: 0.024930602, z: -0.7743819, w: 0.63220966}
     - {x: -0.0022950498, y: -0.0178553, z: -0.5584907, w: 0.8293155}
     - {x: 0, y: 0, z: 0, w: 1}
-    - {x: 0.58781916, y: -0.5610279, z: -0.10624285, w: 0.5730871}
-    - {x: -0.0976416, y: -0.09640635, z: -0.3534336, w: 0.92534137}
-    - {x: 0.02522973, y: 0.0436969, z: -0.58685035, w: 0.80812174}
+    - {x: 0.5793148, y: -0.47097683, z: 0.026596839, w: 0.6647313}
+    - {x: -0.16943568, y: -0.07152748, z: -0.22102773, w: 0.95776933}
+    - {x: 0.038445134, y: 0.032679327, z: -0.2812018, w: 0.9583213}
     - {x: 0, y: 0, z: 0, w: 1}
   rightPoseSet: 1
   leftPose:
-    handOffset: {x: -0.44799802, y: -1.2259996, z: 0.16600016}
+    handOffset: {x: -0.51833, y: 0.47833526, z: -0.07499902}
     rotationOffset: {x: 0, y: 0, z: 0}
-    localQuaternionOffset: {x: 0.70970356, y: -0.16773511, z: -0.056104194, w: -0.6819371}
+    localQuaternionOffset: {x: 0.6993307, y: -0.10457814, z: 0.10457814, w: -0.6993307}
     posePositions:
     - {x: 0.12070954, y: -0.01766678, z: 0.021100923}
     - {x: 0.042893447, y: -0.0000084609355, z: 0.0000017032212}
@@ -735,18 +756,18 @@ MonoBehaviour:
     - {x: 0.03575829, y: 0.0000012743292, z: 0.0000049409896}
     - {x: 0.029866012, y: 0.000013231267, z: 0.0000070348688}
     - {x: 0.0278, y: -0.0051, z: -0.0043}
-    - {x: 0.0434, y: -0.0092, z: 0.03}
-    - {x: 0.038290836, y: -0.000010580448, z: 0.0046414235}
+    - {x: 0.039431002, y: -0.007828, z: 0.025884}
+    - {x: 0.038736325, y: -0.001230396, z: 0.003151126}
     - {x: 0.040632855, y: -0.000003362748, z: -0.0000025826553}
     - {x: 0.02917411, y: -0.0067583295, z: -0.0035}
     poseRotations:
-    - {x: 0.048839264, y: -0.048004583, z: -0.17720239, w: 0.981789}
-    - {x: 0.012964155, y: 0.0076526077, z: -0.18162045, w: 0.9832535}
-    - {x: 0.0110589955, y: -0.0072063063, z: 0.02342868, w: 0.9996384}
+    - {x: 0.03762016, y: -0.04697502, z: -0.22690299, w: 0.97205615}
+    - {x: 0.012090334, y: 0.008426229, z: -0.23415653, w: 0.97208726}
+    - {x: 0.011470773, y: -0.006530385, z: -0.036523085, w: 0.99924564}
     - {x: 0, y: 0, z: 0, w: 1}
-    - {x: -0.018197786, y: 0.033973724, z: -0.17901525, w: 0.9830911}
-    - {x: 0.008225996, y: -0.0021535852, z: -0.20985511, w: 0.9776956}
-    - {x: -0.0008548442, y: 0.038891677, z: 0.07040791, w: 0.9967595}
+    - {x: -0.008035168, y: 0.034045096, z: -0.12858711, w: 0.9910811}
+    - {x: 0.008592639, y: -0.0028036223, z: -0.14259823, w: 0.9897394}
+    - {x: 0.0018915635, y: 0.038855124, z: 0.14055783, w: 0.98930794}
     - {x: 0, y: 0, z: 0, w: 1}
     - {x: -0.18063821, y: 0.08768989, z: -0.5383101, w: 0.81847584}
     - {x: 0.021067271, y: 0.10005972, z: -0.76825476, w: 0.6319248}
@@ -756,9 +777,9 @@ MonoBehaviour:
     - {x: 0.0047046626, y: 0.024930602, z: -0.7743819, w: 0.63220966}
     - {x: -0.0022950498, y: -0.0178553, z: -0.5584907, w: 0.8293155}
     - {x: 0, y: 0, z: 0, w: 1}
-    - {x: 0.58781916, y: -0.5610279, z: -0.10624285, w: 0.5730871}
-    - {x: -0.0976416, y: -0.09640635, z: -0.3534336, w: 0.92534137}
-    - {x: 0.02522973, y: 0.0436969, z: -0.58685035, w: 0.80812174}
+    - {x: 0.5793148, y: -0.47097683, z: 0.026596839, w: 0.6647313}
+    - {x: -0.16943568, y: -0.07152748, z: -0.22102773, w: 0.95776933}
+    - {x: 0.038445134, y: 0.032679327, z: -0.2812018, w: 0.9583213}
     - {x: 0, y: 0, z: 0, w: 1}
   leftPoseSet: 1
   centerObject: {fileID: 0}
@@ -779,7 +800,8 @@ AudioSource:
   m_GameObject: {fileID: 8512265354180483939}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6425683029024234107, guid: a267354bf1d076941bb945795e577cff,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: d80edf00be4412f4a8d75b2729d47c14, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
