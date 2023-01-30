@@ -46,6 +46,7 @@ namespace QuestionSystem
         Coroutine QuestionTimeout;
         public bool Sync;
         int questionsCount = 0;
+        Question Greeting;
 
 
         private Sprite MoodSprite(int _mood)
@@ -242,11 +243,18 @@ namespace QuestionSystem
             {
                 EndScenario();
             }
+            if(questionsCount == 1)
+            {
+                Greeting = Dialogue.Find(question => question.Tag == "introduction");
+                Dialogue.Remove(Greeting);
+            }
             ChangeTopic(_q.Topic, false);
         }
 
         public void EndScenario()
         {
+            if (Greeting != null)
+                Dialogue.Add(Greeting);
             OutroScreen.SetData(MoodSprite(mood), totalInformation.Count, unlockedInformation.Count, DialogueName, "", "");
             gameObject.SetActive(false);
             IrrelevantQuestionsHandler.Initialize(IrrelevantQuestions);
