@@ -17,6 +17,7 @@ public class SheetController : MonoBehaviour
     [SerializeField] GameObject buttonExit;
     [SerializeField] GameObject areaLimit;
     [SerializeField] GameObject modelCollider;
+    public  GameObject keyboard;
     public bool inHead = true;
     public bool interpolation;
     public bool grab;
@@ -118,6 +119,7 @@ public class SheetController : MonoBehaviour
         }
   
         onPlace = false;
+        if (keyboard != null) keyboard.SetActive(false);
     }
  
     public void Exit()
@@ -131,6 +133,8 @@ public class SheetController : MonoBehaviour
         buttonExit.SetActive(false);
         onPlace = true;
         if (objChangeScale != null) objChangeScale.transform.localScale = new Vector3(1, 1f, 1f);
+        if (keyboard != null) keyboard.SetActive(false);
+     
        
     }
 
@@ -165,7 +169,7 @@ public class SheetController : MonoBehaviour
             if (objChangeScale!=null) objChangeScale.transform.localScale = new Vector3(1, 1.5f, 1.5f);
           
         }
-
+        if (keyboard != null) keyboard.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
