@@ -14,4 +14,14 @@ public class ScrollSheet : MonoBehaviour
         //GetComponent<RectTransform>().rect.Set(0, y, GetComponent<RectTransform>().rect.width, height);
         GetComponent<RectTransform>().anchoredPosition = new Vector2(GetComponent<RectTransform>().position.x, y);
     }
+
+    public void ScrollButton(float amount)
+    {
+        Scroll.value += amount;
+        if (Scroll.value > 1)
+            Scroll.value = 1;
+        if (Scroll.value < 0)
+            Scroll.value = 0;
+        Refresh();
+    }
 }
