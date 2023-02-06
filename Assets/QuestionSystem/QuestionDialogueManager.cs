@@ -129,6 +129,7 @@ namespace QuestionSystem
 
         private void Refresh()
         {
+            unlockedTopics.Clear();
             foreach (Question question in Dialogue)
             {
                 if (!(unlockedInformation.Contains(question.PrerequisiteTag) || question.PrerequisiteTag == ""))
@@ -243,6 +244,7 @@ namespace QuestionSystem
                 EndScenario();
             }
             ChangeTopic(_q.Topic, false);
+            Refresh();
         }
 
         public void EndScenario()

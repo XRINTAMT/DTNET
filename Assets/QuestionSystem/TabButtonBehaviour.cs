@@ -22,7 +22,7 @@ namespace QuestionSystem
         public void Refresh(string _topic)
         {
             buttonTopic = _topic; 
-            if (_topic == null)
+            if (_topic == null || _topic == "null")
             {
                 foreach (Image image in Icon)
                 {
