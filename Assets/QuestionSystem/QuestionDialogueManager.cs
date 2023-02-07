@@ -47,6 +47,8 @@ namespace QuestionSystem
         public bool Sync;
         int questionsCount = 0;
         Question Greeting;
+        string topic;
+        Coroutine lineCompleted;
 
 
         private Sprite MoodSprite(int _mood)
@@ -138,6 +140,8 @@ namespace QuestionSystem
 
         public void ChangeTopic(string _topic, bool _newTopic = true)
         {
+            topic = _topic;
+
             List<Question> _questionsInTheTopic = new List<Question>();
             foreach (Question question in Dialogue)
             {
@@ -148,6 +152,20 @@ namespace QuestionSystem
             }
             CMenu.RefreshTopic(FilterQuestions(_questionsInTheTopic), _newTopic);
             Tabs.RefreshTopic(_topic);
+        }
+
+        private void RefreshTopic(bool _newTopic = true)
+        {
+            List<Question> _questionsInTheTopic = new List<Question>();
+            foreach (Question question in Dialogue)
+            {
+                if (question.Topic == topic)
+                {
+                    _questionsInTheTopic.Add(question);
+                }
+            }
+            CMenu.RefreshTopic(FilterQuestions(_questionsInTheTopic), _newTopic);
+            Tabs.RefreshTopic(topic);
         }
 
         private List<Question> FilterQuestions(List<Question> _questions)
@@ -228,12 +246,15 @@ namespace QuestionSystem
                     PatientSource.Play();
                 }
                 _q.IsAsked++;
+                lineCompleted = StartCoroutine(AdvanceOnAudioPlayed(_q));
             }
 
         }
 
         public void LineCompleted(Question _q)
         {
+            StopCoroutine(lineCompleted);
+            lineCompleted = null;
             CMenu.gameObject.SetActive(true);
             DLines.gameObject.SetActive(false);
             QuestionTimeout = StartCoroutine(WaitingForTooLong());
@@ -248,7 +269,22 @@ namespace QuestionSystem
                 Greeting = Dialogue.Find(question => question.Tag == "introduction");
                 Dialogue.Remove(Greeting);
             }
-            ChangeTopic(_q.Topic, false);
+            RefreshTopic(false);
+        }
+
+        IEnumerator AdvanceOnAudioPlayed(Question _q)
+        {
+            yield return 0;
+            while (PatientSource.isPlaying)
+            {
+                yield return 0;
+            }
+            for(float i = 0; i < 2; i += Time.deltaTime)
+            {
+                yield return 0;
+            }
+            Debug.Log("Advancing because the audio is over.");
+            LineCompleted(_q);
         }
 
         public void EndScenario()
