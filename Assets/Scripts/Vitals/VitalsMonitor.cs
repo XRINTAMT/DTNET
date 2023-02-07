@@ -17,6 +17,7 @@ public class VitalsMonitor : MonoBehaviour
         public string Name;
         public Text Text;
         public float Value;
+        public float SetValue;
         public float FluctuationRadius;
         public string OutputFormat;
         public bool Connected;
@@ -46,6 +47,7 @@ public class VitalsMonitor : MonoBehaviour
     }
 
     //changes a given vital value linearly
+    /*
     IEnumerator ChangeVitalValue(int id, float toValue, float interval)
     {
         float initialVal = VitalValues[id].Value;
@@ -58,6 +60,7 @@ public class VitalsMonitor : MonoBehaviour
         VitalValues[id].Value = toValue;
         VitalValues[id].Text.text = VitalValues[id].Value.ToString();
     }
+    */
 
     public void ChangeValueInspector(string deserialized)
     {
@@ -83,7 +86,8 @@ public class VitalsMonitor : MonoBehaviour
     {
         if(id < VitalValues.Length)
         {
-            StartCoroutine(ChangeVitalValue(id,toValue,interval));
+            VitalValues[id].SetValue = toValue;
+            //StartCoroutine(ChangeVitalValue(id,toValue,interval));
         }
     }
 
@@ -156,7 +160,8 @@ public class VitalsMonitor : MonoBehaviour
         VitalValues[n].Text.gameObject.SetActive(true);
         if(VitalValues[n].Graph != null)
             VitalValues[n].Graph.SetActive(true);
-        StartCoroutine(ChangeVitalValue(n, temp, 5));
+        //StartCoroutine(ChangeVitalValue(n, temp, 5));
+        VitalValues[n].SetValue = temp;
         for (int i = 0; i < VitalValues.Length; i++)
         {
             if (!VitalValues[i].Connected)
@@ -182,7 +187,7 @@ public class VitalsMonitor : MonoBehaviour
         {
             SwitchAlarm(toSwitchAlarm == 1);
         }
-        if(UnityEngine.Random.value < FluctuationIntensity)
+        if (UnityEngine.Random.value < FluctuationIntensity)
         {
             for(int i = 0; i < VitalValues.Length; i++)
             {
@@ -190,6 +195,28 @@ public class VitalsMonitor : MonoBehaviour
                 VitalValues[i].Text.text = 
                     (VitalValues[i].Value + UnityEngine.Random.Range(-fluc, fluc)).ToString(VitalValues[i].OutputFormat); 
             }
+        }
+        for (int i = 0; i < VitalValues.Length; i++)
+        {
+            float fluc = Mathf.Min(VitalValues[i].FluctuationRadius, VitalValues[i].Value);
+            if (VitalValues[i].Value < VitalValues[i].SetValue)
+            {
+                VitalValues[i].Value += VitalValues[i].SetValue * Time.deltaTime / 4;
+                if (VitalValues[i].Value > VitalValues[i].SetValue)
+                    VitalValues[i].Value = VitalValues[i].SetValue;
+                VitalValues[i].Text.text = VitalValues[i].Value.ToString(VitalValues[i].OutputFormat);
+            }
+            else if (VitalValues[i].Value > VitalValues[i].SetValue)
+            {
+                VitalValues[i].Value -= VitalValues[i].SetValue * Time.deltaTime / 4;
+                if (VitalValues[i].Value < VitalValues[i].SetValue)
+                    VitalValues[i].Value = VitalValues[i].SetValue;
+                VitalValues[i].Text.text = VitalValues[i].Value.ToString(VitalValues[i].OutputFormat);
+            }
+            else if (UnityEngine.Random.value < FluctuationIntensity){
+                VitalValues[i].Text.text =
+                    (VitalValues[i].Value + UnityEngine.Random.Range(-fluc, fluc)).ToString(VitalValues[i].OutputFormat);
+            }            
         }
     }
 }
