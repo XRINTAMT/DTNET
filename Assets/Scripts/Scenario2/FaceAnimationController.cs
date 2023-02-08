@@ -36,6 +36,7 @@ public class FaceAnimationController : MonoBehaviour
     public void SetMoodIndex(int indexMood)
     {
         IndexMood = indexMood;
+        endPos = false;
         if (setMood > IndexMood) InvokeRepeating("MoodChangeDown", 0f, 100 / speedChangeMood * Time.deltaTime);
         if (setMood < IndexMood) InvokeRepeating("MoodChangeUp", 0f, 100 / speedChangeMood * Time.deltaTime);
     }
@@ -60,7 +61,11 @@ public class FaceAnimationController : MonoBehaviour
             {
                 setMood += 1;
             }
-            if (setMood >= IndexMood && endPos) CancelInvoke();
+            if (setMood >= IndexMood && endPos)
+            {
+                setMood = IndexMood;
+                CancelInvoke();
+            }
         }
         //if (setMood <= 0) CancelInvoke();
     }
@@ -84,7 +89,11 @@ public class FaceAnimationController : MonoBehaviour
             {
                 setMood -= 1;
             }
-            if (setMood <= IndexMood && endPos) CancelInvoke();
+            if (setMood <= IndexMood && endPos)
+            {
+                setMood = IndexMood;
+                CancelInvoke();
+            }
         }
         //if (setMood <= 0) CancelInvoke();
     }
