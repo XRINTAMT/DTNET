@@ -20,6 +20,7 @@ public class VitalsMonitor : MonoBehaviour
         public float FluctuationRadius;
         public string OutputFormat;
         public bool Connected;
+        public GameObject Graph;
     }
 
     [SerializeField] VitalValue[] VitalValues;
@@ -153,6 +154,8 @@ public class VitalsMonitor : MonoBehaviour
         float temp = VitalValues[n].Value;
         VitalValues[n].Value = 0;
         VitalValues[n].Text.gameObject.SetActive(true);
+        if(VitalValues[n].Graph != null)
+            VitalValues[n].Graph.SetActive(true);
         StartCoroutine(ChangeVitalValue(n, temp, 5));
         for (int i = 0; i < VitalValues.Length; i++)
         {

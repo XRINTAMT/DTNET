@@ -49,6 +49,9 @@ namespace QuestionSystem
         Coroutine QuestionTimeout;
         public bool Sync;
         int questionsCount = 0;
+        Question Greeting;
+        string topic;
+        Coroutine lineCompleted;
 
 
         private Sprite MoodSprite(int _mood)
@@ -145,6 +148,8 @@ namespace QuestionSystem
 
         public void ChangeTopic(string _topic, bool _newTopic = true)
         {
+            topic = _topic;
+
             List<Question> _questionsInTheTopic = new List<Question>();
             foreach (Question question in Dialogue)
             {
@@ -155,6 +160,20 @@ namespace QuestionSystem
             }
             CMenu.RefreshTopic(FilterQuestions(_questionsInTheTopic), _newTopic);
             Tabs.RefreshTopic(_topic);
+        }
+
+        private void RefreshTopic(bool _newTopic = true)
+        {
+            List<Question> _questionsInTheTopic = new List<Question>();
+            foreach (Question question in Dialogue)
+            {
+                if (question.Topic == topic)
+                {
+                    _questionsInTheTopic.Add(question);
+                }
+            }
+            CMenu.RefreshTopic(FilterQuestions(_questionsInTheTopic), _newTopic);
+            Tabs.RefreshTopic(topic);
         }
 
         private List<Question> FilterQuestions(List<Question> _questions)
@@ -214,7 +233,6 @@ namespace QuestionSystem
 
                 if (_q.IsAsked > 0)
                     mood -= _q.IsAsked;
-                _q.IsAsked++;
                 mood += _q.MoodChanges;
 
                 MoodIndicator.sprite = MoodSprite(mood);
@@ -226,13 +244,25 @@ namespace QuestionSystem
 
                 //load the audio for the patient here
                 PatientSource.clip = Resources.Load<AudioClip>("DialogueAudios/" + PlayerPrefs.GetString("Language", "English") + "/" + DialogueName + "/" + _q.Tag) as AudioClip;
-                PatientSource.Play();
+
+                if (_q.IsAsked > 0)
+                {
+                    StartCoroutine(AnswerRepeated(PatientSource.clip));
+                }
+                else
+                {
+                    PatientSource.Play();
+                }
+                _q.IsAsked++;
+                lineCompleted = StartCoroutine(AdvanceOnAudioPlayed(_q));
             }
 
         }
 
         public void LineCompleted(Question _q)
         {
+            StopCoroutine(lineCompleted);
+            lineCompleted = null;
             CMenu.gameObject.SetActive(true);
             DLines.gameObject.SetActive(false);
             QuestionTimeout = StartCoroutine(WaitingForTooLong());
@@ -242,11 +272,33 @@ namespace QuestionSystem
             {
                 EndScenario();
             }
-            ChangeTopic(_q.Topic, false);
+            if(questionsCount == 1)
+            {
+                Greeting = Dialogue.Find(question => question.Tag == "introduction");
+                Dialogue.Remove(Greeting);
+            }
+            RefreshTopic(false);
+        }
+
+        IEnumerator AdvanceOnAudioPlayed(Question _q)
+        {
+            yield return 0;
+            while (PatientSource.isPlaying)
+            {
+                yield return 0;
+            }
+            for(float i = 0; i < 2; i += Time.deltaTime)
+            {
+                yield return 0;
+            }
+            Debug.Log("Advancing because the audio is over.");
+            LineCompleted(_q);
         }
 
         public void EndScenario()
         {
+            if (Greeting != null)
+                Dialogue.Add(Greeting);
             DateTime endTime = DateTime.Now;
             var timeDiff = endTime.Subtract(scenarioStartTime);
             OutroScreen.SetData(MoodSprite(mood), totalInformation.Count, unlockedInformation.Count, DialogueName, "", "", timeDiff.TotalMinutes);
@@ -277,6 +329,20 @@ namespace QuestionSystem
             DLines.gameObject.SetActive(true);
             DLines.TimeoutNotice();
             mood -= 1;
+            PatientSource.clip = Resources.Load<AudioClip>("DialogueAudios/" + PlayerPrefs.GetString("Language", "English") + "/" + DialogueName + "/waiting_for_too_long") as AudioClip;
+            PatientSource.Play();
+        }
+
+        IEnumerator AnswerRepeated(AudioClip _ac)
+        {
+            PatientSource.clip = Resources.Load<AudioClip>("DialogueAudios/" + PlayerPrefs.GetString("Language", "English") + "/" + DialogueName + "/repeated_question") as AudioClip;
+            PatientSource.Play();
+            while (PatientSource.isPlaying)
+            {
+                yield return 0;
+            }
+            PatientSource.clip = _ac;
+            PatientSource.Play();
         }
 
         #if UNITY_EDITOR

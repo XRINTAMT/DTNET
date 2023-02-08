@@ -236,7 +236,7 @@ namespace ScenarioTaskSystem
         [SerializeField] public UniversalOperation OnFailed;
         public int Score;
         public int maxScore;
-        public bool IsCritical = true;
+        public bool IsCritical;
         public bool Secondary;
     }
 

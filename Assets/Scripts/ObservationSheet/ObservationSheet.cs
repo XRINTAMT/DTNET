@@ -11,7 +11,8 @@ public class ObservationSheet : MonoBehaviour
     string[] values;
     Coroutine countdown = null;
     static float TimeOut = 60;
-
+    public GameObject arrowGuide;
+    public bool test;
     void Awake()
     {
         values = new string[RightValues.Length];
@@ -88,6 +89,11 @@ public class ObservationSheet : MonoBehaviour
         if (NextRow != null)
         {
             NextRow.SetActive(true);
+            if (PlayerPrefs.GetInt("GuidedMode")==1)
+            {
+                GetComponent<ObservationSheet>().arrowGuide.SetActive(false);
+                NextRow.GetComponent<ObservationSheet>().arrowGuide.SetActive(true);
+            }
         }
         /*
         InputField[] fields = GetComponentsInChildren<InputField>();
@@ -132,6 +138,10 @@ public class ObservationSheet : MonoBehaviour
 
     void Update()
     {
-        
+        if (test) 
+        {
+            BakeAndContinue();
+            test = false;
+        }
     }
 }
