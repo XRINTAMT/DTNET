@@ -132,6 +132,7 @@ namespace QuestionSystem
 
         private void Refresh()
         {
+            unlockedTopics.Clear();
             foreach (Question question in Dialogue)
             {
                 if (!(unlockedInformation.Contains(question.PrerequisiteTag) || question.PrerequisiteTag == ""))
