@@ -25,7 +25,7 @@ public class SheetController : MonoBehaviour
 
     Vector3 interpolatePos;
     bool onTrigger;
-    GameObject objChangeScale;
+    public GameObject objChangeScale;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -49,7 +49,8 @@ public class SheetController : MonoBehaviour
     }
     public void Grab()
     {
-        if (objChangeScale != null) objChangeScale.transform.localScale = new Vector3(1, 1f, 1f);
+        //if (objChangeScale != null) objChangeScale.transform.localScale = new Vector3(1, 1f, 1f);
+        if (objChangeScale != null) objChangeScale.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         grab = true;
         if (inHead)
         {
@@ -149,7 +150,7 @@ public class SheetController : MonoBehaviour
             transform.parent = cam.transform;
             canvas.SetActive(true);
             GetComponent<Grabbable>().enabled = true;
-            if (objChangeScale != null) objChangeScale.transform.localScale = new Vector3(1, 1.5f, 1.5f);
+            if (objChangeScale != null) objChangeScale.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
          
             if (body != null)
             {
@@ -166,7 +167,7 @@ public class SheetController : MonoBehaviour
         {
             modelCollider.layer = 10;
             rb.isKinematic = true;
-            if (objChangeScale!=null) objChangeScale.transform.localScale = new Vector3(1, 1.5f, 1.5f);
+            if (objChangeScale!=null) objChangeScale.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
           
         }
         if (keyboard != null) keyboard.SetActive(false);

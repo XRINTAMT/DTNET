@@ -262,8 +262,11 @@ namespace QuestionSystem
 
         public void LineCompleted(Question _q)
         {
-            StopCoroutine(lineCompleted);
-            lineCompleted = null;
+            if(lineCompleted != null)
+            {
+                StopCoroutine(lineCompleted);
+                lineCompleted = null;
+            }
             CMenu.gameObject.SetActive(true);
             DLines.gameObject.SetActive(false);
             QuestionTimeout = StartCoroutine(WaitingForTooLong());
