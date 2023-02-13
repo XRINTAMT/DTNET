@@ -14,6 +14,7 @@ namespace QuestionSystem
         [SerializeField] Text FullText;
         [SerializeField] QuestionDialogueManager QDManager;
         Question question;
+        bool isNew;
 
         void Start()
         {
@@ -33,9 +34,10 @@ namespace QuestionSystem
             else
             {
                 string Language = PlayerPrefs.GetString("Language", "English");
-                NormalText.text = question.Short[Language];
-                SelectedText.text = question.Short[Language];
-                PressedText.text = question.Short[Language];
+                string _short = ((question.isNew) ? "[!] " : "") + question.Short[Language];
+                NormalText.text = _short;
+                SelectedText.text = _short;
+                PressedText.text = _short;
                 FullText.text = question.Text[Language];
             }
         }
@@ -49,6 +51,15 @@ namespace QuestionSystem
             {
                 //Not showing that for now
                 //FullTextWindow.SetActive(true);
+            }
+            if (question.isNew)
+            {
+                isNew = false;
+                string _short = question.Short[Language];
+                NormalText.text = _short;
+                SelectedText.text = _short;
+                PressedText.text = _short;
+                QDManager.SeenQuestion(question);
             }
         }
 

@@ -9,6 +9,7 @@ namespace QuestionSystem
     public class TabButtonBehaviour : MonoBehaviour
     {
         [SerializeField] Image[] Icon;
+        [SerializeField] GameObject NewQuestionsIcon;
         [SerializeField] LocalizedText TextClarification;
         [SerializeField] QuestionDialogueManager QDManager;
         [SerializeField] GameObject TextContainer;
@@ -19,7 +20,7 @@ namespace QuestionSystem
             buttonTopic = null;
         }
 
-        public void Refresh(string _topic)
+        public void Refresh(string _topic, bool hasNewQuestions = false)
         {
             buttonTopic = _topic; 
             if (_topic == null || _topic == "null")
@@ -35,6 +36,7 @@ namespace QuestionSystem
             TextContainer.SetActive(true);
             TextClarification.LocalizationKey = _topic;
             TextClarification.Localize();
+            NewQuestionsIcon.SetActive(hasNewQuestions);
             foreach (Image image in Icon)
             {
                 image.enabled = true;

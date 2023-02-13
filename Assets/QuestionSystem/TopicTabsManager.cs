@@ -12,13 +12,13 @@ namespace QuestionSystem
         int totalPages = 1;
         Coroutine rotation;
 
-        public void Refresh(List<string> _unlockedTopics)
+        public void Refresh(List<string> _unlockedTopics, List<string> _topicsWithNew)
         {
             topics = _unlockedTopics;
             int i = 0;
             foreach (string topic in _unlockedTopics)
             {
-                TabButtons[i].Refresh(topic);
+                TabButtons[i].Refresh(topic,_topicsWithNew.Contains(topic));
                 if(i<8)
                     i++;
             }
@@ -31,7 +31,7 @@ namespace QuestionSystem
             {
                 for (i = 0; i < 3; i++)
                 {
-                    TabButtons[i + 6].Refresh(topics[i]);
+                    TabButtons[i + 6].Refresh(topics[i], _topicsWithNew.Contains(topics[i]));
                 }
             }
             while(topics.Count < 9)
