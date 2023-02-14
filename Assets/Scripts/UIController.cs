@@ -41,10 +41,11 @@ public class UIController : MonoBehaviour
     public static int teleport;
     public static int subtitles;
     public static int guides;
-
+    SceneLoader sceneLoader;
     void Start()
     {
         LoadSettingsIntoUI();
+        sceneLoader = FindObjectOfType<SceneLoader>();
     }
 
     public void LoadSettingsIntoUI()
@@ -176,7 +177,9 @@ public class UIController : MonoBehaviour
 
     public void LoadScene(string name)
     {
-        SceneManager.LoadScene(name);
+        if (sceneLoader != null) sceneLoader.LoadScene(name);
+     
+        //SceneManager.LoadScene(name);
     }
 
     public void Exit() 
