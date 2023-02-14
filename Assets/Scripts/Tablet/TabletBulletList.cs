@@ -92,6 +92,8 @@ public class TabletBulletList : MonoBehaviour
     [SerializeField] float maskedHeight;
     [SerializeField] Scrollbar scrollbar;
     [SerializeField] Color colorCross;
+    [SerializeField] AudioSource TaskSFX;
+    [SerializeField] AudioSource SubtaskSFX;
     public void Init(BulletListItemLink[] listItems, float theight, float mheight)
     {
         ListItems = listItems;
@@ -99,9 +101,32 @@ public class TabletBulletList : MonoBehaviour
         maskedHeight = mheight;
     }
 
-    public void CrossOut(int ID)
+    public void CrossOut(int _ID)
     {
-        FindByID(ID).Cross(colorCross);
+        FindByID(_ID).Cross(colorCross);
+        bool _isSub = true;
+        for(int i = 0; i < ListItems.Length; i++)
+        {
+            if(ListItems[i].ID == _ID)
+            {
+                _isSub = false;
+                break;
+            }
+        }
+        if (_isSub)
+        {
+            if(!TaskSFX.isPlaying)
+                SubtaskSFX.Play();
+        }
+        else
+        {
+            TaskSFX.Play();
+            if (SubtaskSFX.isPlaying)
+                SubtaskSFX.Stop();
+        }
+            
+
+
     }
 
     private BulletListItemLink FindByID(int id)
