@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FadeUI : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class FadeUI : MonoBehaviour
                 if (canvasGroups[i].alpha > 0)
                 {
                     canvasGroups[i].alpha -= 1f * Time.deltaTime;
+                    canvasGroups[i].GetComponent<GraphicRaycaster>().enabled = false;
                 }
             }
             if (canvasGroups[canvasGroups.Count-1].alpha<=0)
@@ -48,6 +50,7 @@ public class FadeUI : MonoBehaviour
                 if (canvasGroups[i].alpha < 1)
                 {
                     canvasGroups[i].alpha += 1f *Time.deltaTime;
+                    canvasGroups[i].GetComponent<GraphicRaycaster>().enabled = true;
                 }
             }
             if (canvasGroups[canvasGroups.Count - 1].alpha >= 1)

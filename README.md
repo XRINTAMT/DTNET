@@ -19,11 +19,10 @@ Keep the feature branch up to date. Push changes even if they are not complete. 
 
 Once a feature is complete move task to the Review column om Monday and submit a merge request on github.
 
-### How to add highlights to objects
-
-1. Add a OutlineNormalsCalculator component to an object.
-2. Set GameObject layer to "Outlined".
-3. Find this object's mesh and set "Read/write enabled" to True.
+### How to add highlights to objects 
+1. Choose the object
+2. Find commponent "Graddable" on it
+3. Choose any highlight material in this component
 
 ## External assets
 
@@ -43,6 +42,10 @@ Note: unlike hospital props, which is distributed per company (with unlimited se
 Bézier Path Creator: https://assetstore.unity.com/packages/tools/utilities/b-zier-path-creator-136082
 
 Photon: https://assetstore.unity.com/packages/tools/network/pun-2-free-119922
+
+Analog clock: https://assetstore.unity.com/packages/3d/props/interior/clock-4250
+
+For outline urp shaders: https://github.com/Arvtesh/UnityFx.Outline
 
 URP: is in the package manager by default.
 //Just installing the URP does not solve the following issue: "UniversalRenderPipelineAsset_Renderer is missing RendererFeatures". If I'm not mistaken, it has something to do with the outline feature. 

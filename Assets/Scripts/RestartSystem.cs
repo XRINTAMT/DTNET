@@ -32,6 +32,9 @@ public class RestartSystem : MonoBehaviour
     }
 
     public void Load(string text = "") {
+
+        if (PlayerPrefs.GetInt("GuidedMode") == 1) text = "That is not what you should be doing right now. Check the tasks list!";
+
         if (SavedState == null) {
             return;
         }

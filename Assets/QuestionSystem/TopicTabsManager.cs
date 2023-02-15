@@ -7,12 +7,14 @@ namespace QuestionSystem
     public class TopicTabsManager : MonoBehaviour
     {
         [SerializeField] TabButtonBehaviour[] TabButtons;
+        List<string> topics;
         int currentPage = 0;
         int totalPages = 1;
-
+        Coroutine rotation;
 
         public void Refresh(List<string> _unlockedTopics)
         {
+            topics = _unlockedTopics;
             int i = 0;
             foreach (string topic in _unlockedTopics)
             {
@@ -25,6 +27,18 @@ namespace QuestionSystem
                 TabButtons[i].Refresh(null);
             }
             totalPages = (int)Mathf.Ceil((float)_unlockedTopics.Count / 3);
+            if(totalPages == 2)
+            {
+                for (i = 0; i < 3; i++)
+                {
+                    TabButtons[i + 6].Refresh(topics[i]);
+                }
+            }
+            while(topics.Count < 9)
+            {
+                topics.Add("null");
+            }
+            Debug.Log(topics.ToString());
         }
 
         public void RefreshTopic(string _topic)
@@ -37,20 +51,54 @@ namespace QuestionSystem
 
         public void Rotate()
         {
+            if (rotation != null)
+            {
+                return;
+            }
             if (totalPages == 1)
             {
                 return;
             }
-            if (currentPage < totalPages - 1)
+            if (currentPage < 2)
             {
                 currentPage++;
-                StartCoroutine(IERotationAnimation(120 * currentPage)); 
+                rotation = StartCoroutine(IERotationAnimation(120 * currentPage)); 
                 return;
             }
-            if (currentPage == totalPages - 1)
-            {
-                currentPage = 0;
-                StartCoroutine(IERotationAnimation(120 * currentPage));
+            if (currentPage == 2)
+            {                
+                if(totalPages == 2)
+                {
+                    /*
+                    Debug.Log("switching");
+                    //switch
+                    string[] temp1 = new string[3];
+                    string[] temp2 = new string[3];
+                    for(int i = 0; i < 3; i++)
+                    {
+                        temp1[i] = topics[i];
+                        temp2[i] = topics[i+3];
+                    }
+                    for (int i = 0; i < 3; i++)
+                    {
+                        topics[i] = temp2[i];
+                        topics[i + 3] = temp1[i];
+                        topics[i + 6] = temp2[i];
+                    }
+
+                    for (int i = 0; i < 9; i++)
+                    {
+                        TabButtons[i].Refresh(topics[i]);
+                    }
+                    */
+                    currentPage = 1;
+                    transform.localRotation = Quaternion.Euler(0, 0, 0);
+                }
+                else
+                {
+                    currentPage = 0;
+                }
+                rotation = StartCoroutine(IERotationAnimation(120 * currentPage));
             }
         }
 
@@ -63,11 +111,12 @@ namespace QuestionSystem
                 yield return 0;
             }
             transform.localRotation = Quaternion.Euler(0, endAngle, 0);
+            rotation = null;
         }
 
         void Start()
         {
-
+            topics = new List<string>(9);
         }
 
         // Update is called once per frame

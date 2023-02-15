@@ -25,7 +25,12 @@ public class SheetController : MonoBehaviour
 
     Vector3 interpolatePos;
     bool onTrigger;
-    GameObject objChangeScale;
+    public GameObject objChangeScale;
+
+    Grabbable grabbable;
+    [SerializeField] GameObject uiPointerRight;
+    [SerializeField] GameObject uiPointerLeft;
+    bool leftHand;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -40,6 +45,9 @@ public class SheetController : MonoBehaviour
             startPos = transform.localPosition;
             startRot = transform.localRotation;
         }
+
+        grabbable = GetComponent<Grabbable>();
+        grabbable.onGrab.AddListener(Grab);
     }
 
     public void ChangeScale(GameObject obj) 
@@ -47,9 +55,26 @@ public class SheetController : MonoBehaviour
         objChangeScale = obj;
 
     }
-    public void Grab()
-    {
-        if (objChangeScale != null) objChangeScale.transform.localScale = new Vector3(1, 1f, 1f);
+    public void Grab(Hand hand,Grabbable grabbable)
+    { 
+        if (!hand.left) leftHand = false;
+        if (hand.left) leftHand = true;
+        
+
+        if (!leftHand) 
+        {
+            uiPointerLeft.SetActive(true);
+            uiPointerRight.SetActive(false);
+        }
+        if (leftHand) 
+        {
+            uiPointerLeft.SetActive(false);
+            uiPointerRight.SetActive(true);
+        }
+
+
+        //if (objChangeScale != null) objChangeScale.transform.localScale = new Vector3(1, 1f, 1f);
+        if (objChangeScale != null) objChangeScale.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         grab = true;
         if (inHead)
         {
@@ -124,6 +149,9 @@ public class SheetController : MonoBehaviour
  
     public void Exit()
     {
+        uiPointerLeft.SetActive(true);
+        uiPointerRight.SetActive(true);
+
         rb.isKinematic = true;
         transform.parent = startParent;
         transform.localPosition = startPos;
@@ -142,6 +170,8 @@ public class SheetController : MonoBehaviour
     public void Realesee()
     {
         grab = false;
+        uiPointerLeft.SetActive(true);
+        uiPointerRight.SetActive(true);
         if (inHead)
         {
             //modelCollider.layer = 16;
@@ -149,7 +179,7 @@ public class SheetController : MonoBehaviour
             transform.parent = cam.transform;
             canvas.SetActive(true);
             GetComponent<Grabbable>().enabled = true;
-            if (objChangeScale != null) objChangeScale.transform.localScale = new Vector3(1, 1.5f, 1.5f);
+            if (objChangeScale != null) objChangeScale.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
          
             if (body != null)
             {
@@ -166,7 +196,7 @@ public class SheetController : MonoBehaviour
         {
             modelCollider.layer = 10;
             rb.isKinematic = true;
-            if (objChangeScale!=null) objChangeScale.transform.localScale = new Vector3(1, 1.5f, 1.5f);
+            if (objChangeScale!=null) objChangeScale.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
           
         }
         if (keyboard != null) keyboard.SetActive(false);

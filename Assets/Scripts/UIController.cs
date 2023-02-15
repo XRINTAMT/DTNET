@@ -135,7 +135,7 @@ public class UIController : MonoBehaviour
         smoothChosen.SetActive(teleport == 1);
         PlayerPrefs.SetInt("MovementType", teleport);
         Debug.Log("Looking for a thing");
-        Object.FindObjectOfType<XRMovementControls>().SwitchLocomotion(teleport);
+        //Object.FindObjectOfType<XRMovementControls>().SwitchLocomotion(teleport);
         Debug.Log("found one");
     }
     public void SetHandType(int hand)
