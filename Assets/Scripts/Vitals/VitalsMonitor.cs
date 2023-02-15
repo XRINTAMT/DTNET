@@ -21,6 +21,7 @@ public class VitalsMonitor : MonoBehaviour
         public string OutputFormat;
         public bool Connected;
         public GameObject Graph;
+        public int SensorsLeft;
     }
 
     [SerializeField] VitalValue[] VitalValues;
@@ -147,6 +148,9 @@ public class VitalsMonitor : MonoBehaviour
     public void Connect(int n)
     {
         if (VitalValues[n].Connected)
+            return;
+        VitalValues[n].SensorsLeft -= 1;
+        if (VitalValues[n].SensorsLeft > 0)
             return;
         VitalValues[n].Connected = true;
         if (DataInterface != null)
