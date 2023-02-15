@@ -53,6 +53,8 @@ namespace QuestionSystem
         Question Greeting;
         string topic;
         Coroutine lineCompleted;
+        bool diabetesSeen;
+        bool insulinSeen;
 
 
         private Sprite MoodSprite(int _mood)
@@ -138,6 +140,10 @@ namespace QuestionSystem
         {
             topicsWithNew.Clear();
             unlockedTopics.Clear();
+            if (!diabetesSeen)
+                topicsWithNew.Add("diabetes");
+            if (!insulinSeen)
+                topicsWithNew.Add("insulin");
             foreach (Question question in Dialogue)
             {
                 if (!(unlockedInformation.Contains(question.PrerequisiteTag) || question.PrerequisiteTag == ""))
@@ -160,7 +166,10 @@ namespace QuestionSystem
         public void ChangeTopic(string _topic, bool _newTopic = true)
         {
             topic = _topic;
-
+            if (_topic == "diabetes")
+                diabetesSeen = true;
+            if (_topic == "insulin")
+                insulinSeen = true;
             List<Question> _questionsInTheTopic = new List<Question>();
             foreach (Question question in Dialogue)
             {
@@ -171,6 +180,7 @@ namespace QuestionSystem
             }
             CMenu.RefreshTopic(FilterQuestions(_questionsInTheTopic), _newTopic);
             Tabs.RefreshTopic(_topic);
+            Refresh();
         }
 
         private void RefreshTopic(bool _newTopic = true)
