@@ -26,6 +26,11 @@ public class SheetController : MonoBehaviour
     Vector3 interpolatePos;
     bool onTrigger;
     public GameObject objChangeScale;
+
+    Grabbable grabbable;
+    [SerializeField] GameObject uiPointerRight;
+    [SerializeField] GameObject uiPointerLeft;
+    bool leftHand;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -40,6 +45,9 @@ public class SheetController : MonoBehaviour
             startPos = transform.localPosition;
             startRot = transform.localRotation;
         }
+
+        grabbable = GetComponent<Grabbable>();
+        grabbable.onGrab.AddListener(Grab);
     }
 
     public void ChangeScale(GameObject obj) 
@@ -47,8 +55,24 @@ public class SheetController : MonoBehaviour
         objChangeScale = obj;
 
     }
-    public void Grab()
-    {
+    public void Grab(Hand hand,Grabbable grabbable)
+    { 
+        if (!hand.left) leftHand = false;
+        if (hand.left) leftHand = true;
+        
+
+        if (!leftHand) 
+        {
+            uiPointerLeft.SetActive(true);
+            uiPointerRight.SetActive(false);
+        }
+        if (leftHand) 
+        {
+            uiPointerLeft.SetActive(false);
+            uiPointerRight.SetActive(true);
+        }
+
+
         //if (objChangeScale != null) objChangeScale.transform.localScale = new Vector3(1, 1f, 1f);
         if (objChangeScale != null) objChangeScale.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         grab = true;
@@ -125,6 +149,9 @@ public class SheetController : MonoBehaviour
  
     public void Exit()
     {
+        uiPointerLeft.SetActive(true);
+        uiPointerRight.SetActive(true);
+
         rb.isKinematic = true;
         transform.parent = startParent;
         transform.localPosition = startPos;
@@ -143,6 +170,8 @@ public class SheetController : MonoBehaviour
     public void Realesee()
     {
         grab = false;
+        uiPointerLeft.SetActive(true);
+        uiPointerRight.SetActive(true);
         if (inHead)
         {
             //modelCollider.layer = 16;
