@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Linq;
 using ScenarioSystem;
+using Autohand;
 
 public class Syringe : MonoBehaviour
 {
@@ -177,10 +178,12 @@ public class Syringe : MonoBehaviour
 
     public void Empty(float time)
     {
-        Pomp.transform.parent = InnerPart.transform;
+       
         if (totalSubstance != 0)
         {
             StartCoroutine(EmptyingAnimation(time, 0.3f));
+            Pomp.transform.parent = InnerPart.transform;
+            GetComponent<Grabbable>().enabled = false;
         }
     }
 

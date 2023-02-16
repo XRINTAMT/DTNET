@@ -7,7 +7,6 @@ using Autohand;
 public class SyringeEmptier : MonoBehaviour
 {
     PlacePoint syringeHolder;
-
     void Start()
     {
         syringeHolder = GetComponent<PlacePoint>();
