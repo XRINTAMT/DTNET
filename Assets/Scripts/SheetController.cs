@@ -149,8 +149,8 @@ public class SheetController : MonoBehaviour
  
     public void Exit()
     {
-        uiPointerLeft.SetActive(true);
-        uiPointerRight.SetActive(true);
+        //uiPointerLeft.SetActive(true);
+        //uiPointerRight.SetActive(true);
 
         rb.isKinematic = true;
         transform.parent = startParent;
@@ -170,8 +170,8 @@ public class SheetController : MonoBehaviour
     public void Realesee()
     {
         grab = false;
-        uiPointerLeft.SetActive(true);
-        uiPointerRight.SetActive(true);
+        //uiPointerLeft.SetActive(true);
+        //uiPointerRight.SetActive(true);
         if (inHead)
         {
             //modelCollider.layer = 16;
