@@ -12,6 +12,7 @@ public class PauseManager : MonoBehaviour
     [SerializeField] GameObject Main;
     [SerializeField] Camera UICamera;
     [SerializeField] Camera MainCamera;
+    [SerializeField] GameObject[] TurnOffOnPause;
     List<AudioSource> AudiosWerePlaying;
     List<Animation> AnimationsWerePlaying;
     XRMovementControls Controls;
@@ -48,6 +49,10 @@ public class PauseManager : MonoBehaviour
                 AudiosWerePlaying.Add(Audio);
                 Audio.Pause();
             }
+        }
+        foreach(GameObject _obj in TurnOffOnPause)
+        {
+            _obj.SetActive(false);
         }
         /*
         Animation[] allanimations = FindObjectsOfType<Animation>();
@@ -87,6 +92,10 @@ public class PauseManager : MonoBehaviour
         foreach (AudioSource Audio in AudiosWerePlaying)
         {
             Audio.UnPause();
+        }
+        foreach (GameObject _obj in TurnOffOnPause)
+        {
+            _obj.SetActive(true);
         }
         /*
         foreach (Animation Animation in AnimationsWerePlaying)
