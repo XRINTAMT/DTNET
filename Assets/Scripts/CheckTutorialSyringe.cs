@@ -8,14 +8,19 @@ using UnityEngine.UI;
 
 public class CheckTutorialSyringe : MonoBehaviour
 {
+    [SerializeField] GameObject panelUICome30True;
+    [SerializeField] GameObject panelUICome30False;
+    [SerializeField] GameObject placeSyringe;
     [SerializeField]  Syringe syringe;
     [SerializeField] TutorialEditor tutorialEditor;
     public int value;
     public UnityEvent valueReached = new UnityEvent();
+    public UnityEvent valueReachedBack = new UnityEvent();
     int countCompleteTask;
     public float valueSyringe;
     bool dial=true;
-    
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,11 +44,31 @@ public class CheckTutorialSyringe : MonoBehaviour
         }
         if (!dial)
         {
-            if (valueSyringe <= value)
+            if (valueSyringe <= value && valueSyringe >= value - 1)
             {
-                tutorialEditor.CompleteTask(countCompleteTask);
-                valueReached.Invoke();
-                dial = true;
+                if (!panelUICome30True.activeSelf)
+                {
+                    tutorialEditor.CompleteTask(countCompleteTask);
+                    placeSyringe.SetActive(true);
+                    panelUICome30True.SetActive(true);
+                    panelUICome30False.SetActive(false);
+                }
+     
+                //Invoke()
+                //valueReached.Invoke();
+                //dial = true;
+            }
+            if (valueSyringe <= value-1)
+            {
+                if (!panelUICome30False.activeSelf)
+                {
+                    placeSyringe.SetActive(false);
+                    panelUICome30True.SetActive(false);
+                    panelUICome30False.SetActive(true);
+                }
+                //tutorialEditor.CompleteTask(countCompleteTask);
+                //valueReachedBack.Invoke();
+                //dial = true;
             }
         }
         
