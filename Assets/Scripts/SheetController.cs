@@ -142,8 +142,12 @@ public class SheetController : MonoBehaviour
         onPlace = true;
         if (objChangeScale != null) objChangeScale.transform.localScale = new Vector3(1, 1f, 1f);
         if (keyboard != null) keyboard.SetActive(false);
-     
-       
+        FadeUI _f;
+        if (TryGetComponent<FadeUI>(out _f))
+        {
+            _f.FadeIn();
+        }
+
     }
 
  
@@ -169,6 +173,14 @@ public class SheetController : MonoBehaviour
             {
                 Exit();
             }
+            else
+            {
+                FadeUI _f;
+                if (TryGetComponent<FadeUI>(out _f))
+                {
+                    _f.FadeOut();
+                }
+            }
         }
 
         if (!inHead)
@@ -176,8 +188,14 @@ public class SheetController : MonoBehaviour
             modelCollider.layer = 10;
             rb.isKinematic = true;
             if (objChangeScale!=null) objChangeScale.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-          
+            FadeUI _f;
+            if (TryGetComponent<FadeUI>(out _f))
+            {
+                _f.FadeOut();
+            }
         }
+        
+        
         if (keyboard != null) keyboard.SetActive(false);
     }
 
