@@ -38,7 +38,9 @@ public class FadeUI : MonoBehaviour
                 if (canvasGroups[i].alpha > 0)
                 {
                     canvasGroups[i].alpha -= 1f * Time.deltaTime;
-                    canvasGroups[i].GetComponent<GraphicRaycaster>().enabled = false;
+                    GraphicRaycaster _raycaster;
+                    if (canvasGroups[i].TryGetComponent<GraphicRaycaster>(out _raycaster))
+                        _raycaster.enabled = false;
                 }
             }
             if (canvasGroups[canvasGroups.Count-1].alpha<=0)
@@ -55,7 +57,9 @@ public class FadeUI : MonoBehaviour
                 if (canvasGroups[i].alpha < 1)
                 {
                     canvasGroups[i].alpha += 1f *Time.deltaTime;
-                    canvasGroups[i].GetComponent<GraphicRaycaster>().enabled = true;
+                    GraphicRaycaster _raycaster;
+                    if (canvasGroups[i].TryGetComponent<GraphicRaycaster>(out _raycaster))
+                        _raycaster.enabled = false;
                 }
             }
             if (canvasGroups[canvasGroups.Count - 1].alpha >= 1)
