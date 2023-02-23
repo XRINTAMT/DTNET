@@ -22,6 +22,7 @@ namespace QuestionSystem
         [SerializeField] CompletedScenario OutroScreen;
         [SerializeField] Text NameText;
         [SerializeField] Text DateOfBirthText;
+        [SerializeField] Text NumberOfQuestionsText;
         [SerializeField] int mood = 0;
         [SerializeField] int questionsLimit = 20;
         [SerializeField] AudioSource NurseSource;
@@ -72,6 +73,7 @@ namespace QuestionSystem
 
         void Start()
         {
+            NumberOfQuestionsText.text = (questionsLimit - questionsCount).ToString();
             PatientSource = PatientObject.GetComponent<AudioSource>();
             FAController = PatientObject.GetComponent<FaceAnimationController>();
             BodyAnimator = PatientObject.GetComponent<Animator>();
@@ -293,6 +295,7 @@ namespace QuestionSystem
             QuestionTimeout = StartCoroutine(WaitingForTooLong());
 
             questionsCount++;
+            NumberOfQuestionsText.text = (questionsLimit - questionsCount).ToString();
             if (questionsCount == questionsLimit || _q.Tag == "end_scenario")
             {
                 EndScenario();
