@@ -247,7 +247,8 @@ public class Syringe : MonoBehaviour
                 Mathf.Lerp(0, MaxLiquidScale, totalSubstance / SyringeCapacity),
                 Liquid.transform.localScale.z);
             ingredients[med.Substance] += pullAmount;
-            med.Amount -= pullAmount;
+            if(!med.Infinite)
+                med.Amount -= pullAmount;
             //AmountText.text = ingredients[med.Substance].ToString("0.0");
             AmountText.text = totalSubstance.ToString("0.0");
             CheckCompletion();

@@ -6,4 +6,5 @@ public class Ampule : MonoBehaviour
 {
     public string Substance;
     public float Amount;
+    public bool Infinite;
 }
