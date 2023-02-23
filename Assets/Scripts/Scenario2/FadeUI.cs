@@ -13,7 +13,9 @@ public class FadeUI : MonoBehaviour
     {
         for (int i = 0; i < canvasGroups.Count; i++)
         {
-            canvasGroups[i].GetComponent<GraphicRaycaster>().enabled = false;
+            GraphicRaycaster _raycaster;
+            if(canvasGroups[i].TryGetComponent<GraphicRaycaster>(out _raycaster))
+                _raycaster.enabled = false;
         }
     }
 
