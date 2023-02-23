@@ -12,7 +12,7 @@ public class SheetController : MonoBehaviour
     [SerializeField] Vector3 startPos;
     [SerializeField] Quaternion startRot;
     Transform startParent;
-    Rigidbody rb;
+    public Rigidbody rb;
     [SerializeField] GameObject canvas;
     [SerializeField] GameObject buttonExit;
     [SerializeField] GameObject areaLimit;
@@ -132,7 +132,7 @@ public class SheetController : MonoBehaviour
  
     public void Exit()
     {
-        rb.isKinematic = true;
+        if (rb!=null) rb.isKinematic = true;
         transform.parent = startParent;
         transform.localPosition = startPos;
         transform.localRotation = startRot;
@@ -150,7 +150,7 @@ public class SheetController : MonoBehaviour
 
     }
 
- 
+
     public void Realesee()
     {
         grab = false;
