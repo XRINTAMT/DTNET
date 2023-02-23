@@ -59,7 +59,7 @@ public class FadeUI : MonoBehaviour
                     canvasGroups[i].alpha += 1f *Time.deltaTime;
                     GraphicRaycaster _raycaster;
                     if (canvasGroups[i].TryGetComponent<GraphicRaycaster>(out _raycaster))
-                        _raycaster.enabled = false;
+                        _raycaster.enabled = true;
                 }
             }
             if (canvasGroups[canvasGroups.Count - 1].alpha >= 1)
