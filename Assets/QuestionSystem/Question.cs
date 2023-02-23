@@ -53,6 +53,8 @@ namespace QuestionSystem
 
         [field: SerializeField] private string[] valuesText;
 
+        public bool isNew = true;
+
         public void GetReady()
         {
             Text = new Dictionary<string, string>();

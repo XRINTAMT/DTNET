@@ -12,6 +12,7 @@ namespace QuestionSystem
     {
         [SerializeField] string DialogueName;
         [SerializeField] List<string> unlockedTopics;
+        [SerializeField] List<string> topicsWithNew;
         [SerializeField] List<string> totalInformation;
         [SerializeField] List<string> unlockedInformation;
         [SerializeField] GameObject PatientObject;
@@ -52,6 +53,8 @@ namespace QuestionSystem
         Question Greeting;
         string topic;
         Coroutine lineCompleted;
+        bool diabetesSeen;
+        bool insulinSeen;
 
 
         private Sprite MoodSprite(int _mood)
@@ -73,6 +76,7 @@ namespace QuestionSystem
             FAController = PatientObject.GetComponent<FaceAnimationController>();
             BodyAnimator = PatientObject.GetComponent<Animator>();
             totalInformation = new List<string>();
+            topicsWithNew = new List<string>();
             unlockedInformation = new List<string>();
             scenarioStartTime = System.DateTime.Now;
             for (int i = 0; i < Dialogue.Count;)
@@ -84,6 +88,8 @@ namespace QuestionSystem
                 }
                 else
                 {
+                    Dialogue[i].isNew = (Dialogue[i].PrerequisiteTag != string.Empty);
+
                     if (!totalInformation.Contains(Dialogue[i].InformationTag) && Dialogue[i].Relevance == 1)
                     {
                         totalInformation.Add(Dialogue[i].InformationTag);
@@ -132,7 +138,12 @@ namespace QuestionSystem
 
         private void Refresh()
         {
+            topicsWithNew.Clear();
             unlockedTopics.Clear();
+            if (!diabetesSeen)
+                topicsWithNew.Add("diabetes");
+            if (!insulinSeen)
+                topicsWithNew.Add("insulin");
             foreach (Question question in Dialogue)
             {
                 if (!(unlockedInformation.Contains(question.PrerequisiteTag) || question.PrerequisiteTag == ""))
@@ -143,14 +154,22 @@ namespace QuestionSystem
                 
                 if (!unlockedTopics.Contains(question.Topic))
                     unlockedTopics.Add(question.Topic);
+                if (question.isNew)
+                {
+                    if (!topicsWithNew.Contains(question.Topic))
+                        topicsWithNew.Add(question.Topic);
+                }
             }
-            Tabs.Refresh(unlockedTopics);
+            Tabs.Refresh(unlockedTopics, topicsWithNew);
         }
 
         public void ChangeTopic(string _topic, bool _newTopic = true)
         {
             topic = _topic;
-
+            if (_topic == "diabetes")
+                diabetesSeen = true;
+            if (_topic == "insulin")
+                insulinSeen = true;
             List<Question> _questionsInTheTopic = new List<Question>();
             foreach (Question question in Dialogue)
             {
@@ -161,6 +180,7 @@ namespace QuestionSystem
             }
             CMenu.RefreshTopic(FilterQuestions(_questionsInTheTopic), _newTopic);
             Tabs.RefreshTopic(_topic);
+            Refresh();
         }
 
         private void RefreshTopic(bool _newTopic = true)
@@ -256,6 +276,7 @@ namespace QuestionSystem
                 }
                 _q.IsAsked++;
                 lineCompleted = StartCoroutine(AdvanceOnAudioPlayed(_q));
+                Refresh();
             }
 
         }
@@ -321,6 +342,12 @@ namespace QuestionSystem
                 }
             }
             GoodQuestionsMissedHandler.Initialize(GoodQuestionsMissed);
+        }
+
+        public void SeenQuestion(Question _q)
+        {
+            _q.isNew = false;
+            Refresh();
         }
 
         IEnumerator WaitingForTooLong()
