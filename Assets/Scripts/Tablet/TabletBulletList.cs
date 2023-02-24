@@ -42,7 +42,6 @@ public struct BulletListItemLink
                 return finding;
             }
         }
-
         BulletListItemLink empty = new BulletListItemLink();
         empty.ID = -1;
         empty.Description = "Error! Element not found!";
@@ -105,17 +104,19 @@ public class TabletBulletList : MonoBehaviour
     {
         FindByID(_ID).Cross(colorCross);
         bool _isSub = true;
+        int _topID = 0;
         for(int i = 0; i < ListItems.Length; i++)
         {
             if(ListItems[i].ID == _ID)
             {
                 _isSub = false;
+                _topID = i;
                 break;
             }
         }
         if (_isSub)
         {
-            if(!TaskSFX.isPlaying)
+            if (!TaskSFX.isPlaying)
                 SubtaskSFX.Play();
         }
         else
@@ -123,6 +124,15 @@ public class TabletBulletList : MonoBehaviour
             TaskSFX.Play();
             if (SubtaskSFX.isPlaying)
                 SubtaskSFX.Stop();
+            if (_topID < ListItems.Length - 1)
+            {
+                _topID += 1;
+                float _scrollAmount = -ListItems[_topID].Text.rectTransform.anchoredPosition.y - 1.5f * ListItems[_topID].Text.rectTransform.sizeDelta.y;
+                Debug.Log(_scrollAmount);
+                scrollbar.value = Mathf.Max(0, Mathf.Min(1, _scrollAmount / (totalHeight - maskedHeight)));
+                Scroll();
+                //transform.GetChild(0).transform.GetComponent<RectTransform>().offsetMax = new Vector2(0, _offset);
+            }
         }
             
 
