@@ -17,6 +17,7 @@ public class SheetController : MonoBehaviour
     [SerializeField] GameObject buttonExit;
     [SerializeField] GameObject areaLimit;
     [SerializeField] GameObject modelCollider;
+    [SerializeField] float scaleFactor;
     public  GameObject keyboard;
     public bool inHead = true;
     public bool interpolation;
@@ -57,7 +58,7 @@ public class SheetController : MonoBehaviour
 
 
         //if (objChangeScale != null) objChangeScale.transform.localScale = new Vector3(1, 1f, 1f);
-        if (objChangeScale != null) objChangeScale.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        if (objChangeScale != null) objChangeScale.transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
         grab = true;
         if (inHead)
         {
@@ -162,7 +163,7 @@ public class SheetController : MonoBehaviour
             transform.parent = cam.transform;
             canvas.SetActive(true);
             GetComponent<Grabbable>().enabled = true;
-            if (objChangeScale != null) objChangeScale.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            if (objChangeScale != null) objChangeScale.transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
          
             if (body != null)
             {
@@ -187,7 +188,7 @@ public class SheetController : MonoBehaviour
         {
             modelCollider.layer = 10;
             rb.isKinematic = true;
-            if (objChangeScale!=null) objChangeScale.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            if (objChangeScale!=null) objChangeScale.transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
             FadeUI _f;
             if (TryGetComponent<FadeUI>(out _f))
             {
