@@ -24,6 +24,18 @@ Once a feature is complete move task to the Review column om Monday and submit a
 2. Find commponent "Graddable" on it
 3. Choose any highlight material in this component
 
+### Scenario 2 TTS settings
+The tts product used for the job: https://replicastudios.com/
+
+| ID           | Character name (DTNET) | Voice name (Replica) |
+|--------------|------------------------|----------------------|
+| S2P1         | Elisa Johnson          | Harriet              |
+| S2P2         | Helen Stewards         | Sorine               |
+| S2P3         | Robert Johnson         | Gray                 |
+| S2P4         | Michael Rosemary       | Sean                 |
+| Female Nurse | Marite                 | Amber                |
+| Male Nurse   | Alexander              |                      |
+
 ## External assets
 
 #Paid (one would need to request a seat)
