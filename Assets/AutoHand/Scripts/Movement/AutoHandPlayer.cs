@@ -384,9 +384,10 @@ namespace Autohand {
 
                     if (movementHand==MovementHand.Left)
                     {
-                        if (moveDirection.x > 0) moveDirection.x = 0;
-                        if (moveDirection.z > 0) moveDirection.z = 0;
-                     
+                        if (moveDirection.x > 0 || moveDirection.x < 0) moveDirection.x = 0;
+                        if (moveDirection.z > 0 || moveDirection.z < 0) moveDirection.z = 0;
+                        if (moveDirection.y > 0 || moveDirection.y < 0) moveDirection.y = 0;
+
                         if (xrTeleporterLinkLeft.enabled)
                             xrTeleporterLinkLeft.enabled = false;
                         if (axis != Vector2.zero && !teleportEnable)
@@ -402,8 +403,9 @@ namespace Autohand {
                     }
                     if (movementHand == MovementHand.Right)
                     {
-                        if (moveDirection.x > 0) moveDirection.x = 0;
-                        if (moveDirection.z > 0) moveDirection.z = 0;
+                        if (moveDirection.x > 0 || moveDirection.x < 0) moveDirection.x = 0;
+                        if (moveDirection.z > 0 || moveDirection.z < 0) moveDirection.z = 0;
+                        if (moveDirection.y > 0 || moveDirection.y < 0) moveDirection.y = 0;
 
                         if (xrTeleporterLinkRight.enabled)
                             xrTeleporterLinkRight.enabled = false;
@@ -427,6 +429,7 @@ namespace Autohand {
                     {
                         moveDirection.x = (!useDeadzone || Mathf.Abs(axis.x) > movementDeadzone) ? axis.x : 0;
                         moveDirection.z = (!useDeadzone || Mathf.Abs(axis.y) > movementDeadzone) ? axis.y : 0;
+
                         if (useRelativeDirection)
                             moveDirection = transform.rotation * moveDirection;
                         if (xrTeleporterLinkLeft.enabled)

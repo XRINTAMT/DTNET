@@ -24,6 +24,10 @@ public class PauseManager : MonoBehaviour
         Controls = FindObjectOfType<XRMovementControls>();
     }
 
+    private void Start()
+    {
+        PauseMenu.SetActive(false);
+    }
     public void ShowOutroMessage()
     {
         AppPause();
