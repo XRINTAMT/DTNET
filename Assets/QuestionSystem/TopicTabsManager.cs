@@ -38,7 +38,6 @@ namespace QuestionSystem
             {
                 topics.Add("null");
             }
-            Debug.Log(topics.ToString());
         }
 
         public void RefreshTopic(string _topic)
