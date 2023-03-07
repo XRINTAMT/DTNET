@@ -220,6 +220,10 @@ namespace QuestionSystem
             DLines.gameObject.SetActive(true);
             DLines.RenderQuestion(_q);
             NurseSource.clip = Resources.Load<AudioClip>("DialogueAudios/" + PlayerPrefs.GetString("Language", "English") + "/" + NurseGender + "Nurse/" + _q.Tag) as AudioClip;
+            if(NurseSource.clip == null)
+            {
+                NurseSource.clip = Resources.Load<AudioClip>("DialogueAudios/" + "English" + "/" + NurseGender + "Nurse/" + _q.Tag) as AudioClip;
+            }
             NurseSource.Play();
             Refresh();
         }
@@ -267,6 +271,10 @@ namespace QuestionSystem
 
                 //load the audio for the patient here
                 PatientSource.clip = Resources.Load<AudioClip>("DialogueAudios/" + PlayerPrefs.GetString("Language", "English") + "/" + DialogueName + "/" + _q.Tag) as AudioClip;
+                if (PatientSource.clip == null)
+                {
+                    PatientSource.clip = Resources.Load<AudioClip>("DialogueAudios/" + "English" + "/" + DialogueName + "/" + _q.Tag) as AudioClip;
+                }
 
                 if (_q.IsAsked > 0)
                 {
