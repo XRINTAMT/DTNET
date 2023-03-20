@@ -16,7 +16,7 @@ public class ChangeDialogueLanguage : MonoBehaviour
 
     [SerializeField] LangDialouge[] Dialogues;
 
-    void Start()
+    void Awake()
     {
         string lang = PlayerPrefs.GetString("Language", "English");
         for(int i = 0; i < Dialogues.Length; i++)
@@ -24,9 +24,11 @@ public class ChangeDialogueLanguage : MonoBehaviour
             if(lang == Dialogues[i].Language)
             {
                 GetComponent<QD_DialogueHandler>().dialogue = Dialogues[i].Dialogue;
+                GetComponent<QuantumTek.QuantumDialogue.Demo.QD_DialogueDemo>().SetText();
                 return;
             }
         }
+        
     }
 
     // Update is called once per frame

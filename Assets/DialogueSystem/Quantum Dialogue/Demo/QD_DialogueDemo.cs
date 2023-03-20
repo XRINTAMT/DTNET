@@ -118,7 +118,7 @@ namespace QuantumTek.QuantumDialogue.Demo
             }
         }
 
-        private void SetText()
+        public void SetText()
         {
             // Clear everything
             speakerName.text = "";
