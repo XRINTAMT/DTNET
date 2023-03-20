@@ -21,28 +21,49 @@ MonoBehaviour:
     Name: 'Patient Edvin:'
     Icon: {fileID: 0}
   - ID: 4
-    Name: 'You:'
+    Name: 'Du:'
     Icon: {fileID: 0}
   Messages:
   - ID: 1
     Speaker: 4
-    SpeakerName: 'You:'
-    PreviousMessage: 6
-    NextMessage: 2
-    MessageText: "How are you, Mr. Edvin?\u201D  "
-    Clip: {fileID: 0}
+    SpeakerName: 'Du:'
+    PreviousMessage: 7
+    NextMessage: 10
+    MessageText: 'Wie geht es Ihnen, Herr Edvin?
+
+'
+    Clip: {fileID: 8300000, guid: 651a80d4c1feffa4dbcb8c374e355eab, type: 3}
   - ID: 2
     Speaker: 3
     SpeakerName: 'Patient Edvin:'
-    PreviousMessage: 1
+    PreviousMessage: 8
     NextMessage: -1
-    MessageText: "I\u2019m very lightheaded and I\u2019m feeling  chest pain"
-    Clip: {fileID: 8300000, guid: 7aba23198855c89438b9743c40882ab2, type: 3}
+    MessageText: Ich bin sehr benommen und ich habe Brustschmerzen
+    Clip: {fileID: 8300000, guid: dfbf3944999492b4c983123610264477, type: 3}
   - ID: 6
     Speaker: -1
     SpeakerName: 
     PreviousMessage: -1
-    NextMessage: 1
-    MessageText: 
+    NextMessage: 7
+    MessageText: Next
     Clip: {fileID: 0}
-  Choices: []
+  - ID: 8
+    Speaker: 4
+    SpeakerName: 'Du:'
+    PreviousMessage: -1
+    NextMessage: 2
+    MessageText: 'How are you feeling now? '
+    Clip: {fileID: 8300000, guid: 2a018fdaeb91d9c44bfb8a17b0dadac5, type: 3}
+  - ID: 10
+    Speaker: 3
+    SpeakerName: 'Patient Edvin:'
+    PreviousMessage: 1
+    NextMessage: -1
+    MessageText: Ich bin sehr benommen und ich habe Brustschmerzen
+    Clip: {fileID: 8300000, guid: dfbf3944999492b4c983123610264477, type: 3}
+  Choices:
+  - ID: 7
+    Choices:
+    - 'How are you feeling now? '
+    - 'Wie geht es Ihnen, Herr Edvin? '
+    NextMessages: 0a0000000a000000
