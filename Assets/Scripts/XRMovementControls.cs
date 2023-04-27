@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Autohand.Demo;
 using Autohand;
+using UnityEngine.SceneManagement;
 
 public class XRMovementControls : MonoBehaviour
 {
@@ -16,13 +17,22 @@ public class XRMovementControls : MonoBehaviour
         AHPlayer.maxMoveSpeed = PlayerPrefs.GetFloat("walkingSpeed", 2);
     }
 
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            TeleportRight.SetActive(false);
+            TeleportLeft.SetActive(false);
+        }
+
+    }
     public void SwitchLocomotion(int type)
     {
         switch (type)
         {
 
             case (0):
-                AutoHandPlayer.movementType= MovementType.Teleport;
+                AutoHandPlayer.movementType = MovementType.Teleport;
                 //Teleport.SetActive(true);
                 break;
             case (1):
@@ -31,10 +41,9 @@ public class XRMovementControls : MonoBehaviour
                 break;
             case (2):
                 AutoHandPlayer.movementType = MovementType.Mixed;
-                //Teleport.SetActive(true);
+                //Teleport.SetActive(false);
                 break;
         }
-
     }
     public void SwitchMovementHand(int type)
     {
