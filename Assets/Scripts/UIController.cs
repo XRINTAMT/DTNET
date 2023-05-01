@@ -31,6 +31,8 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject assistantChosen;
     [SerializeField] private GameObject nurseChosen;
     [SerializeField] private AudioMixer AppMixer;
+    [SerializeField] private GameObject RightChosen;
+    [SerializeField] private GameObject LeftChosen;
 
     public static float dialogueVolume;
     public static float soundVolume;
@@ -69,6 +71,8 @@ public class UIController : MonoBehaviour
         swedishChosen.SetActive(language == "Swedish");
         assistantChosen.SetActive(role == "Assistant");
         nurseChosen.SetActive(role == "Nurse");
+        RightChosen.SetActive(AutoHandPlayer.movementHand == MovementHand.Left);
+        LeftChosen.SetActive(AutoHandPlayer.movementHand == MovementHand.Right);
     }
     public void SetDialogueVolume() 
     {
