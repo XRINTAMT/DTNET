@@ -7,6 +7,7 @@ public class FadeUI : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] List<CanvasGroup> canvasGroups;
+    [SerializeField] float speedMultiplier = 1;
     public bool fadeIn,fadeOut;
 
     void Start()
@@ -37,7 +38,7 @@ public class FadeUI : MonoBehaviour
             {
                 if (canvasGroups[i].alpha > 0)
                 {
-                    canvasGroups[i].alpha -= 1f * Time.deltaTime;
+                    canvasGroups[i].alpha -= 1f * Time.deltaTime * speedMultiplier;
                     GraphicRaycaster _raycaster;
                     if (canvasGroups[i].TryGetComponent<GraphicRaycaster>(out _raycaster))
                         _raycaster.enabled = false;
@@ -56,7 +57,7 @@ public class FadeUI : MonoBehaviour
             {
                 if (canvasGroups[i].alpha < 1)
                 {
-                    canvasGroups[i].alpha += 1f *Time.deltaTime;
+                    canvasGroups[i].alpha += 1f *Time.deltaTime * speedMultiplier;
                     GraphicRaycaster _raycaster;
                     if (canvasGroups[i].TryGetComponent<GraphicRaycaster>(out _raycaster))
                         _raycaster.enabled = true;
