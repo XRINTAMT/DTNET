@@ -24,7 +24,13 @@ public class XRMovementControls : MonoBehaviour
             TeleportRight.SetActive(false);
             TeleportLeft.SetActive(false);
         }
-
+        if (SceneManager.GetActiveScene().buildIndex != 0 && AutoHandPlayer.movementType == MovementType.Mixed)
+        {
+            TeleportRight.SetActive(true);
+            TeleportLeft.SetActive(true);
+            TeleportRight.GetComponent<XRTeleporterLink>().enabled = true;
+            TeleportLeft.GetComponent<XRTeleporterLink>().enabled = true;
+        }
     }
     public void SwitchLocomotion(int type)
     {
