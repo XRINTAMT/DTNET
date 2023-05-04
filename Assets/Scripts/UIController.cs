@@ -224,7 +224,7 @@ public class UIController : MonoBehaviour
         PlayerPrefs.SetInt("HandType", hand);
         AutoHandPlayer.movementHand = (MovementHand)hand;
         AutoHandPlayer.movementType = (MovementType)teleport;
-        Debug.Log(teleport);
+
         if (SceneManager.GetActiveScene().buildIndex == 0)
         { 
             if (AutoHandPlayer.movementHand == MovementHand.Left) //0

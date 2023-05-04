@@ -44,57 +44,6 @@ public class XRMovementControls : MonoBehaviour
 
         SetHandType(handType, movementType);
 
-
-        //if (SceneManager.GetActiveScene().buildIndex != 0 && AutoHandPlayer.movementType == MovementType.Mixed)
-        //{
-        //    TeleportRight.SetActive(true);
-        //    TeleportLeft.SetActive(true);
-        //    TeleportRight.GetComponent<XRTeleporterLink>().enabled = true;
-        //    TeleportLeft.GetComponent<XRTeleporterLink>().enabled = true;
-        //}
-
-        //if (handType==0)
-        //{
-        //    autoHandPlayer.xRHandPlayerControllerLink.moveController = autoHandPlayer.handLeft.GetComponent<XRHandControllerLink>();
-        //    autoHandPlayer.xRHandPlayerControllerLink.turnController = autoHandPlayer.handRight.GetComponent<XRHandControllerLink>();
-
-        //    foreach (Teleporter teleporter in autoHandPlayer.handLeft.GetComponentsInChildren<Teleporter>(true))
-        //    {
-        //        teleporter.enabled = true;
-        //        teleporter.gameObject.SetActive(true);
-        //        teleporter.GetComponent<XRTeleporterLink>().enabled = true;
-        //    }
-        //    if (true)
-        //    {
-
-        //    }
-        //    foreach (Teleporter teleporter in autoHandPlayer.handRight.GetComponentsInChildren<Teleporter>(true))
-        //    {
-        //        if (locomotionType!=2)
-        //        {
-        //            teleporter.gameObject.SetActive(false);
-        //        }
-
-        //    }
-
-        //}
-        //if (handType==1)
-        //{
-        //    autoHandPlayer.xRHandPlayerControllerLink.moveController = autoHandPlayer.handRight.GetComponent<XRHandControllerLink>();
-        //    autoHandPlayer.xRHandPlayerControllerLink.turnController = autoHandPlayer.handLeft.GetComponent<XRHandControllerLink>();
-
-        //    foreach (Teleporter teleporter in autoHandPlayer.handRight.GetComponentsInChildren<Teleporter>(true))
-        //    {
-        //        teleporter.enabled = true;
-        //        teleporter.gameObject.SetActive(true);
-        //        teleporter.GetComponent<XRTeleporterLink>().enabled = true;
-        //    }
-        //    foreach (Teleporter teleporter in autoHandPlayer.handLeft.GetComponentsInChildren<Teleporter>(true))
-        //    {
-        //        teleporter.gameObject.SetActive(false);
-        //    }
-        //}
-
     }
     public void SwitchLocomotion(int type)
     {
@@ -142,13 +91,17 @@ public class XRMovementControls : MonoBehaviour
 
     public void SetHandType(MovementHand handType, MovementType movementType)
     {
+        TeleportRight.SetActive(true);
+        TeleportLeft.SetActive(true);
+        autoHandPlayer.handLeft.GetComponent<XRHandControllerLink>().enabled = true;
+        autoHandPlayer.handRight.GetComponent<XRHandControllerLink>().enabled = true;
+
 
         if (handType == MovementHand.Left)
         {
             autoHandPlayer.xRHandPlayerControllerLink.moveController = autoHandPlayer.handLeft.GetComponent<XRHandControllerLink>();
             autoHandPlayer.xRHandPlayerControllerLink.turnController = autoHandPlayer.handRight.GetComponent<XRHandControllerLink>();
-
-
+  
             foreach (Teleporter teleportRight in autoHandPlayer.handRight.GetComponentsInChildren<Teleporter>(true))
             {
                 switch (movementType)
@@ -165,23 +118,23 @@ public class XRMovementControls : MonoBehaviour
                     default:
                         break;
                 }
+            }
 
-                foreach (Teleporter teleportLeft in autoHandPlayer.handLeft.GetComponentsInChildren<Teleporter>(true))
+            foreach (Teleporter teleportLeft in autoHandPlayer.handLeft.GetComponentsInChildren<Teleporter>(true))
+            {
+                switch (movementType)
                 {
-                    switch (movementType)
-                    {
-                        case MovementType.Teleport:
-                            teleportLeft.enabled = true;
-                            break;
-                        case MovementType.Move:
-                            teleportLeft.enabled = false;
-                            break;
-                        case MovementType.Mixed:
-                            teleportLeft.enabled = true;
-                            break;
-                        default:
-                            break;
-                    }
+                    case MovementType.Teleport:
+                        teleportLeft.enabled = true;
+                        break;
+                    case MovementType.Move:
+                        teleportLeft.enabled = false;
+                        break;
+                    case MovementType.Mixed:
+                        teleportLeft.enabled = true;
+                        break;
+                    default:
+                        break;
                 }
             }
 
@@ -208,23 +161,23 @@ public class XRMovementControls : MonoBehaviour
                     default:
                         break;
                 }
+            }
 
-                foreach (Teleporter teleportLeft in autoHandPlayer.handLeft.GetComponentsInChildren<Teleporter>(true))
+            foreach (Teleporter teleportLeft in autoHandPlayer.handLeft.GetComponentsInChildren<Teleporter>(true))
+            {
+                switch (movementType)
                 {
-                    switch (movementType)
-                    {
-                        case MovementType.Teleport:
-                            teleportLeft.enabled = false;
-                            break;
-                        case MovementType.Move:
-                            teleportLeft.enabled = false;
-                            break;
-                        case MovementType.Mixed:
-                            teleportLeft.enabled = true;
-                            break;
-                        default:
-                            break;
-                    }
+                    case MovementType.Teleport:
+                        teleportLeft.enabled = false;
+                        break;
+                    case MovementType.Move:
+                        teleportLeft.enabled = false;
+                        break;
+                    case MovementType.Mixed:
+                        teleportLeft.enabled = true;
+                        break;
+                    default:
+                        break;
                 }
             }
 
