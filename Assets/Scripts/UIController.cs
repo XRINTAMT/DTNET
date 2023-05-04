@@ -156,71 +156,12 @@ public class UIController : MonoBehaviour
         Debug.Log("Looking for a thing");
         //Object.FindObjectOfType<XRMovementControls>().SwitchLocomotion(teleport);
         Debug.Log("found one");
-
-        if (SceneManager.GetActiveScene().buildIndex != 0)
-        {
-            if (LocomotionID == 0)
-            {
-
-                AutoHandPlayer autoHandPlayer = FindObjectOfType<AutoHandPlayer>();
-
-                if (AutoHandPlayer.movementHand == MovementHand.Left)
-                {
-                    foreach (Teleporter teleporter in autoHandPlayer.handLeft.GetComponentsInChildren<Teleporter>(true))
-                    {
-                        teleporter.enabled = true;
-                        teleporter.gameObject.SetActive(true);
-                        teleporter.GetComponent<XRTeleporterLink>().enabled = true;
-                    }
-                    foreach (Teleporter teleporter in autoHandPlayer.handRight.GetComponentsInChildren<Teleporter>(true))
-                    {
-                        teleporter.gameObject.SetActive(false);
-                    }
-
-                }
-                if (AutoHandPlayer.movementHand == MovementHand.Right)
-                {
-                    foreach (Teleporter teleporter in autoHandPlayer.handRight.GetComponentsInChildren<Teleporter>(true))
-                    {
-                        teleporter.enabled = true;
-                        teleporter.gameObject.SetActive(true);
-                        teleporter.GetComponent<XRTeleporterLink>().enabled = true;
-                    }
-                    foreach (Teleporter teleporter in autoHandPlayer.handLeft.GetComponentsInChildren<Teleporter>(true))
-                    {
-                        teleporter.gameObject.SetActive(false);
-                    }
-
-                }
-                return;
-            }
-
-            if (LocomotionID == 1)
-            {
-                Teleporter[] array = FindObjectsOfType<Teleporter>(true);
-                for (int i = 0; i < array.Length; i++)
-                {
-                    array[i].gameObject.SetActive(false);
-                }
-                return;
-            }
-
-            if (LocomotionID == 2)
-            {
-                Teleporter[] array = FindObjectsOfType<Teleporter>(true);
-                for (int i = 0; i < array.Length; i++)
-                {
-                    array[i].enabled = true;
-                    array[i].gameObject.SetActive(true);
-                    array[i].GetComponent<XRTeleporterLink>().enabled = true;
-                }
-            }
-        }
-        
+        AutoHandPlayer.movementType = (MovementType)LocomotionID;
+        SetHandType((int)AutoHandPlayer.movementHand);
+      
     }
     public void SetHandType(int hand)
     {
-
         PlayerPrefs.SetInt("HandType", hand);
         AutoHandPlayer.movementHand = (MovementHand)hand;
         AutoHandPlayer.movementType = (MovementType)teleport;
@@ -249,8 +190,6 @@ public class UIController : MonoBehaviour
 
             }
         }
-
-        
 
         if (SceneManager.GetActiveScene().buildIndex != 0)
         {

@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class XRMovementControls : MonoBehaviour
 {
-    [SerializeField] XRHandPlayerControllerLink MovementControls;
     [SerializeField] AutoHandPlayer AHPlayer;
     [SerializeField] GameObject TeleportRight;
     [SerializeField] GameObject TeleportLeft;

@@ -388,8 +388,8 @@ namespace Autohand {
                         if (moveDirection.z > 0 || moveDirection.z < 0) moveDirection.z = 0;
                         if (moveDirection.y > 0 || moveDirection.y < 0) moveDirection.y = 0;
 
-                        if (xrTeleporterLinkLeft.enabled)
-                            xrTeleporterLinkLeft.enabled = false;
+                        //if (xrTeleporterLinkLeft.enabled)
+                        //    xrTeleporterLinkLeft.enabled = false;
                         if (axis != Vector2.zero && !teleportEnable)
                         {
                             teleporterL.StartTeleport();
@@ -407,8 +407,8 @@ namespace Autohand {
                         if (moveDirection.z > 0 || moveDirection.z < 0) moveDirection.z = 0;
                         if (moveDirection.y > 0 || moveDirection.y < 0) moveDirection.y = 0;
 
-                        if (xrTeleporterLinkRight.enabled)
-                            xrTeleporterLinkRight.enabled = false;
+                        //if (xrTeleporterLinkRight.enabled)
+                        //    xrTeleporterLinkRight.enabled = false;
                         if (axis != Vector2.zero && !teleportEnable)
                         {
                             teleporterR.StartTeleport();
@@ -432,8 +432,8 @@ namespace Autohand {
 
                         if (useRelativeDirection)
                             moveDirection = transform.rotation * moveDirection;
-                        if (xrTeleporterLinkLeft.enabled)
-                            xrTeleporterLinkLeft.enabled = false;
+                        //if (xrTeleporterLinkLeft.enabled)
+                        //    xrTeleporterLinkLeft.enabled = false;
                     }
                     if (movementHand == MovementHand.Right)
                     {
@@ -441,8 +441,8 @@ namespace Autohand {
                         moveDirection.z = (!useDeadzone || Mathf.Abs(axis.y) > movementDeadzone) ? axis.y : 0;
                         if (useRelativeDirection)
                             moveDirection = transform.rotation * moveDirection;
-                        if (xrTeleporterLinkRight.enabled)
-                            xrTeleporterLinkRight.enabled = false;
+                        //if (xrTeleporterLinkRight.enabled)
+                        //    xrTeleporterLinkRight.enabled = false;
                     }
 
 
@@ -456,8 +456,8 @@ namespace Autohand {
                         moveDirection.z = (!useDeadzone || Mathf.Abs(axis.y) > movementDeadzone) ? axis.y : 0;
                         if (useRelativeDirection)
                             moveDirection = transform.rotation * moveDirection;
-                        if (!xrTeleporterLinkLeft.enabled)
-                            xrTeleporterLinkLeft.enabled = true;
+                        //if (!xrTeleporterLinkLeft.enabled)
+                        //    xrTeleporterLinkLeft.enabled = true;
                     }
                     if (movementHand == MovementHand.Right)
                     {
@@ -465,8 +465,8 @@ namespace Autohand {
                         moveDirection.z = (!useDeadzone || Mathf.Abs(axis.y) > movementDeadzone) ? axis.y : 0;
                         if (useRelativeDirection)
                             moveDirection = transform.rotation * moveDirection;
-                        if (!xrTeleporterLinkRight.enabled)
-                            xrTeleporterLinkRight.enabled = true;
+                        //if (!xrTeleporterLinkRight.enabled)
+                        //    xrTeleporterLinkRight.enabled = true;
                     }
 
                    
