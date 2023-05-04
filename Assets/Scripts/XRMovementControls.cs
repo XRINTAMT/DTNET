@@ -11,26 +11,90 @@ public class XRMovementControls : MonoBehaviour
     [SerializeField] AutoHandPlayer AHPlayer;
     [SerializeField] GameObject TeleportRight;
     [SerializeField] GameObject TeleportLeft;
+    AutoHandPlayer autoHandPlayer;
+    //public int handType;
+    //public int locomotionType;
+
+    public MovementType movementType;
+    public MovementHand handType;
     void Awake()
     {
+
+        autoHandPlayer = FindObjectOfType<AutoHandPlayer>();
         SwitchLocomotion(PlayerPrefs.GetInt("MovementType", 0));
         AHPlayer.maxMoveSpeed = PlayerPrefs.GetFloat("walkingSpeed", 2);
     }
 
     private void Start()
     {
+
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
             TeleportRight.SetActive(false);
             TeleportLeft.SetActive(false);
+            enabled = false;
+            return;
         }
-        if (SceneManager.GetActiveScene().buildIndex != 0 && AutoHandPlayer.movementType == MovementType.Mixed)
-        {
-            TeleportRight.SetActive(true);
-            TeleportLeft.SetActive(true);
-            TeleportRight.GetComponent<XRTeleporterLink>().enabled = true;
-            TeleportLeft.GetComponent<XRTeleporterLink>().enabled = true;
-        }
+
+
+        TeleportRight.SetActive(true);
+        TeleportLeft.SetActive(true);
+        TeleportRight.GetComponent<XRTeleporterLink>().enabled = true;
+        TeleportLeft.GetComponent<XRTeleporterLink>().enabled = true;
+
+        SetHandType(handType, movementType);
+
+
+        //if (SceneManager.GetActiveScene().buildIndex != 0 && AutoHandPlayer.movementType == MovementType.Mixed)
+        //{
+        //    TeleportRight.SetActive(true);
+        //    TeleportLeft.SetActive(true);
+        //    TeleportRight.GetComponent<XRTeleporterLink>().enabled = true;
+        //    TeleportLeft.GetComponent<XRTeleporterLink>().enabled = true;
+        //}
+
+        //if (handType==0)
+        //{
+        //    autoHandPlayer.xRHandPlayerControllerLink.moveController = autoHandPlayer.handLeft.GetComponent<XRHandControllerLink>();
+        //    autoHandPlayer.xRHandPlayerControllerLink.turnController = autoHandPlayer.handRight.GetComponent<XRHandControllerLink>();
+
+        //    foreach (Teleporter teleporter in autoHandPlayer.handLeft.GetComponentsInChildren<Teleporter>(true))
+        //    {
+        //        teleporter.enabled = true;
+        //        teleporter.gameObject.SetActive(true);
+        //        teleporter.GetComponent<XRTeleporterLink>().enabled = true;
+        //    }
+        //    if (true)
+        //    {
+
+        //    }
+        //    foreach (Teleporter teleporter in autoHandPlayer.handRight.GetComponentsInChildren<Teleporter>(true))
+        //    {
+        //        if (locomotionType!=2)
+        //        {
+        //            teleporter.gameObject.SetActive(false);
+        //        }
+
+        //    }
+
+        //}
+        //if (handType==1)
+        //{
+        //    autoHandPlayer.xRHandPlayerControllerLink.moveController = autoHandPlayer.handRight.GetComponent<XRHandControllerLink>();
+        //    autoHandPlayer.xRHandPlayerControllerLink.turnController = autoHandPlayer.handLeft.GetComponent<XRHandControllerLink>();
+
+        //    foreach (Teleporter teleporter in autoHandPlayer.handRight.GetComponentsInChildren<Teleporter>(true))
+        //    {
+        //        teleporter.enabled = true;
+        //        teleporter.gameObject.SetActive(true);
+        //        teleporter.GetComponent<XRTeleporterLink>().enabled = true;
+        //    }
+        //    foreach (Teleporter teleporter in autoHandPlayer.handLeft.GetComponentsInChildren<Teleporter>(true))
+        //    {
+        //        teleporter.gameObject.SetActive(false);
+        //    }
+        //}
+
     }
     public void SwitchLocomotion(int type)
     {
@@ -76,6 +140,96 @@ public class XRMovementControls : MonoBehaviour
         AHPlayer.maxMoveSpeed = speed;
     }
 
+    public void SetHandType(MovementHand handType, MovementType movementType)
+    {
+
+        if (handType == MovementHand.Left)
+        {
+            autoHandPlayer.xRHandPlayerControllerLink.moveController = autoHandPlayer.handLeft.GetComponent<XRHandControllerLink>();
+            autoHandPlayer.xRHandPlayerControllerLink.turnController = autoHandPlayer.handRight.GetComponent<XRHandControllerLink>();
+
+
+            foreach (Teleporter teleportRight in autoHandPlayer.handRight.GetComponentsInChildren<Teleporter>(true))
+            {
+                switch (movementType)
+                {
+                    case MovementType.Teleport:
+                        teleportRight.enabled = false;
+                        break;
+                    case MovementType.Move:
+                        teleportRight.enabled = false;
+                        break;
+                    case MovementType.Mixed:
+                        teleportRight.enabled = true;
+                        break;
+                    default:
+                        break;
+                }
+
+                foreach (Teleporter teleportLeft in autoHandPlayer.handLeft.GetComponentsInChildren<Teleporter>(true))
+                {
+                    switch (movementType)
+                    {
+                        case MovementType.Teleport:
+                            teleportLeft.enabled = true;
+                            break;
+                        case MovementType.Move:
+                            teleportLeft.enabled = false;
+                            break;
+                        case MovementType.Mixed:
+                            teleportLeft.enabled = true;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+
+        }
+
+        if (handType==MovementHand.Right)
+        {
+            autoHandPlayer.xRHandPlayerControllerLink.moveController = autoHandPlayer.handRight.GetComponent<XRHandControllerLink>();
+            autoHandPlayer.xRHandPlayerControllerLink.turnController = autoHandPlayer.handLeft.GetComponent<XRHandControllerLink>();
+
+            foreach (Teleporter teleportRight in autoHandPlayer.handRight.GetComponentsInChildren<Teleporter>(true))
+            {
+                switch (movementType)
+                {
+                    case MovementType.Teleport:
+                        teleportRight.enabled = true;
+                        break;
+                    case MovementType.Move:
+                        teleportRight.enabled = false;
+                        break;
+                    case MovementType.Mixed:
+                        teleportRight.enabled = true;
+                        break;
+                    default:
+                        break;
+                }
+
+                foreach (Teleporter teleportLeft in autoHandPlayer.handLeft.GetComponentsInChildren<Teleporter>(true))
+                {
+                    switch (movementType)
+                    {
+                        case MovementType.Teleport:
+                            teleportLeft.enabled = false;
+                            break;
+                        case MovementType.Move:
+                            teleportLeft.enabled = false;
+                            break;
+                        case MovementType.Mixed:
+                            teleportLeft.enabled = true;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+
+        }
+    }
     // Update is called once per frame
     void Update()
     {
