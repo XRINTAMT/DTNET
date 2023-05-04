@@ -11,14 +11,22 @@ public class TutorialEditor : MonoBehaviour
 
     public UnityEvent OnTutorialStart = new UnityEvent();
     public UnityEvent OnTutorialComplete = new UnityEvent();
-
+    GameObject blockDoor;
 
     private void Start()
     {
         StartTutorial();
         AutoHandPlayer.movementType = MovementType.Move;
+        InstBlockDoor();
     }
-
+    void InstBlockDoor() 
+    {
+        blockDoor = new GameObject();
+        blockDoor.AddComponent<BoxCollider>();
+        blockDoor.name = "BlockDoor";
+        blockDoor.transform.position = new Vector3(1.85f, 1, -5.16f);
+        blockDoor.transform.localScale = new Vector3(1, 2, 1);
+    }
     public void SwichLocomotion() 
     {
     
@@ -59,6 +67,9 @@ public class TutorialEditor : MonoBehaviour
                 OnTutorialComplete?.Invoke();
             }
         }
+
+        if (index+1==16)
+            Destroy(blockDoor);
     }
 
     public void CancelTask(int index)
