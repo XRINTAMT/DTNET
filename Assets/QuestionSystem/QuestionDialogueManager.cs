@@ -40,7 +40,7 @@ namespace QuestionSystem
         [SerializeField] ReportListHandler GoodQuestionsMissedHandler;
 
         private DateTime scenarioStartTime;
-        
+
         string NurseGender = "Female";
         AudioSource PatientSource;
         FaceAnimationController FAController;
@@ -69,6 +69,17 @@ namespace QuestionSystem
                 return moodList[1];
             }
             return moodList[0];
+        }
+
+        public bool AudioIsPlaying()
+        {
+            return (NurseSource.isPlaying || PatientSource.isPlaying);
+        }
+
+        public void MuteAllAudio()
+        {
+            NurseSource.Stop();
+            PatientSource.Stop();
         }
 
         void Start()
