@@ -12,17 +12,19 @@ public class MultipleChoiceBehaviour : MonoBehaviour
     [SerializeField] Date Timestamp;
     [SerializeField] GameObject MultupleChoiceUI;
     [SerializeField] GameObject Next;
+    [SerializeField] bool Initialized;
 
     void Awake()
     {
         GameObject ChangableItemsContainer = findParentWithTag("ChangableItems");
-        if (!ChangableItemsContainer.name.Contains("(Clone)"))
+        if (!ChangableItemsContainer.name.Contains("(Clone)") || !Initialized)
         {
             int correctRow = (int)Mathf.Floor(Random.Range(0, options.Length));
             for (int i = 0; i < options.Length; i++)
             {
                 options[i].RenderObservation(new Observation(correctValues, (i != correctRow)));
             }
+            Initialized = true;
         }
     }
 
@@ -60,14 +62,14 @@ public class MultipleChoiceBehaviour : MonoBehaviour
 [System.Serializable]
 public class Observation
 {
-    int Respitations;
-    int Scale1;
-    int Scale2;
-    int Oxygen;
-    int BloodPressure;
-    int Pulse;
-    int Consciousness;
-    int Temperature;
+    public int Respitations;
+    public int Scale1;
+    public int Scale2;
+    public int Oxygen;
+    public int BloodPressure;
+    public int Pulse;
+    public int Consciousness;
+    public int Temperature;
     public bool wrong;
     public int[] values;
     static int[] valueLimits = { 6, 3, 7, 3, 13, 12, 4, 5, 2};
