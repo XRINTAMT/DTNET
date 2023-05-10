@@ -113,13 +113,18 @@ public class VitalsMonitor : MonoBehaviour
             AlarmImage.gameObject.SetActive(true);
         }
     }
-
+    void PlayAlarmaSound() 
+    {
+        if (TryGetComponent<AudioSource>(out AudioSource AS))
+            AS.Play();
+    }
     public void SwitchAlarm(bool alarm)
     {
         if (alarm)
         {
-            if(TryGetComponent<AudioSource>(out AudioSource AS))
-                AS.Play();
+    
+            Invoke("PlayAlarmaSound", 5);
+
             if (AlarmCoroutine == null)
                 AlarmCoroutine = StartCoroutine(AlarmFiring());
         }
