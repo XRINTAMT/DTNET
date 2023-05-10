@@ -17,12 +17,6 @@ public class FadeMessageManager : MonoBehaviour
      
     }
 
-    private void Awake()
-    {
-        fadeBackground.color = alterAlpha(fadeBackground.color, 0);
-        displayText.color = alterAlpha(displayText.color, 0);
-    }
-
     // Update is called once per frame
     void Update()
     {
