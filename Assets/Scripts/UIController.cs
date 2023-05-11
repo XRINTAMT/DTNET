@@ -31,7 +31,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject assistantChosen;
     [SerializeField] private GameObject nurseChosen;
     [SerializeField] private AudioMixer AppMixer;
-
+    [SerializeField] private Toggle SkippingToggle;
 
     public static float dialogueVolume;
     public static float soundVolume;
@@ -78,6 +78,7 @@ public class UIController : MonoBehaviour
         swedishChosen.SetActive(language == "Swedish");
         assistantChosen.SetActive(role == "Assistant");
         nurseChosen.SetActive(role == "Nurse");
+        SkippingToggle.isOn = PlayerPrefs.GetInt("AllowSkippingDialogues", 0) == 1;
 
         setWalkingSpeed.value = PlayerPrefs.GetFloat("walkingSpeed", 1.5f);
         AutoHandPlayer.movementType = (MovementType)PlayerPrefs.GetInt("MovementType", 2);
@@ -88,6 +89,12 @@ public class UIController : MonoBehaviour
 
         SetHandType((int)AutoHandPlayer.movementHand);
     }
+
+    public void SetSkippingDialogues()
+    {
+        PlayerPrefs.SetInt("AllowSkippingDialogues", SkippingToggle.isOn ? 1 : 0);
+    }
+
     public void SetDialogueVolume() 
     {
         dialogueVolume = setDialogueVolumeStatus.value;

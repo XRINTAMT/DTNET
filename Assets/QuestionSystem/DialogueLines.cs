@@ -27,6 +27,17 @@ namespace QuestionSystem
 
         public void GoOn()
         {
+            if (QDManager.AudioIsPlaying()) {
+                if (PlayerPrefs.GetInt("AllowSkippingDialogues", 0) == 1)
+                {
+                    QDManager.MuteAllAudio();
+                }
+                else
+                {
+                    return;
+                }
+            }
+
             if (answer == true)
             {
                 answer = false;

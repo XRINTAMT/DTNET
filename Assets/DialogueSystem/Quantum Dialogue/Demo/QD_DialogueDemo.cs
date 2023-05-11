@@ -52,10 +52,13 @@ namespace QuantumTek.QuantumDialogue.Demo
         }
 
 
-        public void NextTextDialogue() 
+        public void NextTextDialogue()
         {
-            if (handler.currentMessageInfo.Type == QD_NodeType.Message)
-                Next();
+            if ((PlayerPrefs.GetInt("AllowSkippingDialogues", 0) == 1) || !audioSource.isPlaying)
+            {
+                if (handler.currentMessageInfo.Type == QD_NodeType.Message)
+                    Next();
+            }
         }
 
         public void BackTextDialogue()
