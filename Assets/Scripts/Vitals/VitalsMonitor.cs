@@ -210,14 +210,14 @@ public class VitalsMonitor : MonoBehaviour
             float fluc = Mathf.Min(VitalValues[i].FluctuationRadius, VitalValues[i].Value);
             if (VitalValues[i].Value < VitalValues[i].SetValue)
             {
-                VitalValues[i].Value += VitalValues[i].SetValue * Time.deltaTime / 4;
+                VitalValues[i].Value += (VitalValues[i].SetValue + (VitalValues[i].SetValue - VitalValues[i].Value) + 1) * Time.deltaTime / 4;
                 if (VitalValues[i].Value > VitalValues[i].SetValue)
                     VitalValues[i].Value = VitalValues[i].SetValue;
                 VitalValues[i].Text.text = VitalValues[i].Value.ToString(VitalValues[i].OutputFormat);
             }
             else if (VitalValues[i].Value > VitalValues[i].SetValue)
             {
-                VitalValues[i].Value -= VitalValues[i].SetValue * Time.deltaTime / 4;
+                VitalValues[i].Value -= (VitalValues[i].SetValue + (VitalValues[i].Value - VitalValues[i].SetValue) + 1) * Time.deltaTime / 4;
                 if (VitalValues[i].Value < VitalValues[i].SetValue)
                     VitalValues[i].Value = VitalValues[i].SetValue;
                 VitalValues[i].Text.text = VitalValues[i].Value.ToString(VitalValues[i].OutputFormat);
