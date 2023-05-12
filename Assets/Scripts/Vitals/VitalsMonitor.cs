@@ -113,13 +113,18 @@ public class VitalsMonitor : MonoBehaviour
             AlarmImage.gameObject.SetActive(true);
         }
     }
-
+    void PlayAlarmaSound() 
+    {
+        if (TryGetComponent<AudioSource>(out AudioSource AS))
+            AS.Play();
+    }
     public void SwitchAlarm(bool alarm)
     {
         if (alarm)
         {
-            if(TryGetComponent<AudioSource>(out AudioSource AS))
-                AS.Play();
+    
+            Invoke("PlayAlarmaSound", 5);
+
             if (AlarmCoroutine == null)
                 AlarmCoroutine = StartCoroutine(AlarmFiring());
         }
@@ -205,14 +210,14 @@ public class VitalsMonitor : MonoBehaviour
             float fluc = Mathf.Min(VitalValues[i].FluctuationRadius, VitalValues[i].Value);
             if (VitalValues[i].Value < VitalValues[i].SetValue)
             {
-                VitalValues[i].Value += VitalValues[i].SetValue * Time.deltaTime / 4;
+                VitalValues[i].Value += (VitalValues[i].SetValue + (VitalValues[i].SetValue - VitalValues[i].Value) + 1) * Time.deltaTime / 4;
                 if (VitalValues[i].Value > VitalValues[i].SetValue)
                     VitalValues[i].Value = VitalValues[i].SetValue;
                 VitalValues[i].Text.text = VitalValues[i].Value.ToString(VitalValues[i].OutputFormat);
             }
             else if (VitalValues[i].Value > VitalValues[i].SetValue)
             {
-                VitalValues[i].Value -= VitalValues[i].SetValue * Time.deltaTime / 4;
+                VitalValues[i].Value -= (VitalValues[i].SetValue + (VitalValues[i].Value - VitalValues[i].SetValue) + 1) * Time.deltaTime / 4;
                 if (VitalValues[i].Value < VitalValues[i].SetValue)
                     VitalValues[i].Value = VitalValues[i].SetValue;
                 VitalValues[i].Text.text = VitalValues[i].Value.ToString(VitalValues[i].OutputFormat);

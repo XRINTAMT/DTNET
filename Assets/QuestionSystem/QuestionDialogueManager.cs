@@ -40,7 +40,7 @@ namespace QuestionSystem
         [SerializeField] ReportListHandler GoodQuestionsMissedHandler;
 
         private DateTime scenarioStartTime;
-        
+
         string NurseGender = "Female";
         AudioSource PatientSource;
         FaceAnimationController FAController;
@@ -69,6 +69,17 @@ namespace QuestionSystem
                 return moodList[1];
             }
             return moodList[0];
+        }
+
+        public bool AudioIsPlaying()
+        {
+            return (NurseSource.isPlaying || PatientSource.isPlaying);
+        }
+
+        public void MuteAllAudio()
+        {
+            NurseSource.Stop();
+            PatientSource.Stop();
         }
 
         void Start()
@@ -220,6 +231,10 @@ namespace QuestionSystem
             DLines.gameObject.SetActive(true);
             DLines.RenderQuestion(_q);
             NurseSource.clip = Resources.Load<AudioClip>("DialogueAudios/" + PlayerPrefs.GetString("Language", "English") + "/" + NurseGender + "Nurse/" + _q.Tag) as AudioClip;
+            if(NurseSource.clip == null)
+            {
+                NurseSource.clip = Resources.Load<AudioClip>("DialogueAudios/" + "English" + "/" + NurseGender + "Nurse/" + _q.Tag) as AudioClip;
+            }
             NurseSource.Play();
             Refresh();
         }
@@ -267,6 +282,10 @@ namespace QuestionSystem
 
                 //load the audio for the patient here
                 PatientSource.clip = Resources.Load<AudioClip>("DialogueAudios/" + PlayerPrefs.GetString("Language", "English") + "/" + DialogueName + "/" + _q.Tag) as AudioClip;
+                if (PatientSource.clip == null)
+                {
+                    PatientSource.clip = Resources.Load<AudioClip>("DialogueAudios/" + "English" + "/" + DialogueName + "/" + _q.Tag) as AudioClip;
+                }
 
                 if (_q.IsAsked > 0)
                 {

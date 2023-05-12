@@ -31,6 +31,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject assistantChosen;
     [SerializeField] private GameObject nurseChosen;
     [SerializeField] private AudioMixer AppMixer;
+    [SerializeField] private Toggle SkippingToggle;
 
     public static float dialogueVolume;
     public static float soundVolume;
@@ -42,10 +43,19 @@ public class UIController : MonoBehaviour
     public static int subtitles;
     public static int guides;
     SceneLoader sceneLoader;
+
+    XRMovementControls xRMovementControls;
+    [SerializeField] List<Button> ButtonsChooseRight = new List<Button>();
+    [SerializeField] List<Button> ButtonsChooseLeft = new List<Button>();
+    private void Awake()
+    {
+        xRMovementControls = FindObjectOfType<XRMovementControls>();
+    }
     void Start()
     {
         LoadSettingsIntoUI();
         sceneLoader = FindObjectOfType<SceneLoader>();
+
     }
 
     public void LoadSettingsIntoUI()
@@ -53,9 +63,8 @@ public class UIController : MonoBehaviour
         setDialogueVolumeStatus.value = PlayerPrefs.GetFloat("dialogueVolume", 0.5f);
         setSoundVolumeStatus.value = PlayerPrefs.GetFloat("soundVolume", 0.5f);
         setMusicVolumeStatus.value = PlayerPrefs.GetFloat("musicVolume", 0.5f);
-        //setWalkingSpeed.value = PlayerPrefs.GetFloat("walkingSpeed", 1.5f);
         setSubstitlesStatus.isOn = PlayerPrefs.GetInt("Subtitles", 0) == 0;
-        teleport = PlayerPrefs.GetInt("MovementType", 0);
+        teleport = PlayerPrefs.GetInt("MovementType", 2);
         language = PlayerPrefs.GetString("Language", "English");
         role = PlayerPrefs.GetString("Role", "Assistant");
         LocalizationManager.Language = language;
@@ -69,7 +78,23 @@ public class UIController : MonoBehaviour
         swedishChosen.SetActive(language == "Swedish");
         assistantChosen.SetActive(role == "Assistant");
         nurseChosen.SetActive(role == "Nurse");
+        SkippingToggle.isOn = PlayerPrefs.GetInt("AllowSkippingDialogues", 0) == 1;
+
+        setWalkingSpeed.value = PlayerPrefs.GetFloat("walkingSpeed", 1.5f);
+        AutoHandPlayer.movementType = (MovementType)PlayerPrefs.GetInt("MovementType", 2);
+        AutoHandPlayer.movementHand = (MovementHand)PlayerPrefs.GetInt("HandType", 0);
+
+        xRMovementControls.movementType = AutoHandPlayer.movementType;
+        xRMovementControls.handType = AutoHandPlayer.movementHand;
+
+        SetHandType((int)AutoHandPlayer.movementHand);
     }
+
+    public void SetSkippingDialogues()
+    {
+        PlayerPrefs.SetInt("AllowSkippingDialogues", SkippingToggle.isOn ? 1 : 0);
+    }
+
     public void SetDialogueVolume() 
     {
         dialogueVolume = setDialogueVolumeStatus.value;
@@ -138,13 +163,46 @@ public class UIController : MonoBehaviour
         Debug.Log("Looking for a thing");
         //Object.FindObjectOfType<XRMovementControls>().SwitchLocomotion(teleport);
         Debug.Log("found one");
+        AutoHandPlayer.movementType = (MovementType)LocomotionID;
+        SetHandType((int)AutoHandPlayer.movementHand);
+      
     }
     public void SetHandType(int hand)
     {
-        if (hand == 0) AutoHandPlayer.movementHand = MovementHand.Left;
-    
-        if (hand == 1) AutoHandPlayer.movementHand = MovementHand.Right;
-      
+        PlayerPrefs.SetInt("HandType", hand);
+        AutoHandPlayer.movementHand = (MovementHand)hand;
+        AutoHandPlayer.movementType = (MovementType)teleport;
+
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        { 
+            if (AutoHandPlayer.movementHand == MovementHand.Left) //0
+            {
+                foreach (Transform child in transform.root.GetComponentsInChildren<Transform>(true))
+                {
+                    if (child.name == "ButtonHandRight")
+                    {
+                        child.GetComponent<Button>().onClick.Invoke();
+                    }
+                }
+            }
+            if (AutoHandPlayer.movementHand == MovementHand.Right) //1
+            {
+                foreach (Transform child in transform.root.GetComponentsInChildren<Transform>(true))
+                {
+                    if (child.name == "ButtonHandLeft")
+                    {
+                        child.GetComponent<Button>().onClick.Invoke();
+                    }
+                }
+
+            }
+        }
+
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            xRMovementControls.SetHandType(AutoHandPlayer.movementHand, AutoHandPlayer.movementType);
+        }
+
     }
 
     public void SetGender(int genderID)

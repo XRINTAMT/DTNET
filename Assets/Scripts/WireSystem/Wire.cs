@@ -79,7 +79,11 @@ public class Wire : MonoBehaviour
 
 	void FixedUpdate()
 	{
-        points[0] = pathInfo.origin.position;
+		if (refreshProgress <= 0)
+		{
+			return;
+		}
+		points[0] = pathInfo.origin.position;
         points[points.Length - 1] = pathInfo.target.position;
         for (int i = 0; i < points.Length; i++)
         {
@@ -91,7 +95,6 @@ public class Wire : MonoBehaviour
                 pointsOld[i] = curr;
             }
         }
-
         for (int i = 0; i < iterations; i++)
         {
             ConstrainCollisions();

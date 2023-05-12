@@ -16,10 +16,12 @@ public class DialogueTriggerArea : MonoBehaviour
     public void InArea()
     {
         inArea = true;
+        //dialogue.SetActive(true);
     }
     public void OutArea()
     {
         inArea = false;
+        dialogue.SetActive(false);
     }
     public void activateDialogue() 
     {

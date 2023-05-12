@@ -21,6 +21,7 @@ public class Pacer : MonoBehaviour
     [SerializeField] float AimPace;
     [SerializeField] Sensor Pad;
     [SerializeField] float AimOutput;
+    [SerializeField] UnityEngine.Events.UnityEvent FirstContact;
 
     
     float maxOutputDiff;
@@ -31,7 +32,7 @@ public class Pacer : MonoBehaviour
     int currentMilestone = 0;
     Coroutine DelayedMilestone;
 
-    void Awake()
+    void Start()
     {
         paceValue = 60;
         outputValue = 0;
@@ -50,8 +51,10 @@ public class Pacer : MonoBehaviour
 
     public void OnValueChanged(int id, float value)
     {
+        Debug.Log("Changed the pacer value");
         if (!pacing)
             return;
+        Debug.Log("It's ok, we're already pacing!");
         if (id == 0)
         {
             outputValue = value;
@@ -77,9 +80,16 @@ public class Pacer : MonoBehaviour
         }
     }
 
+    public void CheckFirstContact()
+    {
+        if(pacing)
+            FirstContact.Invoke();
+    }
+
     private void CheckOutputMilestone()
     {
-        if(DelayedMilestone == null)
+        Debug.Log("Reached milestone because we're pacing!");
+        if (DelayedMilestone == null)
         {
             if(currentMilestone < Milestones.Length)
             {
