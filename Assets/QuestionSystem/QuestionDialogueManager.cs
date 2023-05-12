@@ -382,13 +382,13 @@ namespace QuestionSystem
             DLines.gameObject.SetActive(true);
             DLines.TimeoutNotice();
             mood -= 1;
-            PatientSource.clip = Resources.Load<AudioClip>("DialogueAudios/" + PlayerPrefs.GetString("Language", "English") + "/" + DialogueName + "/waiting_for_too_long") as AudioClip;
+            PatientSource.clip = Resources.Load<AudioClip>("DialogueAudios/" + PlayerPrefs.GetString("Language", "English") + "/" + DialogueName + "/TakingTooLong") as AudioClip;
             PatientSource.Play();
         }
 
         IEnumerator AnswerRepeated(AudioClip _ac)
         {
-            PatientSource.clip = Resources.Load<AudioClip>("DialogueAudios/" + PlayerPrefs.GetString("Language", "English") + "/" + DialogueName + "/repeated_question") as AudioClip;
+            PatientSource.clip = Resources.Load<AudioClip>("DialogueAudios/" + PlayerPrefs.GetString("Language", "English") + "/" + DialogueName + "/AlreadyToldYou") as AudioClip;
             PatientSource.Play();
             while (PatientSource.isPlaying)
             {
