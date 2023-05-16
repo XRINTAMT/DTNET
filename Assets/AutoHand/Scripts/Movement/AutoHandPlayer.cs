@@ -432,6 +432,11 @@ namespace Autohand {
 
                         if (useRelativeDirection)
                             moveDirection = transform.rotation * moveDirection;
+                        if (axis.x==0 && axis.y == 0)
+                            GetComponent<Rigidbody>().isKinematic = true;
+                        if (axis.x != 0 || axis.y != 0)
+                            GetComponent<Rigidbody>().isKinematic = false;
+          
                         //if (xrTeleporterLinkLeft.enabled)
                         //    xrTeleporterLinkLeft.enabled = false;
                     }
@@ -439,6 +444,10 @@ namespace Autohand {
                     {
                         moveDirection.x = (!useDeadzone || Mathf.Abs(axis.x) > movementDeadzone) ? axis.x : 0;
                         moveDirection.z = (!useDeadzone || Mathf.Abs(axis.y) > movementDeadzone) ? axis.y : 0;
+                        if (axis.x == 0 && axis.y == 0)
+                            GetComponent<Rigidbody>().isKinematic = true;
+                        if (axis.x != 0 || axis.y != 0)
+                            GetComponent<Rigidbody>().isKinematic = false;
                         if (useRelativeDirection)
                             moveDirection = transform.rotation * moveDirection;
                         //if (xrTeleporterLinkRight.enabled)
@@ -454,6 +463,10 @@ namespace Autohand {
                     {
                         moveDirection.x = (!useDeadzone || Mathf.Abs(axis.x) > movementDeadzone) ? axis.x : 0;
                         moveDirection.z = (!useDeadzone || Mathf.Abs(axis.y) > movementDeadzone) ? axis.y : 0;
+                        if (axis.x == 0 && axis.y == 0)
+                            GetComponent<Rigidbody>().isKinematic = true;
+                        if (axis.x != 0 || axis.y != 0)
+                            GetComponent<Rigidbody>().isKinematic = false;
                         if (useRelativeDirection)
                             moveDirection = transform.rotation * moveDirection;
                         //if (!xrTeleporterLinkLeft.enabled)
@@ -463,6 +476,10 @@ namespace Autohand {
                     {
                         moveDirection.x = (!useDeadzone || Mathf.Abs(axis.x) > movementDeadzone) ? axis.x : 0;
                         moveDirection.z = (!useDeadzone || Mathf.Abs(axis.y) > movementDeadzone) ? axis.y : 0;
+                        if (axis.x == 0 && axis.y == 0)
+                            GetComponent<Rigidbody>().isKinematic = true;
+                        if (axis.x != 0 || axis.y != 0)
+                            GetComponent<Rigidbody>().isKinematic = false;
                         if (useRelativeDirection)
                             moveDirection = transform.rotation * moveDirection;
                         //if (!xrTeleporterLinkRight.enabled)
