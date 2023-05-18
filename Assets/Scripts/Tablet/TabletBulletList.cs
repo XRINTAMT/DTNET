@@ -116,14 +116,22 @@ public class TabletBulletList : MonoBehaviour
         }
         if (_isSub)
         {
-            if (!TaskSFX.isPlaying)
-                SubtaskSFX.Play();
+            if (PlayerPrefs.GetInt("GuidedMode", 1) == 0)
+            {
+                if (!TaskSFX.isPlaying)
+                    SubtaskSFX.Play();
+            }
+            
         }
         else
         {
-            TaskSFX.Play();
-            if (SubtaskSFX.isPlaying)
-                SubtaskSFX.Stop();
+            if (PlayerPrefs.GetInt("GuidedMode", 1) == 0)
+            {
+                TaskSFX.Play();
+                if (SubtaskSFX.isPlaying)
+                    SubtaskSFX.Stop();
+            }
+            
             if (_topID < ListItems.Length - 1)
             {
                 _topID += 1;
