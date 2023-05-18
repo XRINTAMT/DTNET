@@ -13,13 +13,15 @@ GameObject:
   - component: {fileID: 778268484563786860}
   - component: {fileID: 494162514331563201}
   - component: {fileID: 2671477523908356949}
+  - component: {fileID: 5008258385760772682}
+  - component: {fileID: 4280411935928651685}
   m_Layer: 5
   m_Name: CanvasEXAM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &477462975456458805
 RectTransform:
   m_ObjectHideFlags: 0
@@ -85,7 +87,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &494162514331563201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,9 +114,10 @@ AudioSource:
   m_GameObject: {fileID: 631021666126289645}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7845491723423296171, guid: a267354bf1d076941bb945795e577cff,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: fc530ba16b55aec49811a60ec84efeca, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -199,6 +202,58 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5008258385760772682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631021666126289645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcdc54dd76e486d4a87eaba09f758f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Languages:
+  - <Language>k__BackingField: English
+    <Phrase>k__BackingField:
+    - {fileID: 8300000, guid: fc530ba16b55aec49811a60ec84efeca, type: 3}
+  - <Language>k__BackingField: German
+    <Phrase>k__BackingField:
+    - {fileID: 8300000, guid: 906a46f74ef06db4c9fc236c1aba7e7b, type: 3}
+  - <Language>k__BackingField: Lithuanian
+    <Phrase>k__BackingField:
+    - {fileID: 8300000, guid: ac4618de619e9f94cb0a05435e80f972, type: 3}
+  - <Language>k__BackingField: Latvian
+    <Phrase>k__BackingField:
+    - {fileID: 8300000, guid: a603b96eb2e2d944fb6191b3f575663e, type: 3}
+--- !u!114 &4280411935928651685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631021666126289645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5471d05959bd2e94386ec3b3d6213327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5008258385760772682}
+        m_TargetAssemblyTypeName: LocalizedAudioPlayer, Assembly-CSharp
+        m_MethodName: PlayPhrase
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4090834286103914664
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,7 +444,8 @@ AudioSource:
   m_GameObject: {fileID: 4090834286103914664}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6425683029024234107, guid: a267354bf1d076941bb945795e577cff,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 3bf1b17458188ac4794805adf0abdbca, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.3
@@ -485,7 +541,8 @@ AudioSource:
   m_GameObject: {fileID: 4090834286103914664}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6425683029024234107, guid: a267354bf1d076941bb945795e577cff,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 5602338fc0b4a3149a1b5bb57217426f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.3
