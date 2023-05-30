@@ -17,6 +17,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public bool automaticJoinRoom;
     public bool viewerApp;
     public static bool _viewerApp;
+    public static bool offlineMode = true;
     void Start()
     {
         roomOptions.MaxPlayers = (byte)maxPlayers;
@@ -38,6 +39,13 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public void ConnectServerAndCreateRoom(int scene) 
     {
+        ConnectToServer();
+
+    }
+    public void ConnectServerAndCreateOfflineRoom(int scene)
+    {
+        PhotonNetwork.OfflineMode = true;
+        CreateRoom(null);
         ConnectToServer();
 
     }

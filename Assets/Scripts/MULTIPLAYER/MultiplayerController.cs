@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class MultiplayerController : MonoBehaviour
 {
+    PlayerMode playerMode;
+
     [SerializeField] Transform headFollow;
     [SerializeField] Transform rightHandFollow;
     [SerializeField] Transform leftHandFollow;
@@ -15,9 +17,13 @@ public class MultiplayerController : MonoBehaviour
 
     void Start()
     {
-        headFollow = FindObjectOfType<AutoHandPlayer>().headCamera.transform;
-        rightHandFollow = FindObjectOfType<AutoHandPlayer>().handRight.transform;
-        leftHandFollow = FindObjectOfType<AutoHandPlayer>().handLeft.transform;
+        if (playerMode==PlayerMode.Player)
+        {
+            headFollow = FindObjectOfType<AutoHandPlayer>().headCamera.transform;
+            rightHandFollow = FindObjectOfType<AutoHandPlayer>().handRight.transform;
+            leftHandFollow = FindObjectOfType<AutoHandPlayer>().handLeft.transform;
+        }
+ 
     }
 
     // Update is called once per frame
@@ -32,4 +38,11 @@ public class MultiplayerController : MonoBehaviour
         leftHandFollower.transform.position = leftHandFollow.transform.position;
         leftHandFollower.transform.rotation = leftHandFollow.transform.rotation;
     }
+
+}
+
+public enum PlayerMode 
+{
+    Player,
+    Viewer
 }
