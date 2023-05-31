@@ -36,6 +36,7 @@ public class NewSyringeMechanic : MonoBehaviour
         updatePistonPos = false;
         grabbablePiston.gameObject.AddComponent<FixedJoint>();
         grabbablePiston.GetComponent<FixedJoint>().connectedBody = grabbableSyringe.GetComponent<Rigidbody>();
+        grabbablePiston.GetComponent<FixedJoint>().breakForce = 300;
     }
 
     void GrabSyringe(Hand hand, Grabbable grabbable) 
@@ -68,6 +69,14 @@ public class NewSyringeMechanic : MonoBehaviour
         {
             other.transform.GetChild(0).gameObject.SetActive(true);
             inBottle = true;
+        }
+        if (other.tag == "AreaLimit")
+        {
+            grabbableSyringe.GetComponent<Stabber>().enabled = false;
+        }
+        if (other.tag == "inject")
+        {
+            grabbableSyringe.GetComponent<Stabber>().enabled = true;
         }
     }
     private void OnTriggerExit(Collider other)
