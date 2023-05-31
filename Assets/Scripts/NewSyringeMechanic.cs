@@ -28,10 +28,14 @@ public class NewSyringeMechanic : MonoBehaviour
     void UpdatePistonPos(Hand hand, Grabbable grabbable) 
     {
         updatePistonPos = true;
+        //if (grabbablePiston.GetComponent<FixedJoint>())
+        //    Destroy(grabbablePiston.GetComponent<FixedJoint>());
     }
     void StopUpdatePistonPos(Hand hand, Grabbable grabbable)
     {
         updatePistonPos = false;
+        grabbablePiston.gameObject.AddComponent<FixedJoint>();
+        grabbablePiston.GetComponent<FixedJoint>().connectedBody = grabbableSyringe.GetComponent<Rigidbody>();
     }
 
     void GrabSyringe(Hand hand, Grabbable grabbable) 
