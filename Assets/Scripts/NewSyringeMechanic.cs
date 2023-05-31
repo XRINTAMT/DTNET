@@ -39,6 +39,8 @@ public class NewSyringeMechanic : MonoBehaviour
         grabbablePiston.GetComponent<FixedJoint>().breakForce = 300;
     }
 
+    
+
     void GrabSyringe(Hand hand, Grabbable grabbable) 
     {
         if (GetComponent<FixedJoint>())
@@ -55,6 +57,7 @@ public class NewSyringeMechanic : MonoBehaviour
         {
             gameObject.AddComponent<FixedJoint>();
             GetComponent<FixedJoint>().connectedBody = bottle.GetComponent<Rigidbody>();
+            //transform.parent = bottle.transform;
             grabbablePiston.enabled = true;
         }
         if (!inBottle)
