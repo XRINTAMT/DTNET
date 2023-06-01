@@ -6,12 +6,13 @@ using UnityEngine;
 public class NewSyringeMechanic : MonoBehaviour
 {
     [SerializeField] GameObject piston;
-    [SerializeField] GameObject bottle;
+    GameObject bottle;
     ConfigurableJoint configurableJointPiston;
     Grabbable grabbableSyringe;
     Grabbable grabbablePiston;
     bool inBottle;
     bool updatePistonPos;
+    Hand hand;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +44,8 @@ public class NewSyringeMechanic : MonoBehaviour
 
     void GrabSyringe(Hand hand, Grabbable grabbable) 
     {
+        this.hand = hand;
+
         if (GetComponent<FixedJoint>())
             Destroy(GetComponent<FixedJoint>());
 
@@ -66,6 +69,13 @@ public class NewSyringeMechanic : MonoBehaviour
         }
 
     }
+
+
+    public void Vibration(int time) 
+    {
+        //hand.PlayHapticVibration(time);
+       
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag =="Indicate")
@@ -75,12 +85,14 @@ public class NewSyringeMechanic : MonoBehaviour
         }
         if (other.tag == "AreaLimit")
         {
-            grabbableSyringe.GetComponent<Stabber>().enabled = false;
-        }
-        if (other.tag == "inject")
-        {
+            bottle = other.transform.parent.gameObject;
             grabbableSyringe.GetComponent<Stabber>().enabled = true;
         }
+        //if (other.tag == "AreaLimit")
+        //{
+        //    grabbableSyringe.GetComponent<Stabber>().enabled = false;
+        //}
+
     }
     private void OnTriggerExit(Collider other)
     {
@@ -88,6 +100,11 @@ public class NewSyringeMechanic : MonoBehaviour
         {
             other.transform.GetChild(0).gameObject.SetActive(false);
             inBottle = false;
+        }
+        if (other.tag == "AreaLimit")
+        {
+            bottle = null;
+            grabbableSyringe.GetComponent<Stabber>().enabled = false;
         }
     }
     // Update is called once per frame
