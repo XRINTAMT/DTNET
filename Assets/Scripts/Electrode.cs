@@ -6,7 +6,6 @@ public class Electrode : MonoBehaviour
 {
     [field: SerializeField] public int ID { get; private set; }
 
-
     public void Connect()
     {
         Invoke("ProcessConnection", Time.fixedDeltaTime);
@@ -16,6 +15,7 @@ public class Electrode : MonoBehaviour
     {
         Pad _p = GetComponentInChildren<Pad>();
         ID = _p.ID;
+        _p.GetComponent<Sensor>().Connect();
     }
 
     public void Disconnect()
