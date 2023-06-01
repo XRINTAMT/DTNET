@@ -8,9 +8,12 @@ public class ElectrodeSocket : MonoBehaviour
     [SerializeField] int RequiredPadID;
     Electrode ConnectedElectrode;
 
-    void Start()
+    private void Awake()
     {
-        
+        if (RequiredPadID == -1)
+        {
+            gameObject.SetActive(PlayerPrefs.GetInt("GuidedMode", 0) == 0);
+        }
     }
 
     public bool IsConnectedCorrectly()

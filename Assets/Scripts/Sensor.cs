@@ -7,6 +7,7 @@ public class Sensor : MonoBehaviour
     [SerializeField] VitalsMonitor Monitor;
     [field: SerializeField] public string[] ValuesScanned { private set; get; }
     [SerializeField] int[] ports;
+    [SerializeField] bool Connected = false;
 
     void Start()
     {
@@ -20,11 +21,16 @@ public class Sensor : MonoBehaviour
 
     public void Connect()
     {
-        for(int i = 0; i < ports.Length; i++)
+        if (!Connected)
         {
-            Monitor.Connect(ports[i]);
-            Debug.Log("Connecting port " + ports[i]);
+            Connected = true;
+            for (int i = 0; i < ports.Length; i++)
+            {
+                Monitor.Connect(ports[i]);
+                Debug.Log("Connecting port " + ports[i]);
+            }
         }
+        
     }
 
     // Update is called once per frame
