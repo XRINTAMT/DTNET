@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Autohand;
@@ -29,6 +30,7 @@ public class AnimationsController : MonoBehaviour
 
     bool waterSyringe;
 
+    public Action <bool> waterCondition;
 
 
     private void Awake()
@@ -79,7 +81,7 @@ public class AnimationsController : MonoBehaviour
         {
             syringeAnimation.Play("HygeneOff");
         }
-
+        waterCondition?.Invoke(waterSyringe);
     }
 
     void HaltCollider()

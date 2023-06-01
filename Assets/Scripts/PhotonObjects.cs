@@ -11,18 +11,29 @@ public class PhotonObjects : MonoBehaviour
     {
         if (PhotonManager.offlineMode)
         {
-            for (int i = 0; i < objects.Length; i++)
+            PhotonView[] photonViews = FindObjectsOfType<PhotonView>();
+            for (int i = 0; i < photonViews.Length; i++)
             {
-                Destroy(objects[i].GetComponent<PhotonView>());
-                Destroy(objects[i].GetComponent<PhotonTransformView>());
+                Destroy(photonViews[i]);
             }
-            Destroy(gameObject);
+
+            PhotonTransformView[] photonTransformViews = FindObjectsOfType<PhotonTransformView>();
+            for (int i = 0; i < photonTransformViews.Length; i++)
+            {
+                Destroy(photonTransformViews[i]);
+            }
+            //for (int i = 0; i < objects.Length; i++)
+            //{
+            //    Destroy(objects[i].GetComponent<PhotonView>());
+            //    Destroy(objects[i].GetComponent<PhotonTransformView>());
+            //}
+            //Destroy(gameObject);
         }
     }
     // Start is called before the first frame update
     void Start()
     {
-        if (PhotonManager._viewerApp)
+        if (!PhotonManager._viewerApp)
         {
             for (int i = 0; i < objects.Length; i++)
             {

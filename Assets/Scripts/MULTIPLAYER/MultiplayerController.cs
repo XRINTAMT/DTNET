@@ -10,10 +10,10 @@ public class MultiplayerController : MonoBehaviour
     [SerializeField] Transform headFollow;
     [SerializeField] Transform rightHandFollow;
     [SerializeField] Transform leftHandFollow;
-
-    [SerializeField] Transform headFollower;
-    [SerializeField] Transform rightHandFollower;
-    [SerializeField] Transform leftHandFollower;
+    
+    public Transform headFollower;
+    public Transform rightHandFollower;
+    public Transform leftHandFollower;
 
     void Start()
     {
