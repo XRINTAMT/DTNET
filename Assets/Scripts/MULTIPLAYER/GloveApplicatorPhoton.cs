@@ -14,8 +14,11 @@ public class GloveApplicatorPhoton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GloveApplicator gloveApplicator = GetComponent<GloveApplicator>();
-        gloveApplicator.apply += Apply;
+        if (!PhotonManager._viewerApp)
+        {
+            GloveApplicator gloveApplicator = GetComponent<GloveApplicator>();
+            gloveApplicator.apply += Apply;
+        }
 
         if (PhotonManager._viewerApp)
         {

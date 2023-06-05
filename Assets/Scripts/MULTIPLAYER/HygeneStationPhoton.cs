@@ -16,10 +16,14 @@ public class HygeneStationPhoton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AnimationsController animationsController = FindObjectOfType<AnimationsController>();
-        animationsController.waterCondition += WaterCondition;
-        HandTriggerAreaEvents handTriggerAreaEvents=GetComponent<HandTriggerAreaEvents>();
-        handTriggerAreaEvents.HandEnter.AddListener(SoapCondition);
+        if (!PhotonManager._viewerApp) 
+        {
+            AnimationsController animationsController = FindObjectOfType<AnimationsController>();
+            HandTriggerAreaEvents handTriggerAreaEvents = GetComponent<HandTriggerAreaEvents>();
+
+            animationsController.waterCondition += WaterCondition;
+            handTriggerAreaEvents.HandEnter.AddListener(SoapCondition);
+        } 
     }
 
     void SoapCondition(Hand hand)
@@ -36,15 +40,21 @@ public class HygeneStationPhoton : MonoBehaviour
     [PunRPC]
     void WaterConditionRPC(bool condition) 
     {
-        if (waterEffect)
-            waterEffect.SetActive(condition);
+        if (PhotonManager._viewerApp)
+        {
+            if (waterEffect)
+                waterEffect.SetActive(condition);
+        }
     }
 
     [PunRPC]
     void SoapConditionRPC(bool condition)
     {
-        if (soapEffect)
-            soapEffect.SetActive(condition);
+        if (PhotonManager._viewerApp)
+        {
+            if (soapEffect)
+                soapEffect.SetActive(condition);
+        }
     }
 
 }
