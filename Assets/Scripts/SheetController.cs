@@ -155,6 +155,10 @@ public class SheetController : MonoBehaviour
  
     public void Exit()
     {
+        if(GetComponentInParent<PlacePoint>() != null)
+        {
+            return;
+        }
         if (rb!=null) rb.isKinematic = true;
         transform.parent = startParent;
         transform.localPosition = startPos;
@@ -170,14 +174,12 @@ public class SheetController : MonoBehaviour
         {
             _f.FadeIn();
         }
-
     }
 
 
     public void Realesee()
     {
         grab = false;
-
         if (inHead)
         {
             //modelCollider.layer = 16;
@@ -217,8 +219,6 @@ public class SheetController : MonoBehaviour
                 _f.FadeOut();
             }
         }
-        
-        
         if (keyboard != null) keyboard.SetActive(false);
     }
 
