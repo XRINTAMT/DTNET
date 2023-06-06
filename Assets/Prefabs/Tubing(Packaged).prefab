@@ -168,6 +168,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5626168201290134566}
+        m_TargetAssemblyTypeName: SpawnableThing, Assembly-CSharp
+        m_MethodName: OnGrabbed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onRelease:
     m_PersistentCalls:
       m_Calls:
@@ -890,7 +902,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.00037260397, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0.00037260403, z: 1.2016797e-10}
+  m_ConnectedAnchor: {x: 0, y: 0.00037260403, z: -4.005599e-11}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -1189,7 +1201,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.0007650008, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0.0004112808, z: 1.2016797e-10}
+  m_ConnectedAnchor: {x: 0, y: 0.0004112808, z: -4.005599e-11}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -1298,6 +1310,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8491807882527140953}
   - component: {fileID: 9120676463401776892}
+  - component: {fileID: 5626168201290134566}
+  - component: {fileID: 3165508434303842339}
   m_Layer: 0
   m_Name: Tubing(Packaged)
   m_TagString: Untagged
@@ -1337,3 +1351,29 @@ MonoBehaviour:
   Package: {fileID: 256341274144511014}
   RemovablePart: {fileID: 5707417813208941458}
   Content: {fileID: 6381358081046349553}
+--- !u!114 &5626168201290134566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9120676463401776867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb3c39c25bcf9749ad525972469584f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Box: {fileID: 0}
+--- !u!114 &3165508434303842339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9120676463401776867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f62a6c7728884141a5c5853e067ee55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DateStamp: {fileID: 3669524000216319286}
