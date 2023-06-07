@@ -6,13 +6,14 @@ using UnityEngine;
 public class NewSyringeMechanic : MonoBehaviour
 {
     [SerializeField] GameObject piston;
-    GameObject bottle;
+    public GameObject bottle;
     ConfigurableJoint configurableJointPiston;
     Grabbable grabbableSyringe;
     Grabbable grabbablePiston;
     bool inBottle;
     bool updatePistonPos;
     Hand hand;
+    public Canvas canvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -81,6 +82,7 @@ public class NewSyringeMechanic : MonoBehaviour
         if (other.tag =="Indicate")
         {
             other.transform.GetChild(0).gameObject.SetActive(true);
+            canvas.gameObject.SetActive(true);
             inBottle = true;
         }
         if (other.tag == "AreaLimit")
@@ -99,6 +101,7 @@ public class NewSyringeMechanic : MonoBehaviour
         if (other.tag == "Indicate")
         {
             other.transform.GetChild(0).gameObject.SetActive(false);
+            canvas.gameObject.SetActive(false);
             inBottle = false;
         }
         if (other.tag == "AreaLimit")

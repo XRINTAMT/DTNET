@@ -38,12 +38,22 @@ public class Syringe : MonoBehaviour
     Vector3 innerPartPositionInit;
     Vector3 LiquidPositionInit;
     MeshRenderer liquidRenderer;
-    Material LiquidNormal;
-
+    public Material LiquidNormal;
+    public Material LiquidNormalUncorrect;
+    public Material LiquidNormalCorrect;
     public Dictionary<string, float> ingredients { private set; get;}
     public Injection Lable { get; private set; }
 
-    
+    [SerializeField] Transform indicate;
+    bool checkPositionInner;
+    public float syringeML;
+    public float amount;
+    public string currentSubstance;
+    public float amountDopamine;
+    public float amountSolanine;
+    float inaccuracy = 0.5f;
+    Material indicateMaterial;
+  
     void Awake()
     {
         innerPartPositionInit = InnerPart.transform.localPosition;
@@ -65,7 +75,50 @@ public class Syringe : MonoBehaviour
             LiquidNormal = liquidRenderer.material;
         }
     }
-
+    private void Start()
+    {
+        InnerPart.GetComponent<Grabbable>().onGrab.AddListener(CheckPositionInner);
+        InnerPart.GetComponent<Grabbable>().onRelease.AddListener(StopCheckPositionInner);
+        indicateMaterial = indicate.GetComponentInChildren<Renderer>().material;
+     
+    }
+    void CheckPositionInner(Hand hand, Grabbable grabbable) 
+    {
+        //indicate.gameObject.SetActive(true);
+        med = GetComponent<NewSyringeMechanic>().bottle.GetComponent<Ampule>();
+        currentSubstance = med.Substance;
+        if (currentSubstance == "Dopamine")
+        {
+            amount = 20;
+        }
+        if (currentSubstance == "Solanine")
+        {
+            amount= 50;
+        }
+        checkPositionInner = true;
+    }
+    void StopCheckPositionInner(Hand hand, Grabbable grabbable)
+    {
+        //indicate.gameObject.SetActive(false);
+        if (currentSubstance== "Dopamine")
+        {
+            amountDopamine = syringeML;
+            //med.Amount -= currentAmount;
+            //currentSubstance = "";
+        }
+        if (currentSubstance == "Solanine")
+        {
+            amountSolanine = syringeML;
+            //med.Amount -= currentAmount;
+            //currentSubstance = "";
+        }
+        //AmountText.text = syringeML.ToString("0.0");
+        if (Mathf.Round(amountDopamine) == 50 && Mathf.Round(amountSolanine) == 20)
+        {
+            OnRequirementsMet?.Invoke();
+        }
+        checkPositionInner = false;
+    }
     public void TurnTheHUD(bool OnOff)
     {
         MeasurementCanvas.SetActive(OnOff);
@@ -225,6 +278,31 @@ public class Syringe : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (checkPositionInner)
+        {
+            //float scaleDelta=Mathf.
+            indicate.localScale = new Vector3(1, InnerPart.transform.localPosition.y*(-1), 1);
+
+            syringeML = InnerPart.transform.localPosition.y * -50 ;
+            AmountText.text = syringeML.ToString("0.0");
+            if (syringeML > amount - inaccuracy && syringeML < amount + inaccuracy)
+            {
+                indicate.GetComponentInChildren<Renderer>().material = LiquidNormalCorrect;
+            }
+            if (syringeML < amount - inaccuracy /*&& indicateMaterial == LiquidNormalCorrect*/)
+            {
+                indicate.GetComponentInChildren<Renderer>().material = LiquidNormal;
+            }
+            if (syringeML > amount + inaccuracy /*&& indicateMaterial == LiquidNormalCorrect*/)
+            {
+                indicate.GetComponentInChildren<Renderer>().material = LiquidNormalUncorrect;
+            }
+            //if (syringeML < amount + inaccuracy && indicateMaterial == LiquidNormalUncorrect)
+            //{
+            //    indicateMaterial = LiquidNormalCorrect;
+            //}
+        }
+
         if (!setupInInspector)
         {
             DataInterface.TryGetItem("SyringeCapacity", ref SyringeCapacity);
