@@ -33,7 +33,7 @@ public class VitalsMonitor : MonoBehaviour
     [SerializeField] TaskSpecificValues DataInterface;
     [SerializeField] UnityEvent OnAllConnected;
     private Coroutine AlarmCoroutine;
-
+    public Action<int> conneñt;
     void Start()
     {
         SwitchAlarm(FireAlarmOnStart);
@@ -180,6 +180,7 @@ public class VitalsMonitor : MonoBehaviour
         {
             t.Complete();
         }
+        conneñt?.Invoke(n);
         OnAllConnected.Invoke();
     }
 

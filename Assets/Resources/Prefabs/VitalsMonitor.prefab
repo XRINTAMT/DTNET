@@ -2441,6 +2441,8 @@ GameObject:
   - component: {fileID: 907957501277209454}
   - component: {fileID: 4967649543949290511}
   - component: {fileID: 6891682800856596526}
+  - component: {fileID: 6078488730740703591}
+  - component: {fileID: 9155456356654475590}
   m_Layer: 0
   m_Name: VitalsMonitor
   m_TagString: Untagged
@@ -2486,45 +2488,66 @@ MonoBehaviour:
   - Name: HR/ECG
     Text: {fileID: 907957500364251316}
     Value: 1
+    SetValue: 0
     FluctuationRadius: 1
     OutputFormat: 0
     Connected: 0
+    Graph: {fileID: 0}
+    SensorsLeft: 0
   - Name: Temp
     Text: {fileID: 907957501533342545}
     Value: 1
+    SetValue: 0
     FluctuationRadius: 0.2
     OutputFormat: 0.0
     Connected: 0
+    Graph: {fileID: 0}
+    SensorsLeft: 0
   - Name: BloodPressureHigh
     Text: {fileID: 907957500251802009}
     Value: 1
+    SetValue: 0
     FluctuationRadius: 2
     OutputFormat: 0
     Connected: 0
+    Graph: {fileID: 0}
+    SensorsLeft: 0
   - Name: BloodPressureLow
     Text: {fileID: 907957500179157081}
     Value: 1
+    SetValue: 0
     FluctuationRadius: 1
     OutputFormat: 0
     Connected: 0
+    Graph: {fileID: 0}
+    SensorsLeft: 0
   - Name: O2Saturation
     Text: {fileID: 907957501243494633}
     Value: 1
+    SetValue: 0
     FluctuationRadius: 0
     OutputFormat: 0
     Connected: 0
+    Graph: {fileID: 0}
+    SensorsLeft: 0
   - Name: ResprirationRate
     Text: {fileID: 907957499793745389}
     Value: 1
+    SetValue: 0
     FluctuationRadius: 1
     OutputFormat: 0
     Connected: 0
+    Graph: {fileID: 0}
+    SensorsLeft: 0
   - Name: NasalCannula
     Text: {fileID: 6713279213476663657}
     Value: 3
+    SetValue: 0
     FluctuationRadius: 0
     OutputFormat: 0
     Connected: 0
+    Graph: {fileID: 0}
+    SensorsLeft: 0
   FluctuationIntensity: 0.002
   AlarmImage: {fileID: 907957499923561359}
   AlarmInterval: 0.3
@@ -2644,6 +2667,40 @@ MonoBehaviour:
   ParentScenario: []
   references:
     version: 1
+--- !u!114 &6078488730740703591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907957501277209452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &9155456356654475590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907957501277209452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95b923cde090d2d4bb75915d2b0e1ab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &907957501381160303
 GameObject:
   m_ObjectHideFlags: 0
