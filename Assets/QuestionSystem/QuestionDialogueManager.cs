@@ -348,7 +348,7 @@ namespace QuestionSystem
                 Dialogue.Add(Greeting);
             DateTime endTime = DateTime.Now;
             var timeDiff = endTime.Subtract(scenarioStartTime);
-            OutroScreen.SetData(MoodSprite(mood), totalInformation.Count, unlockedInformation.Count, DialogueName, "", "", timeDiff.TotalMinutes);
+            
             gameObject.SetActive(false);
             IrrelevantQuestionsHandler.Initialize(IrrelevantQuestions);
             GoodQuestionsAskedHandler.Initialize(GoodQuestionsAsked);
@@ -363,6 +363,7 @@ namespace QuestionSystem
                     }
                 }
             }
+            OutroScreen.SetData(MoodSprite(mood), GoodQuestionsAsked.Count + GoodQuestionsMissed.Count, unlockedInformation.Count, DialogueName, "", "", timeDiff.TotalMinutes);
             GoodQuestionsMissedHandler.Initialize(GoodQuestionsMissed);
         }
 

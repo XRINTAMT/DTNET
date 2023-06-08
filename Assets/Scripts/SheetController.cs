@@ -11,18 +11,18 @@ public class SheetController : MonoBehaviour
     [SerializeField] Transform body;
     [SerializeField] Vector3 startPos;
     [SerializeField] Quaternion startRot;
-    Transform startParent;
+    [SerializeField] Transform startParent;
     public Rigidbody rb;
     [SerializeField] GameObject canvas;
     [SerializeField] GameObject buttonExit;
     [SerializeField] GameObject areaLimit;
     [SerializeField] GameObject modelCollider;
     [SerializeField] float scaleFactor;
-    public  GameObject keyboard;
+    public GameObject keyboard;
     public bool inHead = true;
     public bool interpolation;
     public bool grab;
-    public bool onPlace=true;
+    public bool onPlace = true;
 
     Vector3 interpolatePos;
     bool onTrigger;
@@ -35,17 +35,39 @@ public class SheetController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         cam = Camera.main;
-        startParent = transform.parent;
-        if (startParent.gameObject.name.Contains("AutoHandPlayer"))
+        PlayerObject _player = transform.GetComponentInParent<PlayerObject>();
+        if (startParent == null)
         {
-            startParent = transform.parent.parent.parent;
-        }
-        if (!startParent.gameObject.name.Contains("(Clone)"))
-        {
+            startParent = transform.parent;
             startPos = transform.localPosition;
             startRot = transform.localRotation;
         }
+        GetComponent<Grabbable>().enabled = true;
 
+        if (_player != null)
+        {
+            Debug.Log("Player is not null!");
+            transform.parent = _player.GetComponentInChildren<HipsEstimation>().transform;
+            _player.LeftHand.GetComponent<Hand>().Unsqueeze();
+            _player.LeftHand.GetComponent<Hand>().ForceReleaseGrab();
+            _player.RightHand.GetComponent<Hand>().Unsqueeze();
+            _player.RightHand.GetComponent<Hand>().ForceReleaseGrab();
+            Realesee();
+        }
+
+    }
+
+    public void Awake()
+    {
+        
+        /*
+        Hand _hnd;
+        if(transform.parent.TryGetComponent<Hand>(out _hnd))
+        {
+            GetComponent<Grabbable>().enabled = true;
+            _hnd.TryGrab(GetComponent<Grabbable>());
+        }
+        */
     }
 
     public void ChangeScale(GameObject obj) 
@@ -133,6 +155,10 @@ public class SheetController : MonoBehaviour
  
     public void Exit()
     {
+        if(GetComponentInParent<PlacePoint>() != null)
+        {
+            return;
+        }
         if (rb!=null) rb.isKinematic = true;
         transform.parent = startParent;
         transform.localPosition = startPos;
@@ -148,14 +174,12 @@ public class SheetController : MonoBehaviour
         {
             _f.FadeIn();
         }
-
     }
 
 
     public void Realesee()
     {
         grab = false;
-
         if (inHead)
         {
             //modelCollider.layer = 16;
@@ -195,8 +219,6 @@ public class SheetController : MonoBehaviour
                 _f.FadeOut();
             }
         }
-        
-        
         if (keyboard != null) keyboard.SetActive(false);
     }
 
