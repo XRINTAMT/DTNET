@@ -170,7 +170,8 @@ public class AnimationsController : MonoBehaviour
         animationOpenDoor.Play("OpenDoor");
         doctorAnimator.SetTrigger("OpenDoor");
 
-        observSheet.inHead = false; 
+        if(observSheet != null)
+            observSheet.inHead = false; 
 
         //StartCoroutine(startDialogue());
 
