@@ -270,6 +270,7 @@ public class Syringe : MonoBehaviour
                         ingredients[ingred] = 0;
                     }
                     totalSubstance = 0;
+                    AmountText.text = totalSubstance.ToString("0.0");
                 }
                 else
                 {
