@@ -34,6 +34,7 @@ public class VitalsMonitor : MonoBehaviour
     [SerializeField] UnityEvent OnAllConnected;
     private Coroutine AlarmCoroutine;
     public Action<int> conneñt;
+    public Action<bool> alarm;
     void Start()
     {
         SwitchAlarm(FireAlarmOnStart);
@@ -120,6 +121,8 @@ public class VitalsMonitor : MonoBehaviour
     }
     public void SwitchAlarm(bool alarm)
     {
+        if (!PhotonManager._viewerApp) this.alarm?.Invoke(alarm);
+
         if (alarm)
         {
     
@@ -127,6 +130,7 @@ public class VitalsMonitor : MonoBehaviour
 
             if (AlarmCoroutine == null)
                 AlarmCoroutine = StartCoroutine(AlarmFiring());
+        
         }
         else
         {
@@ -180,8 +184,9 @@ public class VitalsMonitor : MonoBehaviour
         {
             t.Complete();
         }
-        conneñt?.Invoke(n);
+
         OnAllConnected.Invoke();
+        if (!PhotonManager._viewerApp) conneñt?.Invoke(n);
     }
 
     public float GetValue(int ID)
