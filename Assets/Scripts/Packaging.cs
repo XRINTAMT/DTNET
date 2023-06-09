@@ -62,4 +62,12 @@ public class Packaging : MonoBehaviour
             CJ.breakForce = float.PositiveInfinity;
         }
     }
+
+    public void MainPackagingDestroyed()
+    {
+        if (!isUnpacked)
+        {
+            Destroy(gameObject);
+        }
+    }
 }
