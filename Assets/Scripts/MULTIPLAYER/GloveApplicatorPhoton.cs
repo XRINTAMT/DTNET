@@ -6,11 +6,13 @@ using UnityEngine;
 public class GloveApplicatorPhoton : MonoBehaviour
 {
     [SerializeField] List<SkinnedMeshRenderer> multiplayerHands = new List<SkinnedMeshRenderer>();
+
     private void Awake()
     {
         if (PhotonManager.offlineMode)
             Destroy(this);
     }
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -22,18 +24,23 @@ public class GloveApplicatorPhoton : MonoBehaviour
 
         if (PhotonManager._viewerApp)
         {
-            MultiplayerController multiplayerController = FindObjectOfType<MultiplayerController>();
+            MultiplayerController multiplayerController = FindObjectOfType<MultiplayerController>(true);
 
-            foreach (SkinnedMeshRenderer skinRend in multiplayerController.rightHandFollower.gameObject.GetComponentInChildren<Transform>())
+            if (multiplayerController)
             {
-                multiplayerHands.Add(skinRend);
+                foreach (SkinnedMeshRenderer skinRend in multiplayerController.rightHandFollower.gameObject.GetComponentInChildren<Transform>())
+                {
+                    multiplayerHands.Add(skinRend);
+                }
+                foreach (SkinnedMeshRenderer skinRend in multiplayerController.leftHandFollower.gameObject.GetComponentInChildren<Transform>())
+                {
+                    multiplayerHands.Add(skinRend);
+                }
             }
-            foreach (SkinnedMeshRenderer skinRend in multiplayerController.leftHandFollower.gameObject.GetComponentInChildren<Transform>())
-            {
-                multiplayerHands.Add(skinRend);
-            }
+      
         }
     }
+    
 
     public void Apply()
     {
@@ -54,6 +61,6 @@ public class GloveApplicatorPhoton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+   
     }
 }

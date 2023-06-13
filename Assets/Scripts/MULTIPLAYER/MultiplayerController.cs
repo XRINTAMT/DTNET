@@ -30,7 +30,7 @@ public class MultiplayerController : MonoBehaviour
     void Update()
     {
         headFollower.transform.position = headFollow.transform.position;
-        headFollower.transform.rotation = headFollower.transform.rotation;
+        headFollower.transform.rotation = headFollow.transform.rotation;
 
         rightHandFollower.transform.position = rightHandFollow.transform.position;
         rightHandFollower.transform.rotation = rightHandFollow.transform.rotation;

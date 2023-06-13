@@ -37,18 +37,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             PhotonNetwork.NickName = "player";
     }
 
-    public void ConnectServerAndCreateRoom(int scene) 
-    {
-        ConnectToServer();
-
-    }
-    public void ConnectServerAndCreateOfflineRoom(int scene)
-    {
-        PhotonNetwork.OfflineMode = true;
-        CreateRoom(null);
-        ConnectToServer();
-
-    }
     public void Leave()
     {
         PhotonNetwork.DestroyPlayerObjects(PhotonNetwork.LocalPlayer);
@@ -60,11 +48,11 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.ConnectUsingSettings();
     }
-    public void CreateRoom(string nameRoom)
+    public void CreateRoom()
     {
         if (!PhotonNetwork.IsConnected)
             return;
-        PhotonNetwork.CreateRoom(nameRoom, roomOptions);
+        PhotonNetwork.CreateRoom(Random.Range(1000, 9999).ToString(), roomOptions);
     }
     public void ConnectToRandomRoom()
     {
@@ -94,13 +82,14 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     }
     public override void OnCreatedRoom()
     {
-        SceneManager.LoadScene("MultiplayerScene");
+        offlineMode = false;
+        SceneManager.LoadScene("ScenarioScene");
         Debug.Log("Create room");
     }
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         Debug.Log("Join room FALSE");
-        CreateRoom(null);
+        CreateRoom();
     }
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {

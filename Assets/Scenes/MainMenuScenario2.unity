@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2988230
 RectTransform:
   m_ObjectHideFlags: 0
@@ -165,7 +165,6 @@ RectTransform:
   - {fileID: 1851136508}
   - {fileID: 485052083}
   - {fileID: 2028400869}
-  - {fileID: 999265176}
   m_Father: {fileID: 8269465958133096720}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -744,10 +743,10 @@ MonoBehaviour:
           m_StringArgument: ScenarioScene
           m_BoolArgument: 0
         m_CallState: 0
-      - m_Target: {fileID: 1596284824}
+      - m_Target: {fileID: 6297395933917312272}
         m_TargetAssemblyTypeName: PhotonManager, Assembly-CSharp
-        m_MethodName: ConnectServerAndCreateRoom
-        m_Mode: 3
+        m_MethodName: ConnectToServer
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1908,18 +1907,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1538979766}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &358573809 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5932141274983272071, guid: 3c2109583f0d25d49baaac5499d96e0a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1538979766}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 358573807}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3bafe5313773b549b22ed738a6223b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &364481210
 GameObject:
   m_ObjectHideFlags: 0
@@ -6017,18 +6004,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-          m_MethodName: Play
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
 --- !u!114 &889826728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6084,18 +6059,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: ScenarioScene
-          m_BoolArgument: 0
-        m_CallState: 0
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &889826729
@@ -6527,7 +6490,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &999265174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6575,17 +6538,17 @@ RectTransform:
   m_GameObject: {fileID: 999265173}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.82059085, z: 1}
+  m_LocalScale: {x: 1, y: 0.8205909, z: 1}
   m_Children:
   - {fileID: 211796477}
   - {fileID: 889826726}
   - {fileID: 189923577}
-  m_Father: {fileID: 2988230}
-  m_RootOrder: 12
+  m_Father: {fileID: 8269465958133096720}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 190}
+  m_AnchoredPosition: {x: 0, y: 203.40001}
   m_SizeDelta: {x: 848, y: 431.7}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &1003966536
@@ -8726,7 +8689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2404a37f3bd75444aa4ad05d0f228347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LocalizationKey: Start
+  LocalizationKey: No
 --- !u!114 &1389180241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9736,17 +9699,17 @@ PrefabInstance:
         type: 3}
       propertyPath: teleporterR
       value: 
-      objectReference: {fileID: 2102665648}
+      objectReference: {fileID: 0}
     - target: {fileID: 1100108644518457097, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
       propertyPath: xrTeleporterLinkLeft
       value: 
-      objectReference: {fileID: 358573809}
+      objectReference: {fileID: 0}
     - target: {fileID: 1100108644518457097, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
       propertyPath: xrTeleporterLinkRight
       value: 
-      objectReference: {fileID: 2102665646}
+      objectReference: {fileID: 0}
     - target: {fileID: 1100108644518457097, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
       propertyPath: xRHandPlayerControllerLink
@@ -10013,6 +9976,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2102665644}
     - target: {fileID: 8603929392435040875, guid: 3c2109583f0d25d49baaac5499d96e0a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9126608406232100818, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -10735,7 +10703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2404a37f3bd75444aa4ad05d0f228347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LocalizationKey: Start
+  LocalizationKey: No
 --- !u!114 &1580284555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10778,18 +10746,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580284552}
   m_CullTransparentMesh: 1
---- !u!114 &1596284824 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6297395935408564887, guid: 8c617d00fb09d014c9f0469282eef237,
-    type: 3}
-  m_PrefabInstance: {fileID: 6297395933917312271}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc38d4d53a66ac14c847be8cba10639c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1615644438
 GameObject:
   m_ObjectHideFlags: 0
@@ -12276,7 +12232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2404a37f3bd75444aa4ad05d0f228347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LocalizationKey: Start
+  LocalizationKey: Yes
 --- !u!114 &1830547563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14026,7 +13982,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2028400865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14148,6 +14104,42 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2988229}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1395920873}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1972220078}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2028400867
 MonoBehaviour:
@@ -15001,30 +14993,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1538979766}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2102665646 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4351774533117411920, guid: 3c2109583f0d25d49baaac5499d96e0a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1538979766}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2102665644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3bafe5313773b549b22ed738a6223b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2102665648 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9126608406232100818, guid: 3c2109583f0d25d49baaac5499d96e0a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1538979766}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2102665644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02e7dadae3689a64bb9a24e46177ce9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2113863955
 GameObject:
   m_ObjectHideFlags: 0
@@ -15156,7 +15124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2404a37f3bd75444aa4ad05d0f228347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LocalizationKey: Start
+  LocalizationKey: Yes
 --- !u!114 &2129135167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18201,6 +18169,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3139518204063447205, guid: 8c617d00fb09d014c9f0469282eef237,
+        type: 3}
+      propertyPath: maxPlayers
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139518204063447205, guid: 8c617d00fb09d014c9f0469282eef237,
+        type: 3}
+      propertyPath: automaticJoinRoom
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6297395935408564886, guid: 8c617d00fb09d014c9f0469282eef237,
         type: 3}
       propertyPath: m_RootOrder
@@ -18263,6 +18241,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c617d00fb09d014c9f0469282eef237, type: 3}
+--- !u!114 &6297395933917312272 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3139518204063447205, guid: 8c617d00fb09d014c9f0469282eef237,
+    type: 3}
+  m_PrefabInstance: {fileID: 6297395933917312271}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94bbfae517ab13b4a8b6b9a250ea28fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6480921994451045639
 GameObject:
   m_ObjectHideFlags: 0

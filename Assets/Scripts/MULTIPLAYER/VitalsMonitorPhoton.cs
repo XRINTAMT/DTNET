@@ -29,7 +29,8 @@ public class VitalsMonitorPhoton : MonoBehaviour
 
     void Alarm(bool alarm) 
     {
-        GetComponent<PhotonView>().RPC("AlarmRPC", RpcTarget.Others, alarm);
+        Debug.Log("Alarm");
+        //GetComponent<PhotonView>().RPC("AlarmRPC", RpcTarget.Others, alarm);
     }
     [PunRPC]
     void ConnectRPC(int n)

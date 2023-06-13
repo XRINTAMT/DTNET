@@ -19,7 +19,6 @@ public class ViewerController : MonoBehaviour
         public bool Groundbound;
         public Vector3 BoundsMin;
         public Vector3 BoundsMax;
-
         public void SetFromTransform(Transform t)
         {
             pitch = t.eulerAngles.x;
@@ -127,13 +126,14 @@ public class ViewerController : MonoBehaviour
     [SerializeField] GameObject FlyingUI;
     [SerializeField] Vector3 BoundsMin;
     [SerializeField] Vector3 BoundsMax;
-
+    Vector3 translation;
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         m_TargetCameraState.Groundbound = true;
         m_TargetCameraState.y = 1.7f;
-        WalkingUI.SetActive(true);
+        if (WalkingUI)
+            WalkingUI.SetActive(true);
     }
 
     void OnEnable()
@@ -176,7 +176,7 @@ public class ViewerController : MonoBehaviour
 
     void Update()
     {
-        Vector3 translation = Vector3.zero;
+        //Vector3 translation = Vector3.zero;
 
 #if ENABLE_LEGACY_INPUT_MANAGER
 
@@ -222,6 +222,7 @@ public class ViewerController : MonoBehaviour
         // Translation
         translation = GetInputTranslationDirection() * Time.deltaTime;
 
+
         // Speed up movement when shift key held
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -232,14 +233,14 @@ public class ViewerController : MonoBehaviour
 
         // Modify movement by a boost factor (defined in Inspector and modified in play mode through the mouse scroll wheel)
         //boost += Input.mouseScrollDelta.y * 0.2f;
-        translation *= Mathf.Pow(2.0f, boost);
-        translation *= boost;
+        //translation *= Mathf.Pow(2.0f, boost);
+        //translation *= boost;
 
 #elif USE_INPUT_SYSTEM
             // TODO: make the new input system work
 #endif
-
-        m_TargetCameraState.Translate(translation);
+        Debug.Log(GetInputTranslationDirection());
+        //m_TargetCameraState.Translate(GetInputTranslationDirection());
 
         if (Input.GetKeyUp(KeyCode.Space))
         {

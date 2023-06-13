@@ -13,14 +13,14 @@ public class SpawnMultiplayer : MonoBehaviour
     {
         if (!PhotonManager._viewerApp)
         {
-            PhotonNetwork.Instantiate("Multipalyer", Vector3.zero, Quaternion.identity);
+            PhotonNetwork.Instantiate("Multiplayer", Vector3.zero, Quaternion.identity);
         }
         if (PhotonManager._viewerApp)
         {
             AutoHandPlayer autoHandPlayer = FindObjectOfType<AutoHandPlayer>();
-            autoHandPlayer.headCamera.gameObject.AddComponent<ViewerController>();
+            autoHandPlayer.headCamera.gameObject.AddComponent<PlayerViewerMovement>();
             autoHandPlayer.GetComponent<Rigidbody>().isKinematic = true;
-            foreach (Renderer rend in autoHandPlayer.transform.root.GetComponentsInChildren<Renderer>())
+            foreach (Renderer rend in autoHandPlayer.transform.parent.GetComponentsInChildren<Renderer>())
             {
                 rend.enabled = false;
             }

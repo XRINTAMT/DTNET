@@ -16,7 +16,11 @@ public class TabletBulletListPhoton : MonoBehaviour
         if (!PhotonManager._viewerApp) 
         {
             TabletBulletList tabletBulletList = GetComponent<TabletBulletList>();
-            tabletBulletList.crossOut += CrossOut;
+            if (tabletBulletList)
+            {
+                Debug.Log(66);
+            }
+            //tabletBulletList.crossOut += CrossOut;
         }
     }
 

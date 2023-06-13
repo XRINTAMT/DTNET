@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using TMPro;
 using UnityEngine;
 
 public class PhotonObjects : MonoBehaviour
 {
-    [SerializeField] GameObject[] objects;
     [SerializeField] PhotonTransformView[] transfornViewObj;
+    [SerializeField] TextMeshProUGUI roomNumber;
+
     private void Awake()
     {
         if (PhotonManager.offlineMode)
@@ -33,28 +35,23 @@ public class PhotonObjects : MonoBehaviour
         {
             for (int i = 0; i < transfornViewObj.Length; i++)
             {
-                transfornViewObj[i].GetComponent<Rigidbody>().isKinematic = true;
+                if (transfornViewObj[i].GetComponent<Rigidbody>())
+                    transfornViewObj[i].GetComponent<Rigidbody>().isKinematic = true;
             }
         }
-
-        if (!PhotonManager._viewerApp)
-        {
-            for (int i = 0; i < transfornViewObj.Length; i++)
-            {
-                transfornViewObj[i].GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.LocalPlayer);
-            }
-        }
-
-
 
         //if (!PhotonManager._viewerApp)
         //{
-        //    for (int i = 0; i < objects.Length; i++)
+        //    for (int i = 0; i < transfornViewObj.Length; i++)
         //    {
-        //        objects[i].GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.LocalPlayer);
-        //        objects[i].GetComponent<Rigidbody>().isKinematic = true;
+        //        transfornViewObj[i].GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.LocalPlayer);
         //    }
         //}
+
+
+        roomNumber.text = PhotonNetwork.CurrentRoom.Name;
+
+
     }
 
     // Update is called once per frame
