@@ -111,10 +111,10 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 3
 --- !u!114 &256341274144511014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +173,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: SpawnableThing, Assembly-CSharp
         m_MethodName: OnGrabbed
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 256341274144511015}
+        m_TargetAssemblyTypeName: UnityEngine.Rigidbody, UnityEngine
+        m_MethodName: set_isKinematic
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -818,7 +830,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &5707417813208941458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1043,6 +1055,7 @@ GameObject:
   - component: {fileID: 6381358081046349553}
   - component: {fileID: 6381358081046349552}
   - component: {fileID: 6381358081046349559}
+  - component: {fileID: 2113102637334539386}
   m_Layer: 0
   m_Name: Tubing
   m_TagString: Untagged
@@ -1141,7 +1154,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &6381358081046349553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1225,19 +1238,7 @@ MonoBehaviour:
       m_Calls: []
   OnJointBreak:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9120676463401776892}
-        m_TargetAssemblyTypeName: Packaging, Assembly-CSharp
-        m_MethodName: OnEjected
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   lockHandOnGrab: 0
 --- !u!153 &6381358081046349552
 ConfigurableJoint:
@@ -1350,6 +1351,33 @@ MonoBehaviour:
   CollidersToIgnore:
   - {fileID: 5707417813208941457}
   - {fileID: 256341274144511013}
+--- !u!114 &2113102637334539386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6381358081046349558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d2f31d232113144b9a4fd5088adb264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ToDo:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9120676463401776892}
+        m_TargetAssemblyTypeName: Packaging, Assembly-CSharp
+        m_MethodName: OnEjected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9120676463401776867
 GameObject:
   m_ObjectHideFlags: 0

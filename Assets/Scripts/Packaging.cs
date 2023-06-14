@@ -15,14 +15,12 @@ public class Packaging : MonoBehaviour
     public void Start()
     {
         Rigidbody _rb = Content.GetComponent<Rigidbody>();
-        _rb.detectCollisions = false;
-        _rb.angularDrag = 0;
-        _rb.mass = 0;
+        
     }
 
     public void OnUnpacked()
     {
-        Content.gameObject.AddComponent<Rigidbody>();
+        //Content.gameObject.AddComponent<Rigidbody>();
         Content.enabled = true;
         isUnpacked = true;
         Rigidbody _rb = Content.GetComponent<Rigidbody>();
@@ -34,6 +32,7 @@ public class Packaging : MonoBehaviour
     public void OnEjected()
     {
         isEjected = true;
+        Debug.Log("Ejected");
     }
 
     public void OnGrabbed()
@@ -42,7 +41,13 @@ public class Packaging : MonoBehaviour
         {
             RemovablePart.enabled = true;
         }
-        
+        if (!isUnpacked)
+        {
+            Rigidbody _rb = Content.GetComponent<Rigidbody>();
+            _rb.detectCollisions = false;
+            _rb.angularDrag = 0;
+            _rb.mass = 0;
+        }
     }
 
     public void OnContentGrabbed()
@@ -82,6 +87,14 @@ public class Packaging : MonoBehaviour
         {
             RemovablePart.enabled = isUnpacked;
         }
+        if (!isUnpacked)
+        {
+            Rigidbody _rb = Content.GetComponent<Rigidbody>();
+            _rb.detectCollisions = true;
+            _rb.angularDrag = 0.05f;
+            _rb.mass = 1;
+        }
+        
     }
 
     public void OnRemovableReleased()
@@ -95,14 +108,21 @@ public class Packaging : MonoBehaviour
 
     public void MainPackagingDestroyed()
     {
+        Debug.Log("Unpacked: " + isUnpacked + "; Ejected: " + isEjected);
         if (!isUnpacked)
         {
             Destroy(gameObject);
         }
-        if (!isEjected)
+        else
         {
-            if(Content != null)
-                Destroy(Content.gameObject);
+            if (!isEjected)
+            {
+                if (Content != null)
+                {
+                    Destroy(Content.gameObject);
+                }
+
+            }
         }
     }
 }
