@@ -231,6 +231,8 @@ namespace QuestionSystem
             DLines.gameObject.SetActive(true);
             DLines.RenderQuestion(_q);
             NurseSource.clip = Resources.Load<AudioClip>("DialogueAudios/" + PlayerPrefs.GetString("Language", "English") + "/" + NurseGender + "Nurse/" + _q.Tag) as AudioClip;
+            Debug.Log(NurseSource.clip);
+            Debug.Log("DialogueAudios/" + PlayerPrefs.GetString("Language", "English") + "/" + NurseGender + "Nurse/" + _q.Tag);
             if(NurseSource.clip == null)
             {
                 NurseSource.clip = Resources.Load<AudioClip>("DialogueAudios/" + "English" + "/" + NurseGender + "Nurse/" + _q.Tag) as AudioClip;
