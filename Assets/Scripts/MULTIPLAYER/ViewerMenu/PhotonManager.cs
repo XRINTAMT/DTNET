@@ -58,6 +58,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         if (!PhotonNetwork.IsConnected)
             return;
+        offlineMode = false;
         PhotonNetwork.JoinRandomRoom();
     }
 

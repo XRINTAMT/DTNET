@@ -25,6 +25,11 @@ public class PhotonObjects : MonoBehaviour
                 Destroy(photonTransformViews[i]);
             }
         }
+
+        if (!PhotonManager.offlineMode)
+        {
+            FindObjectOfType<RestartSystem>().enabled = false;
+        }
     }
     // Start is called before the first frame update
     void Start()

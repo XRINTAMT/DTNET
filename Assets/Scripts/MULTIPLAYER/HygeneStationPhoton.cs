@@ -8,6 +8,7 @@ public class HygeneStationPhoton : MonoBehaviour
 {
     [SerializeField] GameObject waterEffect;
     [SerializeField] GameObject soapEffect;
+    HandTriggerAreaEvents handTriggerAreaEvents;
     private void Awake()
     {
         if (PhotonManager.offlineMode)
@@ -19,10 +20,11 @@ public class HygeneStationPhoton : MonoBehaviour
         if (!PhotonManager._viewerApp) 
         {
             AnimationsController animationsController = FindObjectOfType<AnimationsController>();
-            HandTriggerAreaEvents handTriggerAreaEvents = GetComponent<HandTriggerAreaEvents>();
+            handTriggerAreaEvents = GetComponent<HandTriggerAreaEvents>();
 
             animationsController.waterCondition += WaterCondition;
             handTriggerAreaEvents.HandEnter.AddListener(SoapCondition);
+            handTriggerAreaEvents.HandExit.AddListener(SoapConditionStop);
         } 
     }
 
@@ -31,7 +33,12 @@ public class HygeneStationPhoton : MonoBehaviour
         bool condition = true;
         GetComponent<PhotonView>().RPC("SoapConditionRPC", RpcTarget.Others, condition);
     }
-    
+    void SoapConditionStop(Hand hand)
+    {
+        bool condition = false;
+        GetComponent<PhotonView>().RPC("SoapConditionRPC", RpcTarget.Others, condition);
+    }
+
     void WaterCondition(bool condition) 
     {
         GetComponent<PhotonView>().RPC("WaterConditionRPC", RpcTarget.Others, condition);

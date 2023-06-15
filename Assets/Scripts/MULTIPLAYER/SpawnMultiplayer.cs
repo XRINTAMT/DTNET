@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Autohand;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.SpatialTracking;
 
 public class SpawnMultiplayer : MonoBehaviour
 {
@@ -24,7 +25,9 @@ public class SpawnMultiplayer : MonoBehaviour
             {
                 rend.enabled = false;
             }
-
+            autoHandPlayer.headCamera.GetComponent<TrackedPoseDriver>().enabled = false;
+            autoHandPlayer.handLeft.follow.parent.GetComponent<TrackedPoseDriver>().enabled = false;
+            autoHandPlayer.handRight.follow.parent.GetComponent<TrackedPoseDriver>().enabled = false;
             Destroy(FindObjectOfType<FadeWall>());
         }
     }

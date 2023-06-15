@@ -27,7 +27,7 @@ public class XRMovementControls : MonoBehaviour
     private void Start()
     {
 
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        if (SceneManager.GetActiveScene().name == "MainMenuScenario2")
         {
             TeleportRight.SetActive(false);
             TeleportLeft.SetActive(false);

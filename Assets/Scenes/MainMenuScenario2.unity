@@ -592,6 +592,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 126089552}
   m_CullTransparentMesh: 1
+--- !u!1 &147497474 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5932141274762909012, guid: 3c2109583f0d25d49baaac5499d96e0a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1538979766}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &189923576
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,6 +761,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 999265173}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 147497474}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &189923580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -863,7 +893,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Do you want multiplayer mode?
+  m_Text: Enable multiplayer mode?
 --- !u!222 &211796479
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6061,6 +6091,30 @@ MonoBehaviour:
           m_StringArgument: ScenarioScene
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 999265173}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 147497474}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &889826729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9675,6 +9729,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 330355430885294756, guid: 3c2109583f0d25d49baaac5499d96e0a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 681922308260329875, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
       propertyPath: m_IsActive
@@ -9699,7 +9758,7 @@ PrefabInstance:
         type: 3}
       propertyPath: teleporterR
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2102665648}
     - target: {fileID: 1100108644518457097, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
       propertyPath: xrTeleporterLinkLeft
@@ -9738,17 +9797,17 @@ PrefabInstance:
     - target: {fileID: 3901594521968200906, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3901594521968200906, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3901594521968200906, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3942573134183238149, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
@@ -9910,6 +9969,11 @@ PrefabInstance:
       propertyPath: OnStartFade.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4614011844675487156, guid: 3c2109583f0d25d49baaac5499d96e0a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4614011845054688871, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
       propertyPath: m_Color.a
@@ -9930,10 +9994,15 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5932141274762909012, guid: 3c2109583f0d25d49baaac5499d96e0a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5932141274762909016, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5932141274983272065, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
@@ -9951,6 +10020,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5932141275331813148, guid: 3c2109583f0d25d49baaac5499d96e0a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5932141275786230094, guid: 3c2109583f0d25d49baaac5499d96e0a,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -14993,6 +15067,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1538979766}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2102665648 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9126608406232100818, guid: 3c2109583f0d25d49baaac5499d96e0a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1538979766}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102665644}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e7dadae3689a64bb9a24e46177ce9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2113863955
 GameObject:
   m_ObjectHideFlags: 0
@@ -18178,6 +18264,11 @@ PrefabInstance:
         type: 3}
       propertyPath: automaticJoinRoom
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139518204063447205, guid: 8c617d00fb09d014c9f0469282eef237,
+        type: 3}
+      propertyPath: connectedToServerOnStart
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6297395935408564886, guid: 8c617d00fb09d014c9f0469282eef237,
         type: 3}

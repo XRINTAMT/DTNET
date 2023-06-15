@@ -6,7 +6,9 @@ using UnityEngine;
 public class GloveApplicatorPhoton : MonoBehaviour
 {
     [SerializeField] List<SkinnedMeshRenderer> multiplayerHands = new List<SkinnedMeshRenderer>();
+    [SerializeField] MultiplayerController multiplayerController;
 
+    bool setHands;
     private void Awake()
     {
         if (PhotonManager.offlineMode)
@@ -24,15 +26,16 @@ public class GloveApplicatorPhoton : MonoBehaviour
 
         if (PhotonManager._viewerApp)
         {
-            MultiplayerController multiplayerController = FindObjectOfType<MultiplayerController>(true);
+            multiplayerController = FindObjectOfType<MultiplayerController>(true);
 
             if (multiplayerController)
             {
-                foreach (SkinnedMeshRenderer skinRend in multiplayerController.rightHandFollower.gameObject.GetComponentInChildren<Transform>())
+
+                foreach (SkinnedMeshRenderer skinRend in multiplayerController.rightHandFollower.GetComponentInChildren<Transform>())
                 {
                     multiplayerHands.Add(skinRend);
                 }
-                foreach (SkinnedMeshRenderer skinRend in multiplayerController.leftHandFollower.gameObject.GetComponentInChildren<Transform>())
+                foreach (SkinnedMeshRenderer skinRend in multiplayerController.leftHandFollower.GetComponentInChildren<Transform>())
                 {
                     multiplayerHands.Add(skinRend);
                 }
@@ -57,10 +60,27 @@ public class GloveApplicatorPhoton : MonoBehaviour
                 multiplayerHands[i].material = gloveApplicator.GloveMaterial;
             }
         }
+        gameObject.SetActive(false);
     }
     // Update is called once per frame
     void Update()
     {
+        if (FindObjectOfType<MultiplayerController>(true) && PhotonManager._viewerApp && !setHands)
+        {
+            multiplayerController = FindObjectOfType<MultiplayerController>(true);
+
+            foreach (SkinnedMeshRenderer skinRend in multiplayerController.rightHandFollower.GetComponentsInChildren<SkinnedMeshRenderer>())
+            {
+                multiplayerHands.Add(skinRend);
+            }
+            foreach (SkinnedMeshRenderer skinRend in multiplayerController.leftHandFollower.GetComponentsInChildren<SkinnedMeshRenderer>())
+            {
+                multiplayerHands.Add(skinRend);
+            }
+
+            setHands = true;
+        }
+
    
     }
 }
