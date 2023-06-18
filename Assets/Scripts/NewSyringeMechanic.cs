@@ -30,8 +30,14 @@ public class NewSyringeMechanic : MonoBehaviour
     void UpdatePistonPos(Hand hand, Grabbable grabbable) 
     {
         updatePistonPos = true;
-        piston.GetComponent<Rigidbody>().mass = 2000;
-        piston.GetComponent<Rigidbody>().drag = 2000;
+        piston.GetComponent<Rigidbody>().mass = 1500;
+        piston.GetComponent<Rigidbody>().drag = 1500;
+        piston.GetComponent<Rigidbody>().angularDrag = 1500;
+
+        bottle.GetComponent<Rigidbody>().mass = 1000;
+        bottle.GetComponent<Rigidbody>().drag = 1000;
+        bottle.GetComponent<Rigidbody>().angularDrag = 1000;
+
         //if (grabbablePiston.GetComponent<FixedJoint>())
         //    Destroy(grabbablePiston.GetComponent<FixedJoint>());
     }
@@ -43,6 +49,12 @@ public class NewSyringeMechanic : MonoBehaviour
         grabbablePiston.GetComponent<FixedJoint>().breakForce = 300;
         piston.GetComponent<Rigidbody>().mass = 1;
         piston.GetComponent<Rigidbody>().drag = 0;
+        piston.GetComponent<Rigidbody>().angularDrag = 0.05f;
+        //bottle.GetComponent<Rigidbody>().isKinematic = false;
+
+        bottle.GetComponent<Rigidbody>().mass = 1;
+        bottle.GetComponent<Rigidbody>().drag = 0;
+        bottle.GetComponent<Rigidbody>().angularDrag = 0.05f;
     }
 
     
