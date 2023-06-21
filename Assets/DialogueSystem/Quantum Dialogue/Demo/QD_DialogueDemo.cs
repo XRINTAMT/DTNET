@@ -9,6 +9,7 @@ namespace QuantumTek.QuantumDialogue.Demo
 {
     public class QD_DialogueDemo : MonoBehaviour
     {
+        public int number;
         public QD_DialogueHandler handler;
         public Text speakerName;
         public Text messageText;
@@ -31,6 +32,7 @@ namespace QuantumTek.QuantumDialogue.Demo
         public ControllerApp controllerApp;
         [SerializeField] bool CompleteOnLastMessage = true;
         [SerializeField] bool loop;
+        public Action <int> startDialogue;
         private void Awake()
         {
             audioSource = GetComponent<AudioSource>();
@@ -38,7 +40,11 @@ namespace QuantumTek.QuantumDialogue.Demo
             SetText();
         }
 
-
+        private void Start()
+        {
+            NextTextDialogue();
+            startDialogue?.Invoke(number);
+        }
 
         private void Update()
         {
