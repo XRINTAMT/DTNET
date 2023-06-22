@@ -23,11 +23,12 @@ public class TabletBulletListPhoton : MonoBehaviour
     void CrossOut(int ID) 
     {
         if (!PhotonManager._viewerApp)
-            GetComponent<PhotonView>().RPC("CrossOutRPC", RpcTarget.OthersBuffered, ID);
+            GetComponent<PhotonView>().RPC("CrossOutRPC", RpcTarget.AllBuffered, ID);
     }
     [PunRPC]
     void CrossOutRPC(int id) 
     {
+        Debug.Log("CrossEvent_RPC");
         if (PhotonManager._viewerApp)
         {
             TabletBulletList tabletBulletList = FindObjectOfType<TabletBulletList>();

@@ -6837,6 +6837,8 @@ GameObject:
   - component: {fileID: 7593414036941299326}
   - component: {fileID: 7593414036941299327}
   - component: {fileID: 4158872240460811624}
+  - component: {fileID: 4161086075976928680}
+  - component: {fileID: 7558741426778336868}
   m_Layer: 0
   m_Name: NURSE
   m_TagString: Untagged
@@ -6892,6 +6894,45 @@ MonoBehaviour:
   animationDoctorNurse: {fileID: 0}
   nurseAnimator: {fileID: 0}
   animationsController: {fileID: 0}
+--- !u!114 &4161086075976928680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7593414036941299320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 1
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 7558741426778336868}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &7558741426778336868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7593414036941299320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!1 &7593414037060568776
 GameObject:
   m_ObjectHideFlags: 0
@@ -8425,6 +8466,8 @@ GameObject:
   - component: {fileID: 1040029876018516587}
   - component: {fileID: 5197110120211301738}
   - component: {fileID: 8859990138038806536}
+  - component: {fileID: 1563993252309833613}
+  - component: {fileID: 361626348017885383}
   m_Layer: 0
   m_Name: Standing W_Briefcase Idle
   m_TagString: nurse
@@ -8516,6 +8559,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inject: {fileID: 4168063047786486661}
+--- !u!114 &1563993252309833613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8990392178802826849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 1
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 361626348017885383}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &361626348017885383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8990392178802826849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 9
+    SynchronizeType: 0
+    Name: Take Inject
+  - Type: 9
+    SynchronizeType: 0
+    Name: Put Inject
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
 --- !u!1 &9008866472383445930
 GameObject:
   m_ObjectHideFlags: 0

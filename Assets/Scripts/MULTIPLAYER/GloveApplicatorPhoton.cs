@@ -20,52 +20,39 @@ public class GloveApplicatorPhoton : MonoBehaviour
     {
         if (!PhotonManager._viewerApp)
         {
-            GloveApplicator gloveApplicator = GetComponent<GloveApplicator>();
+            GloveApplicator gloveApplicator = FindObjectOfType<GloveApplicator>();
             gloveApplicator.apply += Apply;
-        }
-
-        if (PhotonManager._viewerApp)
-        {
-            multiplayerController = FindObjectOfType<MultiplayerController>(true);
-
-            if (multiplayerController)
-            {
-
-                foreach (SkinnedMeshRenderer skinRend in multiplayerController.rightHandFollower.GetComponentInChildren<Transform>())
-                {
-                    multiplayerHands.Add(skinRend);
-                }
-                foreach (SkinnedMeshRenderer skinRend in multiplayerController.leftHandFollower.GetComponentInChildren<Transform>())
-                {
-                    multiplayerHands.Add(skinRend);
-                }
-            }
-      
         }
     }
     
 
     public void Apply()
     {
-        GetComponent<PhotonView>().RPC("ApplyRPC", RpcTarget.Others);
+        if (!PhotonManager._viewerApp)
+            GetComponent<PhotonView>().RPC("ApplyRPC", RpcTarget.All);
+
+
     }
     [PunRPC]
     void ApplyRPC()
     {
+        Debug.Log("GlovesEvent_RPC");
+
         if (PhotonManager._viewerApp)
         {
-            GloveApplicator gloveApplicator = GetComponent<GloveApplicator>();
+            GloveApplicator gloveApplicator = FindObjectOfType<GloveApplicator>();
             for (int i = 0; i < multiplayerHands.Count; i++)
             {
                 multiplayerHands[i].material = gloveApplicator.GloveMaterial;
             }
+            gloveApplicator.gameObject.SetActive(false);
         }
-        gameObject.SetActive(false);
+      
     }
     // Update is called once per frame
     void Update()
     {
-        if (FindObjectOfType<MultiplayerController>(true) && PhotonManager._viewerApp && !setHands)
+        if (FindObjectOfType<MultiplayerController>(true) && !setHands)
         {
             multiplayerController = FindObjectOfType<MultiplayerController>(true);
 

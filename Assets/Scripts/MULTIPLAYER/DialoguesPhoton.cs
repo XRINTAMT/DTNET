@@ -8,9 +8,6 @@ using UnityEngine.UI;
 
 public class DialoguesPhoton : MonoBehaviour
 {
-    [SerializeField] QD_DialogueDemo dialogueManager1;
-    [SerializeField] QD_DialogueDemo dialogueManager2;
-    [SerializeField] QD_DialogueDemo dialogueManager3;
 
     [SerializeField] QD_ChoiceButton [] buttons;
 
@@ -26,17 +23,9 @@ public class DialoguesPhoton : MonoBehaviour
 
         dialogueSystem = FindObjectOfType<DialogueSystem>(true);
 
-        if (dialogueSystem)
-        {
-            dialogueManager1 = dialogueSystem.Dialogs[0].GetComponent<QD_DialogueDemo>();
-            dialogueManager2 = dialogueSystem.Dialogs[1].GetComponent<QD_DialogueDemo>();
-            dialogueManager3 = dialogueSystem.Dialogs[2].GetComponent<QD_DialogueDemo>();
-        }
-
         dialogueSystem.Dialogs[0].GetComponent<QD_DialogueDemo>().number = 1;
         dialogueSystem.Dialogs[1].GetComponent<QD_DialogueDemo>().number = 2;
         dialogueSystem.Dialogs[2].GetComponent<QD_DialogueDemo>().number = 3;
-
 
         dialogueSystem.Dialogs[0].GetComponent<QD_DialogueDemo>().startDialogue += UpdateListButtons;
         dialogueSystem.Dialogs[1].GetComponent<QD_DialogueDemo>().startDialogue += UpdateListButtons;
@@ -55,7 +44,7 @@ public class DialoguesPhoton : MonoBehaviour
 
         if (!PhotonManager._viewerApp)
         {
-            GetComponent<PhotonView>().RPC("OpenDialogueRPC", RpcTarget.Others, number);
+            GetComponent<PhotonView>().RPC("OpenDialogueRPC", RpcTarget.All, number);
         }
        
     }
@@ -64,6 +53,8 @@ public class DialoguesPhoton : MonoBehaviour
     [PunRPC]
     void OpenDialogueRPC(int number)
     {
+        Debug.Log("OpenDialogueEvent_RPC");
+
         if (PhotonManager._viewerApp)
         {
             for (int i = 0; i < dialogueSystem.Dialogs.Count; i++)
@@ -80,7 +71,7 @@ public class DialoguesPhoton : MonoBehaviour
     {
         if (!PhotonManager._viewerApp)
         {
-            GetComponent<PhotonView>().RPC("SelectButtonRPC", RpcTarget.Others, number);
+            GetComponent<PhotonView>().RPC("SelectButtonRPC", RpcTarget.All, number);
         }
     }
 
@@ -88,6 +79,7 @@ public class DialoguesPhoton : MonoBehaviour
     [PunRPC]
     void SelectButtonRPC(int number)
     {
+        Debug.Log("SelectButtonEvent_RPC");
         if (PhotonManager._viewerApp)
         {
             for (int i = 0; i < buttons.Length; i++)

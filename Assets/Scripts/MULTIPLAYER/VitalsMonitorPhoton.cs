@@ -24,17 +24,18 @@ public class VitalsMonitorPhoton : MonoBehaviour
     void Connect(int n) 
     {
         if (!PhotonManager._viewerApp)
-            GetComponent<PhotonView>().RPC("ConnectRPC", RpcTarget.OthersBuffered, n);
+            GetComponent<PhotonView>().RPC("ConnectRPC", RpcTarget.AllBuffered, n);
     }
 
     void Alarm(bool alarm) 
     {
         if (!PhotonManager._viewerApp)
-            GetComponent<PhotonView>().RPC("AlarmRPC", RpcTarget.Others, alarm);
+            GetComponent<PhotonView>().RPC("AlarmRPC", RpcTarget.All, alarm);
     }
     [PunRPC]
     void ConnectRPC(int n)
     {
+        Debug.Log("ConnectPad_RPC");
         if (PhotonManager._viewerApp)
         {
             VitalsMonitor vitalsMonitor = FindObjectOfType<VitalsMonitor>();
@@ -44,6 +45,7 @@ public class VitalsMonitorPhoton : MonoBehaviour
     [PunRPC]
     void AlarmRPC(bool alarm)
     {
+        Debug.Log("Alarm_RPC");
         if (PhotonManager._viewerApp)
         {
             VitalsMonitor vitalsMonitor = FindObjectOfType<VitalsMonitor>();

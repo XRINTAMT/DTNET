@@ -8,7 +8,7 @@ public class HygeneStationPhoton : MonoBehaviour
 {
     [SerializeField] GameObject waterEffect;
     [SerializeField] GameObject soapEffect;
-    HandTriggerAreaEvents handTriggerAreaEvents;
+    [SerializeField] HandTriggerAreaEvents handTriggerAreaEvents;
     private void Awake()
     {
         if (PhotonManager.offlineMode)
@@ -20,11 +20,18 @@ public class HygeneStationPhoton : MonoBehaviour
         waterEffect = GameObject.Find("WaterAnimation");
         soapEffect = GameObject.Find("SoapAnimation");
 
+
+        ParticleSystem[] particleSystem = FindObjectsOfType<ParticleSystem>(true);
+
+ 
+        soapEffect = particleSystem[0].gameObject;
+        waterEffect = particleSystem[1].gameObject;
+        handTriggerAreaEvents = GameObject.Find("SoapCollider").GetComponent<HandTriggerAreaEvents>();
+
         if (!PhotonManager._viewerApp) 
         {
             AnimationsController animationsController = FindObjectOfType<AnimationsController>();
             //handTriggerAreaEvents = GetComponent<HandTriggerAreaEvents>();
-            handTriggerAreaEvents = GameObject.Find("SoapCollider").GetComponent<HandTriggerAreaEvents>();
 
             animationsController.waterCondition += WaterCondition;
             handTriggerAreaEvents.HandEnter.AddListener(SoapAreaEnter);
@@ -37,7 +44,7 @@ public class HygeneStationPhoton : MonoBehaviour
         if (!PhotonManager._viewerApp)
         {
             bool condition = true;
-            GetComponent<PhotonView>().RPC("SoapConditionRPC", RpcTarget.Others, condition);
+            GetComponent<PhotonView>().RPC("SoapConditionRPC", RpcTarget.All, condition);
         }
     }
     void SoapAreaExit(Hand hand)
@@ -45,7 +52,7 @@ public class HygeneStationPhoton : MonoBehaviour
         if (!PhotonManager._viewerApp)
         {
             bool condition = false;
-            GetComponent<PhotonView>().RPC("SoapConditionRPC", RpcTarget.Others, condition);
+            GetComponent<PhotonView>().RPC("SoapConditionRPC", RpcTarget.All, condition);
         }
     }
 
@@ -53,13 +60,14 @@ public class HygeneStationPhoton : MonoBehaviour
     {
         if (!PhotonManager._viewerApp)
         {
-            GetComponent<PhotonView>().RPC("WaterConditionRPC", RpcTarget.Others, condition);
+            GetComponent<PhotonView>().RPC("WaterConditionRPC", RpcTarget.All, condition);
         }
     }
 
     [PunRPC]
     void WaterConditionRPC(bool condition) 
     {
+        Debug.Log("WaterEvent_RPC");
         if (PhotonManager._viewerApp)
         {
             if (waterEffect)
@@ -70,6 +78,7 @@ public class HygeneStationPhoton : MonoBehaviour
     [PunRPC]
     void SoapConditionRPC(bool condition)
     {
+        Debug.Log("SoapEvent_RPC");
         if (PhotonManager._viewerApp)
         {
             if (soapEffect)
