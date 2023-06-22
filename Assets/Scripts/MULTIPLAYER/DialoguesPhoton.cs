@@ -8,22 +8,30 @@ using UnityEngine.UI;
 
 public class DialoguesPhoton : MonoBehaviour
 {
-    //[SerializeField] QD_DialogueDemo dialogueManager1;
-    //[SerializeField] QD_DialogueDemo dialogueManager2;
-    //[SerializeField] QD_DialogueDemo dialogueManager3;
+    [SerializeField] QD_DialogueDemo dialogueManager1;
+    [SerializeField] QD_DialogueDemo dialogueManager2;
+    [SerializeField] QD_DialogueDemo dialogueManager3;
 
     [SerializeField] QD_ChoiceButton [] buttons;
 
-    DialogueSystem dialogueSystem;
+    public DialogueSystem dialogueSystem;
+
     private void Awake()
     {
         if (PhotonManager.offlineMode)
             Destroy(this);
-
-        DialogueSystem dialogueSystem = FindObjectOfType<DialogueSystem>();
     }
     void Start()
     {
+
+        dialogueSystem = FindObjectOfType<DialogueSystem>(true);
+
+        if (dialogueSystem)
+        {
+            dialogueManager1 = dialogueSystem.Dialogs[0].GetComponent<QD_DialogueDemo>();
+            dialogueManager2 = dialogueSystem.Dialogs[1].GetComponent<QD_DialogueDemo>();
+            dialogueManager3 = dialogueSystem.Dialogs[2].GetComponent<QD_DialogueDemo>();
+        }
 
         dialogueSystem.Dialogs[0].GetComponent<QD_DialogueDemo>().number = 1;
         dialogueSystem.Dialogs[1].GetComponent<QD_DialogueDemo>().number = 2;
@@ -66,13 +74,14 @@ public class DialoguesPhoton : MonoBehaviour
                 }
             }
         }
-        gameObject.SetActive(false);
     }
 
     public void SelectButton(int number) 
     {
-        GetComponent<PhotonView>().RPC("SelectButtonRPC", RpcTarget.Others, number);
-
+        if (!PhotonManager._viewerApp)
+        {
+            GetComponent<PhotonView>().RPC("SelectButtonRPC", RpcTarget.Others, number);
+        }
     }
 
 
@@ -89,11 +98,7 @@ public class DialoguesPhoton : MonoBehaviour
                 }
             }
         }
-        gameObject.SetActive(false);
+
     }
-    // Update is called once per frame
-    void Update()
-    {
-      
-    }
+ 
 }

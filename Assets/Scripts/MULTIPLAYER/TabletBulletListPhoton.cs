@@ -15,25 +15,22 @@ public class TabletBulletListPhoton : MonoBehaviour
     {
         if (!PhotonManager._viewerApp) 
         {
-            TabletBulletList tabletBulletList = GetComponent<TabletBulletList>();
-            if (tabletBulletList)
-            {
-                Debug.Log(66);
-            }
-            //tabletBulletList.crossOut += CrossOut;
+            TabletBulletList tabletBulletList = FindObjectOfType<TabletBulletList>();
+            tabletBulletList.crossOut += CrossOut;
         }
     }
 
     void CrossOut(int ID) 
     {
-        GetComponent<PhotonView>().RPC("CrossOutRPC", RpcTarget.OthersBuffered, ID);
+        if (!PhotonManager._viewerApp)
+            GetComponent<PhotonView>().RPC("CrossOutRPC", RpcTarget.OthersBuffered, ID);
     }
     [PunRPC]
     void CrossOutRPC(int id) 
     {
         if (PhotonManager._viewerApp)
         {
-            TabletBulletList tabletBulletList = GetComponent<TabletBulletList>();
+            TabletBulletList tabletBulletList = FindObjectOfType<TabletBulletList>();
             tabletBulletList.CrossOut(id);
         }
     }

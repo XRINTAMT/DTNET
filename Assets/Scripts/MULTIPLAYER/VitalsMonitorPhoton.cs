@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class VitalsMonitorPhoton : MonoBehaviour
 {
-
     private void Awake()
     {
         if (PhotonManager.offlineMode)
@@ -16,7 +15,7 @@ public class VitalsMonitorPhoton : MonoBehaviour
     {
         if (!PhotonManager._viewerApp)
         {
-            VitalsMonitor vitalsMonitor = GetComponent<VitalsMonitor>();
+            VitalsMonitor vitalsMonitor = FindObjectOfType<VitalsMonitor>();
             vitalsMonitor.conneñt += Connect;
             vitalsMonitor.alarm += Alarm;
         }
@@ -24,20 +23,21 @@ public class VitalsMonitorPhoton : MonoBehaviour
 
     void Connect(int n) 
     {
-        GetComponent<PhotonView>().RPC("ConnectRPC", RpcTarget.OthersBuffered, n);
+        if (!PhotonManager._viewerApp)
+            GetComponent<PhotonView>().RPC("ConnectRPC", RpcTarget.OthersBuffered, n);
     }
 
     void Alarm(bool alarm) 
     {
-        Debug.Log("Alarm");
-        //GetComponent<PhotonView>().RPC("AlarmRPC", RpcTarget.Others, alarm);
+        if (!PhotonManager._viewerApp)
+            GetComponent<PhotonView>().RPC("AlarmRPC", RpcTarget.Others, alarm);
     }
     [PunRPC]
     void ConnectRPC(int n)
     {
         if (PhotonManager._viewerApp)
         {
-            VitalsMonitor vitalsMonitor = GetComponent<VitalsMonitor>();
+            VitalsMonitor vitalsMonitor = FindObjectOfType<VitalsMonitor>();
             vitalsMonitor.Connect(n);
         }
     }
@@ -46,7 +46,7 @@ public class VitalsMonitorPhoton : MonoBehaviour
     {
         if (PhotonManager._viewerApp)
         {
-            VitalsMonitor vitalsMonitor = GetComponent<VitalsMonitor>();
+            VitalsMonitor vitalsMonitor = FindObjectOfType<VitalsMonitor>();
             vitalsMonitor.SwitchAlarm(alarm);
         }
     }

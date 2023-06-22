@@ -17,31 +17,44 @@ public class HygeneStationPhoton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        waterEffect = GameObject.Find("WaterAnimation");
+        soapEffect = GameObject.Find("SoapAnimation");
+
         if (!PhotonManager._viewerApp) 
         {
             AnimationsController animationsController = FindObjectOfType<AnimationsController>();
-            handTriggerAreaEvents = GetComponent<HandTriggerAreaEvents>();
+            //handTriggerAreaEvents = GetComponent<HandTriggerAreaEvents>();
+            handTriggerAreaEvents = GameObject.Find("SoapCollider").GetComponent<HandTriggerAreaEvents>();
 
             animationsController.waterCondition += WaterCondition;
-            handTriggerAreaEvents.HandEnter.AddListener(SoapCondition);
-            handTriggerAreaEvents.HandExit.AddListener(SoapConditionStop);
+            handTriggerAreaEvents.HandEnter.AddListener(SoapAreaEnter);
+            handTriggerAreaEvents.HandExit.AddListener(SoapAreaExit);
         } 
     }
 
-    void SoapCondition(Hand hand)
+    void SoapAreaEnter(Hand hand)
     {
-        bool condition = true;
-        GetComponent<PhotonView>().RPC("SoapConditionRPC", RpcTarget.Others, condition);
+        if (!PhotonManager._viewerApp)
+        {
+            bool condition = true;
+            GetComponent<PhotonView>().RPC("SoapConditionRPC", RpcTarget.Others, condition);
+        }
     }
-    void SoapConditionStop(Hand hand)
+    void SoapAreaExit(Hand hand)
     {
-        bool condition = false;
-        GetComponent<PhotonView>().RPC("SoapConditionRPC", RpcTarget.Others, condition);
+        if (!PhotonManager._viewerApp)
+        {
+            bool condition = false;
+            GetComponent<PhotonView>().RPC("SoapConditionRPC", RpcTarget.Others, condition);
+        }
     }
 
     void WaterCondition(bool condition) 
     {
-        GetComponent<PhotonView>().RPC("WaterConditionRPC", RpcTarget.Others, condition);
+        if (!PhotonManager._viewerApp)
+        {
+            GetComponent<PhotonView>().RPC("WaterConditionRPC", RpcTarget.Others, condition);
+        }
     }
 
     [PunRPC]

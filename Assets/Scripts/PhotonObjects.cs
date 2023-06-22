@@ -29,6 +29,10 @@ public class PhotonObjects : MonoBehaviour
         if (!PhotonManager.offlineMode)
         {
             FindObjectOfType<RestartSystem>().enabled = false;
+            Debug.Log(999);
+            gameObject.AddComponent<PhotonView>().OwnershipTransfer=OwnershipOption.Takeover;
+            PhotonTransformView photonTransformView=gameObject.AddComponent<PhotonTransformView>();
+            photonTransformView.m_UseLocal = false;
         }
     }
     // Start is called before the first frame update
