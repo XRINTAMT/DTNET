@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class GuideSystem : MonoBehaviour
     [SerializeField] GameObject canvas;
     [SerializeField] GameObject dialogueGuide;
     [SerializeField] GameObject arrowObservationSheet;
+    public Action<int> activateGuide;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,7 @@ public class GuideSystem : MonoBehaviour
 
     public void GuidePanelActivate(int numberTask) 
     {
+        activateGuide?.Invoke(numberTask);
         bool disactivateAll = false;
 
         for (int i = 0; i < guidePanel.Count; i++)
