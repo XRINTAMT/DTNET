@@ -27,12 +27,16 @@ public class DialoguesPhoton : MonoBehaviour
         dialogueSystem.Dialogs[1].GetComponent<QD_DialogueDemo>().number = 2;
         dialogueSystem.Dialogs[2].GetComponent<QD_DialogueDemo>().number = 3;
 
-        dialogueSystem.Dialogs[0].GetComponent<QD_DialogueDemo>().startDialogue += UpdateListButtons;
-        dialogueSystem.Dialogs[1].GetComponent<QD_DialogueDemo>().startDialogue += UpdateListButtons;
-        dialogueSystem.Dialogs[2].GetComponent<QD_DialogueDemo>().startDialogue += UpdateListButtons;
+        //dialogueSystem.Dialogs[0].GetComponent<QD_DialogueDemo>().startDialogue += UpdateListButtons;
+        //dialogueSystem.Dialogs[1].GetComponent<QD_DialogueDemo>().startDialogue += UpdateListButtons;
+        //dialogueSystem.Dialogs[2].GetComponent<QD_DialogueDemo>().startDialogue += UpdateListButtons;
+
+        dialogueSystem.Dialogs[0].GetComponent<QD_DialogueDemo>().startDialogue += OpenDialogue;
+        dialogueSystem.Dialogs[1].GetComponent<QD_DialogueDemo>().startDialogue += OpenDialogue;
+        dialogueSystem.Dialogs[2].GetComponent<QD_DialogueDemo>().startDialogue += OpenDialogue;
     }
 
-    public void UpdateListButtons(int number) 
+    public void UpdateListButtons() 
     {
         Array.Clear(buttons, 0, buttons.Length);
         buttons = FindObjectsOfType<QD_ChoiceButton>();
@@ -42,13 +46,15 @@ public class DialoguesPhoton : MonoBehaviour
             buttons[i].selectButton += SelectButton;
         }
 
+    }
+    void OpenDialogue(int number)
+    {
+        UpdateListButtons();
         if (!PhotonManager._viewerApp)
         {
             GetComponent<PhotonView>().RPC("OpenDialogueRPC", RpcTarget.All, number);
         }
-       
     }
-
 
     [PunRPC]
     void OpenDialogueRPC(int number)
@@ -64,11 +70,14 @@ public class DialoguesPhoton : MonoBehaviour
                     dialogueSystem.Dialogs[i].SetActive(true);
                 }
             }
+
+            UpdateListButtons();
         }
     }
 
     public void SelectButton(int number) 
     {
+        UpdateListButtons();
         if (!PhotonManager._viewerApp)
         {
             GetComponent<PhotonView>().RPC("SelectButtonRPC", RpcTarget.All, number);
@@ -89,6 +98,7 @@ public class DialoguesPhoton : MonoBehaviour
                     buttons[i].GetComponent<Button>().onClick.Invoke();
                 }
             }
+            UpdateListButtons();
         }
 
     }
