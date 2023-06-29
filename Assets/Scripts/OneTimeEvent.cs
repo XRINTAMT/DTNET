@@ -12,8 +12,8 @@ public class OneTimeEvent : MonoBehaviour
     {
         if (!Done)
         {
-            ToDo.Invoke();
             Done = true;
+            ToDo.Invoke();
         }
     }
 }

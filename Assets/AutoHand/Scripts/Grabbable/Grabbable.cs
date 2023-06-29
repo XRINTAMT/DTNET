@@ -317,7 +317,12 @@ namespace Autohand {
 
         internal void IgnoreColliders(Collider bodyCapsule, bool ignore = true) {
             foreach(var col in grabColliders)
-                Physics.IgnoreCollision(bodyCapsule, col, ignore);
+            {
+                if(col != null)
+                {
+                    Physics.IgnoreCollision(bodyCapsule, col, ignore);
+                }
+            }
         }
 
 

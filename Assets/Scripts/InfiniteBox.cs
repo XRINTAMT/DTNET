@@ -8,6 +8,7 @@ public class InfiniteBox : MonoBehaviour
     [SerializeField] GameObject ToSpawn;
     [SerializeField] GameObject SpawnedObject;
     [SerializeField] bool taken = false;
+    [SerializeField] float ClearanceToSpawn = 3;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,5 +42,20 @@ public class InfiniteBox : MonoBehaviour
             taken = false;
             SpawnSpawnable();
         }
+    }
+
+    private void Update()
+    {
+        /*
+        if (taken)
+        {
+            Debug.Log((SpawnedObject.transform.position - SpawnOffset.position).magnitude);
+            if ((SpawnedObject.transform.position - SpawnOffset.position).magnitude > ClearanceToSpawn)
+            {
+                taken = false;
+                SpawnSpawnable();
+            }
+        }
+        */
     }
 }
