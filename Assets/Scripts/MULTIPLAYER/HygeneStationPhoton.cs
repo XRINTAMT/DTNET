@@ -25,7 +25,7 @@ public class HygeneStationPhoton : MonoBehaviour
 
  
         soapEffect = particleSystem[0].gameObject;
-        waterEffect = particleSystem[1].gameObject;
+        waterEffect = particleSystem[1].transform.parent.gameObject;
         handTriggerAreaEvents = GameObject.Find("SoapCollider").GetComponent<HandTriggerAreaEvents>();
 
         if (!PhotonManager._viewerApp) 

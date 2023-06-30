@@ -27,13 +27,23 @@ public class DialoguesPhoton : MonoBehaviour
         dialogueSystem.Dialogs[1].GetComponent<QD_DialogueDemo>().number = 2;
         dialogueSystem.Dialogs[2].GetComponent<QD_DialogueDemo>().number = 3;
 
-        //dialogueSystem.Dialogs[0].GetComponent<QD_DialogueDemo>().startDialogue += UpdateListButtons;
-        //dialogueSystem.Dialogs[1].GetComponent<QD_DialogueDemo>().startDialogue += UpdateListButtons;
-        //dialogueSystem.Dialogs[2].GetComponent<QD_DialogueDemo>().startDialogue += UpdateListButtons;
 
         dialogueSystem.Dialogs[0].GetComponent<QD_DialogueDemo>().startDialogue += OpenDialogue;
         dialogueSystem.Dialogs[1].GetComponent<QD_DialogueDemo>().startDialogue += OpenDialogue;
         dialogueSystem.Dialogs[2].GetComponent<QD_DialogueDemo>().startDialogue += OpenDialogue;
+
+        dialogueSystem.Dialogs[0].GetComponent<QD_DialogueDemo>().generateChoices += UpdateListButtons;
+        dialogueSystem.Dialogs[1].GetComponent<QD_DialogueDemo>().generateChoices += UpdateListButtons;
+        dialogueSystem.Dialogs[2].GetComponent<QD_DialogueDemo>().generateChoices += UpdateListButtons;
+
+
+        dialogueSystem.Dialogs[0].GetComponent<QD_DialogueDemo>().nextDialogue += Next;
+        dialogueSystem.Dialogs[1].GetComponent<QD_DialogueDemo>().nextDialogue += Next;
+        dialogueSystem.Dialogs[2].GetComponent<QD_DialogueDemo>().nextDialogue += Next;
+
+        //dialogueSystem.Dialogs[0].GetComponent<QD_DialogueDemo>().backDialogue += Back;
+        //dialogueSystem.Dialogs[1].GetComponent<QD_DialogueDemo>().backDialogue += Back;
+        //dialogueSystem.Dialogs[2].GetComponent<QD_DialogueDemo>().backDialogue += Back;
     }
 
     public void UpdateListButtons() 
@@ -49,10 +59,35 @@ public class DialoguesPhoton : MonoBehaviour
     }
     void OpenDialogue(int number)
     {
-        UpdateListButtons();
         if (!PhotonManager._viewerApp)
         {
             GetComponent<PhotonView>().RPC("OpenDialogueRPC", RpcTarget.All, number);
+        }
+    }
+
+    public void Next(int number) 
+    {
+        if (!PhotonManager._viewerApp)
+        {
+            GetComponent<PhotonView>().RPC("NextRPC", RpcTarget.All,number);
+        }
+
+    }
+
+    public void Back(int number)
+    {
+        if (!PhotonManager._viewerApp)
+        {
+            GetComponent<PhotonView>().RPC("BackRPC", RpcTarget.All,number);
+        }
+    }
+
+    public void SelectButton(int number) 
+    {
+        Debug.Log("SelectButtonEvent");
+        if (!PhotonManager._viewerApp)
+        {
+            GetComponent<PhotonView>().RPC("SelectButtonRPC", RpcTarget.All, number);
         }
     }
 
@@ -65,22 +100,11 @@ public class DialoguesPhoton : MonoBehaviour
         {
             for (int i = 0; i < dialogueSystem.Dialogs.Count; i++)
             {
-                if (dialogueSystem.Dialogs[i].GetComponent<QD_DialogueDemo>().number==number)
+                if (dialogueSystem.Dialogs[i].GetComponent<QD_DialogueDemo>().number == number)
                 {
                     dialogueSystem.Dialogs[i].SetActive(true);
                 }
             }
-
-            UpdateListButtons();
-        }
-    }
-
-    public void SelectButton(int number) 
-    {
-        UpdateListButtons();
-        if (!PhotonManager._viewerApp)
-        {
-            GetComponent<PhotonView>().RPC("SelectButtonRPC", RpcTarget.All, number);
         }
     }
 
@@ -98,9 +122,39 @@ public class DialoguesPhoton : MonoBehaviour
                     buttons[i].GetComponent<Button>().onClick.Invoke();
                 }
             }
-            UpdateListButtons();
+        }
+    }
+
+    [PunRPC]
+    void NextRPC(int number)
+    {
+        Debug.Log("Next_RPC");
+        if (PhotonManager._viewerApp)
+        {
+            for (int i = 0; i < dialogueSystem.Dialogs.Count; i++)
+            {
+                if (dialogueSystem.Dialogs[i].GetComponent<QD_DialogueDemo>().number == number)
+                {
+                    dialogueSystem.Dialogs[i].GetComponent<QD_DialogueDemo>().NextTextDialogue();
+                }
+            }
         }
 
     }
- 
+    void BackRPC(int number)
+    {
+        Debug.Log("Back_RPC");
+        if (PhotonManager._viewerApp)
+        {
+            for (int i = 0; i < dialogueSystem.Dialogs.Count; i++)
+            {
+                if (dialogueSystem.Dialogs[i].GetComponent<QD_DialogueDemo>().number == number)
+                {
+                    dialogueSystem.Dialogs[i].GetComponent<QD_DialogueDemo>().BackTextDialogue();
+                }
+            }
+        }
+
+    }
+    
 }
