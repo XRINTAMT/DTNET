@@ -8,6 +8,7 @@ public class VitalsMonitorPhoton : MonoBehaviour
 {
     [SerializeField] VitalsMonitor vitalsMonitor;
     [SerializeField] GameObject placePressure;
+    [SerializeField] GameObject sylinderPressure;
     private void Awake()
     {
         if (PhotonManager.offlineMode)
@@ -16,6 +17,7 @@ public class VitalsMonitorPhoton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sylinderPressure = GameObject.Find("CylinderPrssure");
         vitalsMonitor = GameObject.Find("VitalsMonitor").GetComponent<VitalsMonitor>();
         PlacePoint[] placePoints = FindObjectsOfType<PlacePoint>(true);
         for (int i = 0; i < placePoints.Length; i++)
@@ -60,6 +62,7 @@ public class VitalsMonitorPhoton : MonoBehaviour
             if (n==2)
             {
                 placePressure.SetActive(true);
+                sylinderPressure.SetActive(false);
             }
 
             vitalsMonitor.Connect(n);
