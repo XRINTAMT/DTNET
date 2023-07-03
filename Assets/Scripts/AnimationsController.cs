@@ -32,9 +32,30 @@ public class AnimationsController : MonoBehaviour
 
     public Action <bool> waterCondition;
 
+    public Action animationSeatingDown;
+    public Action animationLaying;
+
+
+    public Action animationCallDoctor;
+    public Action animationWalkDoctor;
+    public Action animationInspectDoctor;
+
+    public Action animationPutOffShirt;
+
+    public Action animationWalkNurse;
+    public Action animationInjectNurse;
+    public Action animationStopNurse;
 
     private void Awake()
     {
+        if (PhotonManager._viewerApp)
+        {
+            for (int i = 0; i < placePoints.Count; i++)
+            {
+                placePoints[i].enabled = false;
+            }
+        }
+
         if (!transform.parent.parent.name.Contains("(Clone)"))
         {
             for (int i = 0; i < placePoints.Count; i++)
@@ -104,12 +125,21 @@ public class AnimationsController : MonoBehaviour
     }
     public void PutOffShirt()
     {
+        if (!PhotonManager._viewerApp)
+        {
+            animationPutOffShirt?.Invoke();
+        }
         MeshWithShirt.SetActive(false);
         MeshWithoutShirt.SetActive(true);
-        for (int i = 0; i < placePoints.Count; i++)
+
+        if (!PhotonManager._viewerApp)
         {
-            placePoints[i].enabled = true;
+            for (int i = 0; i < placePoints.Count; i++)
+            {
+                placePoints[i].enabled = true;
+            }
         }
+       
     }
 
     public void AnimationSeatDownPatient1()
@@ -123,7 +153,11 @@ public class AnimationsController : MonoBehaviour
 
     public void AnimationSeatDownPatient2()
     {
-       
+        if (!PhotonManager._viewerApp)
+        {
+            animationSeatingDown?.Invoke();
+        }
+
         patientAnimator1.SetTrigger("UpRight");
         patientAnimator2.SetTrigger("UpRight");
         patientAnimator3.SetTrigger("UpRight");
@@ -139,6 +173,10 @@ public class AnimationsController : MonoBehaviour
     }
     public void AnimationLayingPatient2()
     {
+        if (!PhotonManager._viewerApp)
+        {
+            animationLaying?.Invoke();
+        }
 
         patientAnimator1.SetTrigger("Laying");
         patientAnimator2.SetTrigger("Laying");
@@ -186,6 +224,11 @@ public class AnimationsController : MonoBehaviour
    
     public void CallMrAdams() 
     {
+        if (!PhotonManager._viewerApp)
+        {
+            animationCallDoctor?.Invoke();
+        }
+      
         StartCoroutine(DoctorCome());
     }
     IEnumerator DoctorCome()
@@ -196,6 +239,11 @@ public class AnimationsController : MonoBehaviour
     
     public void AnimationWalkDoctor()
     {
+        if (!PhotonManager._viewerApp)
+        {
+            animationWalkDoctor?.Invoke();
+        }
+
         doctorAnimator.applyRootMotion = false;
         animationDoctorWalk.Play("DoctorWalk");
         doctorAnimator.SetTrigger("Walk");
@@ -203,6 +251,11 @@ public class AnimationsController : MonoBehaviour
 
     public void AnimationWalkNurse()
     {
+        if (!PhotonManager._viewerApp)
+        {
+            animationWalkNurse?.Invoke();
+        }
+      
         doctorAnimator.applyRootMotion = false;
         animationDoctorWalk.Play("GoToPump");
         doctorAnimator.SetTrigger("Walk");
@@ -210,17 +263,29 @@ public class AnimationsController : MonoBehaviour
 
     public void AnimationNurseTakeInject()
     {
+        if (!PhotonManager._viewerApp)
+        {
+            animationInjectNurse?.Invoke();
+        }
         nurseAnimator.SetTrigger("Take Inject");
     }
 
     public void AnimationStopNurse()
     {
+        if (!PhotonManager._viewerApp)
+        {
+            animationStopNurse?.Invoke();
+        }
         //nurseAnimator.applyRootMotion=false;
         nurseAnimator.SetTrigger("Put Inject");
         //animationDoctorNurse.Stop();
     }
     public void AnimationDoctorInspect()
     {
+        if (!PhotonManager._viewerApp)
+        {
+            animationInspectDoctor?.Invoke();
+        }
         doctorAnimator.SetTrigger("Inspect");
     }
    

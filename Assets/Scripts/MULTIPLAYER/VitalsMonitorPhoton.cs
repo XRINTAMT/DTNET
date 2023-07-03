@@ -16,19 +16,18 @@ public class VitalsMonitorPhoton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        vitalsMonitor = GameObject.Find("VitalsMonitor").GetComponent<VitalsMonitor>();
+        PlacePoint[] placePoints = FindObjectsOfType<PlacePoint>(true);
+        for (int i = 0; i < placePoints.Length; i++)
+        {
+            if (placePoints[i].name == "PlacePressure")
+            {
+                placePressure = placePoints[i].transform.GetChild(1).gameObject;
+            }
+        }
+
         if (!PhotonManager._viewerApp)
         {
-            PlacePoint[] placePoints = FindObjectsOfType<PlacePoint>(true);
-            for (int i = 0; i < placePoints.Length; i++)
-            {
-                if (placePoints[i].name== "PlacePressure")
-                {
-                    placePressure = placePoints[i].transform.GetChild(1).gameObject;
-                }
-            }
-
-            vitalsMonitor = GameObject.Find("VitalsMonitor").GetComponent<VitalsMonitor>();
-            
             vitalsMonitor.conneñt += Connect;
             vitalsMonitor.alarm += Alarm;
         }
@@ -62,7 +61,7 @@ public class VitalsMonitorPhoton : MonoBehaviour
             {
                 placePressure.SetActive(true);
             }
-            VitalsMonitor vitalsMonitor = GameObject.Find("VitalsMonitor").GetComponent<VitalsMonitor>(); ;
+
             vitalsMonitor.Connect(n);
         }
     }
@@ -72,7 +71,6 @@ public class VitalsMonitorPhoton : MonoBehaviour
         Debug.Log("Alarm_RPC");
         if (PhotonManager._viewerApp)
         {
-            VitalsMonitor vitalsMonitor = GameObject.Find("VitalsMonitor").GetComponent<VitalsMonitor>(); ;
             vitalsMonitor.SwitchAlarm(alarm);
         }
     }

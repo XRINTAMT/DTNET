@@ -18,6 +18,11 @@ public class GuidePhoton : MonoBehaviour
             GuideSystem guideSystem = FindObjectOfType<GuideSystem>();
             guideSystem.activateGuide += ActivateGuide;
         }
+        if (PhotonManager._viewerApp)
+        {
+            GuideSystem guideSystem = FindObjectOfType<GuideSystem>();
+            guideSystem.gameObject.SetActive(false);
+        }
     }
 
     void ActivateGuide(int id)
