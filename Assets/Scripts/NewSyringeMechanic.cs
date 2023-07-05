@@ -6,13 +6,14 @@ using UnityEngine;
 public class NewSyringeMechanic : MonoBehaviour
 {
     [SerializeField] GameObject piston;
+    [SerializeField] CapsuleCollider innen;
+    [SerializeField] GameObject indicateCapsule;
     public GameObject bottle;
     ConfigurableJoint configurableJointPiston;
     Grabbable grabbableSyringe;
     Grabbable grabbablePiston;
     bool inBottle;
     bool updatePistonPos;
-    Hand hand;
     public Canvas canvas;
     // Start is called before the first frame update
     void Start()
@@ -44,7 +45,8 @@ public class NewSyringeMechanic : MonoBehaviour
     void StopUpdatePistonPos(Hand hand, Grabbable grabbable)
     {
         updatePistonPos = false;
-        grabbablePiston.gameObject.AddComponent<FixedJoint>();
+        if (!grabbablePiston.gameObject.GetComponent<FixedJoint>())
+            grabbablePiston.gameObject.AddComponent<FixedJoint>();
         grabbablePiston.GetComponent<FixedJoint>().connectedBody = grabbableSyringe.GetComponent<Rigidbody>();
         grabbablePiston.GetComponent<FixedJoint>().breakForce = 300;
         piston.GetComponent<Rigidbody>().mass = 1;
@@ -61,8 +63,6 @@ public class NewSyringeMechanic : MonoBehaviour
 
     void GrabSyringe(Hand hand, Grabbable grabbable) 
     {
-        this.hand = hand;
-
         if (GetComponent<FixedJoint>())
             Destroy(GetComponent<FixedJoint>());
 
@@ -97,7 +97,7 @@ public class NewSyringeMechanic : MonoBehaviour
     {
         if (other.tag =="Indicate")
         {
-            other.transform.GetChild(0).gameObject.SetActive(true);
+            //other.transform.GetChild(0).gameObject.SetActive(true);
             canvas.gameObject.SetActive(true);
             inBottle = true;
         }
@@ -105,6 +105,8 @@ public class NewSyringeMechanic : MonoBehaviour
         {
             bottle = other.transform.parent.gameObject;
             grabbableSyringe.GetComponent<Stabber>().enabled = true;
+            indicateCapsule.SetActive(false);
+            //innen.isTrigger = true;
         }
         //if (other.tag == "AreaLimit")
         //{
@@ -116,7 +118,7 @@ public class NewSyringeMechanic : MonoBehaviour
     {
         if (other.tag == "Indicate")
         {
-            other.transform.GetChild(0).gameObject.SetActive(false);
+            //other.transform.GetChild(0).gameObject.SetActive(false);
             canvas.gameObject.SetActive(false);
             inBottle = false;
         }
@@ -124,6 +126,8 @@ public class NewSyringeMechanic : MonoBehaviour
         {
             bottle = null;
             grabbableSyringe.GetComponent<Stabber>().enabled = false;
+            indicateCapsule.SetActive(true);
+            //innen.isTrigger = false;
         }
     }
     // Update is called once per frame

@@ -50,7 +50,12 @@ public class Syringe : MonoBehaviour
     public float amount;
     public string currentSubstance;
     public float amountDopamine;
-    public float amountSolanine;
+    public float amountSaline;
+    public float currentAmountSyringe;
+    public float currentAmountSubstance;
+    public bool dopamine;
+    public bool saline;
+
     float inaccuracy = 0.5f;
     Material indicateMaterial;
   
@@ -89,12 +94,15 @@ public class Syringe : MonoBehaviour
         currentSubstance = med.Substance;
         if (currentSubstance == "Dopamine")
         {
+            dopamine = true;
             amount = 20;
         }
-        if (currentSubstance == "Solanine")
+        if (currentSubstance == "Saline")
         {
-            amount= 50;
+            saline = true;
+            amount = 50;
         }
+        currentAmountSyringe = syringeML;
         checkPositionInner = true;
     }
     void StopCheckPositionInner(Hand hand, Grabbable grabbable)
@@ -102,21 +110,26 @@ public class Syringe : MonoBehaviour
         //indicate.gameObject.SetActive(false);
         if (currentSubstance== "Dopamine")
         {
-            amountDopamine = syringeML;
+            amountDopamine = currentAmountSubstance;
             //med.Amount -= currentAmount;
             //currentSubstance = "";
         }
-        if (currentSubstance == "Solanine")
+        if (currentSubstance == "Saline")
         {
-            amountSolanine = syringeML;
+            amountSaline = currentAmountSubstance;
             //med.Amount -= currentAmount;
             //currentSubstance = "";
         }
         //AmountText.text = syringeML.ToString("0.0");
-        if (Mathf.Round(amountDopamine) == 50 && Mathf.Round(amountSolanine) == 20)
+        if (Mathf.Round(amountDopamine) == 20 && Mathf.Round(amountSaline) == 50)
         {
+            Debug.Log("amountCorrect");
             OnRequirementsMet?.Invoke();
         }
+
+        indicate.GetComponentInChildren<Renderer>().material = LiquidNormal;
+        dopamine = false;
+        saline = false;
         checkPositionInner = false;
     }
     public void TurnTheHUD(bool OnOff)
@@ -285,23 +298,58 @@ public class Syringe : MonoBehaviour
 
             syringeML = InnerPart.transform.localPosition.y * -50 ;
             AmountText.text = syringeML.ToString("0.0");
-            if (syringeML > amount - inaccuracy && syringeML < amount + inaccuracy)
+
+            if (dopamine)
+            {
+                currentAmountSubstance = amountDopamine + (syringeML - currentAmountSyringe);
+            }
+            if (saline)
+            {
+                currentAmountSubstance = amountSaline + (syringeML - currentAmountSyringe);
+            }
+
+
+
+            if (currentAmountSubstance > amount - inaccuracy && currentAmountSubstance < amount + inaccuracy)
             {
                 indicate.GetComponentInChildren<Renderer>().material = LiquidNormalCorrect;
             }
-            if (syringeML < amount - inaccuracy /*&& indicateMaterial == LiquidNormalCorrect*/)
+            if (currentAmountSubstance < amount - inaccuracy /*&& indicateMaterial == LiquidNormalCorrect*/)
             {
                 indicate.GetComponentInChildren<Renderer>().material = LiquidNormal;
             }
-            if (syringeML > amount + inaccuracy /*&& indicateMaterial == LiquidNormalCorrect*/)
+            if (currentAmountSubstance > amount + inaccuracy /*&& indicateMaterial == LiquidNormalCorrect*/)
             {
                 indicate.GetComponentInChildren<Renderer>().material = LiquidNormalUncorrect;
             }
-            //if (syringeML < amount + inaccuracy && indicateMaterial == LiquidNormalUncorrect)
-            //{
-            //    indicateMaterial = LiquidNormalCorrect;
-            //}
+   
         }
+
+        //if (checkPositionInner)
+        //{
+        //    //float scaleDelta=Mathf.
+        //    indicate.localScale = new Vector3(1, InnerPart.transform.localPosition.y * (-1), 1);
+
+        //    syringeML = InnerPart.transform.localPosition.y * -50;
+        //    AmountText.text = syringeML.ToString("0.0");
+
+        //    if (syringeML > amount - inaccuracy && syringeML < amount + inaccuracy)
+        //    {
+        //        indicate.GetComponentInChildren<Renderer>().material = LiquidNormalCorrect;
+        //    }
+        //    if (syringeML < amount - inaccuracy /*&& indicateMaterial == LiquidNormalCorrect*/)
+        //    {
+        //        indicate.GetComponentInChildren<Renderer>().material = LiquidNormal;
+        //    }
+        //    if (syringeML > amount + inaccuracy /*&& indicateMaterial == LiquidNormalCorrect*/)
+        //    {
+        //        indicate.GetComponentInChildren<Renderer>().material = LiquidNormalUncorrect;
+        //    }
+        //    //if (syringeML < amount + inaccuracy && indicateMaterial == LiquidNormalUncorrect)
+        //    //{
+        //    //    indicateMaterial = LiquidNormalCorrect;
+        //    //}
+        //}
 
         if (!setupInInspector)
         {
