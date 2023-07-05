@@ -93,6 +93,7 @@ namespace Autohand.Demo{
                     }
                 }
             }
+
         }
 
         public List<InputDevice> Devices() { return devices; }
@@ -125,9 +126,14 @@ namespace Autohand.Demo{
             if (axis == Common2DAxis.none)
                 return Vector2.zero;
 
-            if(device.TryGetFeatureValue(GetCommon2DAxis(axis), out Vector2 axisValue)) {
-                return axisValue;
+            if (ButtonPressed(CommonButton.primary2DAxisTouch))
+            {
+                if (device.TryGetFeatureValue(GetCommon2DAxis(axis), out Vector2 axisValue))
+                {
+                    return axisValue;
+                }
             }
+            
             return Vector2.zero;
         }
 

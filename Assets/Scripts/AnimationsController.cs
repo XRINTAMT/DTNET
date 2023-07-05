@@ -37,7 +37,7 @@ public class AnimationsController : MonoBehaviour
         {
             for (int i = 0; i < placePoints.Count; i++)
             {
-                placePoints[i].enabled = false;
+                //placePoints[i].enabled = false;
             }
         }
         else
