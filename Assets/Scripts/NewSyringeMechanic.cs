@@ -7,7 +7,7 @@ public class NewSyringeMechanic : MonoBehaviour
 {
     [SerializeField] GameObject piston;
     [SerializeField] CapsuleCollider innen;
-    [SerializeField] GameObject indicateCapsule;
+
     public GameObject bottle;
     ConfigurableJoint configurableJointPiston;
     Grabbable grabbableSyringe;
@@ -99,14 +99,14 @@ public class NewSyringeMechanic : MonoBehaviour
         {
             //other.transform.GetChild(0).gameObject.SetActive(true);
             canvas.gameObject.SetActive(true);
+            Debug.Log(4);
+            innen.isTrigger = true;
             inBottle = true;
         }
         if (other.tag == "AreaLimit")
         {
             bottle = other.transform.parent.gameObject;
             grabbableSyringe.GetComponent<Stabber>().enabled = true;
-            indicateCapsule.SetActive(false);
-            //innen.isTrigger = true;
         }
         //if (other.tag == "AreaLimit")
         //{
@@ -114,20 +114,22 @@ public class NewSyringeMechanic : MonoBehaviour
         //}
 
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Indicate")
         {
             //other.transform.GetChild(0).gameObject.SetActive(false);
             canvas.gameObject.SetActive(false);
+            Debug.Log(5);
+            innen.isTrigger = false;
             inBottle = false;
         }
         if (other.tag == "AreaLimit")
         {
             bottle = null;
             grabbableSyringe.GetComponent<Stabber>().enabled = false;
-            indicateCapsule.SetActive(true);
-            //innen.isTrigger = false;
+   
         }
     }
     // Update is called once per frame
