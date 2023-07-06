@@ -97,37 +97,41 @@ public class NewSyringeMechanic : MonoBehaviour
     {
         if (other.tag =="Indicate")
         {
-            //other.transform.GetChild(0).gameObject.SetActive(true);
             canvas.gameObject.SetActive(true);
-            Debug.Log(4);
-            innen.isTrigger = true;
             inBottle = true;
         }
         if (other.tag == "AreaLimit")
         {
             bottle = other.transform.parent.gameObject;
+            innen.isTrigger = true;
             grabbableSyringe.GetComponent<Stabber>().enabled = true;
         }
-        //if (other.tag == "AreaLimit")
-        //{
-        //    grabbableSyringe.GetComponent<Stabber>().enabled = false;
-        //}
 
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Indicate" || other.tag == "AreaLimit")
+        {
+            innen.isTrigger = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Indicate")
         {
-            //other.transform.GetChild(0).gameObject.SetActive(false);
             canvas.gameObject.SetActive(false);
-            Debug.Log(5);
-            innen.isTrigger = false;
             inBottle = false;
         }
         if (other.tag == "AreaLimit")
         {
             bottle = null;
+            innen.isTrigger = false;
+            if (GetComponent<ConfigurableJoint>())
+            {
+                Destroy(GetComponent<ConfigurableJoint>());
+            }
             grabbableSyringe.GetComponent<Stabber>().enabled = false;
    
         }
