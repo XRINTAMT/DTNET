@@ -244,13 +244,19 @@ public class Syringe : MonoBehaviour
 
     public void Empty(float time)
     {
+        totalSubstance = syringeML;
        
         if (totalSubstance != 0)
         {
+            if (InnerPart.GetComponent<ConfigurableJoint>())
+            {
+                Destroy(InnerPart.GetComponent<ConfigurableJoint>());
+            }
             StartCoroutine(EmptyingAnimation(time, 0.3f));
             Pomp.transform.parent = InnerPart.transform;
             GetComponent<Grabbable>().enabled = false;
         }
+
     }
 
     IEnumerator EmptyingAnimation(float time, float val)

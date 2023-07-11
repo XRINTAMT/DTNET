@@ -15,6 +15,7 @@ public class NewSyringeMechanic : MonoBehaviour
     bool inBottle;
     bool updatePistonPos;
     public Canvas canvas;
+    public bool syringeGrab;
     // Start is called before the first frame update
     void Start()
     {
@@ -69,6 +70,7 @@ public class NewSyringeMechanic : MonoBehaviour
         if (GetComponent<ConfigurableJoint>())
             Destroy(GetComponent<ConfigurableJoint>());
 
+        syringeGrab = true;
         grabbablePiston.enabled = false;
     }
     void ReleaseSyringe(Hand hand, Grabbable grabbable) 
@@ -84,6 +86,7 @@ public class NewSyringeMechanic : MonoBehaviour
         {
             grabbablePiston.enabled = false;
         }
+        syringeGrab = false;
 
     }
 
@@ -113,6 +116,7 @@ public class NewSyringeMechanic : MonoBehaviour
     {
         if (other.tag == "Indicate" || other.tag == "AreaLimit")
         {
+            //grabbableSyringe.GetComponent<Stabber>().enabled = true;
             innen.isTrigger = true;
         }
     }
@@ -127,7 +131,12 @@ public class NewSyringeMechanic : MonoBehaviour
         if (other.tag == "AreaLimit")
         {
             bottle = null;
-            innen.isTrigger = false;
+
+            if (syringeGrab)
+            {
+                innen.isTrigger = false;
+            }
+        
             if (GetComponent<ConfigurableJoint>())
             {
                 Destroy(GetComponent<ConfigurableJoint>());
@@ -142,6 +151,11 @@ public class NewSyringeMechanic : MonoBehaviour
         if (updatePistonPos)
         {
             configurableJointPiston.targetPosition = new Vector3(piston.transform.localPosition.y / -20, 0, 0);
+        }
+
+        if (!syringeGrab && !innen.isTrigger)
+        {
+            innen.isTrigger = true;
         }
     }
 }

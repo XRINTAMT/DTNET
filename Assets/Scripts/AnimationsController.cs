@@ -106,7 +106,11 @@ public class AnimationsController : MonoBehaviour
         MeshWithoutShirt.SetActive(true);
         for (int i = 0; i < placePoints.Count; i++)
         {
-            placePoints[i].enabled = true;
+            if (placePoints[i]!=null)
+            {
+                placePoints[i].enabled = true;
+            }
+         
         }
     }
 
