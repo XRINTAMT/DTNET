@@ -6,7 +6,7 @@ using UnityEngine;
 public class NewSyringeMechanic : MonoBehaviour
 {
     [SerializeField] GameObject piston;
-    [SerializeField] CapsuleCollider innen;
+    //[SerializeField] CapsuleCollider innen;
 
     public GameObject bottle;
     ConfigurableJoint configurableJointPiston;
@@ -106,7 +106,7 @@ public class NewSyringeMechanic : MonoBehaviour
         if (other.tag == "AreaLimit")
         {
             bottle = other.transform.parent.gameObject;
-            innen.isTrigger = true;
+            //innen.isTrigger = true;
             grabbableSyringe.GetComponent<Stabber>().enabled = true;
         }
 
@@ -117,7 +117,7 @@ public class NewSyringeMechanic : MonoBehaviour
         if (other.tag == "Indicate" || other.tag == "AreaLimit")
         {
             //grabbableSyringe.GetComponent<Stabber>().enabled = true;
-            innen.isTrigger = true;
+            //innen.isTrigger = true;
         }
     }
 
@@ -134,7 +134,7 @@ public class NewSyringeMechanic : MonoBehaviour
 
             if (syringeGrab)
             {
-                innen.isTrigger = false;
+                //innen.isTrigger = false;
             }
         
             if (GetComponent<ConfigurableJoint>())
@@ -153,9 +153,9 @@ public class NewSyringeMechanic : MonoBehaviour
             configurableJointPiston.targetPosition = new Vector3(piston.transform.localPosition.y / -20, 0, 0);
         }
 
-        if (!syringeGrab && !innen.isTrigger)
-        {
-            innen.isTrigger = true;
-        }
+        //if (!syringeGrab && !innen.isTrigger)
+        //{
+        //    innen.isTrigger = true;
+        //}
     }
 }
