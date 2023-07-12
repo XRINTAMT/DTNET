@@ -19,6 +19,16 @@ Keep the feature branch up to date. Push changes even if they are not complete. 
 
 Once a feature is complete move task to the Review column om Monday and submit a merge request on github.
 
+### Release Build process
+
+Increase version number appropriately (thirrd number for small fixes, middle number for new features)
+
+Numbers are not decimal, 0.3.9 can be increased to 0.3.10 for example. And the smaller numbers are always reset to 0 when a large number increases. So 4.2.3 could be changed to 4.3.0
+
+Increase *Bundle Version Code* by **exactly 1**. Bundle Version Code may never decrease.
+
+Commit and push these changes when before building.
+
 ### How to add highlights to objects 
 1. Choose the object
 2. Find commponent "Graddable" on it
@@ -38,7 +48,7 @@ The tts product used for the job: https://replicastudios.com/
 
 ## External assets
 
-#Paid (one would need to request a seat)
+### Paid (one would need to request a seat)
 
 AutoHand: https://assetstore.unity.com/packages/tools/game-toolkits/auto-hand-vr-physics-interaction-165323
 //Add scripts that require manual replacement to gitignore or at least have them uploaded in the cloud and put a link here.
@@ -47,7 +57,7 @@ Hospital props: https://assetstore.unity.com/packages/3d/props/hospital-props-vo
 
 Note: unlike hospital props, which is distributed per company (with unlimited seats), AutoHand is distributed per-seat, so the company would need to either re-assign the existing seats or buy some new ones to let anyone else run/build the project.
 
-#Free
+### Free
 
 [Obsolete!] Spline mesh: https://assetstore.unity.com/packages/tools/modeling/splinemesh-104989
 
@@ -65,3 +75,17 @@ URP: is in the package manager by default.
 If adding libraries or packages from the Unity asset store add them here.
 
 // One would also need some of the default XR plugins for the controllers in the tutorial to show correctly, so, if you have it, please add the exact name here.
+
+### Model and texture assets
+
+| Asset                      | Source link | License |
+|----------------------------|-------------|---------|
+| Scenario 1 Patient Model   | -           | -       |
+| Scenario 2 Patient Model 1 | -           | -       |
+| Scenario 2 Patient Model 2 | -           | -       |
+| Scenario 2 Patient Model 3 | -           | -       |
+| Scenario 2 Patient Model 4 | -           | -       |
+| Clock                      | -           | -       |
+| Painting                   | -           | -       |
+| Skybox                     | -           | -       |
+| Animations?                | -           | -       |
