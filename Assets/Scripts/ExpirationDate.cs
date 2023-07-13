@@ -6,12 +6,17 @@ public class ExpirationDate : MonoBehaviour
 {
     [SerializeField] private System.DateTime ExpDate = System.DateTime.FromBinary(0);
     [SerializeField] private UnityEngine.UI.Text DateStamp;
+    [SerializeField] private Expirable ExpiredVal;
     // Start is called before the first frame update
     void Start()
     {
         if (ExpDate.CompareTo(System.DateTime.FromBinary(0)) == 0)
         {
             ExpDate = System.DateTime.Now.AddDays(Random.Range(-182, 365));
+            if (ExpiredVal != null)
+            {
+                ExpiredVal.Expired = ExpDate < System.DateTime.Now;
+            }
             DateStamp.text = ExpDate.Day.ToString("00") + "." + ExpDate.Month.ToString("00") + "." + ExpDate.Year;
         }
     }

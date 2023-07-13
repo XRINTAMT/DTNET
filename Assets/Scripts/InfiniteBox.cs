@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class InfiniteBox : MonoBehaviour
@@ -20,7 +21,32 @@ public class InfiniteBox : MonoBehaviour
 
     private GameObject SpawnSpawnable()
     {
-        SpawnedObject = GameObject.Instantiate(ToSpawn);
+        if (PhotonManager.offlineMode)
+        {
+            SpawnedObject = GameObject.Instantiate(ToSpawn);
+        }
+
+
+        if (!PhotonManager.offlineMode)
+        {
+            SpawnedObject = PhotonNetwork.Instantiate("Tubing(Packaged)Photon", SpawnOffset.position, SpawnOffset.rotation);
+            if (PhotonManager._viewerApp)
+            {
+                foreach (Rigidbody rb in SpawnedObject.GetComponentsInChildren<Rigidbody>())
+                {
+                    rb.isKinematic = true;
+                }
+            }
+
+            if (!PhotonManager._viewerApp)
+            {
+                foreach (PhotonView pv in SpawnedObject.GetComponentsInChildren<PhotonView>())
+                {
+                    pv.TransferOwnership(PhotonNetwork.LocalPlayer);
+                }
+            }
+        }
+
         SpawnedObject.transform.position = SpawnOffset.position;
         SpawnedObject.transform.rotation = SpawnOffset.rotation;
         SpawnedObject.GetComponent<SpawnableThing>().Box = this;
