@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Autohand;
+using Autohand.Demo;
 using UnityEngine;
 
 public class NewSyringeMechanic : MonoBehaviour
@@ -16,9 +17,14 @@ public class NewSyringeMechanic : MonoBehaviour
     bool updatePistonPos;
     public Canvas canvas;
     public bool syringeGrab;
+    public Hand syringeHandGrab;
+    public Hand bottleHandGrab;
+    AutoHandPlayer autoHandPlayer;
     // Start is called before the first frame update
     void Start()
     {
+        autoHandPlayer = FindObjectOfType<AutoHandPlayer>();
+
         grabbableSyringe= GetComponent<Grabbable>();
         grabbableSyringe.onGrab.AddListener(GrabSyringe);
         grabbableSyringe.onRelease.AddListener(ReleaseSyringe);
@@ -49,7 +55,7 @@ public class NewSyringeMechanic : MonoBehaviour
         if (!grabbablePiston.gameObject.GetComponent<FixedJoint>())
             grabbablePiston.gameObject.AddComponent<FixedJoint>();
         grabbablePiston.GetComponent<FixedJoint>().connectedBody = grabbableSyringe.GetComponent<Rigidbody>();
-        grabbablePiston.GetComponent<FixedJoint>().breakForce = 300;
+        grabbablePiston.GetComponent<FixedJoint>().breakForce = 600;
         piston.GetComponent<Rigidbody>().mass = 1;
         piston.GetComponent<Rigidbody>().drag = 0;
         piston.GetComponent<Rigidbody>().angularDrag = 0.05f;
@@ -69,7 +75,7 @@ public class NewSyringeMechanic : MonoBehaviour
 
         if (GetComponent<ConfigurableJoint>())
             Destroy(GetComponent<ConfigurableJoint>());
-
+        syringeHandGrab = hand;
         syringeGrab = true;
         grabbablePiston.enabled = false;
     }
@@ -86,6 +92,8 @@ public class NewSyringeMechanic : MonoBehaviour
         {
             grabbablePiston.enabled = false;
         }
+
+        syringeHandGrab = null;
         syringeGrab = false;
 
     }
@@ -106,6 +114,20 @@ public class NewSyringeMechanic : MonoBehaviour
         if (other.tag == "AreaLimit")
         {
             bottle = other.transform.parent.gameObject;
+
+            if (autoHandPlayer.handLeft==syringeHandGrab)
+            {
+                bottleHandGrab = autoHandPlayer.handRight;
+            }
+            if (autoHandPlayer.handRight == syringeHandGrab)
+            {
+                bottleHandGrab = autoHandPlayer.handLeft;
+            }
+            if (bottleHandGrab)
+            {
+                bottleHandGrab.GetComponent<XRHandControllerLink>().enabled = false;
+            }
+
             //innen.isTrigger = true;
             grabbableSyringe.GetComponent<Stabber>().enabled = true;
         }
@@ -131,6 +153,17 @@ public class NewSyringeMechanic : MonoBehaviour
         if (other.tag == "AreaLimit")
         {
             bottle = null;
+
+            if (bottleHandGrab)
+            {
+                bottleHandGrab.GetComponent<XRHandControllerLink>().enabled = true;
+            }
+
+            bottleHandGrab = null;
+
+
+            //innen.isTrigger = true;
+            grabbableSyringe.GetComponent<Stabber>().enabled = true;
 
             if (syringeGrab)
             {
