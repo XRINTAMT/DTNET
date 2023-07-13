@@ -45,13 +45,13 @@ public class PhotonObjects : MonoBehaviour
             }
         }
 
-        //if (!PhotonManager._viewerApp)
-        //{
-        //    for (int i = 0; i < transfornViewObj.Length; i++)
-        //    {
-        //        transfornViewObj[i].GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.LocalPlayer);
-        //    }
-        //}
+        if (!PhotonManager._viewerApp)
+        {
+            for (int i = 0; i < transfornViewObj.Length; i++)
+            {
+                transfornViewObj[i].GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.LocalPlayer);
+            }
+        }
 
 
         roomNumber.text = PhotonNetwork.CurrentRoom.Name;
