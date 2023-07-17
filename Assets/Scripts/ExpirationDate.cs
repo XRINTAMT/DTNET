@@ -10,15 +10,23 @@ public class ExpirationDate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (ExpDate.CompareTo(System.DateTime.FromBinary(0)) == 0)
+        
+    }
+
+    public void Initialize(int _iter)
+    {
+        float _threshold = Mathf.Pow(0.5f, _iter);
+        if (Random.value < _threshold)
         {
-            ExpDate = System.DateTime.Now.AddDays(Random.Range(-182, 365));
-            if (ExpiredVal != null)
-            {
-                ExpiredVal.Expired = ExpDate < System.DateTime.Now;
-            }
-            DateStamp.text = ExpDate.Day.ToString("00") + "." + ExpDate.Month.ToString("00") + "." + ExpDate.Year;
+            ExpDate = System.DateTime.Now.AddDays(Random.Range(-5, -1));
+            ExpiredVal.Expired = true;
         }
+        else
+        {
+            ExpDate = System.DateTime.Now.AddDays(Random.Range(1, 365));
+            ExpiredVal.Expired = false;
+        }
+        DateStamp.text = ExpDate.Day.ToString("00") + "." + ExpDate.Month.ToString("00") + "." + ExpDate.Year;
     }
 
     // Update is called once per frame
