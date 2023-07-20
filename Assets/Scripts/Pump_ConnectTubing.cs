@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Autohand;
+using System;
 
 public class Pump_ConnectTubing : MonoBehaviour
 {
     [SerializeField] private GameObject IVTube;
     [SerializeField] bool firstTime = true;
     [SerializeField] GameObject ExpiredHint;
+    public Action<GameObject> connectTubing;
 
     public void ReplaceTubing(PlacePoint _point, Grabbable _tubing)
     {
@@ -19,12 +21,14 @@ public class Pump_ConnectTubing : MonoBehaviour
 
         _correctHand.TryGrab(IVTube.GetComponent<Grabbable>());
 
+        connectTubing?.Invoke(_tubing.gameObject);
+
         Destroy(_tubing.gameObject);
         if (PlayerPrefs.GetInt("GuidedMode", 1) == 1)
         {
             ExpiredHint.SetActive(_expired);
         }
-        
+
     }
 
     void Start()

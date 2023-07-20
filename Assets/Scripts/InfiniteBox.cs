@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
@@ -10,6 +11,7 @@ public class InfiniteBox : MonoBehaviour
     [SerializeField] GameObject SpawnedObject;
     [SerializeField] bool taken = false;
     [SerializeField] float ClearanceToSpawn = 3;
+    public Action instNewPackage;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,21 +31,14 @@ public class InfiniteBox : MonoBehaviour
 
         if (!PhotonManager.offlineMode)
         {
-            SpawnedObject = PhotonNetwork.Instantiate("Tubing(Packaged)Photon", SpawnOffset.position, SpawnOffset.rotation);
-            if (PhotonManager._viewerApp)
-            {
-                foreach (Rigidbody rb in SpawnedObject.GetComponentsInChildren<Rigidbody>())
-                {
-                    rb.isKinematic = true;
-                }
-            }
-
             if (!PhotonManager._viewerApp)
             {
+                SpawnedObject = PhotonNetwork.Instantiate("Tubing(Packaged)Photon", SpawnOffset.position, SpawnOffset.rotation);
                 foreach (PhotonView pv in SpawnedObject.GetComponentsInChildren<PhotonView>())
                 {
                     pv.TransferOwnership(PhotonNetwork.LocalPlayer);
                 }
+                instNewPackage?.Invoke();
             }
         }
 
