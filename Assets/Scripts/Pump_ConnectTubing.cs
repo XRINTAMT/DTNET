@@ -6,7 +6,7 @@ using System;
 
 public class Pump_ConnectTubing : MonoBehaviour
 {
-    [SerializeField] private GameObject IVTube;
+    public GameObject IVTube;
     [SerializeField] bool firstTime = true;
     [SerializeField] GameObject ExpiredHint;
     public Action<GameObject> connectTubing;

@@ -1,23 +1,26 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Autohand;
 using Photon.Pun;
 using UnityEngine;
 
 public class TubePhoton : MonoBehaviour
 {
     public Packaging[] packagings;
+    Pump_ConnectTubing pump_ConnectTubing;
     private void Awake()
     {
         if (PhotonManager.offlineMode)
             Destroy(this);
+
+        pump_ConnectTubing = FindObjectOfType<Pump_ConnectTubing>();
 
         if (!PhotonManager._viewerApp)
         {
             InfiniteBox infiniteBox = FindObjectOfType<InfiniteBox>();
             infiniteBox.instNewPackage += InstNewPackage;
 
-            Pump_ConnectTubing pump_ConnectTubing = FindObjectOfType<Pump_ConnectTubing>();
             pump_ConnectTubing.connectTubing += ConnectTubing;
 
         }
@@ -32,7 +35,7 @@ public class TubePhoton : MonoBehaviour
     {
         if (!PhotonManager._viewerApp)
         {
-            GetComponent<PhotonView>().RPC("InstNewPackageRPC", RpcTarget.All);
+            GetComponent<PhotonView>().RPC("InstNewPackageRPC", RpcTarget.AllBuffered);
         }
 
     }
@@ -92,8 +95,11 @@ public class TubePhoton : MonoBehaviour
                 if (packagings[i].GetComponent<PhotonView>().ViewID==viewId)
                 {
                     packagings[i].gameObject.SetActive(false);
+                    pump_ConnectTubing.IVTube.SetActive(true);
                 }
             }
+
+           
         }
     }
 

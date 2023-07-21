@@ -23,6 +23,7 @@ public class InfiniteBox : MonoBehaviour
 
     private GameObject SpawnSpawnable()
     {
+        SpawnedObject = null;
         if (PhotonManager.offlineMode)
         {
             SpawnedObject = GameObject.Instantiate(ToSpawn);
@@ -41,10 +42,13 @@ public class InfiniteBox : MonoBehaviour
                 instNewPackage?.Invoke();
             }
         }
+        if (SpawnedObject!=null)
+        {
+            SpawnedObject.transform.position = SpawnOffset.position;
+            SpawnedObject.transform.rotation = SpawnOffset.rotation;
+            SpawnedObject.GetComponent<SpawnableThing>().Box = this;
+        }
 
-        SpawnedObject.transform.position = SpawnOffset.position;
-        SpawnedObject.transform.rotation = SpawnOffset.rotation;
-        SpawnedObject.GetComponent<SpawnableThing>().Box = this;
         return SpawnedObject;
     }
 
