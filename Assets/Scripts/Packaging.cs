@@ -27,12 +27,14 @@ public class Packaging : MonoBehaviour
         _rb.detectCollisions = true;
         _rb.angularDrag = 0.05f;
         _rb.mass = 1;
+        RemovablePart.gameObject.AddComponent<Trash>();
     }
 
     public void OnEjected()
     {
         isEjected = true;
         Debug.Log("Ejected");
+        Package.gameObject.AddComponent<Trash>();
     }
 
     public void OnGrabbed()

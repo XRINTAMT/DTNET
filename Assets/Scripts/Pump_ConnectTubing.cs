@@ -8,10 +8,11 @@ public class Pump_ConnectTubing : MonoBehaviour
     [SerializeField] private GameObject IVTube;
     [SerializeField] bool firstTime = true;
     [SerializeField] GameObject ExpiredHint;
+    public bool Expired = false;
 
     public void ReplaceTubing(PlacePoint _point, Grabbable _tubing)
     {
-        bool _expired = _tubing.GetComponent<Expirable>().Expired;
+        Expired = _tubing.GetComponent<Expirable>().Expired;
         Hand _correctHand = _tubing.GetHeldBy()[0];
 
         _correctHand.ForceReleaseGrab();
@@ -22,7 +23,7 @@ public class Pump_ConnectTubing : MonoBehaviour
         Destroy(_tubing.gameObject);
         if (PlayerPrefs.GetInt("GuidedMode", 1) == 1)
         {
-            ExpiredHint.SetActive(_expired);
+            ExpiredHint.SetActive(Expired);
         }
         
     }

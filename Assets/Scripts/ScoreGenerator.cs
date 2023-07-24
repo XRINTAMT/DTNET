@@ -32,6 +32,29 @@ public class ScoreGenerator : MonoBehaviour
                 i += 1;
             }
         }
+
+        //trash "task" evaluation
+        int _trash_task = 1;
+        Trash[] TrashPieces = FindObjectsOfType<Trash>();
+        foreach(Trash _trash in TrashPieces)
+        {
+            if (_trash.gameObject.activeInHierarchy)
+            {
+                _trash_task = 0;
+                break;
+            }
+        }
+        Records[7].Refresh(_trash_task, 1);
+        totalScore += _trash_task;
+        totalMax += 1;
+
+        Pump_ConnectTubing _pump = FindObjectOfType<Pump_ConnectTubing>();
+
+        int _expired_task = (_pump.Expired) ? 0 : 1;
+        Records[8].Refresh(_expired_task, 1);
+        totalScore += _expired_task;
+        totalMax += 1;
+
         //for normal ranking
         //Total.text = totalScore.ToString() + "/" + totalMax.ToString();
         TextPerfect.SetActive(totalScore == totalMax);
