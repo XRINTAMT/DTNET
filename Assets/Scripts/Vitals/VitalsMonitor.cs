@@ -35,7 +35,7 @@ public class VitalsMonitor : MonoBehaviour
     private Coroutine AlarmCoroutine;
     public Action<int> conneñt;
     public Action<bool> alarm;
-
+    public Action<int,float> changeValue;
     void Start()
     {
         SwitchAlarm(FireAlarmOnStart);
@@ -89,6 +89,11 @@ public class VitalsMonitor : MonoBehaviour
         if(id < VitalValues.Length)
         {
             VitalValues[id].SetValue = toValue;
+            Debug.Log(id);
+            Debug.Log(toValue);
+            if (!PhotonManager._viewerApp)
+                changeValue?.Invoke(id, toValue);
+           
             //StartCoroutine(ChangeVitalValue(id,toValue,interval));
         }
     }

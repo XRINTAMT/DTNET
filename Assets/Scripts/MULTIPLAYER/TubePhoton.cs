@@ -8,13 +8,15 @@ using UnityEngine;
 public class TubePhoton : MonoBehaviour
 {
     public Packaging[] packagings;
-    Pump_ConnectTubing pump_ConnectTubing;
+    public Pump_ConnectTubing pump_ConnectTubing;
+    public GameObject IVTube; 
     private void Awake()
     {
         if (PhotonManager.offlineMode)
             Destroy(this);
 
         pump_ConnectTubing = FindObjectOfType<Pump_ConnectTubing>();
+        IVTube = FindObjectOfType<Pump_ConnectTubing>().IVTube;
 
         if (!PhotonManager._viewerApp)
         {
@@ -90,13 +92,13 @@ public class TubePhoton : MonoBehaviour
       
         if (PhotonManager._viewerApp)
         {
+            IVTube.SetActive(true);
             for (int i = 0; i < packagings.Length; i++)
             {
-                if (packagings[i].GetComponent<PhotonView>().ViewID==viewId)
-                {
-                    packagings[i].gameObject.SetActive(false);
-                    pump_ConnectTubing.IVTube.SetActive(true);
-                }
+
+                packagings[i].gameObject.SetActive(false);
+                
+
             }
 
            

@@ -7,6 +7,7 @@ using UnityEngine;
 public class VitalsMonitorPhoton : MonoBehaviour
 {
     [SerializeField] VitalsMonitor vitalsMonitor;
+    [SerializeField] VitalsMonitor vitalsMonitorDefibrilator;
     [SerializeField] GameObject placePressure;
     [SerializeField] GameObject sylinderPressure;
     private void Awake()
@@ -19,6 +20,8 @@ public class VitalsMonitorPhoton : MonoBehaviour
     {
         sylinderPressure = GameObject.Find("CylinderPrssure");
         vitalsMonitor = GameObject.Find("VitalsMonitor").GetComponent<VitalsMonitor>();
+        vitalsMonitorDefibrilator = GameObject.Find("Screen").GetComponent<VitalsMonitor>();
+
         PlacePoint[] placePoints = FindObjectsOfType<PlacePoint>(true);
         for (int i = 0; i < placePoints.Length; i++)
         {
@@ -32,9 +35,28 @@ public class VitalsMonitorPhoton : MonoBehaviour
         {
             vitalsMonitor.conneñt += Connect;
             vitalsMonitor.alarm += Alarm;
+            vitalsMonitorDefibrilator.changeValue += ChangeValue;
         }
     }
 
+    void ChangeValue(int id, float value) 
+    {
+        Debug.Log("ChangeValue");
+        if (!PhotonManager._viewerApp)
+        {
+            GetComponent<PhotonView>().RPC("ChangeValueRPC", RpcTarget.All, id,value);
+        }
+
+    }
+    [PunRPC]
+    void ChangeValueRPC(int id, float value)
+    {
+        Debug.Log("ChangeValue_RPC");
+        if (PhotonManager._viewerApp)
+        {
+            vitalsMonitorDefibrilator.ChangeValue(id, value, 0);
+        }
+    }
     void Connect(int n) 
     {
         if (!PhotonManager._viewerApp) 
