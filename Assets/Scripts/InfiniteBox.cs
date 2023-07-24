@@ -9,6 +9,8 @@ public class InfiniteBox : MonoBehaviour
     [SerializeField] GameObject SpawnedObject;
     [SerializeField] bool taken = false;
     [SerializeField] float ClearanceToSpawn = 3;
+    public int SpawnedAlready = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,8 @@ public class InfiniteBox : MonoBehaviour
         SpawnedObject.transform.position = SpawnOffset.position;
         SpawnedObject.transform.rotation = SpawnOffset.rotation;
         SpawnedObject.GetComponent<SpawnableThing>().Box = this;
+        SpawnedObject.GetComponent<ExpirationDate>().Initialize(SpawnedAlready);
+        SpawnedAlready += 1;
         return SpawnedObject;
     }
 
