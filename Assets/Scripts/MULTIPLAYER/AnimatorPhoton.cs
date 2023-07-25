@@ -98,7 +98,7 @@ public class AnimatorPhoton : MonoBehaviour
     [PunRPC]
     public void AnimationCallDoctorRPC()
     {
-        Debug.Log("Animation_RPC");
+        Debug.Log("Animation_CallDoctorRPC");
         if (PhotonManager._viewerApp)
         {
             animationsController.CallMrAdams();
@@ -108,17 +108,17 @@ public class AnimatorPhoton : MonoBehaviour
     [PunRPC]
     public void AnimationWalkDoctorRPC()
     {
-        Debug.Log("Animation_RPC");
+        Debug.Log("Animation_WalkDoctorRPC");
         if (PhotonManager._viewerApp)
         {
-            animationsController.AnimationWalkDoctor();
+            animationsController.AnimationArriveDoctor();
         }
     }
 
     [PunRPC]
     public void AnimationInspectDoctorRPC()
     {
-        Debug.Log("Animation_RPC");
+        Debug.Log("Animation_InspectRPC");
         if (PhotonManager._viewerApp)
         {
             animationsController.AnimationDoctorInspect();

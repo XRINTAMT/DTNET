@@ -46,6 +46,7 @@ public class AnimationsController : MonoBehaviour
     public Action animationInjectNurse;
     public Action animationStopNurse;
 
+    public bool callDoctor;
     private void Awake()
     {
         if (PhotonManager._viewerApp)
@@ -139,7 +140,11 @@ public class AnimationsController : MonoBehaviour
         {
             for (int i = 0; i < placePoints.Count; i++)
             {
-                placePoints[i].enabled = true;
+                if (placePoints[i]!=null)
+                {
+                    placePoints[i].enabled = true;
+                }
+               
             }
         }
        
@@ -210,10 +215,17 @@ public class AnimationsController : MonoBehaviour
 
     public void AnimationArriveDoctor()
     {
+        //doctorAnimator.applyRootMotion = false;
         animationOpenDoor.Play("OpenDoor");
         doctorAnimator.SetTrigger("OpenDoor");
+    
+        if (!PhotonManager._viewerApp)
+        {
+            animationWalkDoctor?.Invoke();
+        }
 
-        observSheet.inHead = false; 
+        if (observSheet)
+            observSheet.inHead = false;
 
         //StartCoroutine(startDialogue());
 
@@ -231,7 +243,8 @@ public class AnimationsController : MonoBehaviour
         {
             animationCallDoctor?.Invoke();
         }
-      
+
+        Debug.Log("ÑallDoctor");
         StartCoroutine(DoctorCome());
     }
     IEnumerator DoctorCome()
@@ -291,5 +304,14 @@ public class AnimationsController : MonoBehaviour
         }
         doctorAnimator.SetTrigger("Inspect");
     }
-   
+
+    private void Update()
+    {
+        if (callDoctor)
+        {
+            CallMrAdams();
+            callDoctor = false;
+
+        }
+    }
 }
