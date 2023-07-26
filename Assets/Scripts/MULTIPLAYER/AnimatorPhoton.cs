@@ -6,6 +6,8 @@ using UnityEngine;
 public class AnimatorPhoton : MonoBehaviour
 {
     AnimationsController animationsController;
+
+    [SerializeField]AnimationMovement animationMovement;
     private void Awake()
     {
         if (PhotonManager.offlineMode)
@@ -15,13 +17,14 @@ public class AnimatorPhoton : MonoBehaviour
     void Start()
     {
         animationsController = FindObjectOfType<AnimationsController>();
-
+        animationMovement = FindObjectOfType<AnimationMovement>();
         if (!PhotonManager._viewerApp)
         {
            animationsController.animationSeatingDown += AnimationSeatingDown;
            animationsController.animationLaying += AnimationLaying;
            animationsController.animationCallDoctor += AnimationCallDoctor;
-           animationsController.animationWalkDoctor += AnimationWalkDoctor;
+           animationsController.animationArrivedDoctor += AnimationArrivedDoctor;
+           animationMovement.walk += AnimationWalkDoctor;
            animationsController.animationInspectDoctor += AnimationInspectDoctor;
            animationsController.animationPutOffShirt += AnimationPutOffShirt;
            animationsController.animationWalkNurse += AnimationWalkNurse;
@@ -44,7 +47,12 @@ public class AnimatorPhoton : MonoBehaviour
         if (!PhotonManager._viewerApp)
             GetComponent<PhotonView>().RPC("AnimationCallDoctorRPC", RpcTarget.AllBuffered);
     }
-    public void AnimationWalkDoctor() 
+    public void AnimationArrivedDoctor()
+    {
+        if (!PhotonManager._viewerApp)
+            GetComponent<PhotonView>().RPC("AnimationArrivedDoctorRPC", RpcTarget.AllBuffered);
+    }
+    public void AnimationWalkDoctor()
     {
         if (!PhotonManager._viewerApp)
             GetComponent<PhotonView>().RPC("AnimationWalkDoctorRPC", RpcTarget.AllBuffered);
@@ -98,30 +106,38 @@ public class AnimatorPhoton : MonoBehaviour
     [PunRPC]
     public void AnimationCallDoctorRPC()
     {
-        Debug.Log("Animation_CallDoctorRPC");
+        Debug.Log("CallDoctor_RPC");
         if (PhotonManager._viewerApp)
         {
             animationsController.CallMrAdams();
         }
     }
-
     [PunRPC]
-    public void AnimationWalkDoctorRPC()
+    public void AnimationArrivedDoctorRPC()
     {
-        Debug.Log("Animation_WalkDoctorRPC");
+        Debug.Log("ArrivedDoctor_RPC");
         if (PhotonManager._viewerApp)
         {
             animationsController.AnimationArriveDoctor();
+        }
+    }
+    [PunRPC]
+    public void AnimationWalkDoctorRPC()
+    {
+        Debug.Log("WalkDoctor_RPC");
+        if (PhotonManager._viewerApp)
+        {
+            animationMovement.StartMove(true);
         }
     }
 
     [PunRPC]
     public void AnimationInspectDoctorRPC()
     {
-        Debug.Log("Animation_InspectRPC");
+        Debug.Log("DoctorInspect_RPC");
         if (PhotonManager._viewerApp)
         {
-            animationsController.AnimationDoctorInspect();
+            //animationsController.AnimationDoctorInspect();
         }
     }
 
@@ -138,7 +154,7 @@ public class AnimatorPhoton : MonoBehaviour
     [PunRPC]
     public void AnimationWalkNurseRPC()
     {
-        Debug.Log("Animation_RPC");
+        Debug.Log("WalkNurse_RPC");
         if (PhotonManager._viewerApp)
         {
             animationsController.AnimationWalkNurse();
@@ -148,7 +164,7 @@ public class AnimatorPhoton : MonoBehaviour
     [PunRPC]
     public void AnimationInjectNurseRPC()
     {
-        Debug.Log("Animation_RPC");
+        Debug.Log("InjectNurse_RPC");
         if (PhotonManager._viewerApp)
         {
             animationsController.AnimationNurseTakeInject();
@@ -158,7 +174,7 @@ public class AnimatorPhoton : MonoBehaviour
     [PunRPC]
     public void AnimationStopNurseRPC()
     {
-        Debug.Log("Animation_RPC");
+        Debug.Log("StopNurse_RPC");
         if (PhotonManager._viewerApp)
         {
             animationsController.AnimationStopNurse();

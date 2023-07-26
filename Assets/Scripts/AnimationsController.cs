@@ -37,6 +37,7 @@ public class AnimationsController : MonoBehaviour
 
 
     public Action animationCallDoctor;
+    public Action animationArrivedDoctor;
     public Action animationWalkDoctor;
     public Action animationInspectDoctor;
 
@@ -47,6 +48,9 @@ public class AnimationsController : MonoBehaviour
     public Action animationStopNurse;
 
     public bool callDoctor;
+    public bool checkDoctor;
+    public bool walkDoctor;
+    public bool InspectDoctor;
     private void Awake()
     {
         if (PhotonManager._viewerApp)
@@ -221,7 +225,7 @@ public class AnimationsController : MonoBehaviour
     
         if (!PhotonManager._viewerApp)
         {
-            animationWalkDoctor?.Invoke();
+            animationArrivedDoctor?.Invoke();
         }
 
         if (observSheet)
@@ -253,13 +257,14 @@ public class AnimationsController : MonoBehaviour
         AnimationArriveDoctor();
     }
     
+
     public void AnimationWalkDoctor()
     {
         if (!PhotonManager._viewerApp)
         {
             animationWalkDoctor?.Invoke();
         }
-
+        Debug.Log("walk");
         doctorAnimator.applyRootMotion = false;
         animationDoctorWalk.Play("DoctorWalk");
         doctorAnimator.SetTrigger("Walk");

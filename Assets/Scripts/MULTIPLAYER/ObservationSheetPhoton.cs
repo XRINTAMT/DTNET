@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Autohand;
 using Photon.Pun;
 using UnityEngine;
 
@@ -7,8 +8,8 @@ public class ObservationSheetPhoton : MonoBehaviour
 {
     [SerializeField] FadeUI fadeUI;
     [SerializeField] MultipleChoiceRow [] multipleChoiceRow;
-    [SerializeField] MultipleChoiceRow multipleChoiceRow1;
-    bool add;
+    [SerializeField] PlacePoint placePoint;
+    [SerializeField] Transform doctorHand;
     private void Awake()
     {
         if (PhotonManager.offlineMode)
@@ -22,6 +23,17 @@ public class ObservationSheetPhoton : MonoBehaviour
     {
         SheetController[] sheetController = FindObjectsOfType<SheetController>();
         multipleChoiceRow = FindObjectsOfType<MultipleChoiceRow>(true);
+
+        GameObject doctor = GameObject.Find("DOCTOR");
+        foreach (PlacePoint placePoint in doctor.GetComponentsInChildren<PlacePoint>())
+        {
+            this.placePoint = placePoint;
+            this.placePoint.OnPlace.AddListener(SheetOnPlace);
+        }
+        foreach (Animator animator in doctor.GetComponentsInChildren<Animator>())
+        {
+            doctorHand = animator.GetBoneTransform(HumanBodyBones.LeftHand);
+        }
 
         for (int i = 0; i < multipleChoiceRow.Length; i++)
         {
@@ -48,7 +60,24 @@ public class ObservationSheetPhoton : MonoBehaviour
         }
     }
 
+    void SheetOnPlace(PlacePoint placePoint,Grabbable grabbable) 
+    {
+        GetComponent<PhotonView>().RPC("SheetOnPlaceRPC", RpcTarget.All);
 
+    }
+
+    [PunRPC]
+    void SheetOnPlaceRPC()
+    {
+        Debug.Log("SheetOnPlaceRPC");
+        Destroy(fadeUI.GetComponent<PhotonTransformView>());
+        if (PhotonManager._viewerApp)
+        {
+            fadeUI.transform.parent = doctorHand;
+            fadeUI.transform.localPosition = new Vector3(0, 0, 0);
+            fadeUI.transform.localEulerAngles = new Vector3(0, 0, 0);
+        }
+    }
     void Submit(MultipleChoiceRow multipleChoice) 
     {
         if (!PhotonManager._viewerApp)
