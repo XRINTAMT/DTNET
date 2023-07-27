@@ -24,6 +24,8 @@ public class PhotonObjects : MonoBehaviour
             {
                 Destroy(photonTransformViews[i]);
             }
+
+            Destroy(gameObject);
         }
 
         if (!PhotonManager.offlineMode)

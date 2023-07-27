@@ -7,7 +7,11 @@ using UnityEngine.SpatialTracking;
 
 public class SpawnMultiplayer : MonoBehaviour
 {
-
+    private void Awake()
+    {
+        if (PhotonManager.offlineMode)
+            Destroy(this);
+    }
 
     // Start is called before the first frame update
     void Start()
