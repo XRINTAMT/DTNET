@@ -1,15 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class GloveApplicator : MonoBehaviour
 {
     [SerializeField] SkinnedMeshRenderer[] Hands;
-    [SerializeField] Material GloveMaterial;
+    public Material GloveMaterial;
+    public Action apply;
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     public void Apply()
@@ -18,6 +21,8 @@ public class GloveApplicator : MonoBehaviour
         {
             Hands[i].material = GloveMaterial;
         }
+
+        apply?.Invoke();
     }
 
     // Update is called once per frame

@@ -9,6 +9,7 @@ namespace QuantumTek.QuantumDialogue.Demo
 {
     public class QD_DialogueDemo : MonoBehaviour
     {
+        public int number;
         public QD_DialogueHandler handler;
         public Text speakerName;
         public Text messageText;
@@ -31,6 +32,11 @@ namespace QuantumTek.QuantumDialogue.Demo
         public ControllerApp controllerApp;
         [SerializeField] bool CompleteOnLastMessage = true;
         [SerializeField] bool loop;
+        public Action <int> startDialogue;
+        public Action <int> nextDialogue;
+        public Action <int> backDialogue;
+        public Action generateChoices;
+        bool nextFromButton;
         private void Awake()
         {
             audioSource = GetComponent<AudioSource>();
@@ -38,7 +44,11 @@ namespace QuantumTek.QuantumDialogue.Demo
             SetText();
         }
 
-
+        private void Start()
+        {
+            NextTextDialogue();
+            startDialogue?.Invoke(number);
+        }
 
         private void Update()
         {
@@ -119,6 +129,8 @@ namespace QuantumTek.QuantumDialogue.Demo
                 activeChoicesText.Add(newChoice);
                 added++;
             }
+
+            generateChoices?.Invoke();
         }
 
         public void SetText()
@@ -168,6 +180,10 @@ namespace QuantumTek.QuantumDialogue.Demo
 
         public void Next(int choice = -1)
         {
+            if (!nextFromButton)
+                nextDialogue?.Invoke(number);
+        
+
             if (ended && CompleteOnLastMessage)
             {
                 Task t;
@@ -201,10 +217,13 @@ namespace QuantumTek.QuantumDialogue.Demo
                     }
                 }
             }
-                
+
+            nextFromButton = false;
+
         }
         public void Back(int choice = -1)
         {
+            backDialogue?.Invoke(number);
             if (ended && CompleteOnLastMessage)
             {
                 Task t;
@@ -259,6 +278,7 @@ namespace QuantumTek.QuantumDialogue.Demo
                 return;
             }
             Debug.Log("makeChoose");
+            nextFromButton = true;
             Next(choice);
         }
     }

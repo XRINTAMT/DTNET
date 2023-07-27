@@ -52,7 +52,10 @@ public class AppManager : MonoBehaviour
 
     public void SetGuide(int guide)
     {
-        GuideCanvas.SetActive(guide == 1);
-        ExamCanvas.SetActive(guide == 0);
+        if (!PhotonManager._viewerApp)
+        {
+            GuideCanvas.SetActive(guide == 1);
+            ExamCanvas.SetActive(guide == 0);
+        }
     }
 }

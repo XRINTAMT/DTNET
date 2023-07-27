@@ -838,6 +838,8 @@ GameObject:
   - component: {fileID: 6359793883921769495}
   - component: {fileID: 686769336094620446}
   - component: {fileID: 7355358691678705637}
+  - component: {fileID: 795152729311302829}
+  - component: {fileID: 8135087723473274619}
   m_Layer: 0
   m_Name: WaterValve
   m_TagString: Untagged
@@ -1274,6 +1276,45 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &795152729311302829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3144946993274850434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 1
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 8135087723473274619}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &8135087723473274619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3144946993274850434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!1 &3144946993657293369
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,7 +1328,6 @@ GameObject:
   - component: {fileID: 3144946993657293374}
   - component: {fileID: 3144946993657293375}
   - component: {fileID: 3144946993657293363}
-  - component: {fileID: 3144946993657293372}
   - component: {fileID: 4856241108213479410}
   m_Layer: 0
   m_Name: GlovesAll
@@ -1406,7 +1446,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 3144946993657293372}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GloveApplicator, Assembly-CSharp
         m_MethodName: Apply
         m_Mode: 1
@@ -1500,22 +1540,6 @@ MonoBehaviour:
   ParentScenario: []
   references:
     version: 1
---- !u!114 &3144946993657293372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3144946993657293369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa30e44d0241c7a4f88b1b5649dc7c92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Hands:
-  - {fileID: 0}
-  - {fileID: 0}
-  GloveMaterial: {fileID: 2100000, guid: c5f072cb597ab6443aed3a843e91c7d0, type: 2}
 --- !u!114 &4856241108213479410
 MonoBehaviour:
   m_ObjectHideFlags: 0

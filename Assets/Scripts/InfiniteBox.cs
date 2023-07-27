@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class InfiniteBox : MonoBehaviour
@@ -9,7 +11,10 @@ public class InfiniteBox : MonoBehaviour
     [SerializeField] GameObject SpawnedObject;
     [SerializeField] bool taken = false;
     [SerializeField] float ClearanceToSpawn = 3;
+
     public int SpawnedAlready = 0;
+    public Action instNewPackage;
+
 
     // Start is called before the first frame update
     void Start()
@@ -22,12 +27,35 @@ public class InfiniteBox : MonoBehaviour
 
     private GameObject SpawnSpawnable()
     {
-        SpawnedObject = GameObject.Instantiate(ToSpawn);
-        SpawnedObject.transform.position = SpawnOffset.position;
-        SpawnedObject.transform.rotation = SpawnOffset.rotation;
-        SpawnedObject.GetComponent<SpawnableThing>().Box = this;
-        SpawnedObject.GetComponent<ExpirationDate>().Initialize(SpawnedAlready);
-        SpawnedAlready += 1;
+
+        SpawnedObject = null;
+        if (PhotonManager.offlineMode)
+        {
+            SpawnedObject = GameObject.Instantiate(ToSpawn);
+        }
+
+
+        if (!PhotonManager.offlineMode)
+        {
+            if (!PhotonManager._viewerApp)
+            {
+                SpawnedObject = PhotonNetwork.Instantiate("Tubing(Packaged)Photon", SpawnOffset.position, SpawnOffset.rotation);
+                foreach (PhotonView pv in SpawnedObject.GetComponentsInChildren<PhotonView>())
+                {
+                    pv.TransferOwnership(PhotonNetwork.LocalPlayer);
+                }
+                instNewPackage?.Invoke();
+            }
+        }
+        if (SpawnedObject!=null)
+        {
+            SpawnedObject.transform.position = SpawnOffset.position;
+            SpawnedObject.transform.rotation = SpawnOffset.rotation;
+            SpawnedObject.GetComponent<SpawnableThing>().Box = this;
+            SpawnedObject.GetComponent<ExpirationDate>().Initialize(SpawnedAlready);
+            SpawnedAlready += 1;
+        }
+
         return SpawnedObject;
     }
 

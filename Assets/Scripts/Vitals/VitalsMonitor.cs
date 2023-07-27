@@ -33,7 +33,9 @@ public class VitalsMonitor : MonoBehaviour
     [SerializeField] TaskSpecificValues DataInterface;
     [SerializeField] UnityEvent OnAllConnected;
     private Coroutine AlarmCoroutine;
-
+    public Action<int> conneñt;
+    public Action<bool> alarm;
+    public Action<int,float> changeValue;
     void Start()
     {
         SwitchAlarm(FireAlarmOnStart);
@@ -44,7 +46,6 @@ public class VitalsMonitor : MonoBehaviour
                 DataInterface.SendDataItem(VitalValues[i].Name, VitalValues[i].Connected ? 1 : 0);
             //Debug.Log("{ \n \"name\": \"" + VitalValues[i].Name + "\",\n \"value\": " + (int)VitalValues[i].Value + "\n },");
         }
-        
     }
 
     //changes a given vital value linearly
@@ -88,6 +89,11 @@ public class VitalsMonitor : MonoBehaviour
         if(id < VitalValues.Length)
         {
             VitalValues[id].SetValue = toValue;
+            Debug.Log(id);
+            Debug.Log(toValue);
+            if (!PhotonManager._viewerApp)
+                changeValue?.Invoke(id, toValue);
+           
             //StartCoroutine(ChangeVitalValue(id,toValue,interval));
         }
     }
@@ -120,6 +126,8 @@ public class VitalsMonitor : MonoBehaviour
     }
     public void SwitchAlarm(bool alarm)
     {
+        if (!PhotonManager._viewerApp) this.alarm?.Invoke(alarm);
+
         if (alarm)
         {
     
@@ -127,6 +135,7 @@ public class VitalsMonitor : MonoBehaviour
 
             if (AlarmCoroutine == null)
                 AlarmCoroutine = StartCoroutine(AlarmFiring());
+        
         }
         else
         {
@@ -156,6 +165,11 @@ public class VitalsMonitor : MonoBehaviour
 
     public void Connect(int n)
     {
+        if (!PhotonManager._viewerApp) 
+        {
+            conneñt?.Invoke(n);
+        } 
+
         if (VitalValues[n].Connected)
             return;
         VitalValues[n].SensorsLeft -= 1;
@@ -180,7 +194,9 @@ public class VitalsMonitor : MonoBehaviour
         {
             t.Complete();
         }
+
         OnAllConnected.Invoke();
+       
     }
 
     public float GetValue(int ID)
@@ -191,6 +207,7 @@ public class VitalsMonitor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    
         int toSwitchAlarm = -1;
         if(DataInterface.TryGetItem("SwitchAlarm", ref toSwitchAlarm))
         {

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace QuantumTek.QuantumDialogue.Demo
@@ -10,6 +11,7 @@ namespace QuantumTek.QuantumDialogue.Demo
         public string text;
         public GameObject dialogue;
         [SerializeField] GameObject guideDialogieUI;
+        public Action <int> selectButton;
         private void Start()
         {
             text = GetComponent<Text>().text;
@@ -31,6 +33,7 @@ namespace QuantumTek.QuantumDialogue.Demo
                 dialogue.SetActive(false);
             }
 
+            selectButton?.Invoke(number);
         }
         public void Select() => demo.Choose(number);
     }

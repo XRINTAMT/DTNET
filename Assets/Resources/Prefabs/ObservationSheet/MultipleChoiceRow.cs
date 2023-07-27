@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,9 +11,12 @@ public class MultipleChoiceRow : MonoBehaviour
     [SerializeField] Text OxygenPerMinute;
     [SerializeField] Text EscalationOfCare;
     [SerializeField] Observation obs;
+    public Action <MultipleChoiceRow> submit;
+
 
     public void RenderObservation(Observation _o)
     {
+        Debug.Log("î");
         obs = new Observation(_o.values, _o.wrong);
         for (int i = 0; i <= 2; i++)
         {
@@ -49,6 +53,7 @@ public class MultipleChoiceRow : MonoBehaviour
 
     public void Submit()
     {
+        submit?.Invoke(this);
         choice.ChooseAnswer(obs);
     }
 
@@ -59,6 +64,6 @@ public class MultipleChoiceRow : MonoBehaviour
 
     void Update()
     {
-        
+       
     }
 }
