@@ -24,6 +24,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         roomOptions.IsOpen = true;
         roomOptions.IsVisible = true;
 
+
         if (connectedToServerOnStart)
             ConnectToServer();
 

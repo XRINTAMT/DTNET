@@ -8,7 +8,7 @@ public class PhotonObjects : MonoBehaviour
 {
     [SerializeField] PhotonTransformView[] transfornViewObj;
     [SerializeField] TextMeshProUGUI roomNumber;
-
+    [SerializeField] TextMeshProUGUI roomRegion;
     private void Awake()
     {
         if (PhotonManager.offlineMode)
@@ -57,7 +57,7 @@ public class PhotonObjects : MonoBehaviour
 
 
         roomNumber.text = PhotonNetwork.CurrentRoom.Name;
-
+        roomRegion.text = PhotonNetwork.CloudRegion;
 
     }
 
