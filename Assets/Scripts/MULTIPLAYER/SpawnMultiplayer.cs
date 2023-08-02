@@ -7,6 +7,8 @@ using UnityEngine.SpatialTracking;
 
 public class SpawnMultiplayer : MonoBehaviour
 {
+    [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject hint;
     private void Awake()
     {
         if (PhotonManager.offlineMode)
@@ -23,7 +25,11 @@ public class SpawnMultiplayer : MonoBehaviour
         if (PhotonManager._viewerApp)
         {
             AutoHandPlayer autoHandPlayer = FindObjectOfType<AutoHandPlayer>();
-            autoHandPlayer.headCamera.gameObject.AddComponent<PlayerViewerMovement>();
+            PlayerViewerMovement playerViewerMovement = autoHandPlayer.headCamera.gameObject.AddComponent<PlayerViewerMovement>();
+            Instantiate(pauseMenu, Vector3.zero, Quaternion.identity, autoHandPlayer.headCamera.transform);
+            GameObject Hint = Instantiate(hint, Vector3.zero, Quaternion.identity, autoHandPlayer.headCamera.transform);
+            playerViewerMovement.FlyingUI = Hint.transform.GetChild(0).gameObject;
+            playerViewerMovement.WalkingUI = Hint.transform.GetChild(1).gameObject;
             autoHandPlayer.GetComponent<Rigidbody>().isKinematic = true;
             foreach (Renderer rend in autoHandPlayer.transform.parent.GetComponentsInChildren<Renderer>())
             {
