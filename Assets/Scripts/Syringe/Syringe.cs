@@ -28,6 +28,7 @@ public class Syringe : MonoBehaviour
     bool Guided;
     [SerializeField] Material LiquidRight;
     [SerializeField] Material LiquidTooMuch;
+    [SerializeField] GameObject ExpiredHint;
 
     TaskSpecificValues DataInterface;
     Ampule med;
@@ -307,5 +308,17 @@ public class Syringe : MonoBehaviour
         Vector3 targetPosition = new Vector3(Head.transform.position.x, Head.transform.position.y, Head.transform.position.z);
         MeasurementCanvas.transform.LookAt(targetPosition);
         MeasurementCanvas.transform.position = transform.position + Offset;
+    }
+
+    private void Start()
+    {
+        if (Guided)
+        {
+            Expirable _exp;
+            if (TryGetComponent<Expirable>(out _exp))
+            {
+                ExpiredHint.SetActive(_exp.Expired);
+            }
+        }
     }
 }

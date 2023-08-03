@@ -49,8 +49,9 @@ public class ScoreGenerator : MonoBehaviour
         totalMax += 1;
 
         Pump_ConnectTubing _pump = FindObjectOfType<Pump_ConnectTubing>();
+        SyringeEmptier _syringeHolder = FindObjectOfType<SyringeEmptier>();
 
-        int _expired_task = (_pump.Expired) ? 0 : 1;
+        int _expired_task = (_pump.Expired || _syringeHolder.Expired) ? 0 : 1;
         Records[8].Refresh(_expired_task, 1);
         totalScore += _expired_task;
         totalMax += 1;
