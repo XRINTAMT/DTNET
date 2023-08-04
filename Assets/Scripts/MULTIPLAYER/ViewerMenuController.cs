@@ -15,13 +15,24 @@ public class ViewerMenuController : MonoBehaviour
     [SerializeField] Text roomNumber;
     [SerializeField] Button leaveRoom;
     [SerializeField] Button settings;
+    public Slider setDialogueVolumeStatus;
+    public Slider setSoundVolumeStatus;
+    public Slider setMusicVolumeStatus;
+    UIController uiController;
     // Start is called before the first frame update
     void Start()
     {
+        uiController = FindObjectOfType<UIController>();
+
+        uiController.setDialogueVolumeStatus = setDialogueVolumeStatus;
+        uiController.setMusicVolumeStatus = setMusicVolumeStatus;
+        uiController.setMusicVolumeStatus = setMusicVolumeStatus;
+
         FindObjectOfType<EventSystem>().gameObject.SetActive(false);
         roomNumber.text = PhotonNetwork.CurrentRoom.Name;
         leaveRoom.onClick.AddListener(LeaveRoom);
         eventSystem.SetActive(true);
+
     }
 
     public void LeaveRoom()
@@ -30,6 +41,18 @@ public class ViewerMenuController : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void SetVolumeDiaologue() 
+    {
+        uiController.SetDialogueVolume();
+    }
+    public void SetVolumeMusic()
+    {
+        uiController.SetMusicVolume();
+    }
+    public void SetVolumeSounds()
+    {
+        uiController.SetSoundVolume();
+    }
     // Update is called once per frame
     void Update()
     {

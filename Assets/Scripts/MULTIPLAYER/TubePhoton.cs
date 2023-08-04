@@ -21,7 +21,7 @@ public class TubePhoton : MonoBehaviour
         if (!PhotonManager._viewerApp)
         {
             InfiniteBox infiniteBox = FindObjectOfType<InfiniteBox>();
-            infiniteBox.instNewPackage += InstNewPackage;
+            infiniteBox.instNewPackage += InstNewObj;
 
             pump_ConnectTubing.connectTubing += ConnectTubing;
 
@@ -33,13 +33,12 @@ public class TubePhoton : MonoBehaviour
         
     }
 
-    void InstNewPackage() 
+    void InstNewObj(string name, int viewId, string date) 
     {
         if (!PhotonManager._viewerApp)
         {
-            GetComponent<PhotonView>().RPC("InstNewPackageRPC", RpcTarget.AllBuffered);
+            GetComponent<PhotonView>().RPC("InstNewObjRPC", RpcTarget.AllBuffered, name, viewId, date);
         }
-
     }
     void ConnectTubing(GameObject tubing)
     {
@@ -47,41 +46,41 @@ public class TubePhoton : MonoBehaviour
         {
             GetComponent<PhotonView>().RPC("ConnectTubingRPC", RpcTarget.All, tubing.GetComponent<PhotonView>().ViewID);
         }
-
     }
     [PunRPC]
-    void InstNewPackageRPC()
+    void InstNewObjRPC(string nameObj, int viewId, string date)
     {
-        Debug.Log("InstNewPackageRPC");
-
-        Array.Clear(packagings, 0, packagings.Length);
-        packagings = FindObjectsOfType<Packaging>();
-
-
-
-        if (PhotonManager._viewerApp)
+        Debug.Log("InstNewObjRPC");
+        if (name.Contains("Tubing(Packaged)"))
         {
+            Array.Clear(packagings, 0, packagings.Length);
+            packagings = FindObjectsOfType<Packaging>();
+
             for (int i = 0; i < packagings.Length; i++)
             {
-                foreach (Rigidbody rb in packagings[i].GetComponentsInChildren<Rigidbody>())
+                if (packagings[i].GetComponent<PhotonView>().ViewID== viewId)
+                    packagings[i].GetComponent<ExpirationDate>().DateStamp.text = date;
+            }
+
+            if (PhotonManager._viewerApp)
+            {
+                for (int i = 0; i < packagings.Length; i++)
                 {
-                    rb.isKinematic = true;
-                    Packaging instPackaching = packagings[i];
-                    if (packagings[i].Content.GetComponent<Joint>())
+                    foreach (Rigidbody rb in packagings[i].GetComponentsInChildren<Rigidbody>())
                     {
-                        Destroy(packagings[i].Content.GetComponent<Joint>());
-                    }
-                    if (packagings[i].RemovablePart.GetComponent<Joint>())
-                    {
-                        Destroy(packagings[i].RemovablePart.GetComponent<Joint>());
-                    }
-                    if (packagings[i].Package.GetComponent<Joint>())
-                    {
-                        Destroy(packagings[i].Package.GetComponent<Joint>());
+                        rb.isKinematic = true;
+
+                        if (packagings[i].Content.GetComponent<Joint>())
+                            Destroy(packagings[i].Content.GetComponent<Joint>());
+                        if (packagings[i].RemovablePart.GetComponent<Joint>())
+                            Destroy(packagings[i].RemovablePart.GetComponent<Joint>());
+                        if (packagings[i].Package.GetComponent<Joint>())
+                            Destroy(packagings[i].Package.GetComponent<Joint>());
                     }
                 }
             }
         }
+     
     }
 
     [PunRPC]
@@ -89,19 +88,13 @@ public class TubePhoton : MonoBehaviour
     {
         Debug.Log("ConnectTubingRPC" +viewId);
 
-      
         if (PhotonManager._viewerApp)
         {
             IVTube.SetActive(true);
             for (int i = 0; i < packagings.Length; i++)
             {
-
                 packagings[i].gameObject.SetActive(false);
-                
-
             }
-
-           
         }
     }
 
