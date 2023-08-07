@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using System;
 
 public class FadeMessageManager : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class FadeMessageManager : MonoBehaviour
     [SerializeField] float fadeTime;
     [SerializeField] UnityEvent OnStartFade;
     [SerializeField] UnityEvent OnEndFade;
-    public bool test;
+    public Action<string> fadeStart;
+
     void Start()
     {
      
@@ -24,20 +26,12 @@ public class FadeMessageManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (test)
-        {
-            StartCoroutine(fadeAnimationWallOut());
-            //OnEndFade.Invoke();
-            test = false;
-        }
 
-    }
 
     public void FadeWithText(string text)
     {
         displayText.text = text;
+        fadeStart?.Invoke(text);
         StartCoroutine(fadeAnimation());
     }
 

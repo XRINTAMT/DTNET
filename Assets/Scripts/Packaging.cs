@@ -5,9 +5,9 @@ using Autohand;
 
 public class Packaging : MonoBehaviour
 {
-    [SerializeField] Grabbable Package;
-    [SerializeField] Grabbable RemovablePart;
-    [SerializeField] Grabbable Content;
+    public Grabbable Package;
+    public Grabbable RemovablePart;
+    public Grabbable Content;
 
     bool isUnpacked;
     bool isEjected;

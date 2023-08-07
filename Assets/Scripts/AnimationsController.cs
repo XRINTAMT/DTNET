@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Autohand;
@@ -29,10 +30,40 @@ public class AnimationsController : MonoBehaviour
 
     bool waterSyringe;
 
+    public Action <bool> waterCondition;
+
+    public Action animationSeatingDown;
+    public Action animationLaying;
 
 
+    public Action animationCallDoctor;
+    public Action animationArrivedDoctor;
+    public Action animationWalkDoctor;
+    public Action animationInspectDoctor;
+
+    public Action animationPutOffShirt;
+
+    public Action animationWalkNurse;
+    public Action animationInjectNurse;
+    public Action animationStopNurse;
+
+    public bool callDoctor;
+    public bool checkDoctor;
+    public bool walkDoctor;
+    public bool InspectDoctor;
     private void Awake()
     {
+        if (PhotonManager._viewerApp)
+        {
+            for (int i = 0; i < placePoints.Count; i++)
+            {
+                if (placePoints[i]!=null)
+                {
+                    placePoints[i].enabled = false;
+                }
+            }
+        }
+
         if (!transform.parent.parent.name.Contains("(Clone)"))
         {
             for (int i = 0; i < placePoints.Count; i++)
@@ -79,7 +110,7 @@ public class AnimationsController : MonoBehaviour
         {
             syringeAnimation.Play("HygeneOff");
         }
-
+        waterCondition?.Invoke(waterSyringe);
     }
 
     void HaltCollider()
@@ -102,12 +133,25 @@ public class AnimationsController : MonoBehaviour
     }
     public void PutOffShirt()
     {
+        if (!PhotonManager._viewerApp)
+        {
+            animationPutOffShirt?.Invoke();
+        }
         MeshWithShirt.SetActive(false);
         MeshWithoutShirt.SetActive(true);
-        for (int i = 0; i < placePoints.Count; i++)
+
+        if (!PhotonManager._viewerApp)
         {
-            placePoints[i].enabled = true;
+            for (int i = 0; i < placePoints.Count; i++)
+            {
+                if (placePoints[i]!=null)
+                {
+                    placePoints[i].enabled = true;
+                }
+               
+            }
         }
+       
     }
 
     public void AnimationSeatDownPatient1()
@@ -121,7 +165,11 @@ public class AnimationsController : MonoBehaviour
 
     public void AnimationSeatDownPatient2()
     {
-       
+        if (!PhotonManager._viewerApp)
+        {
+            animationSeatingDown?.Invoke();
+        }
+
         patientAnimator1.SetTrigger("UpRight");
         patientAnimator2.SetTrigger("UpRight");
         patientAnimator3.SetTrigger("UpRight");
@@ -137,6 +185,10 @@ public class AnimationsController : MonoBehaviour
     }
     public void AnimationLayingPatient2()
     {
+        if (!PhotonManager._viewerApp)
+        {
+            animationLaying?.Invoke();
+        }
 
         patientAnimator1.SetTrigger("Laying");
         patientAnimator2.SetTrigger("Laying");
@@ -167,10 +219,17 @@ public class AnimationsController : MonoBehaviour
 
     public void AnimationArriveDoctor()
     {
+        //doctorAnimator.applyRootMotion = false;
         animationOpenDoor.Play("OpenDoor");
         doctorAnimator.SetTrigger("OpenDoor");
+    
+        if (!PhotonManager._viewerApp)
+        {
+            animationArrivedDoctor?.Invoke();
+        }
 
-        observSheet.inHead = false; 
+        if (observSheet)
+            observSheet.inHead = false;
 
         //StartCoroutine(startDialogue());
 
@@ -184,6 +243,12 @@ public class AnimationsController : MonoBehaviour
    
     public void CallMrAdams() 
     {
+        if (!PhotonManager._viewerApp)
+        {
+            animationCallDoctor?.Invoke();
+        }
+
+        Debug.Log("ÑallDoctor");
         StartCoroutine(DoctorCome());
     }
     IEnumerator DoctorCome()
@@ -192,8 +257,14 @@ public class AnimationsController : MonoBehaviour
         AnimationArriveDoctor();
     }
     
+
     public void AnimationWalkDoctor()
     {
+        if (!PhotonManager._viewerApp)
+        {
+            animationWalkDoctor?.Invoke();
+        }
+        Debug.Log("walk");
         doctorAnimator.applyRootMotion = false;
         animationDoctorWalk.Play("DoctorWalk");
         doctorAnimator.SetTrigger("Walk");
@@ -201,6 +272,11 @@ public class AnimationsController : MonoBehaviour
 
     public void AnimationWalkNurse()
     {
+        if (!PhotonManager._viewerApp)
+        {
+            animationWalkNurse?.Invoke();
+        }
+      
         doctorAnimator.applyRootMotion = false;
         animationDoctorWalk.Play("GoToPump");
         doctorAnimator.SetTrigger("Walk");
@@ -208,18 +284,39 @@ public class AnimationsController : MonoBehaviour
 
     public void AnimationNurseTakeInject()
     {
+        if (!PhotonManager._viewerApp)
+        {
+            animationInjectNurse?.Invoke();
+        }
         nurseAnimator.SetTrigger("Take Inject");
     }
 
     public void AnimationStopNurse()
     {
+        if (!PhotonManager._viewerApp)
+        {
+            animationStopNurse?.Invoke();
+        }
         //nurseAnimator.applyRootMotion=false;
         nurseAnimator.SetTrigger("Put Inject");
         //animationDoctorNurse.Stop();
     }
     public void AnimationDoctorInspect()
     {
+        if (!PhotonManager._viewerApp)
+        {
+            animationInspectDoctor?.Invoke();
+        }
         doctorAnimator.SetTrigger("Inspect");
     }
-   
+
+    private void Update()
+    {
+        if (callDoctor)
+        {
+            CallMrAdams();
+            callDoctor = false;
+
+        }
+    }
 }

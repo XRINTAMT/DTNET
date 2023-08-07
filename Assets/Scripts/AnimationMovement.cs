@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -16,7 +17,7 @@ public class AnimationMovement : MonoBehaviour
     public UnityEvent OnStartMove;
     public UnityEvent OnFinishMove;
     public bool startMoving;
-
+    public Action walk;
     bool startEvent;
     // Start is called before the first frame update
     void Start()
@@ -56,6 +57,7 @@ public class AnimationMovement : MonoBehaviour
     public void StartMove(bool startMoving) 
     {
         this.startMoving = startMoving;
+        walk?.Invoke();
     }
     // Update is called once per frame
     void Update()

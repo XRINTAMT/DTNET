@@ -26,7 +26,8 @@ public class RestartSystem : MonoBehaviour
         {
             //Object.Destroy(SavedState);
         }
-        
+        Debug.Log("Save");
+        Debug.Log(gameObject.name);
         SavedState = Object.Instantiate(Changables);
         SavedState.SetActive(false);
         SavedState.GetComponentInChildren<OldScenarioBehaviour>().Activate(false);

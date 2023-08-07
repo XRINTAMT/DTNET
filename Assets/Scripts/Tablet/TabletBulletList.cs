@@ -93,6 +93,7 @@ public class TabletBulletList : MonoBehaviour
     [SerializeField] Color colorCross;
     [SerializeField] AudioSource TaskSFX;
     [SerializeField] AudioSource SubtaskSFX;
+    public Action<int> crossOut;
     public void Init(BulletListItemLink[] listItems, float theight, float mheight)
     {
         ListItems = listItems;
@@ -105,6 +106,10 @@ public class TabletBulletList : MonoBehaviour
         FindByID(_ID).Cross(colorCross);
         bool _isSub = true;
         int _topID = 0;
+
+        if (!PhotonManager._viewerApp)
+            crossOut?.Invoke(_ID);
+
         for(int i = 0; i < ListItems.Length; i++)
         {
             if(ListItems[i].ID == _ID)

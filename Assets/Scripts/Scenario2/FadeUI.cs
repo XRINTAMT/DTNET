@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,8 @@ public class FadeUI : MonoBehaviour
     [SerializeField] List<CanvasGroup> canvasGroups;
     [SerializeField] float speedMultiplier = 1;
     public bool fadeIn,fadeOut;
-
+    public Action _fadeIn;
+    public Action _fadeOut;
     void Start()
     {
         for (int i = 0; i < canvasGroups.Count; i++)
@@ -23,16 +25,19 @@ public class FadeUI : MonoBehaviour
     public void FadeIn() 
     {
         fadeIn = true;
+        _fadeIn?.Invoke();
     }
     public void FadeOut()
     {
         fadeOut = true;
+        _fadeOut?.Invoke();
     }
     // Update is called once per frame
     void Update()
     {
         if (fadeIn)
         {
+
             fadeOut = false;
             for (int i = 0; i < canvasGroups.Count; i++)
             {
@@ -48,10 +53,12 @@ public class FadeUI : MonoBehaviour
             {
                 fadeIn = false;
             }
+
         }
 
         if (fadeOut)
         {
+
             fadeIn = false;
             for (int i = 0; i < canvasGroups.Count; i++)
             {
