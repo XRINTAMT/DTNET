@@ -80,7 +80,37 @@ public class TubePhoton : MonoBehaviour
                 }
             }
         }
-     
+
+        if (name.Contains("Syringe(Packaged)"))
+        {
+            Array.Clear(packagings, 0, packagings.Length);
+            packagings = FindObjectsOfType<Packaging>();
+
+            for (int i = 0; i < packagings.Length; i++)
+            {
+                if (packagings[i].GetComponent<PhotonView>().ViewID == viewId)
+                    packagings[i].GetComponent<ExpirationDate>().DateStamp.text = date;
+            }
+
+            if (PhotonManager._viewerApp)
+            {
+                for (int i = 0; i < packagings.Length; i++)
+                {
+                    foreach (Rigidbody rb in packagings[i].GetComponentsInChildren<Rigidbody>())
+                    {
+                        rb.isKinematic = true;
+
+                        if (packagings[i].Content.GetComponent<Joint>())
+                            Destroy(packagings[i].Content.GetComponent<Joint>());
+                        if (packagings[i].RemovablePart.GetComponent<Joint>())
+                            Destroy(packagings[i].RemovablePart.GetComponent<Joint>());
+                        if (packagings[i].Package.GetComponent<Joint>())
+                            Destroy(packagings[i].Package.GetComponent<Joint>());
+                    }
+                }
+            }
+        }
+
     }
 
     [PunRPC]
