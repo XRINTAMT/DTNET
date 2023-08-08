@@ -23,6 +23,7 @@ public class RoomListEntryBehaviour : MonoBehaviour
 
     public void JoinRoom()
     {
+        PhotonManager.offlineMode = false;
         PhotonNetwork.JoinRoom(roomName);
     }
 
