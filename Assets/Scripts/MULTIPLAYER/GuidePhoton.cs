@@ -11,7 +11,7 @@ public class GuidePhoton : MonoBehaviour
             Destroy(this);
 
         GuideSystem guideSystem = FindObjectOfType<GuideSystem>();
-        guideSystem.gameObject.SetActive(false);
+        //guideSystem.gameObject.SetActive(false);
     }
     // Start is called before the first frame update
     void Start()

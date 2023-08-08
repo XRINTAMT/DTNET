@@ -20,8 +20,12 @@ public class TubePhoton : MonoBehaviour
 
         if (!PhotonManager._viewerApp)
         {
-            InfiniteBox infiniteBox = FindObjectOfType<InfiniteBox>();
-            infiniteBox.instNewPackage += InstNewObj;
+            InfiniteBox [] infiniteBox = FindObjectsOfType<InfiniteBox>();
+            for (int i = 0; i < infiniteBox.Length; i++)
+            {
+                infiniteBox[i].instNewPackage += InstNewObj;
+            }
+           
 
             pump_ConnectTubing.connectTubing += ConnectTubing;
 
