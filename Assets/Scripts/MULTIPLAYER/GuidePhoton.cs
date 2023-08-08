@@ -11,7 +11,7 @@ public class GuidePhoton : MonoBehaviour
             Destroy(this);
 
         GuideSystem guideSystem = FindObjectOfType<GuideSystem>();
-        //guideSystem.gameObject.SetActive(false);
+        guideSystem.gameObject.SetActive(true);
     }
     // Start is called before the first frame update
     void Start()
@@ -30,6 +30,12 @@ public class GuidePhoton : MonoBehaviour
 
     void ActivateGuide(int id)
     {
+        //if (PhotonNetwork.CountOfPlayers==1  && id==1)
+        //{
+        //    PhotonNetwork.Disconnect();
+        //    PhotonManager.offlineMode = false;
+        //    GetComponent<PhotonObjects>().Destroy();
+        //}
         if (!PhotonManager._viewerApp)
             GetComponent<PhotonView>().RPC("ActivateGuideRPC", RpcTarget.AllBuffered, id);
     }

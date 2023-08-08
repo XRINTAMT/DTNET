@@ -8,7 +8,7 @@ public class PhotonObjects : MonoBehaviour
 {
     [SerializeField] PhotonTransformView[] transfornViewObj;
     [SerializeField] TextMeshProUGUI roomNumber;
-    [SerializeField] TextMeshProUGUI roomRegion;
+
     private void Awake()
     {
         if (PhotonManager.offlineMode)
@@ -28,9 +28,29 @@ public class PhotonObjects : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (!PhotonManager.offlineMode)
+        //if (!PhotonManager.offlineMode)
+        //{
+        //    FindObjectOfType<RestartSystem>().enabled = false;
+        //}
+    }
+
+    public void Destroy()
+    {
+        if (PhotonManager.offlineMode)
         {
-            FindObjectOfType<RestartSystem>().enabled = false;
+            PhotonView[] photonViews = FindObjectsOfType<PhotonView>();
+            for (int i = 0; i < photonViews.Length; i++)
+            {
+                Destroy(photonViews[i]);
+            }
+
+            PhotonTransformView[] photonTransformViews = FindObjectsOfType<PhotonTransformView>();
+            for (int i = 0; i < photonTransformViews.Length; i++)
+            {
+                Destroy(photonTransformViews[i]);
+            }
+
+            Destroy(gameObject);
         }
     }
     // Start is called before the first frame update
@@ -57,7 +77,6 @@ public class PhotonObjects : MonoBehaviour
 
 
         roomNumber.text = PhotonNetwork.CurrentRoom.Name;
-        roomRegion.text = PhotonNetwork.CloudRegion;
 
     }
 

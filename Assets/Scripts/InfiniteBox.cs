@@ -53,6 +53,8 @@ public class InfiniteBox : MonoBehaviour
                 SpawnedAlready += 1;
 
                 SpawnedObject.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.LocalPlayer);
+
+                Debug.Log("Inst");
                 foreach (PhotonView pv in SpawnedObject.GetComponentsInChildren<PhotonView>())
                 {
                     pv.TransferOwnership(PhotonNetwork.LocalPlayer);

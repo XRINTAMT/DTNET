@@ -16,7 +16,6 @@ public class MultipleChoiceRow : MonoBehaviour
 
     public void RenderObservation(Observation _o)
     {
-        Debug.Log("î");
         obs = new Observation(_o.values, _o.wrong);
         for (int i = 0; i <= 2; i++)
         {
