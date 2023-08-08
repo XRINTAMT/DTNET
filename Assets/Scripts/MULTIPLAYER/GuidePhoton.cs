@@ -10,8 +10,6 @@ public class GuidePhoton : MonoBehaviour
         if (PhotonManager.offlineMode)
             Destroy(this);
 
-        GuideSystem guideSystem = FindObjectOfType<GuideSystem>();
-        guideSystem.gameObject.SetActive(true);
     }
     // Start is called before the first frame update
     void Start()
@@ -24,7 +22,7 @@ public class GuidePhoton : MonoBehaviour
         if (PhotonManager._viewerApp)
         {
             GuideSystem guideSystem = FindObjectOfType<GuideSystem>();
-            guideSystem.gameObject.SetActive(false);
+            guideSystem.gameObject.SetActive(true);
         }
     }
 

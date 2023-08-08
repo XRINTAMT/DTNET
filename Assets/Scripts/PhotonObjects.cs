@@ -11,23 +11,7 @@ public class PhotonObjects : MonoBehaviour
 
     private void Awake()
     {
-        if (PhotonManager.offlineMode)
-        {
-            PhotonView[] photonViews = FindObjectsOfType<PhotonView>();
-            for (int i = 0; i < photonViews.Length; i++)
-            {
-                Destroy(photonViews[i]);
-            }
-
-            PhotonTransformView[] photonTransformViews = FindObjectsOfType<PhotonTransformView>();
-            for (int i = 0; i < photonTransformViews.Length; i++)
-            {
-                Destroy(photonTransformViews[i]);
-            }
-
-            Destroy(gameObject);
-        }
-
+        Destroy();
         //if (!PhotonManager.offlineMode)
         //{
         //    FindObjectOfType<RestartSystem>().enabled = false;
