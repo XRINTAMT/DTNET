@@ -42,7 +42,7 @@ public class InfiniteBox : MonoBehaviour
 
         if (!PhotonManager.offlineMode)
         {
-            if (!PhotonManager._viewerApp)
+            if (PhotonManager._viewerApp)
             {
                 SpawnedObject = PhotonNetwork.Instantiate(ToSpawn.name, SpawnOffset.position, SpawnOffset.rotation);
 
@@ -54,7 +54,6 @@ public class InfiniteBox : MonoBehaviour
 
                 SpawnedObject.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.LocalPlayer);
 
-                Debug.Log("Inst");
                 foreach (PhotonView pv in SpawnedObject.GetComponentsInChildren<PhotonView>())
                 {
                     pv.TransferOwnership(PhotonNetwork.LocalPlayer);

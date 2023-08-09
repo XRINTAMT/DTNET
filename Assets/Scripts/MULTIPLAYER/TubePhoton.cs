@@ -30,10 +30,14 @@ public class TubePhoton : MonoBehaviour
             {
                 infiniteBox[i].instNewPackage += InstNewObj;
             }
-           
 
             pump_ConnectTubing.connectTubing += ConnectTubing;
-
+        }
+        if (PhotonManager._viewerApp)
+        {
+            SpawnableLeftTheAreaTrigger [] spawnableLeftTheAreaTrigger = FindObjectsOfType<SpawnableLeftTheAreaTrigger>();
+            for (int i = 0; i < spawnableLeftTheAreaTrigger.Length; i++)
+                Destroy(spawnableLeftTheAreaTrigger[i]);
         }
     }
     // Start is called before the first frame update
@@ -88,6 +92,11 @@ public class TubePhoton : MonoBehaviour
             {
                 for (int i = 0; i < packagingsTube.Count; i++)
                 {
+
+                    packagingsTube[i].Content.transform.parent = null;
+                    packagingsTube[i].RemovablePart.transform.parent = null;
+                    packagingsTube[i].Package.transform.parent = null;
+
                     foreach (Rigidbody rb in packagingsTube[i].GetComponentsInChildren<Rigidbody>())
                     {
                         rb.isKinematic = true;
@@ -116,6 +125,10 @@ public class TubePhoton : MonoBehaviour
             {
                 for (int i = 0; i < packagingsSyringe.Count; i++)
                 {
+                    packagingsSyringe[i].Content.transform.parent = null;
+                    packagingsSyringe[i].RemovablePart.transform.parent = null;
+                    packagingsSyringe[i].Package.transform.parent = null;
+
                     foreach (Rigidbody rb in packagingsSyringe[i].GetComponentsInChildren<Rigidbody>())
                     {
                         rb.isKinematic = true;
@@ -130,36 +143,6 @@ public class TubePhoton : MonoBehaviour
                 }
             }
         }
-
-        //if (nameObj.Contains("Syringe(Packaged)"))
-        //{
-        //    Array.Clear(packagingsSyringe, 0, packagingsSyringe.Length);
-        //    packagingsSyringe = FindObjectsOfType<Packaging>();
-
-        //    for (int i = 0; i < packagingsSyringe.Length; i++)
-        //    {
-        //        if (packagingsSyringe[i].GetComponent<PhotonView>().ViewID == viewId)
-        //            packagingsSyringe[i].GetComponent<ExpirationDate>().DateStamp.text = date;
-        //    }
-
-        //    if (PhotonManager._viewerApp)
-        //    {
-        //        for (int i = 0; i < packagingsSyringe.Length; i++)
-        //        {
-        //            foreach (Rigidbody rb in packagingsSyringe[i].GetComponentsInChildren<Rigidbody>())
-        //            {
-        //                rb.isKinematic = true;
-
-        //                if (packagingsSyringe[i].Content.GetComponent<Joint>())
-        //                    Destroy(packagingsSyringe[i].Content.GetComponent<Joint>());
-        //                if (packagingsSyringe[i].RemovablePart.GetComponent<Joint>())
-        //                    Destroy(packagingsSyringe[i].RemovablePart.GetComponent<Joint>());
-        //                if (packagingsSyringe[i].Package.GetComponent<Joint>())
-        //                    Destroy(packagingsSyringe[i].Package.GetComponent<Joint>());
-        //            }
-        //        }
-        //    }
-        //}
 
     }
 
