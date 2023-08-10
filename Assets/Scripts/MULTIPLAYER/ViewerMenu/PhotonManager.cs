@@ -10,7 +10,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 {
     RoomOptions roomOptions = new RoomOptions();
     public List<RoomInfo> roomInfo = new List<RoomInfo>();
-
+    [SerializeField] GameObject loadingImage;
     [SerializeField] UnityEvent OnLeft;
     [SerializeField] int maxPlayers = 3;
     public bool connectedToServerOnStart;
@@ -71,6 +71,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("CONNECT TO SERVER");
+        if (loadingImage)
+            loadingImage.SetActive(false);
         PhotonNetwork.JoinLobby();
     }
     public override void OnDisconnected(DisconnectCause cause)

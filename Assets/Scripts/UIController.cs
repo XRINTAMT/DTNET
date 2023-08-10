@@ -235,9 +235,15 @@ public class UIController : MonoBehaviour
 
     public void LoadScene(string name)
     {
-        if (sceneLoader != null) sceneLoader.LoadScene(name);
-     
-        //SceneManager.LoadScene(name);
+        if (sceneLoader != null) 
+        {
+            sceneLoader.LoadScene(name);
+        }
+
+
+        if (sceneLoader == null)
+            SceneManager.LoadScene(name);
+
     }
 
     public void Exit() 

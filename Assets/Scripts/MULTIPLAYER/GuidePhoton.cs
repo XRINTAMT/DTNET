@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 
-public class GuidePhoton : MonoBehaviour
+public class GuidePhoton : MonoBehaviourPunCallbacks
 {
+
     private void Awake()
     {
         if (PhotonManager.offlineMode)
@@ -28,11 +30,11 @@ public class GuidePhoton : MonoBehaviour
 
     void ActivateGuide(int id)
     {
-        //if (PhotonNetwork.CountOfPlayers==1  && id==1)
+        //if (PhotonNetwork.CountOfPlayers == 1 && id == 1)
         //{
         //    PhotonNetwork.Disconnect();
-        //    PhotonManager.offlineMode = false;
-        //    GetComponent<PhotonObjects>().Destroy();
+        //    PhotonManager.offlineMode = true;
+        //    //GetComponent<PhotonObjects>().Destroy();
         //}
         if (!PhotonManager._viewerApp)
             GetComponent<PhotonView>().RPC("ActivateGuideRPC", RpcTarget.AllBuffered, id);
@@ -46,5 +48,13 @@ public class GuidePhoton : MonoBehaviour
             GuideSystem guideSystem = FindObjectOfType<GuideSystem>();
             guideSystem.GuidePanelActivate(id);
         }
+    }
+
+  
+
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        Debug.Log("DISCONNECT SERVER");
+
     }
 }

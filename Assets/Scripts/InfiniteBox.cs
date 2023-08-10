@@ -42,7 +42,7 @@ public class InfiniteBox : MonoBehaviour
 
         if (!PhotonManager.offlineMode)
         {
-            if (PhotonManager._viewerApp)
+            if (!PhotonManager._viewerApp)
             {
                 SpawnedObject = PhotonNetwork.Instantiate(ToSpawn.name, SpawnOffset.position, SpawnOffset.rotation);
 
