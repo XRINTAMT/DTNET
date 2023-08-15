@@ -41,6 +41,10 @@ public class DialoguesPhoton : MonoBehaviour
         dialogueSystem.Dialogs[1].GetComponent<QD_DialogueDemo>().nextDialogue += Next;
         dialogueSystem.Dialogs[2].GetComponent<QD_DialogueDemo>().nextDialogue += Next;
 
+
+        dialogueSystem.Dialogs[0].GetComponent<QD_DialogueDemo>().startDialogue += CloseDialogue;
+        dialogueSystem.Dialogs[1].GetComponent<QD_DialogueDemo>().startDialogue += CloseDialogue;
+        dialogueSystem.Dialogs[2].GetComponent<QD_DialogueDemo>().startDialogue += CloseDialogue;
         //dialogueSystem.Dialogs[0].GetComponent<QD_DialogueDemo>().backDialogue += Back;
         //dialogueSystem.Dialogs[1].GetComponent<QD_DialogueDemo>().backDialogue += Back;
         //dialogueSystem.Dialogs[2].GetComponent<QD_DialogueDemo>().backDialogue += Back;
@@ -64,7 +68,13 @@ public class DialoguesPhoton : MonoBehaviour
             GetComponent<PhotonView>().RPC("OpenDialogueRPC", RpcTarget.All, number);
         }
     }
-
+    void CloseDialogue(int number)
+    {
+        if (!PhotonManager._viewerApp)
+        {
+            GetComponent<PhotonView>().RPC("CloseDialogueRPC", RpcTarget.All, number);
+        }
+    }
     public void Next(int number) 
     {
         if (!PhotonManager._viewerApp)
@@ -103,6 +113,22 @@ public class DialoguesPhoton : MonoBehaviour
                 if (dialogueSystem.Dialogs[i].GetComponent<QD_DialogueDemo>().number == number)
                 {
                     dialogueSystem.Dialogs[i].SetActive(true);
+                }
+            }
+        }
+    }
+
+    void CloseDialogueRPC(int number)
+    {
+        Debug.Log("CloseDialogueEvent_RPC");
+
+        if (PhotonManager._viewerApp)
+        {
+            for (int i = 0; i < dialogueSystem.Dialogs.Count; i++)
+            {
+                if (dialogueSystem.Dialogs[i].GetComponent<QD_DialogueDemo>().number == number)
+                {
+                    dialogueSystem.Dialogs[i].SetActive(false);
                 }
             }
         }
