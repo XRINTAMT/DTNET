@@ -42,7 +42,7 @@ public class RestartPhoton : MonoBehaviour
             PhotonManager.roomName = PhotonNetwork.CurrentRoom.Name;
             PhotonManager.restart = true;
             PhotonNetwork.LeaveRoom();
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("ViewerMode");
         }
     }
     // Update is called once per frame

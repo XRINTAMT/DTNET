@@ -59,7 +59,6 @@ public class PhotonObjects : MonoBehaviour
             }
         }
 
-
         roomNumber.text = PhotonNetwork.CurrentRoom.Name;
 
     }

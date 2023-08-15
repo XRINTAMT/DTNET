@@ -20,6 +20,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public static bool offlineMode = true;
     public static string roomName;
     public static bool restart;
+    public static bool connectToServer;
     void Start()
     {
         roomOptions.MaxPlayers = (byte)maxPlayers;
@@ -57,13 +58,15 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.ConnectUsingSettings();
     }
+
     public void CreateRoom()
     {
         if (!PhotonNetwork.IsConnected)
             return;
-        if (roomName=="")
+
+        if (roomName == null) 
             PhotonNetwork.CreateRoom(Random.Range(1000, 9999).ToString(), roomOptions);
-        else
+        if (roomName != null)
             PhotonNetwork.CreateRoom(roomName, roomOptions);
     }
     public void ConnectToRandomRoom()
@@ -82,6 +85,14 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRoom(roomName);
     }
 
+
+    public void ShowLoadingScreen() 
+    {
+        if (!connectToServer)
+        {
+            loadingImage.SetActive(true);
+        }
+    }
     override public void OnLeftRoom()
     {
         OnLeft.Invoke();
@@ -92,10 +103,13 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         Debug.Log("CONNECT TO SERVER");
         if (loadingImage)
             loadingImage.SetActive(false);
+
+        connectToServer = true;
         PhotonNetwork.JoinLobby();
     }
     public override void OnDisconnected(DisconnectCause cause)
     {
+        connectToServer = false;
         Debug.Log("DISCONNECT SERVER");
     }
     public override void OnJoinedLobby()
@@ -107,6 +121,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         offlineMode = false;
         SceneManager.LoadScene("ScenarioScene");
+
         Debug.Log("Create room");
     }
     public override void OnJoinRandomFailed(short returnCode, string message)
@@ -119,5 +134,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         foreach (RoomInfo info in roomList)
             roomInfo.Add(info);
     }
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        Debug.Log("LeaveRoom");
+    }
+
+    
+
 
 }

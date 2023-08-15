@@ -34,7 +34,7 @@ public class ViewerMenuController : MonoBehaviour
     public void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("ViewerMode");
     }
 
     public void SetVolumeDiaologue() 
@@ -98,4 +98,6 @@ public class ViewerMenuController : MonoBehaviour
             AppMixer.SetFloat("Music", Mathf.Log(UIController.musicVolume) * 20);
         }
     }
+
+
 }

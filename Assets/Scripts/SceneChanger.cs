@@ -24,18 +24,25 @@ public class SceneChanger : MonoBehaviour
             else
                 SceneManager.LoadScene(i);
         }
-        if (!PhotonManager.offlineMode && i==-1)
+        if (!PhotonManager.offlineMode)
         {
             if (i == -1)
             {
                 PhotonManager.roomName = PhotonNetwork.CurrentRoom.Name;
                 PhotonManager.restart = true;
+           
             }
-            PhotonNetwork.DestroyPlayerObjects(PhotonNetwork.LocalPlayer);
-            PhotonNetwork.LeaveRoom();
-            SceneManager.LoadScene(0);
 
             restart?.Invoke();
+            //PhotonNetwork.DestroyPlayerObjects(PhotonNetwork.LocalPlayer);
+            //PhotonNetwork.LeaveRoom();
+
+            PhotonNetwork.LeaveRoom();
+            if (i != -1)
+                PhotonNetwork.Disconnect();
+
+            SceneManager.LoadScene(0);
+
         }
        
 
