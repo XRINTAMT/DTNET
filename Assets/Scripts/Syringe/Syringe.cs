@@ -25,6 +25,7 @@ public class Syringe : MonoBehaviour
     [SerializeField] Text AmountText;
     [SerializeField] Text SubstanceText;
     [SerializeField] Vector3 Offset;
+    [SerializeField] Rigidbody SyringeCap;
     bool Guided;
     [SerializeField] Material LiquidRight;
     [SerializeField] Material LiquidTooMuch;
@@ -312,6 +313,7 @@ public class Syringe : MonoBehaviour
 
     private void Start()
     {
+        SyringeCap.Sleep();
         if (Guided)
         {
             Expirable _exp;
