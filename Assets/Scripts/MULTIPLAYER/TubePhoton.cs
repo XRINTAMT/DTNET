@@ -92,11 +92,6 @@ public class TubePhoton : MonoBehaviour
             {
                 for (int i = 0; i < packagingsTube.Count; i++)
                 {
-
-                    packagingsTube[i].Content.transform.parent = null;
-                    packagingsTube[i].RemovablePart.transform.parent = null;
-                    packagingsTube[i].Package.transform.parent = null;
-
                     foreach (Rigidbody rb in packagingsTube[i].GetComponentsInChildren<Rigidbody>())
                     {
                         rb.isKinematic = true;
@@ -108,6 +103,9 @@ public class TubePhoton : MonoBehaviour
                         if (packagingsTube[i].Package.GetComponent<Joint>())
                             Destroy(packagingsTube[i].Package.GetComponent<Joint>());
                     }
+                    packagingsTube[i].Content.transform.parent = null;
+                    packagingsTube[i].RemovablePart.transform.parent = null;
+                    packagingsTube[i].Package.transform.parent = null;
                 }
             }
         }
@@ -125,9 +123,6 @@ public class TubePhoton : MonoBehaviour
             {
                 for (int i = 0; i < packagingsSyringe.Count; i++)
                 {
-                    packagingsSyringe[i].Content.transform.parent = null;
-                    packagingsSyringe[i].RemovablePart.transform.parent = null;
-                    packagingsSyringe[i].Package.transform.parent = null;
 
                     foreach (Rigidbody rb in packagingsSyringe[i].GetComponentsInChildren<Rigidbody>())
                     {
@@ -140,6 +135,10 @@ public class TubePhoton : MonoBehaviour
                         if (packagingsSyringe[i].Package.GetComponent<Joint>())
                             Destroy(packagingsSyringe[i].Package.GetComponent<Joint>());
                     }
+
+                    packagingsSyringe[i].Content.transform.parent = null;
+                    packagingsSyringe[i].RemovablePart.transform.parent = null;
+                    packagingsSyringe[i].Package.transform.parent = null;
                 }
             }
         }
