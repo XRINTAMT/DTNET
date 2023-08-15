@@ -33,7 +33,6 @@ namespace QuantumTek.QuantumDialogue.Demo
         [SerializeField] bool CompleteOnLastMessage = true;
         [SerializeField] bool loop;
         public Action <int> startDialogue;
-        public Action <int> exitDialogue;
         public Action <int> nextDialogue;
         public Action <int> backDialogue;
         public Action generateChoices;
@@ -51,17 +50,8 @@ namespace QuantumTek.QuantumDialogue.Demo
             startDialogue?.Invoke(number);
         }
 
-        private void OnEnable()
-        {
-            startDialogue?.Invoke(number);
-        }
-        private void OnDisable()
-        {
-            exitDialogue?.Invoke(number);
-        }
         private void Update()
         {
-
             // Don't do anything if the conversation is over
             if (ended)
                 return;

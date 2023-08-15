@@ -18,8 +18,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public bool viewerApp;
     public static bool _viewerApp;
     public static bool offlineMode = true;
-    public static string roomName;
-    public static bool restart;
     void Start()
     {
         roomOptions.MaxPlayers = (byte)maxPlayers;
@@ -38,12 +36,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     
         else
             PhotonNetwork.NickName = "player";
-
-
-        if (!_viewerApp&& restart)
-            CreateRoom();
-        if (_viewerApp && restart)
-            JoinRoom();
     }
 
     public void Leave()
@@ -61,10 +53,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         if (!PhotonNetwork.IsConnected)
             return;
-        if (roomName=="")
-            PhotonNetwork.CreateRoom(Random.Range(1000, 9999).ToString(), roomOptions);
-        else
-            PhotonNetwork.CreateRoom(roomName, roomOptions);
+        PhotonNetwork.CreateRoom(Random.Range(1000, 9999).ToString(), roomOptions);
     }
     public void ConnectToRandomRoom()
     {
@@ -72,14 +61,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             return;
         offlineMode = false;
         PhotonNetwork.JoinRandomRoom();
-    }
-
-    public void JoinRoom()
-    {
-        if (!PhotonNetwork.IsConnected)
-            return;
-        offlineMode = false;
-        PhotonNetwork.JoinRoom(roomName);
     }
 
     override public void OnLeftRoom()

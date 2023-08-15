@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +6,7 @@ using UnityEngine;
 public class LocalizedAudioPlayer : MonoBehaviour
 {
     private AudioSource AS;
-    public Action<int, string> playPhrase;
+
     [System.Serializable]
     class LanguagePhraseSet{
         [field:SerializeField] public string Language { get; private set; }
@@ -39,27 +38,6 @@ public class LocalizedAudioPlayer : MonoBehaviour
                     Debug.LogWarning("Phrase number " + id + " is not defined for " + lang + " language");
                 }
             }
-
-        }
-        playPhrase?.Invoke(id, lang);
     }
-
-    public void PlayPhrasePhoton(int id, string language)   //for multiplayer
-    {
-        for (int i = 0; i < Languages.Length; i++)
-        {
-            if (Languages[i].Language == language)
-            {
-                if (id < Languages[i].Phrase.Length)
-                {
-                    AS.clip = Languages[i].Phrase[id];
-                    AS.Play();
-                }
-                else
-                {
-                    Debug.LogWarning("Phrase number " + id + " is not defined for " + language + " language");
-                }
-            }
-        }
-    }
+}
 }
