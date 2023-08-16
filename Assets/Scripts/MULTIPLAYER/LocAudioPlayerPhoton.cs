@@ -20,7 +20,7 @@ public class LocAudioPlayerPhoton : MonoBehaviour
 
     void PlayPhrase(int id,string language)
     {
-        if (!PhotonManager._viewerApp)
+        if (!PhotonManager._viewerApp && !PhotonManager.offlineMode)
         {
             GetComponent<PhotonView>().RPC("PlayPhraseRPC", RpcTarget.All,id,language);
         }

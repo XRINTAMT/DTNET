@@ -55,7 +55,7 @@ public class TubePhoton : MonoBehaviour
     }
     void ConnectTubing(GameObject tubing)
     {
-        if (!PhotonManager._viewerApp)
+        if (!PhotonManager._viewerApp && !PhotonManager.offlineMode)
         {
             GetComponent<PhotonView>().RPC("ConnectTubingRPC", RpcTarget.All, tubing.GetComponent<PhotonView>().ViewID);
         }
