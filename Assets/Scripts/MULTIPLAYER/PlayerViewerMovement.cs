@@ -125,10 +125,13 @@ public class PlayerViewerMovement : MonoBehaviour
     public GameObject FlyingUI;
     Vector3 BoundsMin =new Vector3(-3.38f,0.05f, -4.5f);
     Vector3 BoundsMax = new Vector3(3.38f, 2.75f, 4.5f);
+    public bool Active;
 
     private void Start()
     {
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Active = true;
         m_TargetCameraState.Groundbound = true;
         m_TargetCameraState.y = 1.6f;
         WalkingUI.SetActive(true);
@@ -175,6 +178,9 @@ public class PlayerViewerMovement : MonoBehaviour
 
     void Update()
     {
+        if (!Active)
+            return;
+
         Vector3 translation = Vector3.zero;
 
 #if ENABLE_LEGACY_INPUT_MANAGER

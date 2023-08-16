@@ -8,18 +8,22 @@ using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class ViewerMenuController : MonoBehaviour
 {
     [SerializeField] private AudioMixer AppMixer;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject eventSystem;
+    [SerializeField] public GameObject settingsMenu;
     [SerializeField] Text roomNumber;
     [SerializeField] Button leaveRoom;
     [SerializeField] Button settings;
+    [SerializeField] PlayerViewerMovement Movement;
     public Slider setDialogueVolumeStatus;
     public Slider setSoundVolumeStatus;
     public Slider setMusicVolumeStatus;
+    UIController uiController;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +32,7 @@ public class ViewerMenuController : MonoBehaviour
         roomNumber.text = PhotonNetwork.CurrentRoom.Name;
         leaveRoom.onClick.AddListener(LeaveRoom);
         eventSystem.SetActive(true);
-
+        Movement = FindObjectOfType<PlayerViewerMovement>();
     }
 
     public void LeaveRoom()
@@ -54,9 +58,20 @@ public class ViewerMenuController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            pauseMenu.SetActive(!pauseMenu.activeSelf);
+            bool _pauseActive = pauseMenu.activeSelf || settingsMenu.activeSelf;
+            Cursor.lockState = (_pauseActive) ? CursorLockMode.Locked : CursorLockMode.None;
+            Cursor.visible = !_pauseActive;
+            if(_pauseActive)
+            {
+                settingsMenu.SetActive(false);
+                pauseMenu.SetActive(false);
+                Movement.Active = true;
+            }
+            else
+            {
+                pauseMenu.SetActive(true);
+                Movement.Active = false;
+            }
         }
     }
 

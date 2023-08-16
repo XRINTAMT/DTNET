@@ -130,6 +130,7 @@ public class ViewerController : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         m_TargetCameraState.Groundbound = true;
         m_TargetCameraState.y = 1.7f;
         if (WalkingUI)
