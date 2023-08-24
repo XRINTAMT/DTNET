@@ -18,6 +18,11 @@ public class RestartSystem : MonoBehaviour
         {
             //Invoke("MakeASave", 1);
         }
+        DataSaver[] _savers = FindObjectsOfType<DataSaver>();
+        foreach (DataSaver _saver in _savers)
+        {
+            _saver.Save();
+        }
     }
 
     private void MakeASave()
@@ -60,8 +65,11 @@ public class RestartSystem : MonoBehaviour
         Changables.SetActive(true);
         Changables.GetComponentInChildren<OldScenarioBehaviour>().Activate(true);
         */
-        DataSaver[] Savers = FindObjectsOfType<DataSaver>();
-
+        DataSaver[] _savers = FindObjectsOfType<DataSaver>();
+        foreach(DataSaver _saver in _savers)
+        {
+            _saver.Load();
+        }
     }
 
     void Update()
