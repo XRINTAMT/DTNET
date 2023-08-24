@@ -37,6 +37,7 @@ public class RestartSystem : MonoBehaviour
 
         if (PlayerPrefs.GetInt("GuidedMode") == 1) text = "That is not what you should be doing right now. Check the tasks list!";
 
+
         if (SavedState == null) {
             return;
         }
@@ -53,10 +54,14 @@ public class RestartSystem : MonoBehaviour
         {
             yield return 0;
         }
+        /*
         Object.Destroy(Changables);
         Changables = Object.Instantiate(SavedState);
         Changables.SetActive(true);
         Changables.GetComponentInChildren<OldScenarioBehaviour>().Activate(true);
+        */
+        DataSaver[] Savers = FindObjectsOfType<DataSaver>();
+
     }
 
     void Update()
