@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc788fe28a1947c5906bf24c0472406, type: 3}
+  m_Name: Dialogue-3
+  m_EditorClassIdentifier: 
+  Conversations:
+  - ID: 1
+    Name: 3
+    FirstMessage: 2
+  Speakers:
+  - ID: 0
+    Name: 'You:'
+    Icon: {fileID: 0}
+  - ID: 4
+    Name: 'Physician Mr. Adams: '
+    Icon: {fileID: 0}
+  Messages:
+  - ID: 2
+    Speaker: 4
+    SpeakerName: 'Physician Mr. Adams: '
+    PreviousMessage: -1
+    NextMessage: 3
+    MessageText: "What happened? What is the patient\u2019s data?\r\n"
+    Clip: {fileID: 8300000, guid: 878f125935d02af4f878618227e00886, type: 3}
+  - ID: 3
+    Speaker: 0
+    SpeakerName: 'You:'
+    PreviousMessage: 2
+    NextMessage: 5
+    MessageText: After ten minutes after the dopamin injection, the patient complained
+      that he was very lightheaded and felt a pain in his chest. Blood pressure fell
+      to 72/42 mmHg. Absolute bradycardia developed and the patient progresses into
+      a third-degree heart block
+    Clip: {fileID: 8300000, guid: 9ed7332a4841b904fbf7592e481e5007, type: 3}
+  - ID: 5
+    Speaker: 4
+    SpeakerName: 'Physician Mr. Adams: '
+    PreviousMessage: 3
+    NextMessage: -1
+    MessageText: "Let\u2019s prepare the patient for a transcutaneous pacing procedure.
+      Nurse Ann, please inject Midazolam 2-4 mg IV into a vein. Student-nurse please
+      check again that the stimulation pads are well attached. Place the patient
+      in an upright position and check the oxygen rate."
+    Clip: {fileID: 8300000, guid: f6bd6e41669c38d4bbf6429f2a00a6b9, type: 3}
+  - ID: 6
+    Speaker: 0
+    SpeakerName: 'You:'
+    PreviousMessage: -1
+    NextMessage: -1
+    MessageText: Oxygen saturation is 97%
+    Clip: {fileID: 8300000, guid: 3bf833f286c8e8746b1b3656e170761a, type: 3}
+  Choices:
+  - ID: 11
+    Choices:
+    - Report oxygen saturation
+    - Close
+    NextMessages: 06000000ffffffff

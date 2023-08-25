@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc788fe28a1947c5906bf24c0472406, type: 3}
+  m_Name: Dialogue-6
+  m_EditorClassIdentifier: 
+  Conversations:
+  - ID: 1
+    Name: 6
+    FirstMessage: 13
+  Speakers:
+  - ID: 0
+    Name: 'You:'
+    Icon: {fileID: 0}
+  - ID: 4
+    Name: 'Physician Mr. Adams: '
+    Icon: {fileID: 0}
+  Messages:
+  - ID: 2
+    Speaker: 4
+    SpeakerName: 'Physician Mr. Adams: '
+    PreviousMessage: -1
+    NextMessage: 3
+    MessageText: "What happened? What is the patient\u2019s data?\r\n"
+    Clip: {fileID: 8300000, guid: 878f125935d02af4f878618227e00886, type: 3}
+  - ID: 3
+    Speaker: -1
+    SpeakerName: 'You:'
+    PreviousMessage: 2
+    NextMessage: 5
+    MessageText: Ten minutes after dopamin injection, the patient complained that
+      he  was very lightheaded and felt a pain in his chest. Blood pressure felt
+      to 72/42 mmHg.  Absolute bradycardia developed and patient progresses into
+      a third-degree heart block
+    Clip: {fileID: 8300000, guid: 9ed7332a4841b904fbf7592e481e5007, type: 3}
+  - ID: 5
+    Speaker: 4
+    SpeakerName: 'Physician Mr. Adams: '
+    PreviousMessage: 3
+    NextMessage: -1
+    MessageText: "Let\u2019s prepar the patient for  transcutaneous pacing procedure.
+      Nurse Ann , please, Inject into a vein Midazolam 2-4 mg IV . Please Student-nurse
+      please check again that the"
+    Clip: {fileID: 8300000, guid: 3bb7d4db49a926246bc1ac34cb819e1c, type: 3}
+  - ID: 6
+    Speaker: 0
+    SpeakerName: 'You:'
+    PreviousMessage: -1
+    NextMessage: -1
+    MessageText: Oxygen saturation is 97%
+    Clip: {fileID: 8300000, guid: 3bf833f286c8e8746b1b3656e170761a, type: 3}
+  - ID: 13
+    Speaker: -1
+    SpeakerName: 
+    PreviousMessage: -1
+    NextMessage: 11
+    MessageText: 
+    Clip: {fileID: 0}
+  - ID: 14
+    Speaker: 0
+    SpeakerName: 'You:'
+    PreviousMessage: -1
+    NextMessage: -1
+    MessageText: Oxygen saturation is 96%
+    Clip: {fileID: 8300000, guid: eea7d79b49f87c14f96056b17038fbbb, type: 3}
+  - ID: 15
+    Speaker: 0
+    SpeakerName: 'You:'
+    PreviousMessage: 11
+    NextMessage: -1
+    MessageText: Oxygen saturation is 95%
+    Clip: {fileID: 8300000, guid: 13e9a8875fd05da458f7291f36992977, type: 3}
+  - ID: 16
+    Speaker: 0
+    SpeakerName: 'You:'
+    PreviousMessage: -1
+    NextMessage: -1
+    MessageText: Oxygen saturation is 94%
+    Clip: {fileID: 8300000, guid: 002bd525693b665458e457107aca58e0, type: 3}
+  - ID: 17
+    Speaker: 0
+    SpeakerName: 'You:'
+    PreviousMessage: -1
+    NextMessage: -1
+    MessageText: Oxygen saturation is 98%
+    Clip: {fileID: 8300000, guid: 3e66046cff6907340b58701eaa13e353, type: 3}
+  Choices:
+  - ID: 11
+    Choices:
+    - Oxygen saturation is 94%
+    - Oxygen saturation is 95%
+    - Oxygen saturation is 96%
+    - Oxygen saturation is 97%
+    - Oxygen saturation is 98%
+    - Close
+    NextMessages: 100000000f0000000e0000000600000011000000ffffffff

@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc788fe28a1947c5906bf24c0472406, type: 3}
+  m_Name: Dialogue-6
+  m_EditorClassIdentifier: 
+  Conversations:
+  - ID: 1
+    Name: 6
+    FirstMessage: 13
+  Speakers:
+  - ID: 0
+    Name: 'Du:'
+    Icon: {fileID: 0}
+  - ID: 4
+    Name: 'Arzt Herr Adams:'
+    Icon: {fileID: 0}
+  Messages:
+  - ID: 2
+    Speaker: 4
+    SpeakerName: 'Arzt Herr Adams:'
+    PreviousMessage: -1
+    NextMessage: 3
+    MessageText: "What happened? What is the patient\u2019s data?\r\n"
+    Clip: {fileID: 8300000, guid: 878f125935d02af4f878618227e00886, type: 3}
+  - ID: 3
+    Speaker: -1
+    SpeakerName: 
+    PreviousMessage: 2
+    NextMessage: 5
+    MessageText: Ten minutes after dopamin injection, the patient complained that
+      he  was very lightheaded and felt a pain in his chest. Blood pressure felt
+      to 72/42 mmHg.  Absolute bradycardia developed and patient progresses into
+      a third-degree heart block
+    Clip: {fileID: 8300000, guid: 0fa523c16d88be845a5f6db2845a4099, type: 3}
+  - ID: 5
+    Speaker: 4
+    SpeakerName: 'Physician Mr. Adams: '
+    PreviousMessage: 3
+    NextMessage: -1
+    MessageText: "Let\u2019s prepar the patient for  transcutaneous pacing procedure.
+      Nurse Ann , please, Inject into a vein Midazolam 2-4 mg IV . Please Student-nurse
+      please check again that the"
+    Clip: {fileID: 8300000, guid: 3bb7d4db49a926246bc1ac34cb819e1c, type: 3}
+  - ID: 6
+    Speaker: 0
+    SpeakerName: 'Du:'
+    PreviousMessage: -1
+    NextMessage: -1
+    MessageText: "Die Sauerstoffs\xE4ttigung betr\xE4gt 97%"
+    Clip: {fileID: 8300000, guid: 6b0c29dd5458fb94db50dc2432add140, type: 3}
+  - ID: 13
+    Speaker: -1
+    SpeakerName: 
+    PreviousMessage: -1
+    NextMessage: 11
+    MessageText: 
+    Clip: {fileID: 0}
+  - ID: 14
+    Speaker: 0
+    SpeakerName: 'Du:'
+    PreviousMessage: -1
+    NextMessage: -1
+    MessageText: "Die Sauerstoffs\xE4ttigung betr\xE4gt 96%"
+    Clip: {fileID: 8300000, guid: 926dabeed2dc95143b24deb00e36640c, type: 3}
+  - ID: 15
+    Speaker: 0
+    SpeakerName: 'Du:'
+    PreviousMessage: 11
+    NextMessage: -1
+    MessageText: "Die Sauerstoffs\xE4ttigung betr\xE4gt 95%"
+    Clip: {fileID: 8300000, guid: 3c173bf805334af428e660509317fdbe, type: 3}
+  - ID: 16
+    Speaker: 0
+    SpeakerName: 'Du:'
+    PreviousMessage: -1
+    NextMessage: -1
+    MessageText: "Die Sauerstoffs\xE4ttigung betr\xE4gt 94%"
+    Clip: {fileID: 8300000, guid: 208bc77bdb1b64643ab15ea7ee59d242, type: 3}
+  - ID: 17
+    Speaker: 0
+    SpeakerName: 'Du:'
+    PreviousMessage: -1
+    NextMessage: -1
+    MessageText: "Die Sauerstoffs\xE4ttigung betr\xE4gt 98%"
+    Clip: {fileID: 8300000, guid: 9feadb39780160d4ba9cdac3fb70085f, type: 3}
+  Choices:
+  - ID: 11
+    Choices:
+    - "Die Sauerstoffs\xE4ttigung betr\xE4gt 94%"
+    - "Die Sauerstoffs\xE4ttigung betr\xE4gt 95%"
+    - "Die Sauerstoffs\xE4ttigung betr\xE4gt 96%"
+    - "Die Sauerstoffs\xE4ttigung betr\xE4gt 97%"
+    - "Die Sauerstoffs\xE4ttigung betr\xE4gt 98%"
+    - "Schlie\xDFen"
+    NextMessages: 100000000f0000000e0000000600000011000000ffffffff
