@@ -9,7 +9,7 @@ public class OldScenarioBehaviour : MonoBehaviour
 
     void Start()
     {
-        Scenario.SetGuidedMode(false);
+        Scenario.SetGuidedMode(PlayerPrefs.GetInt("GuidedMode", 1) == 1);
         Scenario.Reconnect();
     }
 

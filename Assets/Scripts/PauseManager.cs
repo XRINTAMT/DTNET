@@ -32,7 +32,14 @@ public class PauseManager : MonoBehaviour
     {
         AppPause();
         ScenarioCompleted = true;
-        CongratsExam.SetActive(true);
+        if (PlayerPrefs.GetInt("GuidedMode", 1) == 1)
+        {
+            Congrats.SetActive(true);
+        }
+        else
+        {
+            CongratsExam.SetActive(true);
+        }
         Main.SetActive(false);
     }
 
