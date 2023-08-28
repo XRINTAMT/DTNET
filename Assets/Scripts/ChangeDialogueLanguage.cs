@@ -12,6 +12,7 @@ public class ChangeDialogueLanguage : MonoBehaviour
     {
         public string Language;
         public QD_Dialogue Dialogue;
+        public QD_Dialogue MaleDialogue;
     }
 
     [SerializeField] LangDialouge[] Dialogues;
@@ -23,7 +24,14 @@ public class ChangeDialogueLanguage : MonoBehaviour
         {
             if(lang == Dialogues[i].Language)
             {
-                GetComponent<QD_DialogueHandler>().dialogue = Dialogues[i].Dialogue;
+                if(PlayerPrefs.GetInt("Gender") == 0)
+                {
+                    GetComponent<QD_DialogueHandler>().dialogue = Dialogues[i].Dialogue;
+                }
+                else
+                {
+                    GetComponent<QD_DialogueHandler>().dialogue = Dialogues[i].MaleDialogue;
+                }
                 GetComponent<QuantumTek.QuantumDialogue.Demo.QD_DialogueDemo>().SetText();
                 return;
             }
