@@ -10,6 +10,7 @@ public class GuideSystem : MonoBehaviour
     [SerializeField] GameObject dialogueGuide;
     [SerializeField] GameObject arrowObservationSheet;
     public Action<int> activateGuide;
+    bool dontRepeat;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,20 +24,21 @@ public class GuideSystem : MonoBehaviour
     public void GuidePanelActivate(int numberTask) 
     {
         activateGuide?.Invoke(numberTask);
-        bool disactivateAll = false;
 
-        for (int i = 0; i < guidePanel.Count; i++)
+        if (numberTask == 1 && !dontRepeat)
         {
-            guidePanel[i].SetActive(false);
-           
+            guidePanel[0].SetActive(false);
+            guidePanel[1].SetActive(true);
+            dontRepeat = true;
         }
-        disactivateAll = true;
-
-        if (disactivateAll)
+        if (numberTask != 1)
         {
+            for (int i = 0; i < guidePanel.Count; i++)
+                guidePanel[i].SetActive(false);
+
             guidePanel[numberTask].SetActive(true);
         }
-    
+
     }
     // Update is called once per frame
     void Update()

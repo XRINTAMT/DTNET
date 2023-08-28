@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ExpirationDate : MonoBehaviour
 {
     [SerializeField] private System.DateTime ExpDate = System.DateTime.FromBinary(0);
-    [SerializeField] private UnityEngine.UI.Text DateStamp;
+    public UnityEngine.UI.Text DateStamp;
     [SerializeField] private Expirable ExpiredVal;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,7 @@ public class ExpirationDate : MonoBehaviour
             ExpiredVal.Expired = false;
         }
         DateStamp.text = ExpDate.Day.ToString("00") + "." + ExpDate.Month.ToString("00") + "." + ExpDate.Year;
+
     }
 
     // Update is called once per frame

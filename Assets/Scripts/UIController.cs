@@ -11,9 +11,9 @@ using Assets.SimpleLocalization;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField] private Slider setDialogueVolumeStatus;
-    [SerializeField] private Slider setSoundVolumeStatus;
-    [SerializeField] private Slider setMusicVolumeStatus;
+    public Slider setDialogueVolumeStatus;
+    public Slider setSoundVolumeStatus;
+    public Slider setMusicVolumeStatus;
     [SerializeField] private Slider setWalkingSpeed;
     //[SerializeField] private Dropdown setLanguageStatus;
     //[SerializeField] private Dropdown setTeleportHandStatus;
@@ -235,9 +235,15 @@ public class UIController : MonoBehaviour
 
     public void LoadScene(string name)
     {
-        if (sceneLoader != null) sceneLoader.LoadScene(name);
-     
-        //SceneManager.LoadScene(name);
+        if (sceneLoader != null) 
+        {
+            sceneLoader.LoadScene(name);
+        }
+
+
+        if (sceneLoader == null)
+            SceneManager.LoadScene(name);
+
     }
 
     public void Exit() 

@@ -29,7 +29,6 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
-  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5025654726461931513}
   - {fileID: 8488820402492793540}
@@ -113,6 +112,7 @@ GameObject:
   - component: {fileID: 8488820402492793540}
   - component: {fileID: 5884009566536530431}
   - component: {fileID: 1934830434030358887}
+  - component: {fileID: 4486048884328440711}
   m_Layer: 0
   m_Name: Walking mode
   m_TagString: Untagged
@@ -130,7 +130,6 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2190428477607969890}
   m_RootOrder: 1
@@ -187,6 +186,19 @@ MonoBehaviour:
 
     Press
     space to switch to flying mode.'
+--- !u!114 &4486048884328440711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4093656760506111583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2404a37f3bd75444aa4ad05d0f228347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizationKey: WalkingMode
 --- !u!1 &4491691679387794404
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,6 +210,7 @@ GameObject:
   - component: {fileID: 5025654726461931513}
   - component: {fileID: 1513112039279466175}
   - component: {fileID: 1086433144146025825}
+  - component: {fileID: 279631592832983624}
   m_Layer: 0
   m_Name: Flying mode
   m_TagString: Untagged
@@ -215,7 +228,6 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2190428477607969890}
   m_RootOrder: 0
@@ -272,3 +284,16 @@ MonoBehaviour:
     - move faster.
 
     Press space to switch to walking mode.'
+--- !u!114 &279631592832983624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4491691679387794404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2404a37f3bd75444aa4ad05d0f228347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizationKey: FlyingMode

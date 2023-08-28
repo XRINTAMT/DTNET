@@ -16,7 +16,7 @@ public class RestartSystem : MonoBehaviour
     public void Save(){
         if(PlayerPrefs.GetInt("GuidedMode", 1) == 1)
         {
-            Invoke("MakeASave", 1);
+            //Invoke("MakeASave", 1);
         }
     }
 

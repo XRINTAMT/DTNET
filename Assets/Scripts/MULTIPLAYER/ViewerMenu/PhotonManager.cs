@@ -10,7 +10,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 {
     RoomOptions roomOptions = new RoomOptions();
     public List<RoomInfo> roomInfo = new List<RoomInfo>();
-
+    [SerializeField] GameObject loadingImage;
     [SerializeField] UnityEvent OnLeft;
     [SerializeField] int maxPlayers = 3;
     public bool connectedToServerOnStart;
@@ -18,6 +18,9 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public bool viewerApp;
     public static bool _viewerApp;
     public static bool offlineMode = true;
+    public static string roomName;
+    public static bool restart;
+    public static bool connectToServer;
     void Start()
     {
         roomOptions.MaxPlayers = (byte)maxPlayers;
@@ -36,6 +39,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     
         else
             PhotonNetwork.NickName = "player";
+
+
+        if (!_viewerApp&& restart)
+            CreateRoom();
+        if (_viewerApp && restart)
+            JoinRoom();
     }
 
     public void Leave()
@@ -49,11 +58,16 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.ConnectUsingSettings();
     }
+
     public void CreateRoom()
     {
         if (!PhotonNetwork.IsConnected)
             return;
-        PhotonNetwork.CreateRoom(Random.Range(1000, 9999).ToString(), roomOptions);
+
+        if (roomName == null) 
+            PhotonNetwork.CreateRoom(Random.Range(1000, 9999).ToString(), roomOptions);
+        if (roomName != null)
+            PhotonNetwork.CreateRoom(roomName, roomOptions);
     }
     public void ConnectToRandomRoom()
     {
@@ -63,6 +77,22 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRandomRoom();
     }
 
+    public void JoinRoom()
+    {
+        if (!PhotonNetwork.IsConnected)
+            return;
+        offlineMode = false;
+        PhotonNetwork.JoinRoom(roomName);
+    }
+
+
+    public void ShowLoadingScreen() 
+    {
+        if (!connectToServer)
+        {
+            loadingImage.SetActive(true);
+        }
+    }
     override public void OnLeftRoom()
     {
         OnLeft.Invoke();
@@ -71,10 +101,15 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("CONNECT TO SERVER");
+        if (loadingImage)
+            loadingImage.SetActive(false);
+
+        connectToServer = true;
         PhotonNetwork.JoinLobby();
     }
     public override void OnDisconnected(DisconnectCause cause)
     {
+        connectToServer = false;
         Debug.Log("DISCONNECT SERVER");
     }
     public override void OnJoinedLobby()
@@ -86,6 +121,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         offlineMode = false;
         SceneManager.LoadScene("ScenarioScene");
+
         Debug.Log("Create room");
     }
     public override void OnJoinRandomFailed(short returnCode, string message)
@@ -98,5 +134,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         foreach (RoomInfo info in roomList)
             roomInfo.Add(info);
     }
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        Debug.Log("LeaveRoom");
+    }
+
+    
+
 
 }

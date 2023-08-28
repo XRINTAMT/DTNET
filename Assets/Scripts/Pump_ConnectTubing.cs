@@ -17,6 +17,7 @@ public class Pump_ConnectTubing : MonoBehaviour
     public void ReplaceTubing(PlacePoint _point, Grabbable _tubing)
     {
         Expired = _tubing.GetComponent<Expirable>().Expired;
+        //Debug.Log(_tubing.GetHeldBy().Count);
         Hand _correctHand = _tubing.GetHeldBy()[0];
 
         _correctHand.ForceReleaseGrab();
@@ -24,9 +25,14 @@ public class Pump_ConnectTubing : MonoBehaviour
 
         _correctHand.TryGrab(IVTube.GetComponent<Grabbable>());
 
-        connectTubing?.Invoke(_tubing.gameObject);
+        if (!PhotonManager.offlineMode)
+        {
+            connectTubing?.Invoke(_tubing.gameObject);
+        }
 
-        Destroy(_tubing.gameObject);
+        //Destroy(_tubing.gameObject);
+        _tubing.gameObject.SetActive(false);
+
         if (PlayerPrefs.GetInt("GuidedMode", 1) == 1)
         {
             ExpiredHint.SetActive(Expired);

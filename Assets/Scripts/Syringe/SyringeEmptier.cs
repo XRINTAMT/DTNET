@@ -7,6 +7,8 @@ using Autohand;
 public class SyringeEmptier : MonoBehaviour
 {
     PlacePoint syringeHolder;
+    public bool Expired;
+
     void Start()
     {
         syringeHolder = GetComponent<PlacePoint>();
@@ -20,6 +22,7 @@ public class SyringeEmptier : MonoBehaviour
             if (syringeHolder.placedObject.TryGetComponent<Syringe>(out srg))
             {
                 srg.Empty(time);
+                Expired = srg.GetComponent<Expirable>().Expired;
             }
         }
     }

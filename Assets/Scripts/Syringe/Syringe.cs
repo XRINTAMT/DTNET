@@ -25,9 +25,11 @@ public class Syringe : MonoBehaviour
     [SerializeField] Text AmountText;
     [SerializeField] Text SubstanceText;
     [SerializeField] Vector3 Offset;
+    [SerializeField] Rigidbody SyringeCap;
     bool Guided;
     [SerializeField] Material LiquidRight;
     [SerializeField] Material LiquidTooMuch;
+    [SerializeField] GameObject ExpiredHint;
 
     TaskSpecificValues DataInterface;
     Ampule med;
@@ -58,6 +60,8 @@ public class Syringe : MonoBehaviour
             //Debug.Log("Getting syringe capacity: "+DataInterface.TryGetItem("SyringeCapacity", ref SyringeCapacity));
             PlayerObject player = FindObjectOfType<PlayerObject>();
             Head = player.Head;
+            Pomp = GameObject.FindGameObjectWithTag("PumpSyringePlacePoint");
+            Manager = FindObjectOfType<InjectionManager>();
         }
         if (Guided)
         {
@@ -305,5 +309,18 @@ public class Syringe : MonoBehaviour
         Vector3 targetPosition = new Vector3(Head.transform.position.x, Head.transform.position.y, Head.transform.position.z);
         MeasurementCanvas.transform.LookAt(targetPosition);
         MeasurementCanvas.transform.position = transform.position + Offset;
+    }
+
+    private void Start()
+    {
+        SyringeCap.Sleep();
+        if (Guided)
+        {
+            Expirable _exp;
+            if (TryGetComponent<Expirable>(out _exp))
+            {
+                ExpiredHint.SetActive(_exp.Expired);
+            }
+        }
     }
 }
