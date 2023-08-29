@@ -8,6 +8,13 @@ public class TransformSaver : DataSaver
     Vector3 LocalEulers;
     Vector3 LocalScale;
     Transform Parent;
+    bool Kinematic;
+    Rigidbody rb;
+
+    private void Start()
+    {
+        TryGetComponent<Rigidbody>(out rb);
+    }
 
     override public void Save()
     {
@@ -16,6 +23,8 @@ public class TransformSaver : DataSaver
         LocalEulers = transform.localEulerAngles;
         LocalScale = transform.localScale;
         Parent = transform.parent;
+        if (rb != null)
+            Kinematic = rb.isKinematic;
     }
 
     override public void Load()
@@ -25,5 +34,7 @@ public class TransformSaver : DataSaver
         transform.localPosition = LocalPosition;
         transform.localEulerAngles = LocalEulers;
         transform.localScale = LocalScale;
+        if (rb != null)
+            rb.isKinematic = Kinematic;
     }
 }
