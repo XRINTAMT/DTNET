@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sensor : MonoBehaviour
+public class Sensor : DataSaver
 {
     [SerializeField] VitalsMonitor Monitor;
     [field: SerializeField] public string[] ValuesScanned { private set; get; }
     [SerializeField] int[] ports;
     [SerializeField] bool Connected = false;
-
-    void Start()
-    {
-        
-    }
+    bool SavedConnected = false;
 
     public void SendData(string name, int value)
     {
@@ -33,9 +29,13 @@ public class Sensor : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Save()
     {
-        
+        SavedConnected = Connected;
+    }
+
+    public override void Load()
+    {
+        Connected = SavedConnected;
     }
 }

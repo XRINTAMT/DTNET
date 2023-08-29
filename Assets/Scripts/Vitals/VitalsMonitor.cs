@@ -9,7 +9,7 @@ using ScenarioSystem;
 //using static UnityEngine.Rendering.DebugUI;
 
 
-public class VitalsMonitor : MonoBehaviour
+public class VitalsMonitor : DataSaver
 {
     [Serializable]
     struct VitalValue
@@ -24,7 +24,6 @@ public class VitalsMonitor : MonoBehaviour
         public GameObject Graph;
         public int SensorsLeft;
     }
-
     [SerializeField] VitalValue[] VitalValues;
     [SerializeField] float FluctuationIntensity;
     [SerializeField] Image AlarmImage;
@@ -36,8 +35,11 @@ public class VitalsMonitor : MonoBehaviour
     public Action<int> conneñt;
     public Action<bool> alarm;
     public Action<int,float> changeValue;
+    VitalValue[] VitalValuesSaved;
+
     void Start()
     {
+        VitalValuesSaved = new VitalValue[VitalValues.Length];
         SwitchAlarm(FireAlarmOnStart);
         for (int i = 0; i < VitalValues.Length; i++)
         {
@@ -243,6 +245,28 @@ public class VitalsMonitor : MonoBehaviour
                 VitalValues[i].Text.text =
                     (VitalValues[i].Value + UnityEngine.Random.Range(-fluc, fluc)).ToString(VitalValues[i].OutputFormat);
             }            
+        }
+    }
+
+    public override void Save()
+    {
+        VitalValues.CopyTo(VitalValuesSaved, 0);
+    }
+
+    public override void Load()
+    {
+        VitalValuesSaved.CopyTo(VitalValues, 0);
+        foreach(VitalValue _vv in VitalValues)
+        {
+            if (_vv.Graph != null)
+                _vv.Graph.SetActive(_vv.Connected);
+            if (_vv.Text != null)
+            {
+                float fluc = Mathf.Min(_vv.FluctuationRadius, _vv.Value);
+                _vv.Text.text =
+                    (_vv.Value + UnityEngine.Random.Range(-fluc, fluc)).ToString(_vv.OutputFormat);
+                _vv.Text.gameObject.SetActive(_vv.Connected);
+            }
         }
     }
 }
