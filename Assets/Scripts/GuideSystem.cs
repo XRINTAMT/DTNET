@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GuideSystem : MonoBehaviour
+public class GuideSystem : DataSaver
 {
     [SerializeField] private List <GameObject> guidePanel;
     [SerializeField] GameObject canvas;
@@ -11,6 +11,10 @@ public class GuideSystem : MonoBehaviour
     [SerializeField] GameObject arrowObservationSheet;
     public Action<int> activateGuide;
     bool dontRepeat;
+    bool savedDontRepeat;
+    int lastPanelActivated;
+    int lastActivatedPanelSaved;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +28,7 @@ public class GuideSystem : MonoBehaviour
     public void GuidePanelActivate(int numberTask) 
     {
         activateGuide?.Invoke(numberTask);
-
+        lastPanelActivated = numberTask;
         if (numberTask == 1 && !dontRepeat)
         {
             guidePanel[0].SetActive(false);
@@ -40,9 +44,16 @@ public class GuideSystem : MonoBehaviour
         }
 
     }
-    // Update is called once per frame
-    void Update()
+
+    public override void Save()
     {
-        
+        lastActivatedPanelSaved = lastPanelActivated;
+        savedDontRepeat = dontRepeat;
+    }
+
+    public override void Load()
+    {
+        dontRepeat = savedDontRepeat;
+        GuidePanelActivate(lastActivatedPanelSaved);
     }
 }

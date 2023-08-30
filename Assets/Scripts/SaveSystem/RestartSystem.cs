@@ -68,7 +68,7 @@ public class RestartSystem : MonoBehaviour
         Changables.SetActive(true);
         Changables.GetComponentInChildren<OldScenarioBehaviour>().Activate(true);
         */
-        DataSaver[] _savers = FindObjectsOfType<DataSaver>();
+        DataSaver[] _savers = FindObjectsOfType<DataSaver>(true);
         foreach(DataSaver _saver in _savers)
         {
             _saver.Load();
