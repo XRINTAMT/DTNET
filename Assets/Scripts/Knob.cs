@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Autohand;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -25,14 +26,40 @@ public class Knob: MonoBehaviour
     float lastSnapDegrees = 0;
     float firstDegrees;
 
+
+    Hand grabHand;
+    Grabbable grabbable;
+
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
         firstDegrees = transform.localEulerAngles.y;
         if (firstDegrees > 180)
             firstDegrees = 360 - firstDegrees;
+
+
+        grabbable = GetComponent<Grabbable>();
+        grabbable.onGrab.AddListener(OnGrab);
+        grabbable.onRelease.AddListener(OnRelease);
     }
 
+
+    void OnGrab(Hand hand, Grabbable grabbable)
+    {
+        grabHand = hand;
+    }
+    void OnRelease(Hand hand, Grabbable grabbable)
+    {
+        grabHand = null;
+    }
+
+    public void PlayHapticVibration(float time)
+    {
+        if (grabHand)
+        {
+            grabHand.PlayHapticVibration(time);
+        }
+    }
     void Update()
     {
         float degrees = transform.localEulerAngles.y;
@@ -53,6 +80,8 @@ public class Knob: MonoBehaviour
     public void OnSnapChange(float val)
     {
         GetComponent<AudioSource>().Play();
+
+        PlayHapticVibration(0.1f);
 
         monitor.ChangeValue(ValueID, val, 1);
         Pacer.OnValueChanged(ValueID, val);

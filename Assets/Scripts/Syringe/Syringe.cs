@@ -45,7 +45,8 @@ public class Syringe : MonoBehaviour
     public Dictionary<string, float> ingredients { private set; get;}
     public Injection Lable { get; private set; }
 
-    
+    Hand grabHand;
+    Grabbable grabbable;
     void Awake()
     {
         innerPartPositionInit = InnerPart.transform.localPosition;
@@ -68,8 +69,27 @@ public class Syringe : MonoBehaviour
             liquidRenderer = Liquid.GetComponent<MeshRenderer>();
             LiquidNormal = liquidRenderer.material;
         }
+
+        grabbable = GetComponent<Grabbable>();
+        grabbable.onGrab.AddListener(OnGrab);
+        grabbable.onRelease.AddListener(OnRelease);
+    }
+    void OnGrab(Hand hand, Grabbable grabbable) 
+    {
+        grabHand = hand;
+    }
+    void OnRelease(Hand hand, Grabbable grabbable) 
+    {
+        grabHand = null;
     }
 
+    public void PlayHapticVibration(float time) 
+    {
+        if (grabHand)
+        {
+            grabHand.PlayHapticVibration(time);
+        }
+    }
     public void TurnTheHUD(bool OnOff)
     {
         MeasurementCanvas.SetActive(OnOff);
