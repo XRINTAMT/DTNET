@@ -8,7 +8,7 @@ using System.Linq;
 using ScenarioSystem;
 using Autohand;
 
-public class Syringe : MonoBehaviour
+public class Syringe : DataSaver
 {
     [SerializeField] bool setupInInspector = false;
     [SerializeField] InjectionManager Manager;
@@ -41,8 +41,10 @@ public class Syringe : MonoBehaviour
     Vector3 LiquidPositionInit;
     MeshRenderer liquidRenderer;
     Material LiquidNormal;
+    Material SavedLiquidMat;
 
     public Dictionary<string, float> ingredients { private set; get;}
+    private Dictionary<string, float> savedIngredients;
     public Injection Lable { get; private set; }
 
     
@@ -67,6 +69,7 @@ public class Syringe : MonoBehaviour
         {
             liquidRenderer = Liquid.GetComponent<MeshRenderer>();
             LiquidNormal = liquidRenderer.material;
+            SavedLiquidMat = LiquidNormal;
         }
     }
 
@@ -96,38 +99,52 @@ public class Syringe : MonoBehaviour
         {
             if (substance == "Dopamine")
             {
-                if ( Mathf.Round(ingredients[substance]) == 20)
+                if (ingredients.ContainsKey(substance))
                 {
-                    liquidRenderer.material = LiquidRight;
-                }
-                else
-                {
-                    if(ingredients[substance] > 20)
+                    if (Mathf.Round(ingredients[substance]) == 20)
                     {
-                        liquidRenderer.material = LiquidTooMuch;
+                        liquidRenderer.material = LiquidRight;
                     }
                     else
                     {
-                        liquidRenderer.material = LiquidNormal;
+                        if (ingredients[substance] > 20)
+                        {
+                            liquidRenderer.material = LiquidTooMuch;
+                        }
+                        else
+                        {
+                            liquidRenderer.material = LiquidNormal;
+                        }
                     }
+                }
+                else
+                {
+                    liquidRenderer.material = LiquidNormal;
                 }
             }
             if (substance == "Solanine")
             {
-                if (Mathf.Round(ingredients[substance]) == 50)
+                if (ingredients.ContainsKey(substance))
                 {
-                    liquidRenderer.material = LiquidRight;
-                }
-                else
-                {
-                    if (ingredients[substance] > 50)
+                    if (Mathf.Round(ingredients[substance]) == 50)
                     {
-                        liquidRenderer.material = LiquidTooMuch;
+                        liquidRenderer.material = LiquidRight;
                     }
                     else
                     {
-                        liquidRenderer.material = LiquidNormal;
+                        if (ingredients[substance] > 50)
+                        {
+                            liquidRenderer.material = LiquidTooMuch;
+                        }
+                        else
+                        {
+                            liquidRenderer.material = LiquidNormal;
+                        }
                     }
+                }
+                else
+                {
+                    liquidRenderer.material = LiquidNormal;
                 }
             }
         }
@@ -322,5 +339,28 @@ public class Syringe : MonoBehaviour
                 ExpiredHint.SetActive(_exp.Expired);
             }
         }
+    }
+
+    public override void Save()
+    {
+        savedIngredients = new Dictionary<string, float>(ingredients);
+        SavedLiquidMat = liquidRenderer.material;
+    }
+
+    public override void Load()
+    {
+        if (savedIngredients != null)
+        {
+            ingredients = new Dictionary<string, float>(savedIngredients);
+            totalSubstance = ingredients.Values.Sum();
+            Debug.Log("total substitance: " + totalSubstance);
+            AmountText.text = totalSubstance.ToString("0.0");
+        }
+        else
+        {
+            ingredients = new Dictionary<string, float>();
+            totalSubstance = 0;
+        }
+        liquidRenderer.material = SavedLiquidMat;
     }
 }
