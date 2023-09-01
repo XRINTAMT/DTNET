@@ -4,13 +4,15 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
-public class InfiniteBox : MonoBehaviour
+public class InfiniteBox : DataSaver
 {
-    [SerializeField] Transform SpawnOffset;
-    [SerializeField] GameObject ToSpawn;
-    [SerializeField] GameObject SpawnedObject;
-    [SerializeField] bool taken = false;
-    [SerializeField] float ClearanceToSpawn = 3;
+    [SerializeField] private Transform SpawnOffset;
+    [SerializeField] private GameObject ToSpawn;
+    [SerializeField] private GameObject SpawnedObject;
+    [SerializeField] private bool taken = false;
+    [SerializeField] private float ClearanceToSpawn = 3;
+    private GameObject SavedSpawnedObject;
+    private bool savedTaken;
 
     public int SpawnedAlready = 0;
     public Action <string,int,string> instNewPackage;
@@ -96,5 +98,17 @@ public class InfiniteBox : MonoBehaviour
             }
         }
         */
+    }
+
+    public override void Save()
+    {
+        SavedSpawnedObject = SpawnedObject;
+        savedTaken = taken;
+    }
+
+    public override void Load()
+    {
+        taken = savedTaken;
+        SpawnedObject = SavedSpawnedObject;
     }
 }
