@@ -18,7 +18,7 @@ public class WashingHand : MonoBehaviour
         {
             GameObject hand = null;
             hand = other.gameObject;
-            hand.GetComponent<Hand>().PlayHapticVibration(1);
+            hand.GetComponent<Hand>().PlayHapticVibration(0.1f);
         }
        
     }

@@ -26,9 +26,7 @@ public class ValveVibration : MonoBehaviour
     public void PlayHapticVibration()
     {
         if (grabHand)
-        {
             grabHand.PlayHapticVibration(0.1f);
-        }
     }
     // Update is called once per frame
     void Update()
