@@ -19,7 +19,8 @@ public class TrashBin : MonoBehaviour
         Invoke("ReenableHighlight", 0.3f);
         //placePoint.OnStopHighlight.Invoke(placePoint, grab); //invoking a normal PlacePoint method did not work for whatever reason
         Debug.Log("destroyed the " + grab.gameObject.name);
-        Destroy(grab.gameObject);
+        grab.gameObject.SetActive(false);
+        //Destroy(grab.gameObject);
     }
     
     private void ReenableHighlight()

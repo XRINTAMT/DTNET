@@ -29,7 +29,13 @@ public class ExpirationDate : MonoBehaviour
             ExpiredVal.Expired = false;
         }
         DateStamp.text = ExpDate.Day.ToString("00") + "." + ExpDate.Month.ToString("00") + "." + ExpDate.Year;
+    }
 
+    public void InitCopy(ExpirationDate _e)
+    {
+        ExpDate = _e.ExpDate;
+        ExpiredVal.Expired = _e.ExpiredVal.Expired;
+        DateStamp.text = ExpDate.Day.ToString("00") + "." + ExpDate.Month.ToString("00") + "." + ExpDate.Year;
     }
 
     // Update is called once per frame

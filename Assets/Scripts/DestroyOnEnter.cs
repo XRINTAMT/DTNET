@@ -29,7 +29,9 @@ public class DestroyOnEnter : MonoBehaviour
             _toDestroy.transform.localScale = initScale * (1 - i);
             yield return 0;
         }
-        Destroy(_toDestroy);
+
+        //Destroy(_toDestroy);
+        _toDestroy.SetActive(false);
     }
 
     // Update is called once per frame
