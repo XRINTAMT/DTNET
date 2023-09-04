@@ -11,8 +11,8 @@ public class Packaging : DataSaver
     public Grabbable RemovablePart;
     public Grabbable Content;
     public Action<string, int, string> instNewPackage;
-    public GameObject ThisWhole;
-    public GameObject ThisRipped;
+    public string ThisWhole;
+    public string ThisRipped;
 
     private Packaging Replacement;
 
@@ -122,7 +122,6 @@ public class Packaging : DataSaver
 
     public void MainPackagingDestroyed()
     {
-        Debug.Log("Unpacked: " + isUnpacked + "; Ejected: " + isEjected);
         if (!isUnpacked)
         {
             Destroy(gameObject);
@@ -142,7 +141,6 @@ public class Packaging : DataSaver
 
     public void MainPackagingDisabled()
     {
-        Debug.Log("Unpacked: " + isUnpacked + "; Ejected: " + isEjected);
         if (!isUnpacked)
         {
             gameObject.SetActive(false);
@@ -160,12 +158,14 @@ public class Packaging : DataSaver
         }
     }
 
-    public GameObject SpawnCopyPUN(GameObject ToSpawn)
+    public GameObject SpawnCopyPUN(string ToSpawn)
     {
         GameObject _spawnedObject = null;
         if (PhotonManager.offlineMode)
         {
-            _spawnedObject = GameObject.Instantiate(ToSpawn);
+            //_spawnedObject = GameObject.Instantiate(ToSpawn);
+            _spawnedObject = GameObject.Instantiate(Resources.Load(ToSpawn) as GameObject);
+
             _spawnedObject.transform.position = transform.position;
             _spawnedObject.transform.rotation = transform.rotation;
             _spawnedObject.GetComponent<SpawnableThing>().Box = GetComponent<SpawnableThing>().Box;
@@ -175,7 +175,7 @@ public class Packaging : DataSaver
         {
             if (!PhotonManager._viewerApp)
             {
-                _spawnedObject = PhotonNetwork.Instantiate(ToSpawn.name, transform.position, transform.rotation);
+                _spawnedObject = PhotonNetwork.Instantiate(ToSpawn, transform.position, transform.rotation);
 
                 _spawnedObject.transform.position = transform.position;
                 _spawnedObject.transform.rotation = transform.rotation;
@@ -195,11 +195,9 @@ public class Packaging : DataSaver
         return _spawnedObject;
     }
 
-    IEnumerator SyncSpawnedTransforms(GameObject _spawnedObject)
+    void SyncSpawnedTransforms(GameObject _spawnedObject)
     {
-        Debug.Log("HEEEEEEELLLLLLLLLOOOOOOO");
-        yield return new WaitForSeconds(0.4f);
-        Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAA");
+        Debug.Log("Syncing...");
         Packaging _pkg = _spawnedObject.GetComponent<Packaging>();
         _pkg.Package.GetComponent<TransformSaver>().CopySaves(Package.GetComponent<TransformSaver>());
         _pkg.Content.GetComponent<TransformSaver>().CopySaves(Content.GetComponent<TransformSaver>());
@@ -218,15 +216,13 @@ public class Packaging : DataSaver
 
     public override void Load()
     {
-        //StartCoroutine("AsyncLoad");
+        StartCoroutine(AsyncLoad());
     }
 
     IEnumerator AsyncLoad()
     {
-        Debug.Log("What's gonna happen???");
         if (!savedExists)
         {
-            Debug.Log("It's not even saved, kill it!");
             if (isUnpacked)
             {
                 Destroy(RemovablePart.gameObject);
@@ -238,22 +234,31 @@ public class Packaging : DataSaver
             Destroy(this.gameObject);
             yield break;
         }
-        if (!savedIsUnpacked && isUnpacked)
+        if (!savedIsUnpacked && isUnpacked && !isEjected)
         {
-            Debug.Log("It's been unpacked, let's fuck it up!");
-            SyncSpawnedTransforms(SpawnCopyPUN(ThisWhole));
-            MainPackagingDestroyed();
-            if (isEjected)
-            {
-                Destroy(Content.gameObject);
-            }
+            GameObject _spawnedCopy = SpawnCopyPUN(ThisWhole);
+            yield return new WaitForSeconds(0.1f);
+            SyncSpawnedTransforms(_spawnedCopy);
+            Destroy(RemovablePart.gameObject);
+            Destroy(gameObject);
             yield break;
         }
         if (!savedIsEjected && isEjected)
         {
-            Debug.Log("It's been unpacked AND EJECTED, let's fuck it up double!");
-            SyncSpawnedTransforms(SpawnCopyPUN(ThisRipped));
-            MainPackagingDestroyed();
+            GameObject _spawnedCopy;
+            if (savedIsUnpacked)
+            {
+                _spawnedCopy = SpawnCopyPUN(ThisRipped);
+            }
+            else
+            {
+                _spawnedCopy = SpawnCopyPUN(ThisWhole);
+            }
+            yield return new WaitForSeconds(0.1f);
+            SyncSpawnedTransforms(_spawnedCopy);
+            Destroy(RemovablePart.gameObject);
+            Destroy(Content.gameObject);
+            Destroy(gameObject);
             yield break;
         }
     }

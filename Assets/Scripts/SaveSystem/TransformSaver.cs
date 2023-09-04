@@ -24,14 +24,13 @@ public class TransformSaver : DataSaver
         LocalPosition = _from.LocalPosition;
         LocalEulers = _from.LocalEulers;
         LocalScale = _from.LocalScale;
-        Parent = _from.Parent;
+        Parent = transform.parent;
         Saved = true;
         Load();
     }
 
     override public void Save()
     {
-        Debug.Log(name + " location saved");
         LocalPosition = transform.localPosition;
         LocalEulers = transform.localEulerAngles;
         LocalScale = transform.localScale;
@@ -45,7 +44,6 @@ public class TransformSaver : DataSaver
     {
         if (!Saved)
             return;
-        Debug.Log(name + " location loaded");
         transform.parent = Parent;
         transform.localPosition = LocalPosition;
         transform.localEulerAngles = LocalEulers;

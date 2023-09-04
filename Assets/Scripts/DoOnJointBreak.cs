@@ -9,6 +9,7 @@ public class DoOnJointBreak : MonoBehaviour
 
     private void OnJointBreak(float breakForce)
     {
+        Debug.Log("Aw man the joint broke!");
         ToDo.Invoke();
     }
 }
