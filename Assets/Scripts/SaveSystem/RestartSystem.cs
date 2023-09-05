@@ -22,7 +22,7 @@ public class RestartSystem : MonoBehaviour
 
     private void MakeASave()
     {
-        DataSaver[] _savers = FindObjectsOfType<DataSaver>();
+        DataSaver[] _savers = FindObjectsOfType<DataSaver>(true);
         foreach (DataSaver _saver in _savers)
         {
             _saver.Save();

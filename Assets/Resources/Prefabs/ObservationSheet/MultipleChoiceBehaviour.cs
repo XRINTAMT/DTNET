@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ScenarioTaskSystem;
 
-public class MultipleChoiceBehaviour : MonoBehaviour
+public class MultipleChoiceBehaviour : DataSaver
 {
     [SerializeField] int[] correctValues;
     [SerializeField] MultipleChoiceRow[] options;
@@ -12,19 +12,18 @@ public class MultipleChoiceBehaviour : MonoBehaviour
     [SerializeField] Date Timestamp;
     [SerializeField] GameObject MultupleChoiceUI;
     [SerializeField] GameObject Next;
-    [SerializeField] bool Initialized;
 
-    void Awake()
+    void OnEnable()
     {
-        GameObject ChangableItemsContainer = findParentWithTag("ChangableItems");
-        if (!ChangableItemsContainer.name.Contains("(Clone)") || !Initialized)
+        Regenerate();
+    }
+
+    private void Regenerate()
+    {
+        int correctRow = (int)Mathf.Floor(Random.Range(0, options.Length));
+        for (int i = 0; i < options.Length; i++)
         {
-            int correctRow = (int)Mathf.Floor(Random.Range(0, options.Length));
-            for (int i = 0; i < options.Length; i++)
-            {
-                options[i].RenderObservation(new Observation(correctValues, (i != correctRow)));
-            }
-            Initialized = true;
+            options[i].RenderObservation(new Observation(correctValues, (i != correctRow)));
         }
     }
 
@@ -45,17 +44,17 @@ public class MultipleChoiceBehaviour : MonoBehaviour
         
     }
 
-    private GameObject findParentWithTag(string _tag)
+    public override void Save()
     {
-        var parent = gameObject.transform.parent;
-        while(parent != null) {
-            if (parent.tag == _tag)
-            {
-                return parent.gameObject as GameObject;
-            }
-            parent = parent.transform.parent;
+        
+    }
+
+    public override void Load()
+    {
+        if (gameObject.activeInHierarchy)
+        {
+            Regenerate();
         }
-        return null;
     }
 }
 

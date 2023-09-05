@@ -8,7 +8,6 @@ public class SaveEnabled : DataSaver
 
     public override void Load()
     {
-        Debug.Log("setting " + gameObject.name + " to " + (GameObjActive ? "active" : "disabled"));
         gameObject.SetActive(GameObjActive);
     }
 

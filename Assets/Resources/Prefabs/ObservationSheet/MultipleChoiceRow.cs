@@ -22,10 +22,14 @@ public class MultipleChoiceRow : MonoBehaviour
             PlaceTick(i, _o.values[i]);
         }
         if (_o.values[3] == 0)
+        {
             OxygenPerMinute.gameObject.SetActive(false);
+            Ticks[3].SetActive(true);
+        }
         else
         {
             Ticks[3].SetActive(false);
+            OxygenPerMinute.gameObject.SetActive(true);
             OxygenPerMinute.text = _o.values[3].ToString();
         }
         if (_o.values[4] <= 5)
@@ -47,7 +51,7 @@ public class MultipleChoiceRow : MonoBehaviour
 
     private void PlaceTick(int _tickId, int _position)
     {
-        Ticks[_tickId].GetComponent<RectTransform>().localPosition = new Vector3(Ticks[_tickId].GetComponent<RectTransform>().localPosition.x, Ticks[_tickId].GetComponent<RectTransform>().localPosition.y - (_position * 27.25f), Ticks[_tickId].GetComponent<RectTransform>().localPosition.z);
+        Ticks[_tickId].GetComponent<RectTransform>().localPosition = new Vector3(Ticks[_tickId].GetComponent<SaveTick>().LocalPosition.x, Ticks[_tickId].GetComponent<SaveTick>().LocalPosition.y - (_position * 27.25f), Ticks[_tickId].GetComponent<SaveTick>().LocalPosition.z);
     }
 
     public void Submit()

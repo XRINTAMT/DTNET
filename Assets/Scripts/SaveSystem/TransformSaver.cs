@@ -19,8 +19,6 @@ public class TransformSaver : DataSaver
 
     public void CopySaves(TransformSaver _from)
     {
-        Debug.Log("HEEEEEEEEEEEEEEEEEEY");
-        Debug.Log(name + " location saved from " + _from.gameObject.name);
         LocalPosition = _from.LocalPosition;
         LocalEulers = _from.LocalEulers;
         LocalScale = _from.LocalScale;
