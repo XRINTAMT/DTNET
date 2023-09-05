@@ -43,7 +43,10 @@ public class VitalsMonitor : DataSaver
         SwitchAlarm(FireAlarmOnStart);
         for (int i = 0; i < VitalValues.Length; i++)
         {
-            VitalValues[i].Text.text = VitalValues[i].Value.ToString(VitalValues[i].OutputFormat);
+            if (VitalValues[i].Text != null)
+            {
+                VitalValues[i].Text.text = VitalValues[i].Value.ToString(VitalValues[i].OutputFormat);
+            }
             if(DataInterface != null)
                 DataInterface.SendDataItem(VitalValues[i].Name, VitalValues[i].Connected ? 1 : 0);
             //Debug.Log("{ \n \"name\": \"" + VitalValues[i].Name + "\",\n \"value\": " + (int)VitalValues[i].Value + "\n },");

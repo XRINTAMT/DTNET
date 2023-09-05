@@ -10,7 +10,7 @@ public class RestartSystem : MonoBehaviour
 
     void Start()
     {
-        Save();
+        Invoke("Save", 0.3f);
     }
 
     public void Save(){
