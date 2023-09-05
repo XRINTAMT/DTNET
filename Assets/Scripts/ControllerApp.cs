@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControllerApp : MonoBehaviour
+public class ControllerApp : DataSaver
 {
     [SerializeField] private Animation animateBed;
     [SerializeField] private AnimationsController animationsController;
@@ -12,6 +12,7 @@ public class ControllerApp : MonoBehaviour
         callDoctorAdamsAnimation, doctorInspectDefebrillatorAnimation, nurseAnimation, dialoguWithPatient1, dialoguWithPatient2;
 
     bool sitting;
+    bool savedSitting;
 
     public void PatientSittingDownAnimation1() 
     {
@@ -136,5 +137,28 @@ public class ControllerApp : MonoBehaviour
             putOffShirt = false;
         }
 
+    }
+
+    public override void Save()
+    {
+        savedSitting = sitting;
+    }
+
+    public override void Load()
+    {
+        if(!savedSitting)
+        {
+            //lie back down
+            PatientLayingAnimation2();
+        }
+        else
+        {
+            if (savedSitting)
+            {
+                //sit back up
+                PatientSittingDownAnimation2();
+            }
+        }
+        
     }
 }
