@@ -34,12 +34,14 @@ public class MultipleChoiceRow : MonoBehaviour
         }
         if (_o.values[4] <= 5)
         {
+            Ticks[4].SetActive(true);
             Ticks[5].SetActive(false);
             PlaceTick(4, _o.values[4]);
         }
         else
         {
             Ticks[4].SetActive(false);
+            Ticks[5].SetActive(true);
             PlaceTick(5, _o.values[4]-6);
         }
         for (int i = 5; i < _o.values.Length-1; i++)

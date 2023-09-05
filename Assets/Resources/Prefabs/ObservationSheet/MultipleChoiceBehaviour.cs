@@ -12,6 +12,8 @@ public class MultipleChoiceBehaviour : DataSaver
     [SerializeField] Date Timestamp;
     [SerializeField] GameObject MultupleChoiceUI;
     [SerializeField] GameObject Next;
+    private Observation PickedObservation;
+    private Observation SavedObservation;
 
     void OnEnable()
     {
@@ -29,6 +31,7 @@ public class MultipleChoiceBehaviour : DataSaver
 
     public void ChooseAnswer(Observation _o)
     {
+        PickedObservation = new Observation(_o.values, _o.wrong);
         renderResult.gameObject.SetActive(true);
         renderResult.RenderObservation(_o);
         Datestamp.GenerateDatestamp();
@@ -46,7 +49,8 @@ public class MultipleChoiceBehaviour : DataSaver
 
     public override void Save()
     {
-        
+        if(PickedObservation != null)
+            SavedObservation = new Observation(PickedObservation.values, PickedObservation.wrong);
     }
 
     public override void Load()
@@ -54,6 +58,11 @@ public class MultipleChoiceBehaviour : DataSaver
         if (gameObject.activeInHierarchy)
         {
             Regenerate();
+        }
+        if(SavedObservation != null)
+        {
+            renderResult.gameObject.SetActive(true);
+            renderResult.RenderObservation(SavedObservation);
         }
     }
 }
