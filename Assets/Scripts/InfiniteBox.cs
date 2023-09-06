@@ -109,6 +109,13 @@ public class InfiniteBox : DataSaver
     public override void Load()
     {
         taken = savedTaken;
-        SpawnedObject = SavedSpawnedObject;
+        if(SavedSpawnedObject != null)
+        {
+            SpawnedObject = SavedSpawnedObject;
+        }
+        else
+        {
+            SpawnedObject = GetComponentInChildren<SpawnableLeftTheAreaTrigger>().ReturnedSpawnable();
+        }
     }
 }

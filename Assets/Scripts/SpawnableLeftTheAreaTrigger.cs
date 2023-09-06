@@ -26,6 +26,12 @@ public class SpawnableLeftTheAreaTrigger : MonoBehaviour
         return colliders.Length == 1; // the trigger itself
     }
 
+    public GameObject ReturnedSpawnable()
+    {
+        Collider[] colliders = Physics.OverlapBox(triggerCollider.bounds.center, triggerCollider.bounds.extents, triggerCollider.transform.rotation);
+        return (colliders.Length > 0) ? colliders[0].gameObject : null;
+    }
+
     private void Update()
     {
         if (IsNothingInsideCollider())
