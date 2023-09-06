@@ -25,7 +25,7 @@ public class Wire : MonoBehaviour
 	bool pinEnd = true;
 	[SerializeField] float floorOffset;
 	[SerializeField] static float refreshDistance = 0.01f;
-	[SerializeField] static float refreshTimeout = 1.5f;
+	[SerializeField] static float refreshTimeout = 2.5f;
 	float refreshProgress;
 
 	void Start()
