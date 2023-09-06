@@ -47,13 +47,13 @@ public class GuideSystem : DataSaver
 
     public override void Save()
     {
-        lastActivatedPanelSaved = lastPanelActivated;
-        savedDontRepeat = dontRepeat;
+        //lastActivatedPanelSaved = lastPanelActivated;
+        //savedDontRepeat = dontRepeat;
     }
 
     public override void Load()
     {
-        dontRepeat = savedDontRepeat;
-        GuidePanelActivate(lastActivatedPanelSaved);
+        //dontRepeat = savedDontRepeat;
+        //GuidePanelActivate(lastActivatedPanelSaved);
     }
 }
