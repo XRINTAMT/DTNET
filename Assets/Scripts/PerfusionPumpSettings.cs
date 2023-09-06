@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using System;
 
-public class PerfusionPumpSettings : MonoBehaviour
+public class PerfusionPumpSettings : DataSaver
 {
     [Serializable]
     struct Digit
@@ -15,8 +15,10 @@ public class PerfusionPumpSettings : MonoBehaviour
     }
 
     [SerializeField] Digit[] digits;
+    Digit[] savedDigits;
 
     int selector;
+    int savedSelector;
     float Value;
     public Action rightButton;
     public Action leftButton;
@@ -71,5 +73,15 @@ public class PerfusionPumpSettings : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public override void Save()
+    {
+        savedSelector = selector;
+    }
+
+    public override void Load()
+    {
+        selector = savedSelector;
     }
 }

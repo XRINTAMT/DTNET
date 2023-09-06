@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PerfusionPumpNumber : MonoBehaviour
+public class PerfusionPumpNumber : DataSaver
 {
     [SerializeField] Color BackgroundColor;
     [SerializeField] Color TextColor;
+    bool savedSelected;
     private Image background;
     private Text number;
     public int Value { get; private set; } = 0;
+    int savedValue;
 
     void Awake()
     {
@@ -40,5 +42,21 @@ public class PerfusionPumpNumber : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public override void Save()
+    {
+        if (background != null)
+            savedSelected = background.enabled;
+        savedValue = Value;
+    }
+
+    public override void Load()
+    {
+        if (background != null)
+            background.enabled = savedSelected;
+        number.color = savedSelected ? BackgroundColor : TextColor;
+        Value = savedValue;
+        number.text = Value.ToString();
     }
 }
