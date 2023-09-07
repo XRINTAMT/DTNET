@@ -16,6 +16,8 @@ public class Packaging : DataSaver
 
     private Packaging Replacement;
 
+    bool SavedDisabled;
+
     bool isUnpacked;
     bool isEjected;
     bool savedIsUnpacked;
@@ -216,6 +218,7 @@ public class Packaging : DataSaver
 
     public override void Load()
     {
+        gameObject.SetActive(true);
         StartCoroutine(AsyncLoad());
     }
 
