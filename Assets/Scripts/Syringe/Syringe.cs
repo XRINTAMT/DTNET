@@ -343,7 +343,8 @@ public class Syringe : DataSaver
 
     public override void Save()
     {
-        savedIngredients = new Dictionary<string, float>(ingredients);
+        if(ingredients != null)
+            savedIngredients = new Dictionary<string, float>(ingredients);
         SavedLiquidMat = liquidRenderer.material;
     }
 
@@ -361,6 +362,7 @@ public class Syringe : DataSaver
             ingredients = new Dictionary<string, float>();
             totalSubstance = 0;
         }
+        
         liquidRenderer.material = SavedLiquidMat;
     }
 }

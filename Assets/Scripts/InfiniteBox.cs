@@ -115,7 +115,9 @@ public class InfiniteBox : DataSaver
         }
         else
         {
-            SpawnedObject = GetComponentInChildren<SpawnableLeftTheAreaTrigger>().ReturnedSpawnable();
+            SpawnableLeftTheAreaTrigger Trigger = GetComponentInChildren<SpawnableLeftTheAreaTrigger>();
+            if(Trigger != null)
+                SpawnedObject = GetComponentInChildren<SpawnableLeftTheAreaTrigger>().ReturnedSpawnable();
         }
     }
 }
