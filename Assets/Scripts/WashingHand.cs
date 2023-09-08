@@ -18,13 +18,19 @@ public class WashingHand : MonoBehaviour
         {
             GameObject hand = null;
             hand = other.gameObject;
-            hand.GetComponent<Hand>().PlayHapticVibration(0.1f);
+            hand.GetComponent<Hand>().PlayHapticVibration(100);
         }
        
     }
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit(Collider other)
     {
-        
+        if (other.tag == "hand")
+        {
+            GameObject hand = null;
+            hand = other.gameObject;
+            hand.GetComponent<Hand>().PlayHapticVibration(0);
+        }
+
     }
+
 }
