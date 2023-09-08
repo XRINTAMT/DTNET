@@ -42,6 +42,7 @@ public class UIController : MonoBehaviour
     public static int teleport;
     public static int subtitles;
     public static int guides;
+    public static bool multiplayerMode;
     SceneLoader sceneLoader;
 
     XRMovementControls xRMovementControls;
@@ -233,16 +234,27 @@ public class UIController : MonoBehaviour
         
     }
 
+    public void SetMultiplayerMode() 
+    {
+        multiplayerMode = !multiplayerMode;
+    }
+
     public void LoadScene(string name)
     {
-        if (sceneLoader != null) 
+        if (!multiplayerMode)
         {
-            sceneLoader.LoadScene(name);
+            if (sceneLoader != null)
+            {
+                sceneLoader.LoadScene(name);
+            }
+
+            if (sceneLoader == null)
+                SceneManager.LoadScene(name);
         }
-
-
-        if (sceneLoader == null)
-            SceneManager.LoadScene(name);
+        if (multiplayerMode)
+        {
+            FindObjectOfType<PhotonManager>().ConnectToServer();
+        }
 
     }
 
