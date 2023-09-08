@@ -6,6 +6,9 @@ using ScenarioSystem;
 public class PerfusionPump : MonoBehaviour
 {
     [SerializeField] TaskSpecificValues DataInterface;
+    [SerializeField] Pump_ConnectTubing TubingContainer;
+    [SerializeField] SyringeEmptier SyringeContainer;
+
     void Start()
     {
         
@@ -13,6 +16,11 @@ public class PerfusionPump : MonoBehaviour
 
     public void makeInjection()
     {
+        if((SyringeContainer.Expired || TubingContainer.Expired) && (PlayerPrefs.GetInt("GuidedMode") == 1))
+        {
+            FindObjectOfType<RestartSystem>().Load();
+            return;
+        }
         Syringe srg = GetComponentInChildren<Syringe>();
         foreach(string med in srg.ingredients.Keys)
         {
