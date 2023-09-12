@@ -141,6 +141,17 @@ namespace ScenarioTaskSystem
                 Debug.LogWarning(taskCompleted.gameObject.name + " score is too high");
             }
 
+            if (completedTaskSettings.maxScore > score)
+            {
+                if (guided)
+                {
+                    Restart.Load();
+                    Debug.LogWarning(taskCompleted.gameObject.name + " task failed, loading a save!");
+                    return;
+                }
+            }
+            
+
             if (completedTaskSettings.Order == null)
             {
                 completedTaskSettings.Completed = true;
