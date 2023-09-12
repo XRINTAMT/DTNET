@@ -7,7 +7,7 @@ using ScenarioTaskSystem;
 
 namespace QuantumTek.QuantumDialogue.Demo
 {
-    public class QD_DialogueDemo : MonoBehaviour
+    public class QD_DialogueDemo : DataSaver
     {
         public int number;
         public QD_DialogueHandler handler;
@@ -25,6 +25,7 @@ namespace QuantumTek.QuantumDialogue.Demo
         private List<Text> inactiveChoicesText = new List<Text>();
 
         private bool ended;
+        private bool savedEnded;
         AudioSource audioSource;
         [SerializeField] DialogueSystem dialogueSystem;
         [SerializeField] GameObject panelUi;
@@ -69,6 +70,8 @@ namespace QuantumTek.QuantumDialogue.Demo
 
         public void NextTextDialogue()
         {
+            Debug.Log(gameObject.name + "just got a nextTextDialogue call");
+            Debug.Log("The message is: " + handler.currentMessageInfo.ID + " " + handler.currentMessageInfo.NextID + " " + handler.currentMessageInfo.Type);
             if ((PlayerPrefs.GetInt("AllowSkippingDialogues", 0) == 1) || !audioSource.isPlaying)
             {
                 if (handler.currentMessageInfo.Type == QD_NodeType.Message)
@@ -285,6 +288,17 @@ namespace QuantumTek.QuantumDialogue.Demo
             Debug.Log("makeChoose");
             nextFromButton = true;
             Next(choice);
+        }
+
+        public override void Save()
+        {
+            savedEnded = ended;
+        }
+
+        public override void Load()
+        {
+            ended = savedEnded;
+            handler.SetConversation(nameDialog);
         }
     }
 }
