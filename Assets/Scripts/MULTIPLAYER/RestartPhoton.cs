@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 public class RestartPhoton : MonoBehaviour
 {
     SceneChanger sceneChanger;
+    public GameObject player;
+    bool startScenario;
+    int countOfPlayer;
     private void Awake()
     {
         if (PhotonManager.offlineMode)
@@ -21,7 +24,7 @@ public class RestartPhoton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+      
     }
 
     void Restart() 
@@ -48,6 +51,19 @@ public class RestartPhoton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        if (PhotonManager._viewerApp && FindObjectOfType<MultiplayerController>() && !startScenario)
+        {
+            startScenario = true;
+        }
+        if (PhotonManager._viewerApp && !FindObjectOfType<MultiplayerController>() && startScenario)
+        {
+            PhotonManager.exitToMenu = true;
+            PhotonNetwork.LeaveRoom();
+
+            SceneManager.LoadScene("ViewerMode");
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible=true;
+        }
     }
 }

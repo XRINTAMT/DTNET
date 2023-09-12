@@ -12,7 +12,14 @@ public class RoomListEntryBehaviour : MonoBehaviour
 
     void Start()
     {
-        
+        if (PhotonManager.roomName != "" && PhotonManager.exitToMenu)
+        {
+            Debug.Log(PhotonNetwork.CountOfPlayers);
+            Destroy(gameObject);
+            PhotonManager.roomName = "";
+            PhotonManager.exitToMenu = false;
+        }
+
     }
 
     public void SetUp(string _roomName)

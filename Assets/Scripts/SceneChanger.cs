@@ -34,9 +34,8 @@ public class SceneChanger : MonoBehaviour
             }
 
             restart?.Invoke();
-            //PhotonNetwork.DestroyPlayerObjects(PhotonNetwork.LocalPlayer);
-            //PhotonNetwork.LeaveRoom();
 
+            PhotonNetwork.DestroyPlayerObjects(PhotonNetwork.LocalPlayer);
             PhotonNetwork.LeaveRoom();
             if (i != -1)
                 PhotonNetwork.Disconnect();
