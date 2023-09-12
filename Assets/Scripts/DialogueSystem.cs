@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueSystem : MonoBehaviour
+public class DialogueSystem : DataSaver
 {
     //[SerializeField] private GameObject dialogeDisable;
     public List<GameObject> Dialogs;
     public List<bool> DialogueComplete;
-  
+    List<bool> DialogueCompleteSaved;
+
     public bool areaDialoguePatient;
     public bool areaDialogueDoctor;
+    bool areaDialoguePatientSaved;
+    bool areaDialogueDoctorSaved;
     bool pause;
     void Start()
     {
@@ -113,5 +116,19 @@ public class DialogueSystem : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public override void Save()
+    {
+        areaDialoguePatientSaved = areaDialoguePatient;
+        areaDialogueDoctorSaved = areaDialogueDoctor;
+        DialogueCompleteSaved = new List<bool>(DialogueComplete);
+    }
+
+    public override void Load()
+    {
+        areaDialoguePatient = areaDialoguePatientSaved;
+        areaDialogueDoctor = areaDialogueDoctorSaved;
+        DialogueComplete = new List<bool>(DialogueCompleteSaved);
     }
 }

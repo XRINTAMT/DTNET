@@ -25,12 +25,14 @@ namespace QuantumTek.QuantumDialogue
     /// </summary>
     [AddComponentMenu("Quantum Tek/Quantum Dialogue/Dialogue Handler")]
     [DisallowMultipleComponent]
-    public class QD_DialogueHandler : MonoBehaviour
+    public class QD_DialogueHandler : DataSaver
     {
         public QD_Dialogue dialogue;
         [HideInInspector] public int currentConversationIndex = -1;
         [HideInInspector] public QD_Conversation currentConversation;
-        [HideInInspector] public QD_MessageInfo currentMessageInfo;
+        public QD_MessageInfo currentMessageInfo;
+        [SerializeField] QD_MessageInfo SavedMessage;
+        QD_Conversation SavedConversation;
 
         /// <summary>
         /// Returns the current message, if it is a message node.
@@ -145,6 +147,17 @@ namespace QuantumTek.QuantumDialogue
 
             currentMessageInfo = new QD_MessageInfo(id, nextID, type);
             return currentMessageInfo;
+        }
+
+        public override void Save()
+        {
+            SavedMessage = new QD_MessageInfo(currentMessageInfo.ID, currentMessageInfo.NextID, currentMessageInfo.Type);
+            //SavedConversation = new QD_Conversation(currentConversation.ID);
+        }
+
+        public override void Load()
+        {
+            //currentMessageInfo = new QD_MessageInfo(SavedMessage.ID, SavedMessage.NextID, SavedMessage.Type);
         }
     }
 }
