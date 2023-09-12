@@ -25,7 +25,7 @@ public class MultipleChoiceBehaviour : DataSaver
         int correctRow = (int)Mathf.Floor(Random.Range(0, options.Length));
         for (int i = 0; i < options.Length; i++)
         {
-            options[i].RenderObservation(new Observation(correctValues, (i != correctRow)));
+            options[i].RenderObservation(new Observation(correctValues, (i != correctRow), true));
         }
     }
 
@@ -33,7 +33,7 @@ public class MultipleChoiceBehaviour : DataSaver
     {
         PickedObservation = new Observation(_o.values, _o.wrong);
         renderResult.gameObject.SetActive(true);
-        renderResult.RenderObservation(_o);
+        renderResult.RenderObservation(PickedObservation);
         Datestamp.GenerateDatestamp();
         Timestamp.GenerateTimeStamp();
         MultupleChoiceUI.SetActive(false);
@@ -89,14 +89,13 @@ public class Observation
     }
     */
 
-    public Observation(int[] _values, bool _isWrong)
+    public Observation(int[] _values, bool _isWrong, bool randomOnWrong = false)
     {
         values = (int[])_values.Clone();
-        wrong = false;
+        wrong = _isWrong;
         //randomize the values for the wrong one
-        if (_isWrong)
+        if (_isWrong && randomOnWrong)
         {
-            wrong = true;
             int r1, r2;
             r1 = (int)Mathf.Floor(Random.Range(0, _values.Length));
             do

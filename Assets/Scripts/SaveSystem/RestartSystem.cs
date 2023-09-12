@@ -27,7 +27,7 @@ public class RestartSystem : MonoBehaviourPunCallbacks
         }
         else
         {
-            if(PhotonNetwork.IsMasterClient)
+            if(PlayerPrefs.GetString("AppMode") == "Student")
                 photonView.RPC("MakeASaveRPC", RpcTarget.All);
         }
     }
@@ -76,7 +76,7 @@ public class RestartSystem : MonoBehaviourPunCallbacks
         }
         else
         {
-            if (PhotonNetwork.IsMasterClient)
+            if (PlayerPrefs.GetString("AppMode") == "Student")
                 photonView.RPC("LoadDataRPC", RpcTarget.All);
         }
     }
