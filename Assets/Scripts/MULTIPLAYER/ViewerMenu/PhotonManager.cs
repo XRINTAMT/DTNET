@@ -27,6 +27,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         roomOptions.MaxPlayers = (byte)maxPlayers;
         roomOptions.IsOpen = true;
         roomOptions.IsVisible = true;
+        offlineMode = true;
 
         if (connectedToServerOnStart)
             ConnectToServer();
@@ -64,10 +65,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         if (!PhotonNetwork.IsConnected)
             return;
 
-        //if (roomName == null) 
+        //if (roomName == null)
         //    PhotonNetwork.CreateRoom(Random.Range(1000, 9999).ToString(), roomOptions);
-        //if (roomName != null)
+        //if (roomName != null) 
+        //{
         //    PhotonNetwork.CreateRoom(roomName, roomOptions);
+        //}
 
         PhotonNetwork.CreateRoom(Random.Range(1000, 9999).ToString(), roomOptions);
     }
@@ -123,8 +126,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         offlineMode = false;
         SceneManager.LoadScene("ScenarioScene");
-
-        Debug.Log("Create room");
+        Debug.Log("Create room" + roomName);
+        roomName = null;
     }
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
@@ -141,7 +144,17 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         Debug.Log("LeaveRoom");
     }
 
-    
+    private void Update()
+    {
+        if (restart)
+        {
+            if (FindObjectOfType<ViewerMenuBehaviour>().Entries.Count>1)
+            {
+                JoinRoom();
+                restart = false;
+            }
+        }
+    }
 
 
 }

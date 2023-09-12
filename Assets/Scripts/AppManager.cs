@@ -1,5 +1,6 @@
 using Autohand;
 using Autohand.Demo;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +20,7 @@ public class AppManager : MonoBehaviour
     [SerializeField] private List<AudioSource> audioSourceSounds;
 
     public AppSettings appSettings;
-
+    public Action activateGuideCanvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +57,14 @@ public class AppManager : MonoBehaviour
         {
             GuideCanvas.SetActive(guide == 1);
             ExamCanvas.SetActive(guide == 0);
+
+            if (GuideCanvas.activeSelf) 
+            {
+                Debug.Log("guide");
+                activateGuideCanvas?.Invoke();
+
+            }
+        
         }
     }
 }

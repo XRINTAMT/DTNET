@@ -9,6 +9,7 @@ public class SceneChanger : MonoBehaviour
 {
     SceneLoader sceneLoader;
     public Action restart;
+
     private void Start()
     {
         sceneLoader = FindObjectOfType<SceneLoader>();
@@ -30,15 +31,16 @@ public class SceneChanger : MonoBehaviour
             {
                 PhotonManager.roomName = PhotonNetwork.CurrentRoom.Name;
                 PhotonManager.restart = true;
-           
             }
-
             restart?.Invoke();
-
+      
             PhotonNetwork.DestroyPlayerObjects(PhotonNetwork.LocalPlayer);
             PhotonNetwork.LeaveRoom();
             if (i != -1)
+            {
                 PhotonNetwork.Disconnect();
+            }
+
 
             SceneManager.LoadScene(0);
 

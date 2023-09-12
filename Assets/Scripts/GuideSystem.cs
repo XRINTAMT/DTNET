@@ -6,7 +6,7 @@ using UnityEngine;
 public class GuideSystem : DataSaver
 {
     [SerializeField] private List <GameObject> guidePanel;
-    [SerializeField] GameObject canvas;
+    public GameObject canvas;
     [SerializeField] GameObject dialogueGuide;
     [SerializeField] GameObject arrowObservationSheet;
     public Action<int> activateGuide;
@@ -14,15 +14,12 @@ public class GuideSystem : DataSaver
     bool savedDontRepeat;
     int lastPanelActivated;
     int lastActivatedPanelSaved;
-
+    public Action activateGuideCanvas;
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.GetInt("GuidedMode") == 1)
-        {
-            if (dialogueGuide != null) dialogueGuide.SetActive(true);
-            if (arrowObservationSheet != null) arrowObservationSheet.SetActive(true);
-        }
+  
+       
     }
 
     public void GuidePanelActivate(int numberTask) 

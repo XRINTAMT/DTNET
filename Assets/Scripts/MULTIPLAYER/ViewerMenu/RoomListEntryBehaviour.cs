@@ -7,18 +7,19 @@ using Photon.Realtime;
 
 public class RoomListEntryBehaviour : MonoBehaviour
 {
-    string roomName;
+    [HideInInspector]
+    public string roomName;
     [SerializeField] Text RoomNameDisplay;
 
     void Start()
     {
-        if (PhotonManager.roomName != "" && PhotonManager.exitToMenu)
-        {
-            Debug.Log(PhotonNetwork.CountOfPlayers);
-            Destroy(gameObject);
-            PhotonManager.roomName = "";
-            PhotonManager.exitToMenu = false;
-        }
+        //if (PhotonManager.roomName != "" && PhotonManager.exitToMenu)
+        //{
+        //    Debug.Log(PhotonNetwork.CountOfPlayers);
+        //    Destroy(gameObject);
+        //    PhotonManager.roomName = "";
+        //    PhotonManager.exitToMenu = false;
+        //}
 
     }
 

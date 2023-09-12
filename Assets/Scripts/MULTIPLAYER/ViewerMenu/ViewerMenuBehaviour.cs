@@ -4,13 +4,14 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using System.Linq;
+using UnityEngine.Events;
 
 public class ViewerMenuBehaviour : MonoBehaviour
 {
     PhotonManager photonManager;
     [SerializeField] GameObject RoomListEntry;
     [SerializeField] GameObject Container;
-    [SerializeField] List<GameObject> Entries;
+    public List<GameObject> Entries;
     List<RoomInfo> roomInfo => photonManager.roomInfo;
     int roomNum = 0;
 

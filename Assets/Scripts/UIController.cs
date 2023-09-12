@@ -42,7 +42,7 @@ public class UIController : MonoBehaviour
     public static int teleport;
     public static int subtitles;
     public static int guides;
-    public static bool multiplayerMode;
+    //public static bool multiplayerMode;
     SceneLoader sceneLoader;
 
     XRMovementControls xRMovementControls;
@@ -56,7 +56,7 @@ public class UIController : MonoBehaviour
     {
         LoadSettingsIntoUI();
         sceneLoader = FindObjectOfType<SceneLoader>();
-
+     
     }
 
     public void LoadSettingsIntoUI()
@@ -111,7 +111,7 @@ public class UIController : MonoBehaviour
     public void SetSoundVolume()
     {
         soundVolume = setSoundVolumeStatus.value;
-        //appSettings.UpdateSettings();
+
         PlayerPrefs.SetFloat("soundVolume", soundVolume);
         if (soundVolume == 0)
             AppMixer.SetFloat("Sounds", -80);
@@ -236,12 +236,12 @@ public class UIController : MonoBehaviour
 
     public void SetMultiplayerMode() 
     {
-        multiplayerMode = !multiplayerMode;
+        PhotonManager.offlineMode = !PhotonManager.offlineMode;
     }
 
     public void LoadScene(string name)
     {
-        if (!multiplayerMode)
+        if (PhotonManager.offlineMode)
         {
             if (sceneLoader != null)
             {
@@ -251,7 +251,7 @@ public class UIController : MonoBehaviour
             if (sceneLoader == null)
                 SceneManager.LoadScene(name);
         }
-        if (multiplayerMode)
+        if (!PhotonManager.offlineMode)
         {
             FindObjectOfType<PhotonManager>().ConnectToServer();
         }
