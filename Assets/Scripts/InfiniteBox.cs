@@ -11,6 +11,7 @@ public class InfiniteBox : DataSaver
     [SerializeField] private GameObject SpawnedObject;
     [SerializeField] private bool taken = false;
     [SerializeField] private float ClearanceToSpawn = 3;
+    [SerializeField] private SpawnableLeftTheAreaTrigger InTheBox;
     private GameObject SavedSpawnedObject;
     private bool savedTaken;
 
@@ -98,6 +99,15 @@ public class InfiniteBox : DataSaver
             }
         }
         */
+        if(SpawnedObject == null)
+        {
+            SpawnedObject = InTheBox.ReturnedSpawnable();
+            if(SpawnedObject == null)
+            {
+                taken = false;
+                SpawnSpawnable();
+            }
+        }
     }
 
     public override void Save()
@@ -115,9 +125,19 @@ public class InfiniteBox : DataSaver
         }
         else
         {
-            SpawnableLeftTheAreaTrigger Trigger = GetComponentInChildren<SpawnableLeftTheAreaTrigger>();
-            if(Trigger != null)
-                SpawnedObject = GetComponentInChildren<SpawnableLeftTheAreaTrigger>().ReturnedSpawnable();
+            SpawnedObject = InTheBox.ReturnedSpawnable();
+        }
+    }
+
+    public void ObjectDestroyed(GameObject _destroyedObject, GameObject _replacementObject)
+    {
+        if(_destroyedObject == SavedSpawnedObject)
+        {
+            SavedSpawnedObject = _replacementObject;
+        }
+        if(_destroyedObject == SpawnedObject)
+        {
+            SpawnedObject = _replacementObject;
         }
     }
 }
