@@ -23,6 +23,7 @@ public class GloveApplicatorPhoton : MonoBehaviour
             GloveApplicator gloveApplicator = FindObjectOfType<GloveApplicator>();
             gloveApplicator.apply += Apply;
         }
+
     }
     
 
@@ -44,6 +45,10 @@ public class GloveApplicatorPhoton : MonoBehaviour
             for (int i = 0; i < multiplayerHands.Count; i++)
             {
                 multiplayerHands[i].material = gloveApplicator.GloveMaterial;
+            }
+            if (FindObjectOfType<GuideSystem>())
+            {
+                FindObjectOfType<GuideSystem>().GuidePanelActivate(3);
             }
             gloveApplicator.gameObject.SetActive(false);
         }

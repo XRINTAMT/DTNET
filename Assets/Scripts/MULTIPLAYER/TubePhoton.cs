@@ -155,7 +155,7 @@ public class TubePhoton : MonoBehaviour
             IVTube.SetActive(true);
             for (int i = 0; i < packagingsTube.Count; i++)
             {
-                packagingsTube[i].gameObject.SetActive(false);
+                packagingsTube[i].Content.gameObject.SetActive(false);
             }
         }
     }

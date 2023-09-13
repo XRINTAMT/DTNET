@@ -101,8 +101,10 @@ public class InfiniteBox : DataSaver
         */
         if(SpawnedObject == null)
         {
-            SpawnedObject = InTheBox.ReturnedSpawnable();
-            if(SpawnedObject == null)
+            if (InTheBox)
+                SpawnedObject = InTheBox.ReturnedSpawnable();
+
+            if (SpawnedObject == null)
             {
                 taken = false;
                 SpawnSpawnable();
@@ -125,7 +127,9 @@ public class InfiniteBox : DataSaver
         }
         else
         {
-            SpawnedObject = InTheBox.ReturnedSpawnable();
+            if (InTheBox)
+                SpawnedObject = InTheBox.ReturnedSpawnable();
+
         }
     }
 
