@@ -5,7 +5,7 @@ using Autohand;
 
 public class ElectrodeSocket : MonoBehaviour
 {
-    [SerializeField] int RequiredPadID;
+    public int RequiredPadID;
     Electrode ConnectedElectrode;
 
     private void Awake()

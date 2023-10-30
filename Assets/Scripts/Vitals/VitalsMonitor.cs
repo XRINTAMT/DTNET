@@ -36,7 +36,8 @@ public class VitalsMonitor : DataSaver
     public Action<bool> alarm;
     public Action<int,float> changeValue;
     VitalValue[] VitalValuesSaved;
-
+    Vector3 posHR, posSO2;
+    List <ElectrodeSocket> electrodeSockets = new List<ElectrodeSocket>();
     void Start()
     {
         VitalValuesSaved = new VitalValue[VitalValues.Length];
@@ -50,6 +51,23 @@ public class VitalsMonitor : DataSaver
             if(DataInterface != null)
                 DataInterface.SendDataItem(VitalValues[i].Name, VitalValues[i].Connected ? 1 : 0);
             //Debug.Log("{ \n \"name\": \"" + VitalValues[i].Name + "\",\n \"value\": " + (int)VitalValues[i].Value + "\n },");
+        }
+
+        if (VitalValues.Length>4)
+        {
+            if (VitalValues[0].Graph)
+                posHR = VitalValues[0].Graph.transform.position;
+            if (VitalValues[4].Graph)
+                posSO2 = VitalValues[4].Graph.transform.position;
+
+        }
+      
+        conneñt += CangeDisplayMonitors;
+        var _es = FindObjectsOfType<ElectrodeSocket>(true);
+        for (int i = 0; i < _es.Length; i++)
+        {
+            if (_es[i].RequiredPadID != -1)
+                electrodeSockets.Add(_es[i]);
         }
     }
 
@@ -269,6 +287,25 @@ public class VitalsMonitor : DataSaver
                 _vv.Text.text =
                     (_vv.Value + UnityEngine.Random.Range(-fluc, fluc)).ToString(_vv.OutputFormat);
                 _vv.Text.gameObject.SetActive(_vv.Connected);
+            }
+        }
+    }
+
+    public void CangeDisplayMonitors(int n) 
+    {
+        if (n==0 || n == 1)
+        {
+            for (int i = 0; i < electrodeSockets.Count; i++)
+            {
+                if (!electrodeSockets[i].IsConnectedCorrectly()) 
+                {
+                    if (VitalValues.Length>4)
+                    {
+                        VitalValues[0].Graph.transform.position = posSO2;
+                        VitalValues[4].Graph.transform.position = posHR;
+
+                    }
+                }
             }
         }
     }
