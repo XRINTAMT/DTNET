@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Autohand;
+using Photon.Pun;
 using ScenarioTaskSystem;
 using UnityEngine;
 using UnityEngine.Events;
@@ -31,7 +32,17 @@ public class DryHandController : MonoBehaviour
 
     void SpawnPaper() 
     {
-        GameObject paper = Instantiate(gameObject,startPos, startRot, transform.parent);
+        GameObject paper = null;
+        if (!PhotonManager.offlineMode && GetComponent<PhotonView>().IsMine)
+        {
+            paper = PhotonNetwork.Instantiate(gameObject.name, startPos, startRot);
+            paper.transform.parent = transform.parent;
+        }
+        if (PhotonManager.offlineMode)
+        {
+            paper = Instantiate(gameObject, startPos, startRot, transform.parent);
+        }
+
         paper.GetComponent<Rigidbody>().isKinematic = true;
     }
 
