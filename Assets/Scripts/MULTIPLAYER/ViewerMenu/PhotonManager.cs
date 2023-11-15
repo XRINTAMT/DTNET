@@ -22,6 +22,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public static bool exitToMenu;
     public static bool restart;
     public static bool connectToServer;
+    public bool latvianVer;
     void Start()
     {
         roomOptions.MaxPlayers = (byte)maxPlayers;
@@ -125,7 +126,14 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public override void OnCreatedRoom()
     {
         offlineMode = false;
-        SceneManager.LoadScene("ScenarioScene");
+        if((latvianVer == false) || (PlayerPrefs.GetString("Role", "Assistant") == "Nurse"))
+        {
+            SceneManager.LoadScene("ScenarioScene");
+        }
+        else
+        {
+            SceneManager.LoadScene("ScenarioSceneDoctorsAssistant");
+        }
         Debug.Log("Create room" + roomName);
         roomName = null;
     }
