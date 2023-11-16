@@ -26,7 +26,19 @@ public class Sensor : DataSaver
                 Debug.Log("Connecting port " + ports[i]);
             }
         }
-        
+    }
+
+    public void Disconnect()
+    {
+        if (Connected)
+        {
+            Connected = false;
+            for (int i = 0; i < ports.Length; i++)
+            {
+                Monitor.Disconnect(ports[i]);
+                Debug.Log("Connecting port " + ports[i]);
+            }
+        }
     }
 
     public override void Save()

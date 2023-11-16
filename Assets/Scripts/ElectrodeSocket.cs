@@ -5,17 +5,20 @@ using Autohand;
 
 public class ElectrodeSocket : MonoBehaviour
 {
-    public int RequiredPadID;
-    Electrode ConnectedElectrode;
+    //[SerializeField] int RequiredPadID;
+    [field: SerializeField] public int x { get; private set; }
+    [field: SerializeField] public int y { get; private set; }
+    public Electrode ConnectedElectrode { get; private set; }
 
     private void Awake()
     {
-        if (RequiredPadID == -1)
+        if (!((x == 0 || x == 2) && (y == 0 || y == 3)))
         {
             gameObject.SetActive(PlayerPrefs.GetInt("GuidedMode", 0) == 0);
         }
     }
 
+    /*
     public bool IsConnectedCorrectly()
     {
         if(ConnectedElectrode == null)
@@ -27,6 +30,7 @@ public class ElectrodeSocket : MonoBehaviour
         }
         return (ConnectedElectrode.ID == RequiredPadID);
     }
+    */
 
     public void Connect()
     {
@@ -53,6 +57,7 @@ public class ElectrodeSocket : MonoBehaviour
 
     public void Disconnect()
     {
+        ConnectedElectrode.Disconnect();
         ConnectedElectrode = null;
     }
 
