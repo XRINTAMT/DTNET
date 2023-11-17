@@ -23742,6 +23742,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.13, y: 0.05, z: 0.1}
   m_Center: {x: 0.05, y: -0.06, z: 0.025}
+--- !u!1 &1133617126 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5762404995881035352, guid: e4ee99523d710af4397e71218063f89d,
+    type: 3}
+  m_PrefabInstance: {fileID: 3184878397798626245}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1133617129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133617126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b1a1e71209ee3644b4fa66ff1d522eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 0
+  delayChangeValueOnMonitor: 0
+  speed: 0.02
+  palerValue: 0.1
+  startPaler: 0
+  vitalsMonitor: {fileID: 4019335544771552547}
 --- !u!1001 &1143698435
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40570,7 +40594,7 @@ PrefabInstance:
     - target: {fileID: 8364506472385605552, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: Scenario.tasks.Array.data[10].OnCompleted.Function.m_PersistentCalls.m_Calls.Array.size
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8364506472385605552, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
@@ -40671,6 +40695,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Scenario.tasks.Array.data[10].OnCompleted.Function.m_PersistentCalls.m_Calls.Array.data[13].m_Mode
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364506472385605552, guid: 7a4a5af22f3721847b7c43c92a94018d,
+        type: 3}
+      propertyPath: Scenario.tasks.Array.data[10].OnCompleted.Function.m_PersistentCalls.m_Calls.Array.data[14].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8364506472385605552, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
@@ -41114,6 +41143,11 @@ PrefabInstance:
       objectReference: {fileID: 1092542433}
     - target: {fileID: 8364506472385605552, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
+      propertyPath: Scenario.tasks.Array.data[10].OnCompleted.Function.m_PersistentCalls.m_Calls.Array.data[14].m_Target
+      value: 
+      objectReference: {fileID: 1133617129}
+    - target: {fileID: 8364506472385605552, guid: 7a4a5af22f3721847b7c43c92a94018d,
+        type: 3}
       propertyPath: Scenario.tasks.Array.data[0].OnCompleted.Function.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -41184,6 +41218,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8364506472385605552, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
+      propertyPath: Scenario.tasks.Array.data[10].OnCompleted.Function.m_PersistentCalls.m_Calls.Array.data[14].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364506472385605552, guid: 7a4a5af22f3721847b7c43c92a94018d,
+        type: 3}
       propertyPath: Scenario.tasks.Array.data[11].OnCompleted.Function.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
       value: CrossOut
       objectReference: {fileID: 0}
@@ -41231,6 +41270,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Scenario.tasks.Array.data[10].OnCompleted.Function.m_PersistentCalls.m_Calls.Array.data[13].m_MethodName
       value: ChangeVideoInspector
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364506472385605552, guid: 7a4a5af22f3721847b7c43c92a94018d,
+        type: 3}
+      propertyPath: Scenario.tasks.Array.data[10].OnCompleted.Function.m_PersistentCalls.m_Calls.Array.data[14].m_MethodName
+      value: AvtivatePaler
       objectReference: {fileID: 0}
     - target: {fileID: 8364506472385605552, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
@@ -41324,6 +41368,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8364506472385605552, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
+      propertyPath: Scenario.tasks.Array.data[10].OnCompleted.Function.m_PersistentCalls.m_Calls.Array.data[14].m_TargetAssemblyTypeName
+      value: PalerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364506472385605552, guid: 7a4a5af22f3721847b7c43c92a94018d,
+        type: 3}
       propertyPath: Scenario.tasks.Array.data[11].OnCompleted.Function.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_IntArgument
       value: 11
       objectReference: {fileID: 0}
@@ -41379,6 +41428,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8364506472385605552, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
+      propertyPath: Scenario.tasks.Array.data[10].OnCompleted.Function.m_PersistentCalls.m_Calls.Array.data[14].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364506472385605552, guid: 7a4a5af22f3721847b7c43c92a94018d,
+        type: 3}
       propertyPath: Scenario.tasks.Array.data[19].OnCompleted.Function.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 705146566}
@@ -41386,6 +41440,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Scenario.tasks.Array.data[10].OnCompleted.Function.m_PersistentCalls.m_Calls.Array.data[13].m_Arguments.m_StringArgument
       value: 0,1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364506472385605552, guid: 7a4a5af22f3721847b7c43c92a94018d,
+        type: 3}
+      propertyPath: Scenario.tasks.Array.data[10].OnCompleted.Function.m_PersistentCalls.m_Calls.Array.data[14].m_Arguments.m_StringArgument
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8364506472385605552, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
@@ -41440,6 +41499,11 @@ PrefabInstance:
     - target: {fileID: 8364506472385605552, guid: 7a4a5af22f3721847b7c43c92a94018d,
         type: 3}
       propertyPath: Scenario.tasks.Array.data[10].OnCompleted.Function.m_PersistentCalls.m_Calls.Array.data[13].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364506472385605552, guid: 7a4a5af22f3721847b7c43c92a94018d,
+        type: 3}
+      propertyPath: Scenario.tasks.Array.data[10].OnCompleted.Function.m_PersistentCalls.m_Calls.Array.data[14].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
