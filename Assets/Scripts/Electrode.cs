@@ -9,6 +9,7 @@ public class Electrode : DataSaver
     private int savedID;
     private bool GrabbableActive;
     private bool PlacePointActive;
+    private Pad LastPad;
 
     public void Connect()
     {
@@ -18,6 +19,7 @@ public class Electrode : DataSaver
     public void ProcessConnection()
     {
         Pad _p = GetComponentInChildren<Pad>();
+        LastPad = _p;
         ID = _p.ID;
         _p.GetComponent<Sensor>().Connect();
     }
@@ -25,6 +27,10 @@ public class Electrode : DataSaver
     public void Disconnect()
     {
         ID = -1;
+        if(LastPad != null)
+        {
+            LastPad.GetComponent<Sensor>().Disconnect();
+        }
     }
 
     public override void Save()

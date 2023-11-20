@@ -34,9 +34,9 @@ public class VitalsMonitor : DataSaver
     private Coroutine AlarmCoroutine;
     public Action<int> conneñt;
     public Action<bool> alarm;
-    public Action<int,float> changeValue;
+    public Action<int, float> changeValue;
     VitalValue[] VitalValuesSaved;
-
+    Vector3 posHR, posSO2;
     void Start()
     {
         VitalValuesSaved = new VitalValue[VitalValues.Length];
@@ -47,10 +47,22 @@ public class VitalsMonitor : DataSaver
             {
                 VitalValues[i].Text.text = VitalValues[i].Value.ToString(VitalValues[i].OutputFormat);
             }
-            if(DataInterface != null)
+            if (DataInterface != null)
                 DataInterface.SendDataItem(VitalValues[i].Name, VitalValues[i].Connected ? 1 : 0);
             //Debug.Log("{ \n \"name\": \"" + VitalValues[i].Name + "\",\n \"value\": " + (int)VitalValues[i].Value + "\n },");
         }
+
+        if (VitalValues.Length > 4)
+        {
+            if (VitalValues[0].Graph)
+                posHR = VitalValues[0].Graph.transform.position;
+            if (VitalValues[4].Graph)
+                posSO2 = VitalValues[4].Graph.transform.position;
+
+        }
+
+        conneñt += CangeDisplayMonitors;
+        var _es = FindObjectsOfType<ElectrodeSocket>(true);
     }
 
     //changes a given vital value linearly
@@ -79,7 +91,7 @@ public class VitalsMonitor : DataSaver
         }
         int id;
         float toValue, interval;
-        if(int.TryParse(args[0],out id) && float.TryParse(args[1], out toValue) && float.TryParse(args[2], out interval))
+        if (int.TryParse(args[0], out id) && float.TryParse(args[1], out toValue) && float.TryParse(args[2], out interval))
         {
             ChangeValue(id, toValue, interval);
         }
@@ -88,7 +100,96 @@ public class VitalsMonitor : DataSaver
             Debug.LogError("Could not parse some of your inputs: " + deserialized);
         }
     }
-    
+
+    private void CheckElectrodes()
+    {
+        // Get all ElectrodeSocket objects in the scene
+        ElectrodeSocket[] _electrodeSockets = FindObjectsOfType<ElectrodeSocket>();
+        bool _flip = false;
+        bool _noisy = false;
+
+        // Iterate through each combination of ElectrodeSockets
+        for (int i = 0; i < _electrodeSockets.Length; i++)
+        {
+            for (int j = i + 1; j < _electrodeSockets.Length; j++)
+            {
+                // Check if ElectrodeSockets have connected Pads
+                if (_electrodeSockets[i].ConnectedElectrode != null && _electrodeSockets[j].ConnectedElectrode != null)
+                {
+                    // Access Pad properties (ID, X, Y) for the two ElectrodeSockets
+                    int padID1 = _electrodeSockets[i].ConnectedElectrode.ID;
+                    float padX1 = _electrodeSockets[i].x;
+                    float padY1 = _electrodeSockets[i].y;
+
+                    int padID2 = _electrodeSockets[j].ConnectedElectrode.ID;
+                    float padX2 = _electrodeSockets[j].x;
+                    float padY2 = _electrodeSockets[j].y;
+
+                    // Flipping logic
+                    if ((padID1 == 0 || padID1 == 2) && (padX1 > padX2) && (padID2 == 1 || padID2 == 3))
+                    {
+                        _flip = true;
+                    }
+                    else if ((padID1 == 1 || padID1 == 3) && (padX1 < padX2) && (padID2 == 0 || padID2 == 2))
+                    {
+                        _flip = true;
+                    }
+                    else if ((padID1 == 0 || padID1 == 1) && (padY1 > padY2) && (padID2 == 2 || padID2 == 3))
+                    {
+                        _flip = true;
+                    }
+                    else if ((padID1 == 2 || padID1 == 3) && (padY1 < padY2) && (padID2 == 0 || padID2 == 1))
+                    {
+                        _flip = true;
+                    }
+                }
+                else
+                {
+                    Debug.Log($"One or both ElectrodeSockets ({_electrodeSockets[i].name}, {_electrodeSockets[j].name}) are not connected to any Pad");
+                }
+            }
+        }
+
+        // Noisy logic (moved outside of the loop)
+        foreach (ElectrodeSocket socket in _electrodeSockets)
+        {
+            if (socket.ConnectedElectrode != null &&
+                !((socket.x == 0 && socket.y == 0) ||
+                  (socket.x == 2 && socket.y == 0) ||
+                  (socket.x == 0 && socket.y == 3)||
+                  (socket.x == 2 && socket.y == 3)))
+            {
+                Debug.Log("Noisy because of " + socket.ConnectedElectrode.ID);
+                _noisy = true;
+            }
+        }
+
+
+        GraphController _gc = FindObjectOfType<GraphController>();
+        if(_gc != null)
+        {
+            if (_noisy)
+            {
+                FindObjectOfType<GraphController>().AddNoise(0);
+            }
+            else
+            {
+                FindObjectOfType<GraphController>().RemoveNoise(0);
+            }
+        }
+
+        if (_flip)
+        {
+            VitalValues[0].Graph.transform.localScale = new Vector3(VitalValues[0].Graph.transform.localScale.x,
+                VitalValues[0].Graph.transform.localScale.y, Mathf.Abs(VitalValues[0].Graph.transform.localScale.z) * -1);
+        }
+        else
+        {
+            VitalValues[0].Graph.transform.localScale = new Vector3(VitalValues[0].Graph.transform.localScale.x,
+                VitalValues[0].Graph.transform.localScale.y, Mathf.Abs(VitalValues[0].Graph.transform.localScale.z));
+        }
+    }
+
     public void ChangeValue(int id, float toValue, float interval)
     {
         if(id < VitalValues.Length)
@@ -204,6 +305,17 @@ public class VitalsMonitor : DataSaver
        
     }
 
+    public void Disconnect(int n)
+    {
+        if(n == 0 || n == 1)
+        {
+            VitalValues[n].Connected = false;
+            VitalValues[n].SensorsLeft += 1;
+            CheckElectrodes();
+            VitalValues[0].Graph.SetActive(false);
+        }
+    }
+
     public float GetValue(int ID)
     {
         return VitalValues[ID].Value;
@@ -270,6 +382,14 @@ public class VitalsMonitor : DataSaver
                     (_vv.Value + UnityEngine.Random.Range(-fluc, fluc)).ToString(_vv.OutputFormat);
                 _vv.Text.gameObject.SetActive(_vv.Connected);
             }
+        }
+    }
+
+    public void CangeDisplayMonitors(int n) 
+    {
+        if (n==0 || n == 1)
+        {
+            CheckElectrodes();
         }
     }
 }
