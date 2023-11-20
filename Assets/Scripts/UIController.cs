@@ -258,6 +258,27 @@ public class UIController : MonoBehaviour
 
     }
 
+    public void OpenScenarioConditional()
+    {
+        name = (FindObjectOfType<PhotonManager>().latvianVer && 
+            (PlayerPrefs.GetString("Role", "Assistant") == "Assistant")) ? 
+            "ScenarioSceneDoctorsAssistant" : "ScenarioScene";
+        if (PhotonManager.offlineMode)
+        {
+            if (sceneLoader != null)
+            {
+                sceneLoader.LoadScene(name);
+            }
+
+            if (sceneLoader == null)
+                SceneManager.LoadScene(name);
+        }
+        if (!PhotonManager.offlineMode)
+        {
+            FindObjectOfType<PhotonManager>().ConnectToServer();
+        }
+    }
+
     public void Exit() 
     {
         Application.Quit();
