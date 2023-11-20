@@ -6,6 +6,7 @@ public class PalerController : MonoBehaviour
 {
     public float delay;
     public float delayChangeValueOnMonitor;
+    public float delayStartDialogue;
     public float speed;
     public float palerValue;
     Material mat;
@@ -13,10 +14,14 @@ public class PalerController : MonoBehaviour
     float valueColor;
     Color color;
     public VitalsMonitor vitalsMonitor;
+    AudioSource audioSource;
+    DialogueSystem dialogueSystem;
     // Start is called before the first frame update
     void Awake()
     {
         mat = GetComponent<Renderer>().material;
+        audioSource = GetComponent<AudioSource>();
+        dialogueSystem = FindObjectOfType<DialogueSystem>(true);
     }
     public void AvtivatePaler() 
     {
@@ -35,7 +40,10 @@ public class PalerController : MonoBehaviour
         vitalsMonitor.ChangeValueInspector("5, 34, 34"); //RespRate
     }
 
-
+    public void StartDialogue() 
+    {
+        dialogueSystem.ActivateDialogue(3);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -52,6 +60,8 @@ public class PalerController : MonoBehaviour
             mat.EnableKeyword("_EMISSION");
             startPaler = false;
             Invoke("ChangeValue", delayChangeValueOnMonitor);
+            Invoke("StartDialogue", delayStartDialogue);
+            audioSource.Play();
         }
     }
 }
