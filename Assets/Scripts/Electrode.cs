@@ -22,6 +22,7 @@ public class Electrode : DataSaver
         LastPad = _p;
         ID = _p.ID;
         _p.GetComponent<Sensor>().Connect();
+        GetComponent<Grabbable>().enabled = false;
     }
 
     public void Disconnect()
@@ -30,6 +31,7 @@ public class Electrode : DataSaver
         if(LastPad != null)
         {
             LastPad.GetComponent<Sensor>().Disconnect();
+            GetComponent<Grabbable>().enabled = true;
         }
     }
 
