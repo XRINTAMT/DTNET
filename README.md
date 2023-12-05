@@ -80,12 +80,12 @@ If adding libraries or packages from the Unity asset store add them here.
 
 | Asset                      | Source link | License |
 |----------------------------|-------------|---------|
-| Scenario 1 Patient Model   | -           | -       |
+| Scenario 1 Patient Model   | Ours, made in Fuse (?)    | -       |
 | Scenario 2 Patient Model 1 | -           | -       |
 | Scenario 2 Patient Model 2 | -           | -       |
 | Scenario 2 Patient Model 3 | -           | -       |
 | Scenario 2 Patient Model 4 | -           | -       |
 | Clock                      | -           | -       |
-| Painting                   | -           | -       |
-| Skybox                     | -           | -       |
+| Painting                   | Both are ours | We're good |
+| Skybox                     | ihdri.com   | Free for commercial use, no attribution mentioned unless what they called "selling" their HDR's (?) The entire FAQ and Legal section is weird on their website. |
 | Animations?                | -           | -       |
