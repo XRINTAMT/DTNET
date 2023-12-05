@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc788fe28a1947c5906bf24c0472406, type: 3}
+  m_Name: Dialogue-3
+  m_EditorClassIdentifier: 
+  Conversations:
+  - ID: 1
+    Name: 3
+    FirstMessage: 2
+  Speakers:
+  - ID: 0
+    Name: 'Du:'
+    Icon: {fileID: 0}
+  - ID: 4
+    Name: 'Arzt Herr Adams:'
+    Icon: {fileID: 0}
+  Messages:
+  - ID: 2
+    Speaker: 4
+    SpeakerName: 'Arzt Herr Adams:'
+    PreviousMessage: -1
+    NextMessage: 3
+    MessageText: Was ist passiert? Was sind die Daten des Patienten?
+    Clip: {fileID: 8300000, guid: 9cc83d8f6a8ad3a4ba448d1bdf7021df, type: 3}
+  - ID: 3
+    Speaker: 0
+    SpeakerName: 'Du:'
+    PreviousMessage: 2
+    NextMessage: 5
+    MessageText: "Zehn Minuten nach der Dopamininjektion klagte der Patient \xFCber
+      starke Benommenheit und Schmerzen in der Brust. Der Blutdruck fiel auf 72/42
+      mmHg. Es hat sich eine absolute Bradykardie entwickelt und der Patient erlitt
+      eine AV-Block dritten Grades."
+    Clip: {fileID: 8300000, guid: 0fa523c16d88be845a5f6db2845a4099, type: 3}
+  - ID: 5
+    Speaker: 4
+    SpeakerName: 'Arzt Herr Adams:'
+    PreviousMessage: 3
+    NextMessage: -1
+    MessageText: "Bereiten wir den Patienten auf eine transkutane Stimulation vor.
+      Krankenschwester Ann, bitte injizieren Sie Midazolam 2-4 mg intraven\xF6s.
+      Pflegestudent: Bitte \xFCberpr\xFCfen Sie noch einmal, dass die"
+    Clip: {fileID: 8300000, guid: 74ce48bb5e471e44da497a9955116c0d, type: 3}
+  - ID: 6
+    Speaker: 0
+    SpeakerName: 'Du:'
+    PreviousMessage: -1
+    NextMessage: -1
+    MessageText: Oxygen saturation is 97%
+    Clip: {fileID: 8300000, guid: 6b0c29dd5458fb94db50dc2432add140, type: 3}
+  Choices:
+  - ID: 11
+    Choices:
+    - Report oxygen saturation
+    - Close
+    NextMessages: 06000000ffffffff

@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc788fe28a1947c5906bf24c0472406, type: 3}
+  m_Name: Dialogue-3
+  m_EditorClassIdentifier: 
+  Conversations:
+  - ID: 1
+    Name: 3
+    FirstMessage: 2
+  Speakers:
+  - ID: 0
+    Name: 'Tu:'
+    Icon: {fileID: 0}
+  - ID: 4
+    Name: 'Gydytojas ponas Adamsas:'
+    Icon: {fileID: 0}
+  Messages:
+  - ID: 2
+    Speaker: 4
+    SpeakerName: 'Gydytojas ponas Adamsas:'
+    PreviousMessage: -1
+    NextMessage: 3
+    MessageText: Kas nutiko? Kokie yra paciento duomenys?
+    Clip: {fileID: 8300000, guid: 1f177d9df7e8dc8468e0438f932b3291, type: 3}
+  - ID: 3
+    Speaker: 0
+    SpeakerName: 'Tu:'
+    PreviousMessage: 2
+    NextMessage: 5
+    MessageText: "Pra\u0117jus de\u0161im\u010Diai minu\u010Di\u0173 po dopamino
+      injekcijos, pacientas skund\u0117si, kad jam labai svaigsta galva ir jau\u010Dia
+      skausm\u0105 kr\u016Btin\u0117je. Kraujosp\u016Bdis nukrito iki 72/42 mmHg.
+      I\u0161sivyst\u0117 absoliuti bradikardija ir pacientui progresavo tre\u010Diojo
+      laipsnio \u0161irdies blokada"
+    Clip: {fileID: 8300000, guid: 8b3ca412f85a66e4fb30ecaf95e26a0b, type: 3}
+  - ID: 5
+    Speaker: 4
+    SpeakerName: 'Gydytojas ponas Adamsas:'
+    PreviousMessage: 3
+    NextMessage: -1
+    MessageText: "Paruo\u0161kime pacient\u0105 transkutaninio \u0161irdies stimuliatoriaus
+      proced\u016Brai. Slaugytoja Ann, suleiskite \u012F ven\u0105 2-4 mg midazolamo.
+      Student\u0117s-slaugytojos pra\u0161ome dar kart\u0105 patikrinti, ar"
+    Clip: {fileID: 8300000, guid: 0b83806b15af6b541a96747ecb7496cb, type: 3}
+  - ID: 6
+    Speaker: 0
+    SpeakerName: 'Tu:'
+    PreviousMessage: -1
+    NextMessage: -1
+    MessageText: Deguonies prisotinimas yra 97%
+    Clip: {fileID: 8300000, guid: 919c6c5f0e43dea41ba6acb42de565fb, type: 3}
+  Choices:
+  - ID: 11
+    Choices:
+    - "Prane\u0161ti apie prisotinim\u0105 deguonimi"
+    - "U\u017Edaryti"
+    NextMessages: 06000000ffffffff
