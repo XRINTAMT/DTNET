@@ -25,6 +25,7 @@ public class Syringe : DataSaver
     [SerializeField] Text AmountText;
     [SerializeField] Text SubstanceText;
     [SerializeField] Vector3 Offset;
+    [SerializeField] GameObject CapGameobject;
     [SerializeField] Rigidbody SyringeCap;
     bool Guided;
     [SerializeField] Material LiquidRight;
@@ -91,6 +92,18 @@ public class Syringe : DataSaver
         //SubstanceText.text = med.Substance;
         //AmountText.text = ingredients[med.Substance].ToString("0.0");
         UpdateGuidedLiquidColor(med.Substance);
+    }
+
+    public void ActivateSyringeCap()
+    {
+        SyringeCap = CapGameobject.AddComponent<Rigidbody>();
+        SyringeCap.isKinematic = true;
+        Grabbable CapGrabbable = CapGameobject.GetComponent<Grabbable>();
+        CapGrabbable.body = SyringeCap;
+        CapGrabbable.OnGrabEvent += (sender, e) =>
+        {
+            SyringeCap.isKinematic = false;
+        };
     }
 
     private void UpdateGuidedLiquidColor(string substance)
