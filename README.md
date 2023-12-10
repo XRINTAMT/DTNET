@@ -89,3 +89,4 @@ If adding libraries or packages from the Unity asset store add them here.
 | Painting                   | Both are ours | We're good |
 | Skybox                     | ihdri.com   | Free for commercial use, no attribution mentioned unless what they called "selling" their HDR's (?) The entire FAQ and Legal section is weird on their website. |
 | Animations?                | www.mixamo.com | Free |
+| Font                       | www.dafont.com/sui-generis.font | Free, but there are questions regarding going open-source and font embedding. |
