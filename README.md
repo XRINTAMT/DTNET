@@ -81,11 +81,11 @@ If adding libraries or packages from the Unity asset store add them here.
 | Asset                      | Source link | License |
 |----------------------------|-------------|---------|
 | Scenario 1 Patient Model   | Ours, made in Fuse | Free |
-| Scenario 2 Patient Model 1 | www.sketchfab.com | Free |
-| Scenario 2 Patient Model 2 | www.sketchfab.com | Free |
-| Scenario 2 Patient Model 3 | www.sketchfab.com | Free |
-| Scenario 2 Patient Model 4 | www.sketchfab.com | Free |
-| Clock                      | www.sketchfab.com | Free |
+| Scenario 2 Patient Model 1 | [www.sketchfab.com](https://sketchfab.com/3d-models/facial-body-animated-party-m-0001-actorcore-aecb1b0c293a4185a91a532e635f3e6d) | CC Attribution |
+| Scenario 2 Patient Model 2 | [www.sketchfab.com](https://sketchfab.com/3d-models/man-4k-47ebe15d4c0545b88d2846bff9918208) | CC Attribution |
+| Scenario 2 Patient Model 3 | www.sketchfab.com | CC Attribution |
+| Scenario 2 Patient Model 4 | www.sketchfab.com | CC Attribution |
+| Clock                      | www.sketchfab.com | CC Attribution |
 | Painting                   | Both are ours | We're good |
 | Skybox                     | ihdri.com   | Free for commercial use, no attribution mentioned unless what they called "selling" their HDR's (?) The entire FAQ and Legal section is weird on their website. |
 | Animations?                | www.mixamo.com | Free |
