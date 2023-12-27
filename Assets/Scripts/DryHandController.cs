@@ -15,6 +15,7 @@ public class DryHandController : MonoBehaviour
     Vector3 startPos;
     Quaternion startRot;
     Task task;
+    public EventSwitch eventSwitch;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,8 +29,19 @@ public class DryHandController : MonoBehaviour
 
         startPos = transform.position;
         startRot = transform.rotation;
+
+        if (!gameObject.name.Contains("Clone"))
+        {
+            grabbable.enabled = false;
+            eventSwitch.OnFalse.AddListener(() => EnableGrab(grabbable));
+        }
+       
     }
 
+    void EnableGrab(Grabbable grabbable) 
+    {
+        grabbable.enabled = true;
+    }
     void SpawnPaper() 
     {
         GameObject paper = null;
@@ -44,6 +56,7 @@ public class DryHandController : MonoBehaviour
         }
 
         paper.GetComponent<Rigidbody>().isKinematic = true;
+        paper.GetComponent<Grabbable>().enabled = true;
     }
 
     void OnHighlight(Hand hand, Grabbable grabbable) 

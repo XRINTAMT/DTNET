@@ -11,7 +11,7 @@ public class GrabbingDistance : MonoBehaviour
     void Start()
     {
         distance = DistanceGrabSetting.distanceGrab;
-        if (distance==0) distance = 0.15f;
+        if (distance==0) distance = 0.075f;
   
         var handFind= FindObjectsOfType<Hand>();
         for (int i = 0; i < handFind.Length; i++)

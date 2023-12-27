@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class EventSwitch : MonoBehaviour
 {
     [SerializeField] bool state;
-    [SerializeField] UnityEvent OnTrue, OnFalse;
+    public UnityEvent OnTrue, OnFalse;
     // Start is called before the first frame update
     void Start()
     {
